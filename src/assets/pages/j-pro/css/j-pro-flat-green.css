@@ -1,0 +1,68 @@
+/* ========================================= */
+/* Color: green */
+/* ========================================= */
+
+/* Buttons
+=============================== */
+.j-pro.j-green .j-widget .j-addon,
+.j-pro.j-green .j-widget .j-addon-btn,
+.j-pro.j-green .j-primary-btn,
+.j-pro.j-green .j-secondary-btn,
+.ui-datepicker-buttonpane button { background-color:#2d862d; }
+
+.j-pro.j-green .j-widget .j-addon-btn:hover,
+.j-pro.j-green .j-primary-btn:hover,
+.j-pro.j-green .j-secondary-btn:hover,
+.ui-datepicker-buttonpane button:hover { background-color:#206020; }
+
+.j-pro.j-green .j-widget.j-disabled-view .j-addon-btn,
+.j-pro.j-green .j-primary-btn.j-disabled-view,
+.j-pro.j-green .j-secondary-btn.j-disabled-view { background-color:#2d862d !important; }
+
+/* Datepicker & Timepicker
+=============================== */
+.ui-datepicker-header,
+.ui-datepicker-calendar a:hover,
+.ui-datepicker-calendar .ui-state-active { background-color:#53c653; }
+
+.ui-datepicker-calendar a:hover,
+.ui-datepicker-calendar .ui-state-active { color:#fff; }
+
+/* Ratings
+=============================== */
+.j-pro.j-green .j-ratings input + label:hover,
+.j-pro.j-green .j-ratings input + label:hover ~ label,
+.j-pro.j-green .j-ratings input:checked + label,
+.j-pro.j-green .j-ratings input:checked + label ~ label { color:#2d862d; }
+
+/* Header
+=============================== */
+.j-pro.j-green .j-header { color:#2d862d; }
+
+/* Multistep form
+=============================== */
+.j-pro.j-green .j-active-step .j-steps { border:1px solid #206020; }
+
+/* Other
+=============================== */
+.j-pro.j-green .j-divider-text span { color:#2d862d; }
+
+.j-pro.j-green .j-divider,
+.j-pro.j-green .j-divider-text { border-top:1px solid #9fdf9f; height:0; }
+
+/* Tooltip
+=============================== */
+.j-pro.j-green .j-tooltip,
+.j-pro.j-green .j-tooltip-image { background-color:#2d862d; }
+
+.j-pro.j-green .j-tooltip-left-top:before { border-color:#2d862d transparent; }
+
+.j-pro.j-green .j-tooltip-right-top:before{ border-color:#2d862d transparent; }
+
+.j-pro.j-green .j-tooltip-right-bottom:before{ border-color:#2d862d transparent; }
+
+.j-pro.j-green .j-tooltip-left-bottom:before{ border-color:#2d862d transparent; }
+
+.j-pro.j-green .j-tooltip-right-side:before{ border-color:transparent #2d862d; }
+
+.j-pro.j-green .j-tooltip-left-side:before{ border-color:transparent #2d862d; }

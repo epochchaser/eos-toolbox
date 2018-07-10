@@ -1,0 +1,29 @@
+/* ========================================= */
+/* Color: indigo */
+/* ========================================= */
+
+/* Buttons
+=============================== */
+.j-pro.j-indigo .j-widget .j-addon-btn,
+.j-pro.j-indigo .j-primary-btn,
+.j-pro.j-indigo .j-file-button,
+.j-pro.j-indigo .j-secondary-btn,
+.ui-datepicker-buttonpane button { background-color:#00264d; }
+
+.j-pro.j-indigo .j-widget .j-addon-btn:hover,
+.j-pro.j-indigo .j-primary-btn:hover,
+.j-pro.j-indigo .j-file-button:hover,
+.j-pro.j-indigo .j-secondary-btn:hover,
+.ui-datepicker-buttonpane button:hover { background-color:#004080; }
+
+.j-pro.j-indigo .j-widget.j-disabled-view .j-addon-btn,
+.j-pro.j-indigo .j-primary-btn.j-disabled-view,
+.j-pro.j-indigo .j-disabled-view .j-file-button,
+.j-pro.j-indigo .j-secondary-btn.j-disabled-view { background-color:#00264d !important; }
+
+/* Ratings
+=============================== */
+.j-pro.j-indigo .j-ratings input + label:hover,
+.j-pro.j-indigo .j-ratings input + label:hover ~ label,
+.j-pro.j-indigo .j-ratings input:checked + label,
+.j-pro.j-indigo .j-ratings input:checked + label ~ label { color:#00264d; }

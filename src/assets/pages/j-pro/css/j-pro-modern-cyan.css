@@ -1,0 +1,130 @@
+/* ========================================= */
+/* Color: cyan */
+/* ========================================= */
+
+/* Buttons
+=============================== */
+.j-pro.j-cyan .j-widget .j-addon-btn,
+.j-pro.j-cyan .j-primary-btn,
+.j-pro.j-cyan .j-file-button,
+.j-pro.j-cyan .j-secondary-btn { background-color:#0097a7; }
+
+.j-pro.j-cyan .j-widget.j-disabled-view .j-addon-btn,
+.j-pro.j-cyan .j-primary-btn.j-disabled-view,
+.j-pro.j-cyan .j-disabled-view .j-file-button,
+.j-pro.j-cyan .j-secondary-btn.j-disabled-view { background-color:#0097a7 !important; }
+
+.j-pro.j-cyan .j-widget .j-addon-btn:hover,
+.j-pro.j-cyan .j-primary-btn:hover,
+.j-pro.j-cyan .j-file-button:hover,
+.j-pro.j-cyan .j-secondary-btn:hover { background-color:#00bcd4; }
+
+.j-pro.j-cyan .j-file-button:hover + input { border:2px solid rgba(0,151,167,.6); }
+
+/* Ratings
+=============================== */
+.j-pro.j-cyan .j-ratings input + label:hover,
+.j-pro.j-cyan .j-ratings input + label:hover ~ label,
+.j-pro.j-cyan .j-ratings input:checked + label,
+.j-pro.j-cyan .j-ratings input:checked + label ~ label { color:#0097a7; }
+
+/* Header + footer
+=============================== */
+.j-pro.j-cyan .j-header {
+	-webkit-box-shadow:0 6px 3px -3px rgba(0,151,167,.5);
+	-moz-box-shadow:0 6px 3px -3px rgba(0,151,167,.5);
+	-o-box-shadow:0 6px 3px -3px rgba(0,151,167,.5);
+	box-shadow:0 6px 3px -3px rgba(0,151,167,.5);
+	border-top:1px solid #4dd0e1;
+	background-color:#00acc1;
+}
+.j-pro.j-cyan .j-footer { border-top:1px solid #0097a7; background-color:#e0f7fa; }
+
+/* Multistep form
+=============================== */
+.j-pro.j-cyan .j-active-step .j-steps { background-color:#e0f7fa; border:1px solid #0097a7; }
+
+.j-pro.j-cyan .j-passed-step .j-steps { background-color:#e0f7fa; border:1px solid #e0f7fa; }
+
+/* Other
+=============================== */
+.j-pro.j-cyan .j-divider-text span { color:#00acc1; }
+
+.j-pro.j-cyan,
+.j-pro.j-cyan .j-divider-text span { background-color:#f7fdfe; }
+
+/* Radio and checkbox
+=============================== */
+.j-pro.j-cyan .j-checkbox:hover i,
+.j-pro.j-cyan .j-radio:hover i { border:2px solid rgba(0,151,167,.6); }
+
+.j-pro.j-cyan .j-radio input:checked + i,
+.j-pro.j-cyan .j-checkbox input:checked + i { border:2px solid rgba(0,151,167,.9); color:rgba(0,151,167,.9); }
+
+.j-pro.j-cyan .j-radio i:after { background-color:rgba(0,151,167,.9); }
+
+.j-pro.j-cyan .j-checkbox i:after { border-bottom:solid rgb(0,151,167); border-left:solid rgb(0,151,167); }
+
+/* Toggle radio and toggle checkbox
+=============================== */
+.j-pro.j-cyan .j-checkbox-toggle:hover i,
+.j-pro.j-cyan .j-radio-toggle:hover i { border:2px solid rgba(0,151,167,.6); }
+
+.j-pro.j-cyan .j-radio-toggle input:checked + i,
+.j-pro.j-cyan .j-checkbox-toggle input:checked + i { border:2px solid rgba(0,151,167,.9); }
+
+.j-pro.j-cyan .j-radio-toggle i:before,
+.j-pro.j-cyan .j-checkbox-toggle i:before { background-color:rgba(0,151,167,.9); }
+
+.j-pro.j-cyan .j-checkbox-toggle input:checked + i,
+.j-pro.j-cyan .j-radio-toggle input:checked + i { background-color:#e0f7fa; }
+
+/* Tooltip
+=============================== */
+.j-pro.j-cyan .j-tooltip,
+.j-pro.j-cyan .j-tooltip-image { background-color:#006064; }
+
+.j-pro.j-cyan .j-tooltip-left-top:before { border-color:#006064 transparent; }
+
+.j-pro.j-cyan .j-tooltip-right-top:before{ border-color:#006064 transparent; }
+
+.j-pro.j-cyan .j-tooltip-right-bottom:before{ border-color:#006064 transparent; }
+
+.j-pro.j-cyan .j-tooltip-left-bottom:before{ border-color:#006064 transparent; }
+
+.j-pro.j-cyan .j-tooltip-right-side:before{ border-color:transparent #006064; }
+
+.j-pro.j-cyan .j-tooltip-left-side:before{ border-color:transparent #006064; }
+
+/* Input
+=============================== */
+.j-pro.j-cyan input[type="text"]:hover,
+.j-pro.j-cyan input[type="password"]:hover,
+.j-pro.j-cyan input[type="email"]:hover,
+.j-pro.j-cyan input[type="search"]:hover,
+.j-pro.j-cyan input[type="url"]:hover,
+.j-pro.j-cyan textarea:hover,
+.j-pro.j-cyan select:hover { border:2px solid rgba(0,151,167,.6); }
+
+.j-pro.j-cyan input[type="text"]:focus,
+.j-pro.j-cyan input[type="password"]:focus,
+.j-pro.j-cyan input[type="email"]:focus,
+.j-pro.j-cyan input[type="search"]:focus,
+.j-pro.j-cyan input[type="url"]:focus,
+.j-pro.j-cyan textarea:focus,
+.j-pro.j-cyan select:focus { border:2px solid rgba(0,151,167,.9); }
+
+/* Image radio and Image checkbox
+=============================== */
+.j-pro.j-cyan .j-radio-block input:checked + i,
+.j-pro.j-cyan .j-checkbox-block input:checked + i { border:2px solid rgba(0,151,167,.9); color:rgba(0,151,167,.9); }
+
+.j-pro.j-cyan .j-radio-block i:after { background-color:rgba(0,151,167,.9); }
+
+.j-pro.j-cyan .j-checkbox-block i:after { border-bottom:solid rgba(0,151,167,.9); border-left:solid rgba(0,151,167,.9); }
+
+.j-pro.j-cyan .j-checkbox-block .j-block-content:hover,
+.j-pro.j-cyan .j-radio-block .j-block-content:hover { background:rgba(224,247,250,.5); }
+
+.j-pro.j-cyan .j-checkbox-block input:checked ~ .j-block-content,
+.j-pro.j-cyan .j-radio-block input:checked ~ .j-block-content { background-color:#e0f7fa; }

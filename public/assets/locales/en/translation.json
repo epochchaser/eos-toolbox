@@ -1,0 +1,411 @@
+{
+   
+    "nav": {
+        "category": {
+            "navigation": "Navigation",
+            "ui-element" :"UI Element",
+            "forms":"Forms",
+            "tables":"Tables",
+            "chart-and-maps":"Chart And Maps",
+            "pages":"Pages",
+            "app":"App",
+            "extension":"Extension",
+            "other":"Other",
+            "support":"Support"
+        },
+        "dash": {
+            "main": "Dashboard",
+            "default":"Default",
+            "ecommerce": "Ecommerce",
+            "crm": "CRM",
+            "analytics": "Analytics",
+            "project": "Project"
+        },
+        "page_layout": {
+            "main":"Page layouts",
+            "vertical":{
+                    "main": "Vertical",
+                    "static-layout": "Static Layout",
+                    "header-fixed": "Header Fixed",
+                    "compact": "Compact",
+                    "sidebar-fixed": "Sidebar Fixed"
+                },
+                "horizontal":{
+                    "main": "Horizontal",
+                   "static-layout": "Static Layout",
+                   "fixed-layout": "Fixed layout",
+                   "static-with-icon": "Static With Icon",
+                   "fixed-with-icon": "Fixed With Icon"
+                },
+                 "bottom-menu": "Bottom Menu",
+                    "box-layout": "Box Layout",
+                    "rtl": "RTL"
+        },
+         "navigate": {
+            "main": "Navigation",
+            "navbar": "Navbar",
+            "navbar-inverse": "Navbar Inverse",
+            "navbar-with-elements": "Navbar With Elements"
+        },
+          "widget": {
+            "main": "Widget"
+        },
+        "basic-components":{
+          "main":"Basic Components",
+          "alert":"Alert",
+          "breadcrumbs":"Breadcrumbs",
+          "button":"Button",
+          "box-shadow":"Box-Shadow",
+          "collapse–accordion":"Accordion",
+          "generic-class":"Generic Class",
+          "tabs":"Tabs",
+          "color":"Color",
+          "label-badge":"Label Badge",
+          "progress-bar":"Progress bar",
+          "pre-loader":"Pre-Loader",
+          "list":"List",
+          "tooltip-popover":"Tooltip And Popover",
+          "typography":"Typography",
+          "other":"Other"
+        },
+        "advance-components":{
+        "main":"Advance Components",
+        "draggable":"Draggable",
+        "grid-stack":"Grid Stack",
+        "light-box":"Light Box",
+        "modal":"Modal",
+        "modal-form":"Modal Form",
+        "notifications":"Notifications",
+        "pnotify":"PNOTIFY",
+        "rating":"Rating",
+        "range-slider":"Range Slider",
+        "slider":"Slider",
+          "syntax-highlighter":"Syntax Highlighter",
+        "tour":"Tour",
+        "tree-view":"Tree View",
+        "nestable":"Nestable",
+        "toolbar":"Toolbar",
+        "x-editable":"X-Editable"
+      },
+      "extra-components":{
+        "main":"Extra Components",
+        "session-timeout":"Session Timeout",
+        "session-idle-timeout":"Session Idle Timeout",
+        "offline":"Offline"
+      },
+      "animations": {
+        "main": "Animations"
+
+      },
+      "sticky-notes":{
+        "main":"Sticky Notes"
+      },
+
+        "icons":{
+        "main":"Icons",
+        "font-awesome":"Font Awesome",
+        "themify":"Themify",
+        "simple-line-icon":"Simple Line Icon",
+        "ion-icon":"Ion Icon",
+        "material-design":"Material Design",
+        "ico-fonts":"Ico Fonts",
+        "weather-icon":"Weather Icon",
+        "typicons":"Typicons",
+        "flags":"Flags"
+      },
+      "form-components":{
+        "main":"Form Components",
+        "form-components":"Form Components",
+        "form-elements-add-on":"Form-Elements-Add-On",
+        "form-elements-advance":"Form-Elements-Advance",
+        "form-validation":"Form Validation"
+      },
+      "form-picker":{
+        "main":"Form Pickers"
+      },
+      "json-form":{
+        "main":"JSON Form",
+        "simple-form":"Simple Form",
+        "clubs-view":"Clubs(View Selector)",
+        "customer-form":"Customer Form",
+        "profile-display":"Profile Display",
+        "profile-edit":"Profile Edit",
+        "profile-ready-only":"Profile Ready Only",
+        "form-fields":"Form Fields",
+        "registration-validation":"Registration Validation",
+        "automatic-validation":"Automatic Validation",
+        "localized-login":"Localized Login"
+      },
+      "form-select":{
+        "main":"Form Select"
+      },
+      "form-masking":{
+        "main":"Form Masking"
+      },
+      "form-wizard":{
+        "main":"Form Wizard"
+      },
+      "ready-to-use":{
+        "main":"Ready To Use",
+        "cloned-elements-form":"Cloned Elements Form",
+        "currency-form":"Currency Form",
+        "booking-form":"Booking Form",
+        "booking-multi-steps-form":"Booking Multi steps Form",
+        "comment-form":"Comment Form",
+        "contact-form":"Contact Form",
+        "job-application-form":"Job Application Form",
+        "jS-addition-form":"JS Addition Form",
+        "login-form":"Login Form",
+        "popup-modal-form":"Popup Modal Form",
+        "registration-form":"Registration Form",
+        "review-form":"Review Form",
+        "subscribe-form":"Subscribe Form",
+        "suggestion-form":"Suggestion Form",
+        "tabs-form":"Tabs Form"
+      },
+      "bootstrap-table":{
+        "main":"Bootstrap Table",
+        "basic-table":"Basic Table",
+        "sizing-table":"Sizing Table",
+        "border-table":"Border Table",
+        "styling-table":"Styling Table"
+      },
+      "data-table":{
+        "main":"Data Table",
+        "basic-initialization":"Basic Initialization",
+        "advance-initialization":"Advance Initialization",
+        "styling":"Styling",
+        "api":"API",
+        "ajax":"Ajax",
+        "server-side":"Server Side",
+        "plug-in":"Plug-In",
+        "data-sources":"Data Sources"
+      },
+      "data-table-extensions": {
+        "main":"Data Table Extensions",
+        "autofill":"AutoFill",
+        "button":{
+          "main": "Button",
+          "basic-button": "Basic Button",
+          "flash-button": "Flash Button",
+          "html-data-export": "Html-5 Data Export",
+          "print-button": "Print Button"
+        },
+        "col-reorder": "Col Reorder",
+        "fixed-columns": "Fixed Columns",
+        "fixed-header": "Fixed Header",
+        "key-table": "Key Table",
+        "responsive": "Responsive",
+        "row-recorder": "Row Recorder",
+        "scroller": "Scroller",
+        "select-tbl":"Select Table"
+      },
+      "foo-table":{
+        "main":"FooTable"
+      },
+      "handson-table":{
+        "main":"Handson Table",
+        "appearance":"Appearance",
+        "data-operation":"Data Operation",
+        "rows-columns":"Rows Columns",
+        "columns-Only":"columns Only",
+        "cell-features":"Cell Features",
+        "cell-types":"Cell Types",
+        "integrations":"Integrations",
+        "rows-Only":"Rows Only",
+        "utilities":"Utilities"
+      },
+      "editable-table":{
+        "main":"Editable Table"
+      },
+      "charts":{
+        "main":"Charts",
+        "google-chart":"Google Chart",
+        "echarts":"Echarts",
+        "chartjs":"ChartJs",
+        "list-chart":"List Chart",
+        "float-chart":"Float Chart",
+        "know-chart":"Knob Chart",
+        "morris-chart":"Morris Chart",
+        "nvd3-chart":"Nvd3 Chart",
+        "peity-chart":"Peity Chart",
+        "radial chart":"Radial Chart",
+        "rickshaw-chart":"Rickshaw Chart",
+        "sparkline-chart":"Sparkline Chart",
+        "c3-chart":"C3 Chart"
+      },
+      "maps":{
+        "main":"Maps",
+        "google-maps":"Google Maps",
+        "vector-map":"Vector Maps",
+        "google-map-api":"Google Map Search API",
+        "location":"Location"
+      },
+      "landing-page":{
+        "main":"Landing Page"
+      },
+      "authentication":{
+        "main":"Authentication",
+        "login-bg-image":"Login With BG Image",
+        "login-soc-icon":"Login With Social Icon",
+        "login-soc-h-f":"Login Social With Header And Footer",
+        "login-h-f":"Login With Header And Footer",
+        "registration-bg-image":"Registration With BG Image",
+        "registration-soc-icon":"Registration Social Icon",
+        "registration-soc-h-f":"Registration Social With Header And Footer",
+        "registration-h-f":"Registration With Header And Footer",
+        "multi-step-registration":"Multi Step Registration",
+        "forgot-password":"Forgot Password",
+        "lock-screen":"Lock Screen",
+        "modal":"Modal"
+      },
+      "maintenance":{
+        "main":"Maintenance",
+        "error":"Error",
+        "comming-soon":"Comming Soon",
+        "offline-ui":"Offline UI"
+      },
+      "user-profile":{
+        "main":"User Profile",
+        "timeline":"Timeline",
+        "timeline-social":"Timeline Social",
+        "user-profile":"User Profile",
+        "user-card":"User Card"
+      },
+      "blog":{
+        "main":"Blog",
+        "blog":"Blog",
+        "blog-detail":"Blog Detail",
+        "blog-left-side":"Blog With Left Sidebar",
+        "blog-right-sidebar":"Blog With Right Sidebar"
+      },
+      "e-commerce":{
+        "main":"E-Commerce",
+        "product":"Product",
+        "product-list":"Product List",
+        "product-edit":"Product Edit",
+        "product-detail":"Product Detail",
+        "product-card":"Product Cart",
+        "credit-card-form":"Credit Card Form"
+      },
+      "email": {
+        "main": "Email",
+        "compose-mail": "Compose Email",
+        "inbox": "Inbox",
+        "read-mail": "Read Mail",
+        "email-template": {
+          "main": "Email Template",
+          "welcome-email": "Welcome Email",
+          "reset-password": "Reset Password",
+          "newsletter-email":"Email Newsletter",
+          "app-launch": "App Launch",
+          "activation-code": "Activation Code"
+        }
+      },
+        "chat":{
+          "main":"Chat"
+        },
+        "crm-contact":{
+          "main":"CRM Contact"
+        },
+        "social":{
+          "main":"Social",
+          "fb-wall":"Fb Wall",
+          "messages":"Messages"
+        },
+        "task":{
+          "main":"Task",
+          "task-list":"Task List",
+          "task-board":"Task Board",
+          "task-detail":"Task Detail",
+          "issue list":"Issue List"
+        },
+        "to-do":{
+          "todo":"To-Do",
+          "notes":"Notes"
+        },
+        "gallery":{
+          "main":"Gallery",
+          "gallery-grid":"Gallery-Grid",
+          "masonry-gallery":"Masonry Gallery",
+          "advance-gallery":"Advance Gallery"
+        },
+        "search":{
+          "main":"Search",
+          "simple-search":"Simple Search",
+          "grouping-search":"Grouping Search"
+        },
+        "job-search":{
+          "main":"Job Search",
+          "card-view":"Card View",
+          "job-detailed":"Job Detailed",
+          "job-find":"Job Find",
+          "job-panel-view":"Job Panel View"
+        },
+      "editor":{
+        "main":"Editor",
+        "ck-editor":"CK-Editor",
+        "wysiwyg-editor":"WYSIWYG Editor",
+        "ace-editor":"Ace Editor",
+        "summer-note-editor":"Summer Note Editor",
+        "long-press-editor":"Long Press Editor"
+      },
+      "invoice":{
+        "main":"Invoice",
+        "invoice":"Invoice",
+        "invoice-summery":"Invoice Summery",
+        "invoice-list":"Invoice List"
+      },
+      "event-calendar":{
+        "main":"Event Calendar",
+        "full-calendar":"Full Calendar",
+        "clnder":"CLNDER"
+      },
+      "image-cropper":{
+        "main":"Image Cropper"
+      },
+      "file-upload":{
+        "main":"File Upload"
+      },
+      "internationalize":{
+        "main":"Internationalize",
+        "after-init":"After Init",
+        "fallback":"Fallback",
+        "on-int":"On Init",
+        "resources":"Resources",
+        "xhr-backend":"XHR Backend"
+      },
+      "change-loges":{
+        "main":"Change Loges"
+      },
+      "menu-levels":{
+        "main":"Menu Levels",
+        "menu-level-21":"Menu Level 2.1",
+        "menu-level-22":{
+          "main":"Menu Level 2.2",
+          "menu-level-31":"Menu Level 3.1",
+          "menu-level-32":{
+            "main":"Menu Level 3.2",
+            "menu-level-41":"Menu Level 4.1",
+            "menu-level-42":"Menu Level 4.2"
+          }
+        },
+        "menu-level-23":"Menu Level 2.3"
+      },
+      "disabled-menu":{
+        "main":"Disabled Menu"
+      },
+      "sample-page":{
+        "main":"Sample Page"
+      },
+      "documentation":{
+        "main":"Documentation"
+      },
+      "submit-issue":{
+        "main":"Submit Issue"
+      }
+
+   }
+ }
+
+

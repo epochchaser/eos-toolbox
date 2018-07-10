@@ -1,0 +1,68 @@
+/* ========================================= */
+/* Color: yellow */
+/* ========================================= */
+
+/* Buttons
+=============================== */
+.j-pro.j-yellow .j-widget .j-addon,
+.j-pro.j-yellow .j-widget .j-addon-btn,
+.j-pro.j-yellow .j-primary-btn,
+.j-pro.j-yellow .j-secondary-btn,
+.ui-datepicker-buttonpane button { background-color:#b36b00; }
+
+.j-pro.j-yellow .j-widget .j-addon-btn:hover,
+.j-pro.j-yellow .j-primary-btn:hover,
+.j-pro.j-yellow .j-secondary-btn:hover,
+.ui-datepicker-buttonpane button:hover { background-color:#804d00; }
+
+.j-pro.j-yellow .j-widget.j-disabled-view .j-addon-btn,
+.j-pro.j-yellow .j-primary-btn.j-disabled-view,
+.j-pro.j-yellow .j-secondary-btn.j-disabled-view { background-color:#b36b00 !important; }
+
+/* Datepicker & Timepicker
+=============================== */
+.ui-datepicker-header,
+.ui-datepicker-calendar a:hover,
+.ui-datepicker-calendar .ui-state-active { background-color:#e68a00; }
+
+.ui-datepicker-calendar a:hover,
+.ui-datepicker-calendar .ui-state-active { color:#fff; }
+
+/* Ratings
+=============================== */
+.j-pro.j-yellow .j-ratings input + label:hover,
+.j-pro.j-yellow .j-ratings input + label:hover ~ label,
+.j-pro.j-yellow .j-ratings input:checked + label,
+.j-pro.j-yellow .j-ratings input:checked + label ~ label { color:#b36b00; }
+
+/* Header
+=============================== */
+.j-pro.j-yellow .j-header { color:#b36b00; }
+
+/* Multistep form
+=============================== */
+.j-pro.j-yellow .j-active-step .j-steps { border:1px solid #804d00; }
+
+/* Other
+=============================== */
+.j-pro.j-yellow .j-divider-text span { color:#b36b00; }
+
+.j-pro.j-yellow .j-divider,
+.j-pro.j-yellow .j-divider-text { border-top:1px solid #ffcc80; height:0; }
+
+/* Tooltip
+=============================== */
+.j-pro.j-yellow .j-tooltip,
+.j-pro.j-yellow .j-tooltip-image { background-color:#b36b00; }
+
+.j-pro.j-yellow .j-tooltip-left-top:before { border-color:#b36b00 transparent; }
+
+.j-pro.j-yellow .j-tooltip-right-top:before{ border-color:#b36b00 transparent; }
+
+.j-pro.j-yellow .j-tooltip-right-bottom:before{ border-color:#b36b00 transparent; }
+
+.j-pro.j-yellow .j-tooltip-left-bottom:before{ border-color:#b36b00 transparent; }
+
+.j-pro.j-yellow .j-tooltip-right-side:before{ border-color:transparent #b36b00; }
+
+.j-pro.j-yellow .j-tooltip-left-side:before{ border-color:transparent #b36b00; }

@@ -1,0 +1,49 @@
+{
+   
+    "nav": {
+        "category": {
+            "navigation": "Navigation"
+        },
+        "dash": {
+            "main": "Dashboard",
+            "ecommerce": "Ecommerce",
+            "crm": "CRM",
+            "analytics": "Analytics",
+            "project": "Project",
+            "hospital": "Hospital",
+            "freelancing": "Freelancing",
+            "music": "Music"
+        },
+        "page_layout": {
+            "main":"Page layouts",
+            "vertical":{
+                    "main": "Vertical",
+                    "static-layout": "Static Layout",
+                    "header-fixed": "Header Fixed",
+                    "compact": "Compact",
+                    "sidebar-fixed": "Sidebar Fixed"
+                },
+                "horizontal":{
+                    "main": "Horizontal",
+                   "static-layout": "Static Layout",
+                   "fixed-layout": "Fixed layout",
+                   "static-with-icon": "Static With Icon",
+                   "fixed-with-icon": "Fixed With Icon"
+                },
+                 "bottom-menu": "Bottom Menu",
+                    "box-layout": "Box Layout",
+                    "rtl": "RTL"
+        },
+         "navigate": {
+            "main": "Navigation",
+            "navbar": "Navbar",
+            "navbar-inverse": "Navbar Inverse",
+            "navbar-with-elements": "Navbar With Elements"
+        },
+          "widget": {
+            "main": "Widget"
+
+        }
+    }
+}
+

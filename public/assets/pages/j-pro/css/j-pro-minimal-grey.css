@@ -1,0 +1,29 @@
+/* ========================================= */
+/* Color: grey */
+/* ========================================= */
+
+/* Buttons
+=============================== */
+.j-pro.j-grey .j-widget .j-addon-btn,
+.j-pro.j-grey .j-primary-btn,
+.j-pro.j-grey .j-file-button,
+.j-pro.j-grey .j-secondary-btn,
+.ui-datepicker-buttonpane button { background-color:#293d3d; }
+
+.j-pro.j-grey .j-widget .j-addon-btn:hover,
+.j-pro.j-grey .j-primary-btn:hover,
+.j-pro.j-grey .j-file-button:hover,
+.j-pro.j-grey .j-secondary-btn:hover,
+.ui-datepicker-buttonpane button:hover { background-color:#3d5c5c; }
+
+.j-pro.j-grey .j-widget.j-disabled-view .j-addon-btn,
+.j-pro.j-grey .j-primary-btn.j-disabled-view,
+.j-pro.j-grey .j-disabled-view .j-file-button,
+.j-pro.j-grey .j-secondary-btn.j-disabled-view { background-color:#293d3d !important; }
+
+/* Ratings
+=============================== */
+.j-pro.j-grey .j-ratings input + label:hover,
+.j-pro.j-grey .j-ratings input + label:hover ~ label,
+.j-pro.j-grey .j-ratings input:checked + label,
+.j-pro.j-grey .j-ratings input:checked + label ~ label { color:#293d3d; }
