@@ -1,0 +1,29 @@
+/* ========================================= */
+/* Color: red */
+/* ========================================= */
+
+/* Buttons
+=============================== */
+.j-pro.j-red .j-widget .j-addon-btn,
+.j-pro.j-red .j-primary-btn,
+.j-pro.j-red .j-file-button,
+.j-pro.j-red .j-secondary-btn,
+.ui-datepicker-buttonpane button { background-color:#660000; }
+
+.j-pro.j-red .j-widget .j-addon-btn:hover,
+.j-pro.j-red .j-primary-btn:hover,
+.j-pro.j-red .j-file-button:hover,
+.j-pro.j-red .j-secondary-btn:hover,
+.ui-datepicker-buttonpane button:hover { background-color:#990000; }
+
+.j-pro.j-red .j-widget.j-disabled-view .j-addon-btn,
+.j-pro.j-red .j-primary-btn.j-disabled-view,
+.j-pro.j-red .j-disabled-view .j-file-button,
+.j-pro.j-red .j-secondary-btn.j-disabled-view { background-color:#660000 !important; }
+
+/* Ratings
+=============================== */
+.j-pro.j-red .j-ratings input + label:hover,
+.j-pro.j-red .j-ratings input + label:hover ~ label,
+.j-pro.j-red .j-ratings input:checked + label,
+.j-pro.j-red .j-ratings input:checked + label ~ label { color:#660000; }

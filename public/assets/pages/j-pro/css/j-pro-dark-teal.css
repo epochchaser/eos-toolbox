@@ -1,0 +1,93 @@
+/* ========================================= */
+/* Color: teal */
+/* ========================================= */
+
+/* Buttons
+=============================== */
+.j-pro.j-teal .j-widget .j-addon-btn,
+.j-pro.j-teal .j-primary-btn,
+.j-pro.j-teal .j-file-button,
+.j-pro.j-teal .j-secondary-btn,
+.ui-datepicker-buttonpane button { background-color:#00796b; }
+
+.j-pro.j-teal .j-widget.j-disabled-view .j-addon-btn,
+.j-pro.j-teal .j-primary-btn.j-disabled-view,
+.j-pro.j-teal .j-disabled-view .j-file-button,
+.j-pro.j-teal .j-secondary-btn.j-disabled-view { background-color:#00796b !important; }
+
+.j-pro.j-teal .j-widget .j-addon-btn:hover,
+.j-pro.j-teal .j-primary-btn:hover,
+.j-pro.j-teal .j-file-button:hover,
+.j-pro.j-teal .j-secondary-btn:hover,
+.ui-datepicker-buttonpane button:hover { background-color:#009688; }
+
+.j-pro.j-teal .j-file-button:hover + input { border:2px solid rgba(0,121,107,.6); }
+
+/* Ratings
+=============================== */
+.j-pro.j-teal .j-ratings input + label:hover,
+.j-pro.j-teal .j-ratings input + label:hover ~ label,
+.j-pro.j-teal .j-ratings input:checked + label,
+.j-pro.j-teal .j-ratings input:checked + label ~ label { color:#00796b; }
+
+/* Header + footer
+=============================== */
+.j-pro.j-teal .j-header { border-top:1px solid #4db6ac; background-color:#009688; }
+
+.j-pro.j-teal .j-footer { border-top:1px solid #00796b; }
+
+/* Multistep form
+=============================== */
+.j-pro.j-teal .j-active-step .j-steps { border:2px solid #00796b; }
+
+.j-pro.j-teal .j-passed-step .j-steps { border:2px solid rgba(0,121,107,.6); }
+
+/* Radio and checkbox
+=============================== */
+.j-pro.j-teal .j-checkbox:hover i,
+.j-pro.j-teal .j-radio:hover i { border:2px solid rgba(0,121,107,.6); }
+
+.j-pro.j-teal .j-radio input:checked + i,
+.j-pro.j-teal .j-checkbox input:checked + i { border:2px solid rgba(0,121,107,.9); color:rgba(0,121,107,.9); }
+
+.j-pro.j-teal .j-radio i:after { background-color:rgba(0,121,107,.9); }
+
+.j-pro.j-teal .j-checkbox i:after { border-bottom:solid rgb(0,121,107); border-left:solid rgb(0,121,107); }
+
+/* Toggle radio and toggle checkboxe
+=============================== */
+.j-pro.j-teal .j-checkbox-toggle:hover i,
+.j-pro.j-teal .j-radio-toggle:hover i { border:2px solid rgba(0,121,107,.6); }
+
+.j-pro.j-teal .j-radio-toggle input:checked + i,
+.j-pro.j-teal .j-checkbox-toggle input:checked + i { border:2px solid rgba(0,121,107,.9); }
+
+.j-pro.j-teal .j-radio-toggle i:before,
+.j-pro.j-teal .j-checkbox-toggle i:before { background-color:rgba(0,121,107,.9); }
+
+/* Input
+=============================== */
+.j-pro.j-teal input[type="text"]:hover,
+.j-pro.j-teal input[type="password"]:hover,
+.j-pro.j-teal input[type="email"]:hover,
+.j-pro.j-teal input[type="search"]:hover,
+.j-pro.j-teal input[type="url"]:hover,
+.j-pro.j-teal textarea:hover,
+.j-pro.j-teal select:hover { border:2px solid rgba(0,121,107,.6); }
+
+.j-pro.j-teal input[type="text"]:focus,
+.j-pro.j-teal input[type="password"]:focus,
+.j-pro.j-teal input[type="email"]:focus,
+.j-pro.j-teal input[type="search"]:focus,
+.j-pro.j-teal input[type="url"]:focus,
+.j-pro.j-teal textarea:focus,
+.j-pro.j-teal select:focus { border:2px solid rgba(0,121,107,.9); }
+
+/* Image radio and Image checkbox
+=============================== */
+.j-pro.j-teal .j-radio-block input:checked + i,
+.j-pro.j-teal .j-checkbox-block input:checked + i { border:2px solid rgba(0,121,107,.9); color:rgba(0,121,107,.9); }
+
+.j-pro.j-teal .j-radio-block i:after { background-color:rgba(0,121,107,.9); }
+
+.j-pro.j-teal .j-checkbox-block i:after { border-bottom:solid rgba(0,121,107,.9); border-left:solid rgba(0,121,107,.9); }

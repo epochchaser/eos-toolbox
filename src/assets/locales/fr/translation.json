@@ -1,0 +1,394 @@
+{
+   
+    "nav": {
+        "category": {
+            "navigation": "La navigation",
+           "ui-element" :"Élément UI",
+           "forms":"Formes",
+          "tables":"les tables",
+          "chart-and-maps":"Graphique et cartes",
+          "pages":"Pages",
+          "app":"App",
+          "extension":"Extension",
+          "other":"autre",
+          "support":"Soutien"
+        },
+        "dash": {
+            "main": "Tableau de bord",
+            "default":"Défaut",
+            "ecommerce": "Commerce électronique",
+            "crm": "CRM",
+            "analytics": "Analytique",
+            "project": "Projet"
+        },
+        "page_layout": {
+            "main":"Mise en page",
+            "vertical":{
+                    "main": "Verticale",
+                    "static-layout": "Mise en page statique",
+                    "header-fixed": "En-tête corrigé",
+                    "compact": "Compact",
+                    "sidebar-fixed": "Barre latérale réparée"
+                },
+                "horizontal":{
+                    "main": "Horizontal",
+                   "static-layout": "Mise en page statique",
+                   "fixed-layout": "Disposition fixe",
+                   "static-with-icon": "Statique Avec Icône",
+                   "fixed-with-icon": "Correction d'icône"
+                },
+                 "bottom-menu": "Menu inférieur",
+                    "box-layout": "Mise en page",
+                    "rtl": "RTL"
+        },
+         "navigate": {
+            "main": "La navigation",
+            "navbar": "Navbar",
+            "navbar-inverse": "Navbar Inverse",
+            "navbar-with-elements": "Navbar avec des éléments"
+        },
+          "widget": {
+            "main": "Widget"
+
+        },
+        "basic-components":{
+          "main":"Composants de base",
+          "alert":"Alerte",
+          "breadcrumbs":"Chapelure",
+          "button":"Bouton",
+          "box-shadow":"Boîte-ombre",
+          "collapse–accordion":"Accordion",
+          "generic-class":"Classe générique",
+          "tabs":"Onglets",
+          "color":"Couleur",
+          "label-badge":"Étiquette Badge",
+          "panels-walls":"Panneaux et murs",
+          "progress-bar":"Barre de progression",
+          "pre-loader":"Pre-Loader",
+          "list":"liste",
+          "tooltip-popover":"Tooltip And Popover",
+          "typography":"Typographie",
+          "other":"Autre"
+        },
+        "advance-components":{
+          "main":"Composants avancés",
+          "draggable":"Draggable",
+          "grid-stack":"Empilement de grille",
+          "light-box":"Boite à lumière",
+          "modal":"Modal",
+          "modal-form":"Formulaire modal",
+          "notifications":"Notifications",
+          "pnotify":"PNOTIF",
+          "rating":"Évaluation",
+          "range-slider":"Slider Range",
+          "slider":"Slider",
+          "syntax-highlighter":"Syntaxe Surligneur",
+          "tour":"Tour",
+          "tree-view":"Vue d'arbre",
+          "nestable":"Nestable",
+          "toolbar":"Barre d'outils",
+          "x-editable":"X-éditable"
+        },
+        "extra-components": {
+          "main":"Composants supplémentaires",
+          "session-timeout":"Expiration de la session",
+          "session-idle-timeout":"Délai d'attente de la session",
+          "offline":"Hors ligne"
+        },
+      "animations": {
+        "main": "Animations"
+
+      },
+      "sticky-notes":{
+        "main":"Notes autocollantes"
+      },
+
+      "icons":{
+        "main":"Icônes",
+        "font-awesome":"Font Awesome",
+        "themify":"Themify",
+        "simple-line-icon":"Icône de ligne simple",
+        "ion-icon":"Ion Icon",
+        "material-design":"Conception matérielle",
+        "ico-fonts":"Ico Fonts",
+        "weather-icon":"Icône de temps",
+        "typicons":"Typicons",
+        "flags":"Drapeaux"
+      },
+      "form-components":{
+        "main":"Composants de forme",
+        "form-components":"Composants de forme",
+        "form-elements-add-on":"Form-Elements-Add-On",
+        "form-elements-advance":"Form-Elements-Advance",
+        "form-validation":"Validation de formulaire"
+      },
+      "form-pickers":{
+        "main":"Sélecteur de formulaire"
+      },
+      "json-form":{
+        "main":"Formulaire JSON",
+        "simple-form":"Forme simple",
+        "clubs-view":"Clubs (Sélecteur de vue)",
+        "customer-form":"Formulaire client",
+        "profile-display":"Affichage du profil",
+        "profile-edit":"Modifier le profil",
+        "profile-ready-only":"Profil Lecture seule",
+        "form-fields":"Champs de formulaire",
+        "registration-validation":"Validation d'inscription",
+        "automatic-validation":"Validation automatique",
+        "localized-login":"Connexion localisée"
+      },
+      "form-select":{
+        "main":"Sélection de formulaire"
+      },
+      "form-masking":{
+        "main":"Masquage de forme"
+      },
+      "form-wizard":{
+        "main":"Assistant de formulaire"
+      },
+      "ready-to-use":{
+        "main":"Prêt à l'emploi",
+        "cloned-elements-form":"Cloned Elements Form",
+        "currency-form":"Formulaire d'éléments clonés",
+        "booking-form":"Formulaire de reservation",
+        "booking-multi-steps-form":"Forme des étapes multiples de réservation",
+        "comment-form":"Formulaire de commentaires",
+        "contact-form":"Formulaire de contact",
+        "job-application-form":"formulaire de demande d'emploi",
+        "jS-addition-form":"Formulaire d'ajout JS",
+        "login-form":"Formulaire de connexion",
+        "popup-modal-form":"Formulaire de mode contextuel",
+        "registration-form":"Formulaire d'inscription",
+        "review-form":"Formulaire de révision",
+        "subscribe-form":"Formulaire d'inscription",
+        "suggestion-form":"Formulaire de suggestion",
+        "tabs-form":"Formulaire d'onglets"
+      },
+      "bootstrap-table":{
+        "main":"Bootstrap Table",
+        "basic-table":"Tableau de base",
+        "sizing-table":"Tableau des tailles",
+        "border-table":"Tableau frontalier",
+        "styling-table":"Table de style"
+      },
+      "data-table":{
+        "main":"Tableau de données",
+        "basic-initialization":"Initialisation de base",
+        "advance-initialization":"Initialisation anticipée",
+        "styling":"Coiffant",
+        "api":"API",
+        "ajax":"Ajax",
+        "server-side":"Du côté serveur",
+        "plug-in":"Brancher",
+        "data-sources":"Les sources de données"
+      },
+      "data-table-extensions": {
+        "main":"Extensions de données",
+        "autofill":"Remplissage automatique",
+        "button":{
+          "main": "Bouton",
+          "basic-button": "Bouton de base",
+          "flash-button": "Bouton Flash",
+          "html-data-export": "Exportation de données Html-5",
+          "print-button": "Bouton d'impression"
+        },
+        "col-reorder": "Col Reorder",
+        "fixed-columns": "Colonnes fixes",
+        "fixed-header": "En-tête fixe",
+        "key-table": "Tableau clé",
+        "responsive": "Sensible",
+        "row-recorder": "Enregistreur de rangée",
+        "scroller": "Scroller",
+        "select-tbl":"Sélectionnez la table"
+      },
+      "foo-table":{
+        "main":"FooTable"
+      },
+      "handson-table":{
+        "main":"Handsontable",
+        "appearance":"Apparence",
+        "data-operation":"Fonctionnement des données",
+        "rows-columns":"Colonnes de lignes",
+        "columns-Only":"Colonnes seulement",
+        "cell-features":"Caractéristiques de la cellule",
+        "cell-types":"Types de cellules",
+        "integrations":"Intégrations",
+        "rows-Only":"Lignes seulement",
+        "utilities":"Services publics"
+      },
+      "charts":{
+        "main":"Graphiques",
+        "google-chart":"Google Chart",
+        "echarts":"Echarts",
+        "chartjs":"ChartJs",
+        "list-chart":"Liste Graphique",
+        "float-chart":"Tableau flottant",
+        "know-chart":"Savoir écrire",
+        "morris-chart":"Morris Chart",
+        "nvd3-chart":"Nvd3 Chart",
+        "peity-chart":"Peity Chart",
+        "radial chart":"Diagramme radial",
+        "rickshaw-chart":"Rickshaw",
+        "sparkline-chart":"Sparkline",
+        "c3-chart":"Graphique C3"
+      },
+      "authentication":{
+        "main":"Authentification",
+        "login-bg-image":"Connexion avec l'image BG",
+        "login-soc-icon":"Connexion avec l'icône sociale",
+        "login-soc-h-f":"Connexion tête et pied de page social",
+        "login-h-f":"Connexion avec l'en-tête et le pied de page",
+        "registration-bg-image":"Inscription avec l'image BG",
+        "registration-soc-icon":"Inscription Social Icon",
+        "registration-soc-h-f":"Enregistrement social avec l'en-tête et le pied de page",
+        "registration-h-f":"Inscription avec l'en-tête et le pied de page",
+        "multi-step-registration":"Enregistrement multi-étapes",
+        "forgot-password":"Mot de passe oublié",
+        "lock-screen":"Écran verrouillé",
+        "modal":"Modal"
+      },
+      "maintenance":{
+        "main":"Entretien",
+        "error":"Erreur",
+        "comming-soon":"Arrive bientôt",
+        "offline-ui":"UI hors ligne"
+      },
+      "user-profile":{
+        "main":"Profil de l'utilisateur",
+        "timeline":"Chronologie",
+        "timeline-social":"Chronologie sociale",
+        "user-profile":"Profil de l'utilisateur",
+        "user-card":"Carte d'utilisateur"
+      },
+      "blog":{
+        "main":"Blog",
+        "blog":"Blog",
+        "blog-detail":"Détail du blog",
+        "blog-left-side":"Blog avec la barre latérale gauche",
+        "blog-right-sidebar":"Blog avec la barre latérale droite"
+      },
+      "e-commerce":{
+        "main":"Commerce électronique",
+        "product":"Produit",
+        "product-list":"Liste de produits",
+        "product-edit":"Édition du produit",
+        "product-detail":"Détail du produit",
+        "product-card":"Carte produit",
+        "credit-card-form":"Formulaire de carte de crédit"
+      },
+      "email":{
+        "main":"Email",
+        "compose-mail":"Écrire un email",
+        "inbox":"Boîte de réception",
+        "read-mail":"Lire le courrier",
+        "email-template": {
+          "main": "Modèle d'email",
+          "welcome-email": "Email de bienvenue",
+          "reset-password": "réinitialiser le mot de passe",
+          "newsletter-email":"Newsletter par courriel",
+          "app-launch": "Lancement d'application",
+          "activation-code": "Code d'activation"
+        }
+      },
+      "social":{
+        "main":"Social",
+        "fb-wall":"Fb Wall",
+        "messages":"Messages"
+      },
+      "task":{
+        "main":"Tâche",
+        "task-list":"Liste de tâches",
+        "task-board":"Conseil d'administration",
+        "task-detail":"Détail des tâches",
+        "issue list":"Liste des problèmes"
+      },
+      "to-do":{
+        "todo":"Faire",
+        "notes":"Remarques"
+      },
+      "gallery":{
+        "main":"Galerie",
+        "gallery-grid":"Galerie-Grille",
+        "masonry-gallery":"Galerie de maçonnerie",
+        "advance-gallery":"Advance Gallery"
+      },
+      "search":{
+        "main":"Chercher",
+        "simple-search":"Recherche simple",
+        "grouping-search":"Groupement de la recherche"
+      },
+      "job-search":{
+        "main":"Recherche d'emploi",
+        "card-view":"vue carte",
+        "job-detailed":"Job Detailed",
+        "job-find":"Job Find",
+        "job-panel-view":"Affichage du panneau de travail"
+      },
+      "editor":{
+        "main":"Éditeur",
+        "ck-editor":"CK-Editor",
+        "wysiwyg-editor":"WYSIWYG Editor",
+        "ace-editor":"Editeur d'Ace",
+        "summer-note-editor":"Éditeur de notes d'été",
+        "long-press-editor":"Long Press Editor"
+      },
+      "invoice":{
+        "main":"Facture d'achat",
+        "invoice":"Facture d'achat",
+        "invoice-summery":"Sommaire de la facture",
+        "invoice-list":"Liste des factures"
+      },
+      "event-calendar":{
+        "main":"Calendrier des événements",
+        "full-calendar":"Calendrier complet",
+        "clnder":"CALENDRIER"
+      },
+      "image-cropper":{
+        "main":"Image Cropper"
+      },
+      "file-upload":{
+        "main":"Téléchargement de fichiers"
+      },
+      "internationalize":{
+        "main":"Internationaliser",
+        "after-init":"Après Init",
+        "fallback":"Se retirer",
+        "on-int":"Sur Init",
+        "resources":"Ressources",
+        "xhr-backend":"XHR Backend"
+      },
+      "change-loges":{
+        "main":"Change Loges"
+      },
+      "menu-levels":{
+        "main":"Niveaux de menu",
+        "menu-level-21":"Menu Niveau 2.1",
+        "menu-level-22":{
+          "main":"Menu Niveau 2.2",
+          "menu-level-31":"Menu Niveau 3.1",
+          "menu-level-32":{
+            "main":"Menu Niveau 3.2",
+            "menu-level-41":"Menu Niveau 4.1",
+            "menu-level-42":"Menu Niveau 4.2"
+          }
+        },
+        "menu-level-23":"Menu Niveau 2.3"
+      },
+      "disabled-menu":{
+        "main":"Menu désactivé"
+      },
+      "sample-page":{
+        "main":"Page d'exemple"
+      },
+      "documentation":{
+        "main":"Documentation"
+      },
+      "submit-issue":{
+        "main":"Envoyer un problème"
+      }
+
+    }
+}
+
+

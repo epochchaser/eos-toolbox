@@ -1,0 +1,29 @@
+/* ========================================= */
+/* Color: green */
+/* ========================================= */
+
+/* Buttons
+=============================== */
+.j-pro.j-green .j-widget .j-addon-btn,
+.j-pro.j-green .j-primary-btn,
+.j-pro.j-green .j-file-button,
+.j-pro.j-green .j-secondary-btn,
+.ui-datepicker-buttonpane button { background-color:#388e3c; }
+
+.j-pro.j-green .j-widget .j-addon-btn:hover,
+.j-pro.j-green .j-primary-btn:hover,
+.j-pro.j-green .j-file-button:hover,
+.j-pro.j-green .j-secondary-btn:hover,
+.ui-datepicker-buttonpane button:hover { background-color:#4caf50; }
+
+.j-pro.j-green .j-widget.j-disabled-view .j-addon-btn,
+.j-pro.j-green .j-primary-btn.j-disabled-view,
+.j-pro.j-green .j-disabled-view .j-file-button,
+.j-pro.j-green .j-secondary-btn.j-disabled-view { background-color:#388e3c !important; }
+
+/* Ratings
+=============================== */
+.j-pro.j-green .j-ratings input + label:hover,
+.j-pro.j-green .j-ratings input + label:hover ~ label,
+.j-pro.j-green .j-ratings input:checked + label,
+.j-pro.j-green .j-ratings input:checked + label ~ label { color:#388e3c; }

@@ -1,0 +1,411 @@
+{
+
+  "nav": {
+    "category": {
+      "navigation": "Navegação",
+      "ui-element" :"Elemento da interface do usuário",
+      "forms":"Formulários",
+      "tables":"Tabelas",
+      "chart-and-maps":"Gráfico e Mapas",
+      "pages":"Páginas",
+      "app":"Aplicativo",
+      "extension":"Extensão",
+      "other":"De outros",
+      "support":"Apoio, suporte"
+    },
+    "dash": {
+      "main": "painel de controle",
+      "default":"Padrão",
+      "ecommerce": "Comércio eletrônico",
+      "crm": "CRM",
+      "analytics": "Analytics",
+      "project": "Projeto"
+    },
+    "page_layout": {
+      "main":"Layouts de página",
+      "vertical":{
+        "main": "Vertical",
+        "static-layout": "Layout estático",
+        "header-fixed": "Cabeçalho Fixo",
+        "compact": "Compactar",
+        "sidebar-fixed": "Barra lateral fixa"
+      },
+      "horizontal":{
+        "main": "Horizontal",
+        "static-layout": "Layout estático",
+        "fixed-layout": "Layout fixo",
+        "static-with-icon": "Estático com ícone",
+        "fixed-with-icon": "Corrigido com Ícone"
+      },
+      "bottom-menu": "Menu inferior",
+      "box-layout": "Layout da caixa",
+      "rtl": "RTL"
+    },
+    "navigate": {
+      "main": "Navegação",
+      "navbar": "Navbar",
+      "navbar-inverse": "Navbar Inverse",
+      "navbar-with-elements": "Navbar com elementos"
+    },
+    "widget": {
+      "main": "Ferramenta"
+    },
+    "basic-components":{
+      "main":"Componentes Básicos",
+      "alert":"Alerta",
+      "breadcrumbs":"Breadcrumbs",
+      "button":"Botão",
+      "box-shadow":"Sombra da caixa",
+      "collapse–accordion":"Acordeão",
+      "generic-class":"Classe genérica",
+      "tabs":"Guias",
+      "color":"Cor",
+      "label-badge":"Emblema da etiqueta",
+      "progress-bar":"Barra de progresso",
+      "pre-loader":"Pré-carregador",
+      "list":"Lista",
+      "tooltip-popover":"Tooltip e Popover",
+      "typography":"Tipografia",
+      "other":"De outros"
+    },
+    "advance-components":{
+      "main":"Componentes Avançados",
+      "draggable":"Arrastável",
+      "grid-stack":"Pilha da grade",
+      "light-box":"Caixa de luz",
+      "modal":"Modal",
+      "modal-form":"Formulário Modal",
+      "notifications":"Notificações",
+      "pnotify":"PNOTIFY",
+      "rating":"Avaliação",
+      "range-slider":"Controle deslizante de intervalo",
+      "slider":"Slider",
+      "syntax-highlighter":"Marcador de sintaxe",
+      "tour":"Tour",
+      "tree-view":"Vista da árvore",
+      "nestable":"Nestable",
+      "toolbar":"Barra de ferramentas",
+      "x-editable":"X-Editável"
+    },
+    "extra-components":{
+      "main":"Componentes extras",
+      "session-timeout":"Sessão expirada",
+      "session-idle-timeout":"Tempo limite de inatividade da sessão",
+      "offline":"desligada"
+    },
+    "animations": {
+      "main": "Animações"
+
+    },
+    "sticky-notes":{
+      "main":"Lembretes"
+    },
+
+    "icons":{
+      "main":"Ícones",
+      "font-awesome":"Fonte impressionante",
+      "themify":"Themify",
+      "simple-line-icon":"Ícone de linha simples",
+      "ion-icon":"Ion Ícone",
+      "material-design":"Design material",
+      "ico-fonts":"Fontes do Ico",
+      "weather-icon":"Ícone do tempo",
+      "typicons":"Tipos",
+      "flags":"Bandeiras"
+    },
+    "form-components":{
+      "main":"Componentes do formulário",
+      "form-components":"Componentes do formulário",
+      "form-elements-add-on":"Form-Elements-Add-On",
+      "form-elements-advance":"Form-Elements-Advance",
+      "form-validation":"Validação de formulários"
+    },
+    "form-picker":{
+      "main":"Selecionadores de Formulários"
+    },
+    "json-form":{
+      "main":"Formulário JSON",
+      "simple-form":"Forma simples",
+      "clubs-view":"Clubes (View Selector)",
+      "customer-form":"Formulário de cliente",
+      "profile-display":"Exibição do perfil",
+      "profile-edit":"Perfil Editar",
+      "profile-ready-only":"Perfil Somente leitura",
+      "form-fields":"Campos do formulário",
+      "registration-validation":"Validação de Registo",
+      "automatic-validation":"Validação automática",
+      "localized-login":"Localizado Login"
+    },
+    "form-select":{
+      "main":"Seleção de formulário"
+    },
+    "form-masking":{
+      "main":"Máscara de Formulário"
+    },
+    "form-wizard":{
+      "main":"Assistente de formulários"
+    },
+    "ready-to-use":{
+      "main":"Pronto para usar",
+      "cloned-elements-form":"Formulário de Elementos Clonados",
+      "currency-form":"Formulário de moeda",
+      "booking-form":"Formulário de inscrição",
+      "booking-multi-steps-form":"Formulário de inscrição",
+      "comment-form":"Formulário de comentário",
+      "contact-form":"Formulário de Contato",
+      "job-application-form":"Formulário de Candidatura",
+      "jS-addition-form":"Formulário de adição de JS",
+      "login-form":"forma de login",
+      "popup-modal-form":"Formulário Modal Popup",
+      "registration-form":"Formulário de registro",
+      "review-form":"Formulário de revisão",
+      "subscribe-form":"Formulário de Inscrição",
+      "suggestion-form":"Formulário de Sugestão",
+      "tabs-form":"Formulário de guias"
+    },
+    "bootstrap-table":{
+      "main":"Tabela de Bootstrap",
+      "basic-table":"Tabela Básica",
+      "sizing-table":"Tabela de dimensionamento",
+      "border-table":"Tabela de bordas",
+      "styling-table":"Tabela de estilo"
+    },
+    "data-table":{
+      "main":"Tabela de dados",
+      "basic-initialization":"Inicialização básica",
+      "advance-initialization":"Inicialização antecipada",
+      "styling":"Estilização",
+      "api":"API",
+      "ajax":"Ajax",
+      "server-side":"Lado do servidor",
+      "plug-in":"Plugar",
+      "data-sources":"Fontes de dados"
+    },
+    "data-table-extensions": {
+      "main":"Extensões da tabela de dados",
+      "autofill":"Preenchimento automático",
+      "button":{
+        "main": "Botão",
+        "basic-button": "Botão básico",
+        "flash-button": "Botão Flash",
+        "html-data-export": "Exportação de dados Html-5",
+        "print-button": "Botão Imprimir"
+      },
+      "col-reorder": "Col Reorder",
+      "fixed-columns": "Colunas fixas",
+      "fixed-header": "Cabeçalho fixo",
+      "key-table": "Tabela de teclas",
+      "responsive": "Responsivo",
+      "row-recorder": "Gravador de linhas",
+      "scroller": "Scroller",
+      "select-tbl":"Selecionar tabela"
+    },
+    "foo-table":{
+      "main":"FooTable"
+    },
+    "handson-table":{
+      "main":"Handsontable",
+      "appearance":"Aparência",
+      "data-operation":"Operação de dados",
+      "rows-columns":"Linhas Colunas",
+      "columns-Only":"Apenas colunas",
+      "cell-features":"Recursos da célula",
+      "cell-types":"Tipos de células",
+      "integrations":"Integrações",
+      "rows-Only":"Apenas linhas",
+      "utilities":"Serviços de utilidade pública"
+    },
+    "editable-table":{
+      "main":"Tabela Editable"
+    },
+    "charts":{
+      "main":"Gráficos",
+      "google-chart":"Google Chart",
+      "echarts":"Echarts",
+      "chartjs":"Gráficos",
+      "list-chart":"Gráfico de lista",
+      "float-chart":"Gráfico de Flutuação",
+      "know-chart":"Conheça o gráfico",
+      "morris-chart":"Gráfico Morris",
+      "nvd3-chart":"Nvd3 Gráfico",
+      "peity-chart":"Gráfico de paridade",
+      "radial chart":"Gráfico radial",
+      "rickshaw-chart":"Gráfico de Rickshaw",
+      "sparkline-chart":"Gráfico de Sparkline",
+      "c3-chart":"Gráfico C3"
+    },
+    "maps":{
+      "main":"Mapas",
+      "google-maps":"Google Maps",
+      "vector-map":"Mapas vetoriais",
+      "google-map-api":"API do Google Map Search",
+      "location":"Localização"
+    },
+    "landing-page":{
+      "main":"Página de destino"
+    },
+    "authentication":{
+      "main":"Autenticação",
+      "login-bg-image":"Entrar com BG Image",
+      "login-soc-icon":"Login com Ícone Social",
+      "login-soc-h-f":"Login social com cabeçalho e rodapé",
+      "login-h-f":"Login com cabeçalho e rodapé",
+      "registration-bg-image":"Registro com BG Image",
+      "registration-soc-icon":"Registro Social Ícone",
+      "registration-soc-h-f":"Registro social com cabeçalho e rodapé",
+      "registration-h-f":"Registro com cabeçalho e rodapé",
+      "multi-step-registration":"Registro Multi Passo",
+      "forgot-password":"Esqueceu a senha",
+      "lock-screen":"Tela de bloqueio",
+      "modal":"Modal"
+    },
+    "maintenance":{
+      "main":"Manutenção",
+      "error":"Erro",
+      "comming-soon":"Em breve",
+      "offline-ui":"IU off-line"
+    },
+    "user-profile":{
+      "main":"Perfil de usuário",
+      "timeline":"Cronograma",
+      "timeline-social":"Cronologia Social",
+      "user-profile":"Perfil de usuário",
+      "user-card":"Cartão de usuário"
+    },
+    "blog":{
+      "main":"Blog",
+      "blog":"Blog",
+      "blog-detail":"Detalhes do blog",
+      "blog-left-side":"Blog com barra lateral esquerda",
+      "blog-right-sidebar":"Blog com barra lateral direita"
+    },
+    "e-commerce":{
+      "main":"Comércio eletrônico",
+      "product":"produtos",
+      "product-list":"Lista de produtos",
+      "product-edit":"Produto Editar",
+      "product-detail":"Detalhes do produto",
+      "product-card":"Cartão do produto",
+      "credit-card-form":"Formulário de cartão de crédito"
+    },
+    "email": {
+      "main": "O email",
+      "compose-mail": "Escrever um email",
+      "inbox": "Caixa de entrada",
+      "read-mail": "Ler correio",
+      "email-template": {
+        "main": "Modelo de e-mail",
+        "welcome-email": "Bem-vindo e-mail",
+        "reset-password": "Trocar a senha",
+        "newsletter-email":"Boletim informativo por email",
+        "app-launch": "Lançamento do aplicativo",
+        "activation-code": "Código de ativação"
+      }
+    },
+    "chat":{
+      "main":"Bate-papo"
+    },
+    "crm-contact":{
+      "main":"Contato de CRM"
+    },
+    "social":{
+      "main":"Social",
+      "fb-wall":"Fb Mural",
+      "messages":"Mensagens"
+    },
+    "task":{
+      "main":"Task",
+      "task-list":"Lista de tarefas",
+      "task-board":"Placa de tarefas",
+      "task-detail":"Detalhe da tarefa",
+      "issue list":"Lista de problemas"
+    },
+    "to-do":{
+      "todo":"Façam",
+      "notes":"Notas"
+    },
+    "gallery":{
+      "main":"Galeria",
+      "gallery-grid":"Galeria",
+      "masonry-gallery":"Galeria de Alvenaria",
+      "advance-gallery":"Galeria Avançada"
+    },
+    "search":{
+      "main":"Pesquisa",
+      "simple-search":"Pesquisa Simples",
+      "grouping-search":"Agrupar Pesquisa"
+    },
+    "job-search":{
+      "main":"Procura de emprego",
+      "card-view":"Visualização do cartão",
+      "job-detailed":"Trabalho Detalhado",
+      "job-find":"Procurar trabalho",
+      "job-panel-view":"Visualização do painel de tarefas"
+    },
+    "editor":{
+      "main":"editor",
+      "ck-editor":"CK-Editor",
+      "wysiwyg-editor":"Editor WYSIWYG",
+      "ace-editor":"Editor de Ás",
+      "summer-note-editor":"Editor de notas de verão",
+      "long-press-editor":"Editor de notas de verão"
+    },
+    "invoice":{
+      "main":"Fatura",
+      "invoice":"Fatura",
+      "invoice-summery":"Resumo da fatura",
+      "invoice-list":"Resumo da fatura"
+    },
+    "event-calendar":{
+      "main":"Calendário de eventos",
+      "full-calendar":"Calendário Completo",
+      "clnder":"CALENDÁRIO"
+    },
+    "image-cropper":{
+      "main":"Image Cropper"
+    },
+    "file-upload":{
+      "main":"Upload de arquivo"
+    },
+    "internationalize":{
+      "main":"Internacionalizar",
+      "after-init":"Após Init",
+      "fallback":"Cair pra trás",
+      "on-int":"No Init",
+      "resources":"Recursos",
+      "xhr-backend":"XHR Backend"
+    },
+    "change-loges":{
+      "main":"Alterar Loges"
+    },
+    "menu-levels":{
+      "main":"Níveis de menu",
+      "menu-level-21":"Nível de Menu 2.1",
+      "menu-level-22":{
+        "main":"Menu Nível 2.2",
+        "menu-level-31":"Nível de Menu 3.1",
+        "menu-level-32":{
+          "main":"Nível de Menu 3.2",
+          "menu-level-41":"Nível de Menu 3.2",
+          "menu-level-42":"Nível de Menu 4.2"
+        }
+      },
+      "menu-level-23":"Nível de Menu 2.3"
+    },
+    "disabled-menu":{
+      "main":"Menu Desativado"
+    },
+    "sample-page":{
+      "main":"Página de exemplo"
+    },
+    "documentation":{
+      "main":"Documentação"
+    },
+    "submit-issue":{
+      "main":"Enviar problemas"
+    }
+
+  }
+}
+
+

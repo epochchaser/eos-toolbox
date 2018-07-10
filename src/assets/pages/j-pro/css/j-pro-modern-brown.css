@@ -1,0 +1,131 @@
+/* ========================================= */
+/* Color: brown */
+/* ========================================= */
+
+/* Buttons
+=============================== */
+.j-pro.j-brown .j-widget .j-addon-btn,
+.j-pro.j-brown .j-primary-btn,
+.j-pro.j-brown .j-file-button,
+.j-pro.j-brown .j-secondary-btn,
+.ui-datepicker-buttonpane button { background-color:#5d4037; }
+
+.j-pro.j-brown .j-widget.j-disabled-view .j-addon-btn,
+.j-pro.j-brown .j-primary-btn.j-disabled-view,
+.j-pro.j-brown .j-disabled-view .j-file-button,
+.j-pro.j-brown .j-secondary-btn.j-disabled-view { background-color:#5d4037 !important; }
+
+.j-pro.j-brown .j-widget .j-addon-btn:hover,
+.j-pro.j-brown .j-primary-btn:hover,
+.j-pro.j-brown .j-file-button:hover,
+.j-pro.j-brown .j-secondary-btn:hover { background-color:#795548; }
+
+.j-pro.j-brown .j-file-button:hover + input { border:2px solid rgba(93,64,55,.6); }
+
+/* Ratings
+=============================== */
+.j-pro.j-brown .j-ratings input + label:hover,
+.j-pro.j-brown .j-ratings input + label:hover ~ label,
+.j-pro.j-brown .j-ratings input:checked + label,
+.j-pro.j-brown .j-ratings input:checked + label ~ label { color:#5d4037; }
+
+/* Header + footer
+=============================== */
+.j-pro.j-brown .j-header {
+	-webkit-box-shadow:0 6px 3px -3px rgba(121,85,72,.5);
+	-moz-box-shadow:0 6px 3px -3px rgba(121,85,72,.5);
+	-o-box-shadow:0 6px 3px -3px rgba(121,85,72,.5);
+	box-shadow:0 6px 3px -3px rgba(121,85,72,.5);
+	border-top:1px solid #a1887f;
+	background-color:#795548;
+}
+.j-pro.j-brown .j-footer { border-top:1px solid #5d4037; background-color:#efebe9; }
+
+/* Multistep form
+=============================== */
+.j-pro.j-brown .j-active-step .j-steps { background-color:#efebe9; border:1px solid #5d4037; }
+
+.j-pro.j-brown .j-passed-step .j-steps { background-color:#efebe9; border:1px solid #efebe9; }
+
+/* Other
+=============================== */
+.j-pro.j-brown .j-divider-text span { color:#795548; }
+
+.j-pro.j-brown,
+.j-pro.j-brown .j-divider-text span { background-color:#fbfaf9; }
+
+/* Radio and checkbox
+=============================== */
+.j-pro.j-brown .j-checkbox:hover i,
+.j-pro.j-brown .j-radio:hover i { border:2px solid rgba(93,64,55,.6); }
+
+.j-pro.j-brown .j-radio input:checked + i,
+.j-pro.j-brown .j-checkbox input:checked + i { border:2px solid rgba(93,64,55,.9); color:rgba(93,64,55,.9); }
+
+.j-pro.j-brown .j-radio i:after { background-color:rgba(93,64,55,.9); }
+
+.j-pro.j-brown .j-checkbox i:after { border-bottom:solid rgb(93,64,55); border-left:solid rgb(93,64,55); }
+
+/* Toggle radio and toggle checkbox
+=============================== */
+.j-pro.j-brown .j-checkbox-toggle:hover i,
+.j-pro.j-brown .j-radio-toggle:hover i { border:2px solid rgba(93,64,55,.6); }
+
+.j-pro.j-brown .j-radio-toggle input:checked + i,
+.j-pro.j-brown .j-checkbox-toggle input:checked + i { border:2px solid rgba(93,64,55,.9); }
+
+.j-pro.j-brown .j-radio-toggle i:before,
+.j-pro.j-brown .j-checkbox-toggle i:before { background-color:rgba(93,64,55,.9); }
+
+.j-pro.j-brown .j-checkbox-toggle input:checked + i,
+.j-pro.j-brown .j-radio-toggle input:checked + i { background-color:#efebe9; }
+
+/* Tooltip
+=============================== */
+.j-pro.j-brown .j-tooltip,
+.j-pro.j-brown .j-tooltip-image { background-color:#3e2723; }
+
+.j-pro.j-brown .j-tooltip-left-top:before { border-color:#3e2723 transparent; }
+
+.j-pro.j-brown .j-tooltip-right-top:before{ border-color:#3e2723 transparent; }
+
+.j-pro.j-brown .j-tooltip-right-bottom:before{ border-color:#3e2723 transparent; }
+
+.j-pro.j-brown .j-tooltip-left-bottom:before{ border-color:#3e2723 transparent; }
+
+.j-pro.j-brown .j-tooltip-right-side:before{ border-color:transparent #3e2723; }
+
+.j-pro.j-brown .j-tooltip-left-side:before{ border-color:transparent #3e2723; }
+
+/* Input
+=============================== */
+.j-pro.j-brown input[type="text"]:hover,
+.j-pro.j-brown input[type="password"]:hover,
+.j-pro.j-brown input[type="email"]:hover,
+.j-pro.j-brown input[type="search"]:hover,
+.j-pro.j-brown input[type="url"]:hover,
+.j-pro.j-brown textarea:hover,
+.j-pro.j-brown select:hover { border:2px solid rgba(93,64,55,.6); }
+
+.j-pro.j-brown input[type="text"]:focus,
+.j-pro.j-brown input[type="password"]:focus,
+.j-pro.j-brown input[type="email"]:focus,
+.j-pro.j-brown input[type="search"]:focus,
+.j-pro.j-brown input[type="url"]:focus,
+.j-pro.j-brown textarea:focus,
+.j-pro.j-brown select:focus { border:2px solid rgba(93,64,55,.9); }
+
+/* Image radio and Image checkbox
+=============================== */
+.j-pro.j-brown .j-radio-block input:checked + i,
+.j-pro.j-brown .j-checkbox-block input:checked + i { border:2px solid rgba(93,64,55,.9); color:rgba(93,64,55,.9); }
+
+.j-pro.j-brown .j-radio-block i:after { background-color:rgba(93,64,55,.9); }
+
+.j-pro.j-brown .j-checkbox-block i:after { border-bottom:solid rgba(93,64,55,.9); border-left:solid rgba(93,64,55,.9); }
+
+.j-pro.j-brown .j-checkbox-block .j-block-content:hover,
+.j-pro.j-brown .j-radio-block .j-block-content:hover { background:rgba(239,235,233,.5); }
+
+.j-pro.j-brown .j-checkbox-block input:checked ~ .j-block-content,
+.j-pro.j-brown .j-radio-block input:checked ~ .j-block-content { background-color:#efebe9; }
