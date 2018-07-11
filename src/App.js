@@ -10,7 +10,8 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <div className="container">
+          <div class="pcoded-overlay-box"></div>
+          <div class="pcoded-container navbar-wrapper">
             <Header />
             <section className="content">
               <Main className="content-main" />
