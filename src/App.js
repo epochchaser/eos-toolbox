@@ -13,12 +13,13 @@ class App extends Component {
           <div class="pcoded-overlay-box"></div>
           <div class="pcoded-container navbar-wrapper">
             <Header />
-            <section className="content">
-              <Main className="content-main" />
-              <Nav className="content-nav" />
-            </section>
+            <div class="pcoded-main-container">
+              <div class="pcoded-wrapper">
+                <Nav className="content-nav" />
+                <Main className="content-main" />
+              </div>
+            </div>
           </div>
-
           <footer />
         </div>
       </Router>
