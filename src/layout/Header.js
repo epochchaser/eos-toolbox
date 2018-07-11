@@ -69,8 +69,7 @@ const Header = props => {
                 </li>
                 <li className="user-profile header-notification">
                     <a href="#!">
-                        <img src="../files/assets/images/avatar-4.jpg" className="img-radius" alt="User-Profile-Image"/>
-                        <span>John Doe</span>
+                        <span>Login</span>
                         <i className="ti-angle-down"></i>
                     </a>
                     <ul className="show-notification profile-notification">
