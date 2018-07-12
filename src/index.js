@@ -8,7 +8,8 @@ import locale from "./locale/locale"
 import { Provider } from "mobx-react"
 import accountStore from "./stores/accountStore"
 import localeStore from "./stores/localeStore"
-import initLocale, { getUserLocale } from 'react-intl-locale'
+import commonStore from "./stores/commonStore"
+import initLocale, { getUserLocale } from "react-intl-locale"
 
 // param : defulat locale, allow locale array
 initLocale('ko-KR', ['en-US']);
@@ -20,7 +21,8 @@ const userLocale = getUserLocale();
 localeStore.updateLocale(userLocale.split('-')[0]);
 
 const stores = {
-  accountStore
+  accountStore,
+  commonStore
 }
 
 ReactDOM.render(

@@ -19,7 +19,7 @@ class MyAccountView extends Component {
         }
         {
             this.accountStore.accountInfo &&
-            <div>{this.accountStore.accountInfo.cpu_weight}</div>
+            <div>{this.accountStore.eosBalance} EOS</div>
         }
       </Fragment>
     )
