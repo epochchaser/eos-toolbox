@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-import "../styles/Header.scss"
-import LoginView from "../views/LoginView"
+import "../styles/layout/Header.scss"
+import LoginView from "../components/LoginView"
 
 class Header extends Component {
   render() {
@@ -11,7 +11,9 @@ class Header extends Component {
             <a className="mobile-menu" id="mobile-collapse" href="#!">
               <i className="ti-menu" />
             </a>
-            <h5>EOS TOOLBOX</h5>
+            <header>
+              <h5>EOS TOOLBOX</h5>
+            </header>
           </div>
 
           <div className="navbar-container container-fluid">
