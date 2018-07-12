@@ -22,7 +22,7 @@ export class AccountStore {
 
   @action
   logout = async () => {
-    let result = await EosAgent.loginWithScatter()
+    let result = await EosAgent.logout()
 
     this.isLogin = false
     this.account = null

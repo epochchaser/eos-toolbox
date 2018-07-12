@@ -1,7 +1,7 @@
-export const protocol = 'https';
-export const host = 'nodes.get-scatter.com';
-export const port = 443;
-export const chainId = 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906';
+const protocol = 'https';
+const host = 'nodes.get-scatter.com';
+const port = 443;
+const chainId = 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906';
 
 // export const protocol = 'http';
 // export const host = '127.0.0.1';
@@ -24,5 +24,11 @@ export const NETWORK = {
     protocol: protocol,
     host: host,
     port: port,
+    chainId: chainId
+};
+
+export const CONFIG = {
+    broadcast: true,
+    sign: true,
     chainId: chainId
 };
