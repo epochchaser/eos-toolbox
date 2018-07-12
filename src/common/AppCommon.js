@@ -1,9 +1,12 @@
 import { observable, computed, action } from "mobx"
 
-let instance
-
 export default class AppCommon {
+  static instance
   @observable login = false
+
+  static go() {
+    console.log("byte")
+  }
 
   @computed
   get isLoggedIn() {
@@ -14,8 +17,4 @@ export default class AppCommon {
   setLogin = () => {
     this.login = !this.login
   }
-}
-
-export function getInstance() {
-  return instance ? instance : new AppCommon()
 }
