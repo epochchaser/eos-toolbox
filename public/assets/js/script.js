@@ -182,7 +182,7 @@ $(document).ready(function() {
     });
     // /*chatbar js end*/
     $(function() {
-        $('[data-toggle="tooltip"]').tooltip()
+        //$('[data-toggle="tooltip"]').tooltip()
     })
 });
 $(document).ready(function() {
