@@ -1,9 +1,6 @@
 import React from "react"
 import "../styles/Header.scss"
 import LoginView from "../views/LoginView"
-import LoginViewModel from "../viewmodels/LoginViewModel"
-
-const loginViewModel = new LoginViewModel()
 
 const Header = props => {
   return (
@@ -94,7 +91,7 @@ const Header = props => {
               </a>
             </li>
             <li className="user-profile header-notification">
-              <LoginView datacontext={loginViewModel} />
+              <LoginView />
             </li>
           </ul>
         </div>

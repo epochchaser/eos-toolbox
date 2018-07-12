@@ -1,7 +1,5 @@
-import Eos from 'eosjs';
+import Eos from "eosjs"
 
-class EosAgent {
+class EosAgent {}
 
-}
-
-export default EosAgent;
+export default EosAgent
