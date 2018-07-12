@@ -10,6 +10,17 @@ abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
 
+accept-language@^3.0.18:
+  version "3.0.18"
+  resolved "https://registry.yarnpkg.com/accept-language/-/accept-language-3.0.18.tgz#f5025f17bf65a466a845838ccf98cdb877d83384"
+  dependencies:
+    bcp47 "^1.1.2"
+    stable "^0.1.6"
+
+acceptedlanguages@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/acceptedlanguages/-/acceptedlanguages-0.0.2.tgz#f77eb3295d230a7aab04636ce864225af3fe236a"
+
 accepts@~1.3.4, accepts@~1.3.5:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/accepts/-/accepts-1.3.5.tgz#eb777df6011723a3b14e8a72c0805c8e86746bd2"
@@ -1075,6 +1086,10 @@ base@^0.11.1:
 batch@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/batch/-/batch-0.6.1.tgz#dc34314f4e679318093fc760272525f94bf25c16"
+
+bcp47@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/bcp47/-/bcp47-1.1.2.tgz#354be3307ffd08433a78f5e1e2095845f89fc7fe"
 
 bcrypt-pbkdf@^1.0.0:
   version "1.0.2"
@@ -6006,6 +6021,14 @@ react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
 
+react-intl-locale@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/react-intl-locale/-/react-intl-locale-0.5.3.tgz#00b4826b7604c06dbe0e74dc4d7c6df047e2863b"
+  dependencies:
+    accept-language "^3.0.18"
+    acceptedlanguages "0.0.2"
+    react-intl "^2.4.0"
+
 react-intl@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-2.4.0.tgz#66c14dc9df9a73b2fbbfbd6021726e80a613eb15"
@@ -6802,6 +6825,10 @@ sshpk@^1.7.0:
     ecc-jsbn "~0.1.1"
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
+
+stable@^0.1.6:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/stable/-/stable-0.1.8.tgz#836eb3c8382fe2936feaf544631017ce7d47a3cf"
 
 static-extend@^0.1.1:
   version "0.1.2"
