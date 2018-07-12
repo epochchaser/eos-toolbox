@@ -1,17 +1,16 @@
-import React, { Component, Fragment } from "react"
+import React, { Component } from "react"
 import { BrowserRouter as Router } from "react-router-dom"
 import Header from "./layout/Header"
 import Nav from "./layout/Nav"
 import Main from "./layout/Main"
 import "./styles/App.scss"
-import { inject, observer } from "mobx-react";
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
-          <div className="pcoded-overlay-box"></div>
+          <div className="pcoded-overlay-box" />
           <div className="pcoded-container navbar-wrapper">
             <Header />
             <div className="pcoded-main-container">
