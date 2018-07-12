@@ -2,22 +2,21 @@ import { observable, action } from "mobx"
 import EosAgent from "../EosAgent"
 
 export class AccountStore {
-  @observable isLogin = false;
-  @observable eosBalance = 0.0;
-  @observable accountInfo = null;
+  @observable isLogin = false
+  @observable eosBalance = 0.0
+  @observable accountInfo = null
 
   @action
   loadAccountInfo = async () => {
-    let err, account, balance;
+    let err, account, balance
 
-    account = await EosAgent.getAccountInfo();
-    this.accountInfo = account;
-    
-    balance = await EosAgent.getCurrencyBalance('EOS');
+    account = await EosAgent.getAccountInfo()
+    this.accountInfo = account
+    balance = await EosAgent.getCurrencyBalance("EOS")
     if (balance && balance.length > 0) {
-      this.eosBalance = eval(balance[0].split(' ')[0]);
+      this.eosBalance = eval(balance[0].split(" ")[0])
     } else {
-      this.eosBalance = 0.0;
+      this.eosBalance = 0.0
     }
   }
 
@@ -29,7 +28,7 @@ export class AccountStore {
       this.account = account
       this.isLogin = true
 
-      this.loadAccountInfo();
+      this.loadAccountInfo()
     }
   }
 

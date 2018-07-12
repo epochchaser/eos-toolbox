@@ -18,33 +18,33 @@ class EosAgent {
     })
   }
 
-  getCurrencyBalance = async (tokenSymbol) => {
+  getCurrencyBalance = async tokenSymbol => {
     if (!this.eos) {
-      return;
+      return
     }
 
     let balance = await this.eos.getCurrencyBalance({
-      code: 'eosio.token',
+      code: "eosio.token",
       account: this.accountName.name,
       symbol: tokenSymbol
-    });
+    })
 
-    return balance;
+    return balance
   }
 
   getAccountInfo = async () => {
     if (!this.eos) {
-        return;
+      return
     }
 
     let account = await this.eos.getAccount({
-        account_name: this.accountName.name
-    });
+      account_name: this.accountName.name
+    })
 
-    return account;
+    return account
   }
 
-  loginWithPrivateKey = (privKey) => {
+  loginWithPrivateKey = privKey => {
     let endPoint = Values.NETWORK.protocol + "://" + Values.NETWORK.host + ":" + Values.NETWORK.port
 
     this.eos = Eos({
@@ -61,7 +61,7 @@ class EosAgent {
 
   loginWithScatter = async () => {
     if (!this.scatter) {
-      return;
+      return
     }
 
     let id = await this.scatter.getIdentity(Values.requiredFields)
