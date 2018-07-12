@@ -5,56 +5,71 @@ import { inject, observer } from "mobx-react";
 @observer
 class LoginView extends Component {
   
-  loginClick = () => {
+  constructor(props) {
+    super(props);
     let { accountStore } = this.props;
+    this.accountStore = accountStore;
+  }
 
-    accountStore.login();
+  loginClick = () => {
+    this.accountStore.login();
+  }
+
+  logoutClick = () => {
+    this.accountStore.logout();
   }
 
   render() {
-    const { accountStore } = this.props
+    console.log(`accStore : ${this.accountStore}`)
 
     return (
       <Fragment>
         <a href="#!">
           {
-            !accountStore.name &&
+            !this.accountStore.isLogin &&
             <span>Login</span>
           }
           {
-            accountStore.name &&
-            <span>{accountStore.name}</span>
+            this.accountStore.isLogin &&
+            <span>{this.accountStore.account.name}@{this.accountStore.account.authority}</span>
           }
 
           <i className="ti-angle-down" />
         </a>
         <ul className="show-notification profile-notification">
-          <li>
-            <a href="#!">
-              <i className="ti-settings" /> Settings
-            </a>
-          </li>
-          <li>
-            <a href="user-profile.html">
-              <i className="ti-user" /> Profile
-            </a>
-          </li>
-          <li>
-            <a href="email-inbox.html">
-              <i className="ti-email" /> My Messages
-            </a>
-          </li>
-          <li>
-            <a href="auth-lock-screen.html">
-              <i className="ti-lock" /> Lock Screen
-            </a>
-          </li>
-          <li>
-            <a href="auth-normal-sign-in.html">
-              <i className="ti-layout-sidebar-left" /> Logout
-            </a>
-          </li>
-          <button onClick={this.loginClick}>눌러봐 임마</button>
+          {
+              !this.accountStore.isLogin &&
+            <li>
+              <a href="#!" onClick={this.loginClick}>
+                <i className="ti-settings" /> Login
+              </a>
+            </li>
+          }
+          {
+              this.accountStore.isLogin &&
+              <div>
+                <li>
+                  <a href="user-profile.html">
+                    <i className="ti-user" /> Profile
+                  </a>
+                </li>
+                <li>
+                  <a href="email-inbox.html">
+                    <i className="ti-email" /> My Messages
+                  </a>
+                </li>
+                <li>
+                  <a href="auth-lock-screen.html">
+                    <i className="ti-lock" /> Lock Screen
+                  </a>
+                </li>
+                <li>
+                  <a href="#!" onClick={this.logoutClick}>
+                    <i className="ti-layout-sidebar-left" /> Logout
+                  </a>
+                </li>
+              </div>
+          }
         </ul>
       </Fragment>
     )

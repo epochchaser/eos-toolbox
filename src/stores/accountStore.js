@@ -3,9 +3,9 @@ import EosAgent from "../EosAgent"
 
 export class AccountStore {
     
-    @observable isLoading = false;
+    @observable isLogin = false;
     @observable balance = 0.0;
-    @observable account;
+    account;
 
     constructor() {
     }
@@ -17,8 +17,19 @@ export class AccountStore {
     @action login = async () => {
         let account = await EosAgent.loginWithScatter();
         
-        this.account = account;
         console.log(account);
+
+        if (account) {
+            this.account = account;
+            this.isLogin = true;
+        }
+    }
+
+    @action logout = async () => {
+        let result = await EosAgent.loginWithScatter();
+
+        this.isLogin = false;
+        this.account = null;
     }
 }
 
