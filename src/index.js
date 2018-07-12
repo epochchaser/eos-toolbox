@@ -7,11 +7,9 @@ import ko from "react-intl/locale-data/ko"
 import locale from "./locale/locale"
 import { Provider } from "mobx-react"
 import accountStore from "./stores/accountStore"
+import localeStore from "./stores/localeStore"
 
 addLocaleData([...en, ...ko])
-
-const defaultLang = "ko"
-// const defaultLang = localStorage.getItem('lang') || 'en'
 
 const stores = {
   accountStore
@@ -19,7 +17,7 @@ const stores = {
 
 ReactDOM.render(
   <Provider {...stores}>
-    <IntlProvider locale={defaultLang} messages={locale[defaultLang]}>
+    <IntlProvider locale={localeStore.locale} messages={locale[localeStore.locale]}>
       <App />
     </IntlProvider>
   </Provider>,
