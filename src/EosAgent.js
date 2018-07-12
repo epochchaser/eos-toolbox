@@ -38,6 +38,16 @@ class EosAgent {
 
         return '';
     }
+
+    logout = async () => {
+        if(!this.scatter) {
+            return;
+        }
+
+        let res = await this.scatter.forgetIdentity();
+
+        console.log('logout : ' + res);
+    }
 }
 
 export default new EosAgent();
