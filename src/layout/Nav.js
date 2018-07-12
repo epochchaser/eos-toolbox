@@ -8,7 +8,7 @@ const Nav = props => {
         <div className="pcoded-navigation-label">Function</div>
         <ul className="pcoded-item pcoded-left-item">
           <li className="pcoded-hasmenu active pcoded-trigger">
-            <a href="javascript:void(0)">
+            <a href=" ">
               <span className="pcoded-micon">
                 <i className="ti-home" />
                 <b>D</b>

@@ -20,7 +20,7 @@ class Header extends Component {
             <ul className="nav-left">
               <li>
                 <div className="sidebar_toggle">
-                  <a href="javascript:void(0)">
+                  <a href=" ">
                     <i className="ti-menu" />
                   </a>
                 </div>
@@ -42,7 +42,7 @@ class Header extends Component {
                       <img
                         className="d-flex align-self-center img-radius"
                         src="../files/assets/images/avatar-2.jpg"
-                        alt="Generic placeholder image"
+                        alt="Generic placeholder"
                       />
                       <div className="media-body">
                         <h5 className="notification-user">John Doe</h5>
@@ -58,7 +58,7 @@ class Header extends Component {
                       <img
                         className="d-flex align-self-center img-radius"
                         src="../files/assets/images/avatar-4.jpg"
-                        alt="Generic placeholder image"
+                        alt="Generic placeholder"
                       />
                       <div className="media-body">
                         <h5 className="notification-user">Joseph William</h5>
@@ -74,7 +74,7 @@ class Header extends Component {
                       <img
                         className="d-flex align-self-center img-radius"
                         src="../files/assets/images/avatar-3.jpg"
-                        alt="Generic placeholder image"
+                        alt="Generic placeholder"
                       />
                       <div className="media-body">
                         <h5 className="notification-user">Sara Soudein</h5>
