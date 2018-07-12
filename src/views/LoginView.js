@@ -7,8 +7,6 @@ class LoginView extends Component {
   render() {
     const { accountStore } = this.props
 
-    console.log(`accStore : ${accountStore}`)
-
     return (
       <Fragment>
         <a href="#!">
