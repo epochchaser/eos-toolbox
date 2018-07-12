@@ -18,6 +18,20 @@ class EosAgent {
     })
   }
 
+  getCurrencyBalance = async (tokenSymbol) => {
+    if (!this.eos) {
+      return;
+    }
+
+    let balance = await this.eos.getCurrencyBalance({
+      code: 'eosio.token',
+      account: this.accountName.name,
+      symbol: tokenSymbol
+    });
+
+    return balance;
+  }
+
   getAccountInfo = async () => {
     if (!this.eos) {
         return;
