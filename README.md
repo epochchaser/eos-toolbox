@@ -2,7 +2,8 @@ This project is to utilize Eos easily.
 
 ### Todo
 
-``` Acount
+-- Account
+``` 
 - [x] Find Account
 - [x] Create Account
 - [x] Delegate
@@ -14,13 +15,15 @@ This project is to utilize Eos easily.
 - [x] Comet Haley
 ```
 
-``` Vote
+-- Vote
+```
 - [x] Vote
 - [x] Become Proxy
 - [x] Set Proxy
 ```
 
-``` Token
+-- Token
+```
 - [x] Token list
 - [x] Transfer Token
 ```
