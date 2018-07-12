@@ -4,10 +4,12 @@ import EosAgent from "../EosAgent"
 export class AccountStore {
   @observable isLogin = false
   @observable balance = 0.0
+  @observable accountInfo = null;
 
   @action
-  loadAccountInfo = () => {
-    this.isLoading = true
+  loadAccountInfo = async () => {
+    let account = await EosAgent.getAccountInfo();
+    this.accountInfo = account;
   }
 
   @action
@@ -17,6 +19,8 @@ export class AccountStore {
     if (account) {
       this.account = account
       this.isLogin = true
+
+      this.loadAccountInfo();
     }
   }
 
