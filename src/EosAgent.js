@@ -2,42 +2,56 @@ import * as Values from "./constants/Values"
 
 class EosAgent {
   constructor() {
-    this._initialized = false
-    this.identity = null
-    this.accountName = null
+      this._initialized = false;
+      this.identity = null;
+      this.accountName = null;
+      this.eos = null;
 
-    document.addEventListener("scatterLoaded", scatterExtension => {
-      console.log("scatterloaded")
-      this.scatter = window.scatter
+      document.addEventListener('scatterLoaded', scatterExtension => {
+          console.log('scatterloaded');
+          this.scatter = window.scatter;
 
-      if (this.scatter) {
-        this._initialized = true
-        //window.scatter = null;
-      }
-    })
+          if (this.scatter) {
+              this._initialized = true;
+              //window.scatter = null;
+          }
+      });
+  }
+
+  loginWithPrivateKey = (privKey) => {
+      let endPoint = Values.NETWORK.protocol + '://' + Values.NETWORK.host + ':' + Values.NETWORK.port;
+
+      this.eos = Eos({
+          httpEndpoint: endPoint,
+          chainId: Values.NETWORK.chainId,
+          keyProvider: privKey
+        });
+
+      this._initialized = true;
+      
+      // todo - get account info
+      return { name: 'test', authority: 'active' };
   }
 
   loginWithScatter = async () => {
-    if (!this.scatter) {
-      return
-    }
+      if(!this.scatter) {
+          return;
+      }
 
-    let id = await this.scatter.getIdentity(Values.requiredFields)
+      let id = await this.scatter.getIdentity(Values.requiredFields);
+      
+      if (id) {
+          this.scatter.useIdentity(id);
+          console.log('Possible identity', this.scatter.identity);
+          const accountName = this.scatter.identity.accounts.find(acc => acc.blockchain === Values.NETWORK.blockchain);
 
-    if (id) {
-      this.scatter.useIdentity(id)
-      console.log("Possible identity", this.scatter.identity)
-      const accountName = this.scatter.identity.accounts.find(
-        acc => acc.blockchain === Values.NETWORK.blockchain
-      )
+          this.accountName = accountName;
+          this.identity = id;
 
-      this.accountName = accountName
-      this.identity = id
-
-      return this.accountName
-    }
-
-    return ""
+          this.eos = this.scatter.eos(Values..NETWORK, Eos, Values.CONFIG);
+          
+          return this.accountName;
+      }
   }
 
   logout = async () => {
