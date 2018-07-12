@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import "../styles/layout/Header.scss"
 import LoginView from "../components/LoginView"
+import { FormattedMessage } from "react-intl"
 
 class Header extends Component {
   render() {
@@ -12,7 +13,9 @@ class Header extends Component {
               <i className="ti-menu" />
             </a>
             <header>
-              <h5>EOS TOOLBOX</h5>
+              <h5>
+                <FormattedMessage id="EOS Toolbox" />
+              </h5>
             </header>
           </div>
 
