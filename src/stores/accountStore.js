@@ -12,6 +12,8 @@ export class AccountStore {
 
     account = await EosAgent.getAccountInfo()
     this.accountInfo = account
+
+    console.log(account)
     balance = await EosAgent.getCurrencyBalance("EOS")
     if (balance && balance.length > 0) {
       this.eosBalance = eval(balance[0].split(" ")[0])
