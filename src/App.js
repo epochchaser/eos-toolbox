@@ -4,6 +4,7 @@ import Header from "./layout/Header"
 import Nav from "./layout/Nav"
 import Main from "./layout/Main"
 import "./styles/App.scss"
+import { inject, observer } from "mobx-react";
 
 class App extends Component {
   render() {

@@ -1,16 +1,31 @@
 import React, { Component, Fragment } from "react"
-import { observer, inject } from "mobx-react"
+import { inject, observer } from "mobx-react";
 
-@inject("accountStore")
+@inject('accountStore')
 @observer
 class LoginView extends Component {
+  
+  loginClick = () => {
+    let { accountStore } = this.props;
+
+    accountStore.login();
+  }
+
   render() {
     const { accountStore } = this.props
 
     return (
       <Fragment>
         <a href="#!">
-          <span>Login</span>
+          {
+            !accountStore.name &&
+            <span>Login</span>
+          }
+          {
+            accountStore.name &&
+            <span>{accountStore.name}</span>
+          }
+
           <i className="ti-angle-down" />
         </a>
         <ul className="show-notification profile-notification">
@@ -39,7 +54,7 @@ class LoginView extends Component {
               <i className="ti-layout-sidebar-left" /> Logout
             </a>
           </li>
-          <button onClick={() => accountStore.login()}>눌러봐 임마</button>
+          <button onClick={this.loginClick}>눌러봐 임마</button>
         </ul>
       </Fragment>
     )
