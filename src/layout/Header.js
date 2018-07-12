@@ -3,7 +3,6 @@ import "../styles/Header.scss"
 import LoginView from "../views/LoginView"
 
 class Header extends Component {
-
   render() {
     return (
       <nav className="navbar header-navbar pcoded-header">
