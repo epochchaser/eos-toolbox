@@ -1,10 +1,13 @@
 import React, { Component, Fragment } from "react"
-import { observer } from "mobx-react"
+import { observer, inject } from "mobx-react"
 
+@inject("accountStore")
 @observer
 class LoginView extends Component {
   render() {
-    const { datacontext } = this.props
+    const { accountStore } = this.props
+
+    console.log(`accStore : ${accountStore}`)
 
     return (
       <Fragment>
@@ -38,7 +41,7 @@ class LoginView extends Component {
               <i className="ti-layout-sidebar-left" /> Logout
             </a>
           </li>
-          <button onClick={() => datacontext.login()}>눌러봐 임마</button>
+          <button onClick={() => accountStore.login()}>눌러봐 임마</button>
         </ul>
       </Fragment>
     )
