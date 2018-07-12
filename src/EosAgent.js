@@ -18,7 +18,19 @@ class EosAgent {
     })
   }
 
-  loginWithPrivateKey = privKey => {
+  getAccountInfo = async () => {
+    if (!this.eos) {
+        return;
+    }
+
+    let account = await this.eos.getAccount({
+        account_name: this.accountName.name
+    });
+
+    return account;
+  }
+
+  loginWithPrivateKey = (privKey) => {
     let endPoint = Values.NETWORK.protocol + "://" + Values.NETWORK.host + ":" + Values.NETWORK.port
 
     this.eos = Eos({
@@ -35,7 +47,7 @@ class EosAgent {
 
   loginWithScatter = async () => {
     if (!this.scatter) {
-      return
+      return;
     }
 
     let id = await this.scatter.getIdentity(Values.requiredFields)
