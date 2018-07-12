@@ -15,11 +15,11 @@ class App extends Component {
             <Header />
             <div className="pcoded-main-container">
               <div className="pcoded-wrapper">
-                <Nav classNameName="content-nav" />
-                <div class="pcoded-content">
-                  <div class="pcoded-inner-content">
-                    <div class="main-body">
-                      <Main classNameName="content-main" />
+                <Nav className="content-nav" />
+                <div className="pcoded-content">
+                  <div className="pcoded-inner-content">
+                    <div className="main-body">
+                      <Main className="content-main" />
                     </div>
                   </div>
                 </div>
