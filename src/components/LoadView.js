@@ -13,14 +13,13 @@ class LoadView extends Component {
   render() {
     return (
       <div>
-      {
-        this.commonStore.isLoading &&
-        <div className="theme-loader">
-          <div className="loader-track">
-            <div className="loader-bar"></div>
+        {this.commonStore.isLoading && (
+          <div className="theme-loader">
+            <div className="loader-track">
+              <div className="loader-bar" />
+            </div>
           </div>
-        </div>
-      }
+        )}
       </div>
     )
   }
