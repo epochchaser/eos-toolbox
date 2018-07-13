@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
-import localeStore from '../stores/localeStore'
 import initLocale, { getUserLocale } from 'react-intl-locale'
 
-@inject('accountStore', 'commonStore')
+@inject('accountStore', 'commonStore', 'localeStore')
 @observer
 class LocaleSelectView extends Component {
   constructor(props) {
@@ -13,26 +12,27 @@ class LocaleSelectView extends Component {
     this.commonStore = commonStore
 
     this.locales = ['ko-KR', 'en-US']
-    this.currentLocale = localeStore.locale
   }
 
   updateLocale = newLocale => {
-    console.log(newLocale)
+    const { localeStore } = this.props
     localeStore.updateLocale(newLocale.split('-')[0])
   }
 
   render() {
+    const { localeStore } = this.props
+
     return (
       <Fragment>
         <a href="#!">
-          {!this.accountStore.isLogin && <span>{this.currentLocale}</span>}
+          <span>{localeStore.locale}</span>
           <i className="ti-angle-down" />
         </a>
         <ul className="show-notification profile-notification">
           <div>
             {this.locales.map(locale => {
               return (
-                <li key={locale}>
+                <li>
                   <a href="#!" onClick={() => this.updateLocale(locale)}>
                     <i className="ti-user" /> {locale}
                   </a>
