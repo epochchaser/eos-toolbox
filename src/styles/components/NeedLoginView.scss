@@ -1,0 +1,133 @@
+section.tv-404-animation {
+  height: auto;
+  background: #019cdc;
+  background: linear-gradient(to right, #019cdc 0, #219be6 100%);
+  position: relative;
+  padding: 100px 0;
+}
+h2.tv-title-404-tm {
+  font-size: 72px;
+  color: #fff;
+  font-weight: 300;
+  margin-bottom: 50px;
+}
+h3.tv-subtitle-404-tm {
+  font-size: 42px;
+  color: #fff;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+p.tv-text-404-tm {
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+.tv-404-animation a {
+  color: #ffffff !important;
+  text-decoration: none;
+}
+svg {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: block;
+  transform-origin: 50% 100%;
+  -moz-transform-origin: 50% 100%;
+  animation: appear 1s 1;
+  animation-timing-function: cubic-bezier(0.63, 0.09, 0.3, 1.43);
+  animation-fill-mode: forwards;
+  transform: scale(0);
+}
+.moving-svg {
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+}
+svg #service1,
+svg #service2,
+svg #service3,
+svg #service4,
+svg #service5,
+svg #service6,
+svg #service7,
+svg #service8 {
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+  -moz-transform-origin: 50% 100%;
+  -webkit-animation: appear 3s infinite;
+  animation: appear 3s infinite;
+  -webkit-animation-timing-function: cubic-bezier(0.63, 0.09, 0.3, 1.43);
+  animation-timing-function: cubic-bezier(0.63, 0.09, 0.3, 1.43);
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+svg #service2 {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+svg #service3 {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+svg #service4 {
+  -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+}
+svg #service5 {
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+}
+svg #service6 {
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+}
+svg #service7 {
+  -webkit-animation-delay: 1.8s;
+  animation-delay: 1.8s;
+}
+svg #service8 {
+  -webkit-animation-delay: 2.1s;
+  animation-delay: 2.1s;
+}
+
+/*Keyframes*/
+@-webkit-keyframes appear {
+  0% {
+    -webkit-transform: scaleX(0) scaleY(0) translateY(0);
+    transform: scaleX(0) scaleY(0) translateY(0);
+  }
+  70% {
+    -webkit-transform: scaleX(0.7) scaleY(0.7) translateY(0);
+    transform: scaleX(0.7) scaleY(0.7) translateY(0);
+  }
+  80% {
+    -webkit-transform: scaleX(0.9) scaleY(0.5) translateY(5px);
+    transform: scaleX(0.9) scaleY(0.5) translateY(5px);
+  }
+  100% {
+    -webkit-transform: scaleX(1) scaleY(1) translateY(0);
+    transform: scaleX(1) scaleY(1) translateY(0);
+  }
+}
+@keyframes appear {
+  0% {
+    -webkit-transform: scaleX(0) scaleY(0) translateY(0);
+    transform: scaleX(0) scaleY(0) translateY(0);
+  }
+  70% {
+    -webkit-transform: scaleX(0.7) scaleY(0.7) translateY(0);
+    transform: scaleX(0.7) scaleY(0.7) translateY(0);
+  }
+  80% {
+    -webkit-transform: scaleX(0.9) scaleY(0.5) translateY(5px);
+    transform: scaleX(0.9) scaleY(0.5) translateY(5px);
+  }
+  100% {
+    -webkit-transform: scaleX(1) scaleY(1) translateY(0);
+    transform: scaleX(1) scaleY(1) translateY(0);
+  }
+}
