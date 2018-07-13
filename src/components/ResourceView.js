@@ -68,7 +68,7 @@ class ResourceView extends Component {
                               data-label="RAM"
                               className="radial-bar radial-bar-90 radial-bar-lg radial-bar-danger"
                             />
-                            <span className="f-26 text-c-pink" style={{ margin: '5px;' }}>
+                            <span className="f-26 text-c-pink">
                               <NumberFormat
                                 value={this.accountStore.accountInfo.ram_usage}
                                 displayType={'text'}
