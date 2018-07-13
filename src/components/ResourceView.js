@@ -14,19 +14,22 @@ class ResourceView extends Component {
   render() {
     let ramUsagePercent =
       parseInt(
-        (this.accountStore.accountInfo.ram_usage / this.accountStore.accountInfo.ram_quota) * 100
+        (this.accountStore.accountInfo.ram_usage / this.accountStore.accountInfo.ram_quota) * 100,
+        10
       ) + '%'
     let cpuUsagePercent =
       parseInt(
         (this.accountStore.accountInfo.cpu_limit.used /
           this.accountStore.accountInfo.cpu_limit.max) *
-          100
+          100,
+        10
       ) + '%'
     let netUsagePercent =
       parseInt(
         (this.accountStore.accountInfo.net_limit.used /
           this.accountStore.accountInfo.net_limit.max) *
-          100
+          100,
+        10
       ) + '%'
     return (
       <Fragment>
