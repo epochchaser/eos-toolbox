@@ -12,22 +12,25 @@ import commonStore from './stores/commonStore'
 import initLocale, { getUserLocale } from 'react-intl-locale'
 
 // param : defulat locale, allow locale array
-initLocale('ko-KR', ['en-US'])
-
+initLocale('en-US', ['ko-KR'])
 addLocaleData([...en, ...ko])
 
 const userLocale = getUserLocale()
-
 localeStore.updateLocale(userLocale.split('-')[0])
 
 const stores = {
   accountStore,
-  commonStore
+  commonStore,
+  localeStore
 }
 
 ReactDOM.render(
   <Provider {...stores}>
-    <IntlProvider locale={localeStore.locale} messages={locale[localeStore.locale]}>
+    <IntlProvider
+      key={localeStore.locale}
+      locale={localeStore.locale}
+      messages={locale[localeStore.locale]}
+    >
       <App />
     </IntlProvider>
   </Provider>,
