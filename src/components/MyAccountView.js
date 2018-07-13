@@ -13,8 +13,8 @@ class MyAccountView extends Component {
   render() {
     return (
       <Fragment>
-        <div class="main-body">
-          <div class="page-wrapper">
+        <div className="main-body">
+          <div className="page-wrapper">
             <div className="page-body">
               <div className="row">
                 <div className="col-md-6 col-xl-3">
