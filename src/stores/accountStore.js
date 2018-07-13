@@ -41,6 +41,54 @@ export class AccountStore {
     this.isLogin = false
     this.account = null
   }
+
+  @action
+  createNewAccount = async (
+    owner,
+    authority,
+    newAccount,
+    newAccountOwnerPubKey,
+    newAccountActivePubKey,
+    buyrambytes,
+    stakeCpuQuantity,
+    stakeNetQuantity
+  ) => {
+    const cb = tr => {
+      const options = { authorization: [`${owner}@${authority}`] }
+
+      tr.newaccount(
+        {
+          creator: owner,
+          name: newAccount,
+          owner: newAccountOwnerPubKey,
+          active: newAccountActivePubKey
+        },
+        options
+      )
+
+      tr.buyrambytes(
+        {
+          payer: owner,
+          receiver: newAccount,
+          bytes: buyrambytes
+        },
+        options
+      )
+
+      tr.delegatebw(
+        {
+          from: owner,
+          receiver: newAccount,
+          stake_net_quantity: stakeNetQuantity + ' EOS',
+          stake_cpu_quantity: stakeCpuQuantity + ' EOS',
+          transfer: 0
+        },
+        options
+      )
+    }
+
+    EosAgent.getTransaction(cb)
+  }
 }
 
 export default new AccountStore()
