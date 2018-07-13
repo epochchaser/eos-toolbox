@@ -27,3 +27,9 @@ This project is to utilize Eos easily.
 - [x] Token list
 - [x] Transfer Token
 ```
+
+### Coding convention
+* Prettier
+  * "editor.formatOnSave": true,
+  * "prettier.semi": false,
+  * "prettier.printWidth": 100
