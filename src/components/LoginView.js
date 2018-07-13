@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react"
-import { inject, observer } from "mobx-react"
+import React, { Component, Fragment } from 'react'
+import { inject, observer } from 'mobx-react'
 
-@inject("accountStore", "commonStore")
+@inject('accountStore', 'commonStore')
 @observer
 class LoginView extends Component {
   constructor(props) {

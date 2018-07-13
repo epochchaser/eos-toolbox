@@ -1,4 +1,5 @@
-import * as Values from "./constants/Values"
+import * as Values from './constants/Values'
+import Eos from 'eosjs'
 
 class EosAgent {
   constructor() {
@@ -7,8 +8,8 @@ class EosAgent {
     this.accountName = null
     this.eos = null
 
-    document.addEventListener("scatterLoaded", scatterExtension => {
-      console.log("scatterloaded")
+    document.addEventListener('scatterLoaded', scatterExtension => {
+      console.log('scatterloaded')
       this.scatter = window.scatter
 
       if (this.scatter) {
@@ -24,7 +25,7 @@ class EosAgent {
     }
 
     let balance = await this.eos.getCurrencyBalance({
-      code: "eosio.token",
+      code: 'eosio.token',
       account: this.accountName.name,
       symbol: tokenSymbol
     })
@@ -45,7 +46,7 @@ class EosAgent {
   }
 
   loginWithPrivateKey = privKey => {
-    let endPoint = Values.NETWORK.protocol + "://" + Values.NETWORK.host + ":" + Values.NETWORK.port
+    let endPoint = Values.NETWORK.protocol + '://' + Values.NETWORK.host + ':' + Values.NETWORK.port
 
     this.eos = Eos({
       httpEndpoint: endPoint,
@@ -56,7 +57,7 @@ class EosAgent {
     this._initialized = true
 
     // todo - get account info
-    return { name: "test", authority: "active" }
+    return { name: 'test', authority: 'active' }
   }
 
   loginWithScatter = async () => {
@@ -68,7 +69,7 @@ class EosAgent {
 
     if (id) {
       this.scatter.useIdentity(id)
-      console.log("Possible identity", this.scatter.identity)
+      console.log('Possible identity', this.scatter.identity)
       const accountName = this.scatter.identity.accounts.find(
         acc => acc.blockchain === Values.NETWORK.blockchain
       )
@@ -89,7 +90,7 @@ class EosAgent {
 
     let res = await this.scatter.forgetIdentity()
 
-    console.log("logout : " + res)
+    console.log('logout : ' + res)
   }
 }
 

@@ -1,11 +1,11 @@
-import { observable, action, computed } from "mobx"
+import { observable, action, computed } from 'mobx'
 
 export class CommonStore {
-  @observable isLoading = false;
+  @observable isLoading = false
 
   @action
   setLoading(isLoading) {
-      this.isLoading = isLoading;
+    this.isLoading = isLoading
   }
 }
 

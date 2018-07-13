@@ -1,5 +1,5 @@
-import { observable, action } from "mobx"
-import EosAgent from "../EosAgent"
+import { observable, action } from 'mobx'
+import EosAgent from '../EosAgent'
 
 export class AccountStore {
   @observable isLogin = false
@@ -14,9 +14,9 @@ export class AccountStore {
     this.accountInfo = account
 
     console.log(account)
-    balance = await EosAgent.getCurrencyBalance("EOS")
+    balance = await EosAgent.getCurrencyBalance('EOS')
     if (balance && balance.length > 0) {
-      this.eosBalance = eval(balance[0].split(" ")[0])
+      this.eosBalance = balance[0].split(' ')[0]
     } else {
       this.eosBalance = 0.0
     }

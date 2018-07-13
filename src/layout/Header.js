@@ -1,7 +1,7 @@
-import React, { Component } from "react"
-import "../styles/layout/Header.scss"
-import LoginView from "../components/LoginView"
-import { FormattedMessage } from "react-intl"
+import React, { Component } from 'react'
+import '../styles/layout/Header.scss'
+import LoginView from '../components/LoginView'
+import { FormattedMessage } from 'react-intl'
 
 class Header extends Component {
   render() {
