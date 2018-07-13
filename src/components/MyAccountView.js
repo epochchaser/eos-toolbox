@@ -47,13 +47,13 @@ class MyAccountView extends Component {
                 <div className="col-md-6 col-xl-3">
                   <div className="card bg-c-blue order-card">
                     <div className="card-block">
-                      <h6 className="m-b-20">Ram usage</h6>
+                      <h6 className="m-b-20">Ram owned</h6>
                       <h2 className="text-right">
                         <i className="ti-shopping-cart f-left" />
                         {this.accountStore.accountInfo && (
                           <span>
                             <NumberFormat
-                              value={this.accountStore.accountInfo.ram_usage}
+                              value={this.accountStore.accountInfo.ram_quota}
                               displayType={'text'}
                               thousandSeparator={true}
                               suffix={' bytes'}
@@ -62,11 +62,11 @@ class MyAccountView extends Component {
                         )}
                       </h2>
                       <p className="m-b-0">
-                        Ram owned
+                        Ram usage
                         {this.accountStore.accountInfo && (
                           <span className="f-right">
                             <NumberFormat
-                              value={this.accountStore.accountInfo.ram_quota}
+                              value={this.accountStore.accountInfo.ram_usage}
                               displayType={'text'}
                               thousandSeparator={true}
                               suffix={' bytes'}
