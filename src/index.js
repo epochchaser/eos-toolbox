@@ -33,3 +33,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 )
+
+setTimeout(() => {
+  accountStore.loadAccountInfo()
+}, 1000)

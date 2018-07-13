@@ -5,7 +5,7 @@ class EosAgent {
   constructor() {
     this._initialized = false
     this.identity = null
-    this.accountName = null
+    this.loginAccount = null
     this.eos = null
 
     document.addEventListener('scatterLoaded', scatterExtension => {
@@ -14,9 +14,32 @@ class EosAgent {
 
       if (this.scatter) {
         this._initialized = true
-        //window.scatter = null;
+        if (window.scatter.identity) {
+          this.initEosAgent(window.scatter.identity)
+        }
       }
     })
+  }
+
+  get loginaccount() {
+    return this.loginAccount
+  }
+
+  initEosAgent = id => {
+    if (id) {
+      this.scatter.useIdentity(id)
+      console.log('Possible identity', this.scatter.identity)
+      const loginAccount = this.scatter.identity.accounts.find(
+        acc => acc.blockchain === Values.NETWORK.blockchain
+      )
+
+      this.loginAccount = loginAccount
+      this.identity = id
+
+      this.eos = this.scatter.eos(Values.NETWORK, Eos, Values.CONFIG)
+
+      return this.loginAccount
+    }
   }
 
   getTransaction = cb => {
@@ -52,7 +75,7 @@ class EosAgent {
 
     let balance = await this.eos.getCurrencyBalance({
       code: 'eosio.token',
-      account: this.accountName.name,
+      account: this.loginAccount.name,
       symbol: tokenSymbol
     })
 
@@ -65,7 +88,7 @@ class EosAgent {
     }
 
     let account = await this.eos.getAccount({
-      account_name: this.accountName.name
+      account_name: this.loginAccount.name
     })
 
     return account
@@ -93,20 +116,7 @@ class EosAgent {
 
     let id = await this.scatter.getIdentity(Values.requiredFields)
 
-    if (id) {
-      this.scatter.useIdentity(id)
-      console.log('Possible identity', this.scatter.identity)
-      const accountName = this.scatter.identity.accounts.find(
-        acc => acc.blockchain === Values.NETWORK.blockchain
-      )
-
-      this.accountName = accountName
-      this.identity = id
-
-      this.eos = this.scatter.eos(Values.NETWORK, Eos, Values.CONFIG)
-
-      return this.accountName
-    }
+    return this.initEosAgent(id)
   }
 
   logout = async () => {
@@ -115,6 +125,11 @@ class EosAgent {
     }
 
     let res = await this.scatter.forgetIdentity()
+
+    this._initialized = false
+    this.identity = null
+    this.loginAccount = null
+    this.eos = null
 
     console.log('logout : ' + res)
   }
