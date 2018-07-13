@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import MyAccountView from '../components/MyAccountView'
+import ResourceView from '../components/ResourceView'
 
 @inject('accountStore')
 @observer
@@ -15,6 +16,7 @@ class Home extends Component {
     return (
       <div>
         {this.accountStore.isLogin && <MyAccountView />}
+        {this.accountStore.isLogin && <ResourceView />}
         {!this.accountStore.isLogin && <div>HOME 반가워</div>}
       </div>
     )
