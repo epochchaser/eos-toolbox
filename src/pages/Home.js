@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import MyAccountView from '../components/MyAccountView'
 import ResourceView from '../components/ResourceView'
+import NeedLoginView from '../components/NeedLoginView'
 
 @inject('accountStore')
 @observer
@@ -15,9 +16,14 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {this.accountStore.isLogin && <MyAccountView />}
-        {this.accountStore.isLogin && <ResourceView />}
-        {!this.accountStore.isLogin && <div>HOME 반가워</div>}
+        {this.accountStore.isLogin ? (
+          <Fragment>
+            <MyAccountView />
+            <ResourceView />
+          </Fragment>
+        ) : (
+          <NeedLoginView />
+        )}
       </div>
     )
   }

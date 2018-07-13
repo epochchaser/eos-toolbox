@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
-import NumberFormat from 'react-number-format'
 
 @inject('accountStore')
 @observer
