@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../styles/layout/Header.scss'
 import LoginView from '../components/LoginView'
 import { FormattedMessage } from 'react-intl'
+import LocaleSelectView from '../components/LocaleSelectView'
 
 class Header extends Component {
   render() {
@@ -95,6 +96,9 @@ class Header extends Component {
                   <i className="ti-comments" />
                   <span className="badge bg-c-green" />
                 </a>
+              </li>
+              <li className="user-profile header-notification">
+                <LocaleSelectView />
               </li>
               <li className="user-profile header-notification">
                 <LoginView />
