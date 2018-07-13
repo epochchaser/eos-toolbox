@@ -3,7 +3,8 @@ This project is to utilize Eos easily.
 ### Todo
 
 -- Account
-``` 
+
+```
 - [x] Find Account
 - [x] Create Account
 - [x] Delegate
@@ -16,6 +17,7 @@ This project is to utilize Eos easily.
 ```
 
 -- Vote
+
 ```
 - [x] Vote
 - [x] Become Proxy
@@ -23,13 +25,20 @@ This project is to utilize Eos easily.
 ```
 
 -- Token
+
 ```
 - [x] Token list
 - [x] Transfer Token
 ```
 
 ### Coding convention
-* Prettier
-  * "editor.formatOnSave": true,
-  * "prettier.semi": false,
-  * "prettier.printWidth": 100
+
+- VS Code Prettier config (Ctrl + ,)
+
+```
+  "editor.formatOnSave": true,
+  "prettier.semi": false,
+  "prettier.printWidth": 100,
+  "javascript.format.enable": false,
+  "prettier.eslintIntegration": true
+```
