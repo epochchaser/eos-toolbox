@@ -49,7 +49,7 @@ class MyAccountView extends Component {
                     <div className="card-block">
                       <h6 className="m-b-20">Ram owned</h6>
                       <h2 className="text-right">
-                        <i className="ti-shopping-cart f-left" />
+                        <i className="ti-save f-left" />
                         {this.accountStore.accountInfo && (
                           <span>
                             <NumberFormat
@@ -78,38 +78,6 @@ class MyAccountView extends Component {
                   </div>
                 </div>
                 <div className="col-md-6 col-xl-3">
-                  <div className="card bg-c-green order-card">
-                    <div className="card-block">
-                      <h6 className="m-b-20">Net weight</h6>
-                      <h2 className="text-right">
-                        <i className="ti-tag f-left" />
-                        {this.accountStore.accountInfo && (
-                          <span>
-                            <NumberFormat
-                              value={this.accountStore.accountInfo.total_resources.net_weight}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' EOS'}
-                            />
-                          </span>
-                        )}
-                      </h2>
-                      <p className="m-b-0">
-                        Net max
-                        {this.accountStore.accountInfo && (
-                          <span className="f-right">
-                            <NumberFormat
-                              value={this.accountStore.accountInfo.net_limit.max}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                            />
-                          </span>
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-xl-3">
                   <div className="card bg-c-yellow order-card">
                     <div className="card-block">
                       <h6 className="m-b-20">Cpu weight</h6>
@@ -127,6 +95,38 @@ class MyAccountView extends Component {
                           <span className="f-right">
                             <NumberFormat
                               value={this.accountStore.accountInfo.cpu_limit.max}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                            />
+                          </span>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6 col-xl-3">
+                  <div className="card bg-c-green order-card">
+                    <div className="card-block">
+                      <h6 className="m-b-20">Net weight</h6>
+                      <h2 className="text-right">
+                        <i className="ti-signal f-left" />
+                        {this.accountStore.accountInfo && (
+                          <span>
+                            <NumberFormat
+                              value={this.accountStore.accountInfo.total_resources.net_weight}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                              suffix={' EOS'}
+                            />
+                          </span>
+                        )}
+                      </h2>
+                      <p className="m-b-0">
+                        Net max
+                        {this.accountStore.accountInfo && (
+                          <span className="f-right">
+                            <NumberFormat
+                              value={this.accountStore.accountInfo.net_limit.max}
                               displayType={'text'}
                               thousandSeparator={true}
                             />
