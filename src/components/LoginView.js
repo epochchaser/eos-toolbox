@@ -24,8 +24,6 @@ class LoginView extends Component {
   }
 
   render() {
-    console.log(`accStore : ${this.accountStore}`)
-
     return (
       <Fragment>
         <a href="#!">
@@ -38,6 +36,7 @@ class LoginView extends Component {
 
           <i className="ti-angle-down" />
         </a>
+        
         <ul className="show-notification profile-notification">
           {!this.accountStore.isLogin && (
             <li>
