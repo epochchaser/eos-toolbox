@@ -19,7 +19,15 @@ class EosAgent {
     })
   }
 
-  getContract = contractName => {
+  getTransaction = cb => {
+    if (!this.eos) {
+      return
+    }
+
+    this.eos.transaction(cb)
+  }
+
+  getContract = async contractName => {
     if (!this.eos) {
       return
     }
