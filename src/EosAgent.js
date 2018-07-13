@@ -19,6 +19,14 @@ class EosAgent {
     })
   }
 
+  getContract = contractName => {
+    if (!this.eos) {
+      return
+    }
+
+    return this.eos.contract(contractName)
+  }
+
   getTableRows = async query => {
     if (!this.eos) {
       return
