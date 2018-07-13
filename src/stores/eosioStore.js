@@ -1,14 +1,13 @@
-import { observable, action, computed } from 'mobx'
+import { decorate, observable, action, computed } from 'mobx'
 import EosAgent from '../EosAgent'
 
 export class EosioStore {
-  @observable global = null
-  @observable blockProducers = null
-  @observable ramMarkets = null
-  @observable voters = null
-  @observable nameBids = null
+  global = null
+  blockProducers = null
+  ramMarkets = null
+  voters = null
+  nameBids = null
 
-  @action
   getGlobalInfo = () => {
     const query = {
       json: true,
@@ -22,7 +21,6 @@ export class EosioStore {
     // todo
   }
 
-  @action
   getBlockProducers = () => {
     const query = {
       json: true,
@@ -36,7 +34,6 @@ export class EosioStore {
     // todo
   }
 
-  @action
   getRamMarkets = () => {
     const query = {
       json: true,
@@ -50,7 +47,6 @@ export class EosioStore {
     // todo
   }
 
-  @action
   getVoters = () => {
     const query = {
       json: true,
@@ -65,7 +61,6 @@ export class EosioStore {
     // todo
   }
 
-  @action
   getNameBids = () => {
     const query = {
       json: true,
@@ -80,5 +75,18 @@ export class EosioStore {
     // todo
   }
 }
+
+decorate(EosioStore, {
+  global: observable,
+  blockProducers: observable,
+  ramMarkets: observable,
+  voters: observable,
+  nameBids: observable,
+  getGlobalInfo: action,
+  getBlockProducers: action,
+  getRamMarkets: action,
+  getVoters: action,
+  getNameBids: action
+})
 
 export default new EosioStore()
