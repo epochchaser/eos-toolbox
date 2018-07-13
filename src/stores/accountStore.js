@@ -1,13 +1,12 @@
-import { observable, action } from 'mobx'
+import { decorate, observable, action } from 'mobx'
 import EosAgent from '../EosAgent'
 
 export class AccountStore {
-  @observable isLogin = false
-  @observable eosBalance = 0.0
-  @observable accountInfo = null
-  @observable account = null
+  isLogin = false
+  eosBalance = 0.0
+  accountInfo = null
+  account = null
 
-  @action
   loadAccountInfo = async () => {
     let accountInfo, balance
 
@@ -31,7 +30,6 @@ export class AccountStore {
     }
   }
 
-  @action
   login = async () => {
     let account = await EosAgent.loginWithScatter()
 
@@ -43,7 +41,6 @@ export class AccountStore {
     }
   }
 
-  @action
   logout = async () => {
     await EosAgent.logout()
 
@@ -51,7 +48,6 @@ export class AccountStore {
     this.account = null
   }
 
-  @action
   createNewAccount = async (
     owner,
     authority,
@@ -99,5 +95,16 @@ export class AccountStore {
     EosAgent.getTransaction(cb)
   }
 }
+
+decorate(AccountStore, {
+  isLogin: observable,
+  eosBalance: observable,
+  accountInfo: observable,
+  account: observable,
+  loadAccountInfo: action,
+  login: action,
+  logout: action,
+  createNewAccount: action
+})
 
 export default new AccountStore()

@@ -1,12 +1,16 @@
-import { observable, action } from 'mobx'
+import { decorate, observable, action } from 'mobx'
 
 export class CommonStore {
-  @observable isLoading = false
+  isLoading = false
 
-  @action
   setLoading(isLoading) {
     this.isLoading = isLoading
   }
 }
+
+decorate(CommonStore, {
+  isLoading: observable,
+  setLoading: action
+})
 
 export default new CommonStore()

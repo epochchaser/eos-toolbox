@@ -1,17 +1,21 @@
-import { observable, action, computed } from 'mobx'
+import { decorate, observable, action, computed } from 'mobx'
 
 export class LocaleStore {
-  @observable lang = 'en'
+  lang = 'en'
 
-  @action
   updateLocale(newlang) {
     this.lang = newlang
   }
 
-  @computed
   get locale() {
     return this.lang
   }
 }
+
+decorate(LocaleStore, {
+  lang: observable,
+  updateLocale: action,
+  locale: computed
+})
 
 export default new LocaleStore()
