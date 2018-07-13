@@ -5,20 +5,29 @@ export class AccountStore {
   @observable isLogin = false
   @observable eosBalance = 0.0
   @observable accountInfo = null
+  @observable account = null
 
   @action
   loadAccountInfo = async () => {
-    let err, account, balance
+    let accountInfo, balance
 
-    account = await EosAgent.getAccountInfo()
-    this.accountInfo = account
+    accountInfo = await EosAgent.getAccountInfo()
 
-    console.log(account)
-    balance = await EosAgent.getCurrencyBalance('EOS')
-    if (balance && balance.length > 0) {
-      this.eosBalance = balance[0].split(' ')[0]
-    } else {
-      this.eosBalance = 0.0
+    if (accountInfo) {
+      this.accountInfo = accountInfo
+      this.account = EosAgent.loginaccount
+
+      console.log(this.account)
+      if (this.account) {
+        this.isLogin = true
+      }
+
+      balance = await EosAgent.getCurrencyBalance('EOS')
+      if (balance && balance.length > 0) {
+        this.eosBalance = balance[0].split(' ')[0]
+      } else {
+        this.eosBalance = 0.0
+      }
     }
   }
 

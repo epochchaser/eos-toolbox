@@ -13,10 +13,16 @@ class LoginView extends Component {
 
   loginClick = async () => {
     this.commonStore.setLoading(true)
-    // todo - error handle
-    await this.accountStore.login()
 
-    this.commonStore.setLoading(false)
+    try {
+      await this.accountStore.login()
+    } catch (e) {
+      // todo - error handle
+      // 423 Locked
+      console.log(e)
+    } finally {
+      this.commonStore.setLoading(false)
+    }
   }
 
   logoutClick = () => {
@@ -36,7 +42,7 @@ class LoginView extends Component {
 
           <i className="ti-angle-down" />
         </a>
-        
+
         <ul className="show-notification profile-notification">
           {!this.accountStore.isLogin && (
             <li>
