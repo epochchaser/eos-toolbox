@@ -19,6 +19,16 @@ class EosAgent {
     })
   }
 
+  getTableRows = async query => {
+    if (!this.eos) {
+      return
+    }
+
+    let results = await this.eos.getTableRows(query)
+
+    return results
+  }
+
   getCurrencyBalance = async tokenSymbol => {
     if (!this.eos) {
       return
