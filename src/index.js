@@ -29,7 +29,7 @@ ReactDOM.render(
   <Provider {...stores}>
     <IntlProvider locale={localeStore.locale} messages={locale[localeStore.locale]}>
       <App />
-    </IntlProvider>{' '}
+    </IntlProvider>
   </Provider>,
   document.getElementById('root')
 )
