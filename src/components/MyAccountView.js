@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from "react"
-import { inject, observer } from "mobx-react"
-import NumberFormat from 'react-number-format';
+import React, { Component, Fragment } from 'react'
+import { inject, observer } from 'mobx-react'
+import NumberFormat from 'react-number-format'
 
-@inject("accountStore")
+@inject('accountStore')
 @observer
 class MyAccountView extends Component {
   constructor(props) {
@@ -25,7 +25,14 @@ class MyAccountView extends Component {
                       <h2 className="text-right">
                         <i className="ti-wallet f-left" />
                         {this.accountStore.accountInfo && (
-                          <span><NumberFormat value={this.accountStore.eosBalance} displayType={'text'} thousandSeparator={true} suffix={' EOS'} /></span>
+                          <span>
+                            <NumberFormat
+                              value={this.accountStore.eosBalance}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                              suffix={' EOS'}
+                            />
+                          </span>
                         )}
                       </h2>
                       <p className="m-b-0">
@@ -44,13 +51,27 @@ class MyAccountView extends Component {
                       <h2 className="text-right">
                         <i className="ti-shopping-cart f-left" />
                         {this.accountStore.accountInfo && (
-                            <span><NumberFormat value={this.accountStore.accountInfo.ram_usage} displayType={'text'} thousandSeparator={true} suffix={' bytes'} /></span>
+                          <span>
+                            <NumberFormat
+                              value={this.accountStore.accountInfo.ram_usage}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                              suffix={' bytes'}
+                            />
+                          </span>
                         )}
                       </h2>
                       <p className="m-b-0">
                         Ram owned
                         {this.accountStore.accountInfo && (
-                          <span className="f-right"><NumberFormat value={this.accountStore.accountInfo.ram_quota} displayType={'text'} thousandSeparator={true} suffix={' bytes'} /></span>
+                          <span className="f-right">
+                            <NumberFormat
+                              value={this.accountStore.accountInfo.ram_quota}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                              suffix={' bytes'}
+                            />
+                          </span>
                         )}
                       </p>
                     </div>
@@ -63,14 +84,25 @@ class MyAccountView extends Component {
                       <h2 className="text-right">
                         <i className="ti-tag f-left" />
                         {this.accountStore.accountInfo && (
-                            <span><NumberFormat value={this.accountStore.accountInfo.total_resources.net_weight} displayType={'text'} thousandSeparator={true} suffix={' EOS'} /></span>  
+                          <span>
+                            <NumberFormat
+                              value={this.accountStore.accountInfo.total_resources.net_weight}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                              suffix={' EOS'}
+                            />
+                          </span>
                         )}
                       </h2>
                       <p className="m-b-0">
                         Net max
                         {this.accountStore.accountInfo && (
                           <span className="f-right">
-                            <NumberFormat value={this.accountStore.accountInfo.net_limit.max} displayType={'text'} thousandSeparator={true} />
+                            <NumberFormat
+                              value={this.accountStore.accountInfo.net_limit.max}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                            />
                           </span>
                         )}
                       </p>
@@ -93,7 +125,11 @@ class MyAccountView extends Component {
                         Cpu max
                         {this.accountStore.accountInfo && (
                           <span className="f-right">
-                            <NumberFormat value={this.accountStore.accountInfo.cpu_limit.max} displayType={'text'} thousandSeparator={true} />
+                            <NumberFormat
+                              value={this.accountStore.accountInfo.cpu_limit.max}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                            />
                           </span>
                         )}
                       </p>

@@ -1,7 +1,7 @@
-import { observable, action, computed } from "mobx"
+import { observable, action, computed } from 'mobx'
 
 export class LocaleStore {
-  @observable lang = "en"
+  @observable lang = 'en'
 
   @action
   updateLocale(newlang) {

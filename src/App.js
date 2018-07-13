@@ -1,10 +1,10 @@
-import React, { Component } from "react"
-import { BrowserRouter as Router } from "react-router-dom"
-import Header from "./layout/Header"
-import Nav from "./layout/Nav"
-import Main from "./layout/Main"
-import LoadView from "./components/LoadView"
-import "./styles/App.scss"
+import React, { Component } from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import Header from './layout/Header'
+import Nav from './layout/Nav'
+import Main from './layout/Main'
+import LoadView from './components/LoadView'
+import './styles/App.scss'
 
 class App extends Component {
   render() {

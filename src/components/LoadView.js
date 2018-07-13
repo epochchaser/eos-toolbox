@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react"
-import { inject, observer } from "mobx-react"
+import React, { Component, Fragment } from 'react'
+import { inject, observer } from 'mobx-react'
 
-@inject("commonStore")
+@inject('commonStore')
 @observer
 class LoadView extends Component {
   constructor(props) {

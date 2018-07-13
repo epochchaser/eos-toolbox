@@ -1,6 +1,6 @@
-import React, { Component } from "react"
-import { Route, Switch } from "react-router-dom"
-import { Home, FindAccount } from "./pages"
+import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
+import { Home, FindAccount } from './pages'
 
 class Routes extends Component {
   render() {
