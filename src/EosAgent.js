@@ -1,8 +1,15 @@
 import * as Values from './constants/Values'
 import Eos from 'eosjs'
 
+const singleton = Symbol()
+const singletonEosAgent = Symbol()
+
 class EosAgent {
-  constructor() {
+  constructor(eosAgent) {
+    if (eosAgent !== singletonEosAgent) {
+      throw new Error('Cannot construct singleton')
+    }
+
     this._initialized = false
     this.identity = null
     this.loginAccount = null
@@ -19,6 +26,14 @@ class EosAgent {
         }
       }
     })
+  }
+
+  static get instance() {
+    if (!this[singleton]) {
+      this[singleton] = new EosAgent(singletonEosAgent)
+    }
+
+    return this[singleton]
   }
 
   get loginaccount() {
@@ -149,4 +164,4 @@ class EosAgent {
   }
 }
 
-export default new EosAgent()
+export default EosAgent.instance
