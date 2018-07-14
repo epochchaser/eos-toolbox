@@ -59,11 +59,17 @@ class EosAgent {
   }
 
   getTableRows = async query => {
+    console.log(`스캐터잇냐 : ${this.scatter}`)
+
+    await this.loginWithScatter()
+
+    console.log(`쿼리 직전 : ${this.eos}`)
     if (!this.eos) {
       return
     }
 
     this.eos.getTableRows(query).then(data => {
+      console.log('들어왓냐')
       let moreFeeds = []
       if (data.rows) {
         console.log(data)
