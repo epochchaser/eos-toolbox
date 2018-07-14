@@ -52,12 +52,13 @@ export class EosioStore {
       json: true,
       code: 'eosio',
       scope: 'eosio',
-      table: '"voters"',
-      table_key: '"owner"',
+      table: 'voters',
+      table_key: 'owner',
       limit: 1000
     }
 
     let voters = EosAgent.getTableRows(query)
+    console.log(voters)
     // todo
   }
 

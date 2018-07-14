@@ -9,6 +9,7 @@ import { Provider } from 'mobx-react'
 import accountStore from './stores/accountStore'
 import localeStore from './stores/localeStore'
 import commonStore from './stores/commonStore'
+import eosioStore from './stores/eosioStore'
 import initLocale, { getUserLocale } from 'react-intl-locale'
 
 // param : defulat locale, allow locale array
@@ -19,9 +20,10 @@ const userLocale = getUserLocale()
 localeStore.updateLocale(userLocale.split('-')[0])
 
 const stores = {
+  localeStore,
   accountStore,
   commonStore,
-  localeStore
+  eosioStore
 }
 
 ReactDOM.render(

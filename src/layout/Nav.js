@@ -96,6 +96,30 @@ const Nav = props => {
             </ul>
           </li>
         </ul>
+
+        <ul className="pcoded-item pcoded-left-item">
+          <li className="pcoded-hasmenu active pcoded-trigger">
+            <a href=" ">
+              <span className="pcoded-micon">
+                <i className="ti-home" />
+                <b>D</b>
+              </span>
+              <span className="pcoded-mtext">Voting</span>
+              <span className="pcoded-mcaret" />
+            </a>
+            <ul className="pcoded-submenu">
+              <li className="active">
+                <a href="/voting">
+                  <span className="pcoded-micon">
+                    <i className="ti-angle-right" />
+                  </span>
+                  <span className="pcoded-mtext">Voting</span>
+                  <span className="pcoded-mcaret" />
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </nav>
   )
