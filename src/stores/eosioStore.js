@@ -48,25 +48,28 @@ export class EosioStore {
   }
 
   getVoters = async () => {
-    // const query = {
-    //   json: true,
-    //   code: 'eosio',
-    //   scope: 'eosio',
-    //   table: 'voters',
-    //   table_key: 'owner',
-    //   limit: 1000
-    // }
+    const query = {
+      json: true,
+      code: 'eosio',
+      scope: 'eosio',
+      table: 'voters',
+      table_key: 'owner',
+      limit: 1000
+    }
 
+    let voters = await EosAgent.getTableRows(query)
+  }
+
+  getProducers = () => {
     const query = {
       json: true,
       code: 'eosio',
       scope: 'eosio',
       table: 'producers',
-      limit: 10
+      limit: 1000
     }
 
-    let voters = await EosAgent.getTableRows(query)
-    console.log(voters)
+    let producers = EosAgent.getTableRows(query)
   }
 
   getNameBids = () => {
@@ -94,6 +97,7 @@ decorate(EosioStore, {
   getBlockProducers: action,
   getRamMarkets: action,
   getVoters: action,
+  getProducers: action,
   getNameBids: action
 })
 

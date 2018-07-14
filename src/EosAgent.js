@@ -63,9 +63,17 @@ class EosAgent {
       return
     }
 
-    let results = await this.eos.getTableRows(query)
+    this.eos.getTableRows(query).then(data => {
+      let moreFeeds = []
+      if (data.rows) {
+        console.log(data)
+      }
 
-    return results
+      return
+    })
+    // let results = await this.eos.getTableRows(query)
+
+    return
   }
 
   getCurrencyBalance = async tokenSymbol => {
