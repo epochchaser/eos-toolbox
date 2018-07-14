@@ -10,10 +10,8 @@ class Voting extends Component {
     this.eosioStore = eosioStore
   }
 
-  componentDidMount = async () => {
-    const voters = await this.eosioStore.getVoters()
-    // todo
-    console.log(voters)
+  componentDidMount = () => {
+    this.eosioStore.getProducers()
   }
 
   render() {
