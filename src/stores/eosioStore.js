@@ -66,6 +66,7 @@ export class EosioStore {
       code: 'eosio',
       scope: 'eosio',
       table: 'producers',
+      table_key: 'producers',
       limit: 1000
     }
 

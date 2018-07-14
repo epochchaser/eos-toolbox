@@ -4,47 +4,47 @@ import { inject, observer } from 'mobx-react'
 @inject('eosioStore')
 class Voting extends Component {
   constructor(props) {
-    console.log('가자')
     super(props)
     let { eosioStore } = this.props
     this.eosioStore = eosioStore
   }
 
   componentDidMount = () => {
+    //싱글턴으로 바뀐후에 하면 됨
     this.eosioStore.getProducers()
   }
 
   render() {
     return (
-      <div class="card">
-        <div class="card-header">
+      <div className="card">
+        <div className="card-header">
           <h5>Producers</h5>
           <span>
             vote to <code>BLOCK PRODUCERS</code> that you want
           </span>
-          <div class="card-header-right">
-            <ul class="list-unstyled card-option">
+          <div className="card-header-right">
+            <ul className="list-unstyled card-option">
               <li>
-                <i class="fa fa-chevron-left" />
+                <i className="fa fa-chevron-left" />
               </li>
               <li>
-                <i class="fa fa-window-maximize full-card" />
+                <i className="fa fa-window-maximize full-card" />
               </li>
               <li>
-                <i class="fa fa-minus minimize-card" />
+                <i className="fa fa-minus minimize-card" />
               </li>
               <li>
-                <i class="fa fa-refresh reload-card" />
+                <i className="fa fa-refresh reload-card" />
               </li>
               <li>
-                <i class="fa fa-times close-card" />
+                <i className="fa fa-times close-card" />
               </li>
             </ul>
           </div>
         </div>
-        <div class="card-block table-border-style">
-          <div class="table-responsive">
-            <table class="table">
+        <div className="card-block table-border-style">
+          <div className="table-responsive">
+            <table className="table">
               <thead>
                 <tr>
                   <th>#</th>

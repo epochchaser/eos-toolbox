@@ -32,7 +32,7 @@ class LocaleSelectView extends Component {
           <div>
             {this.locales.map(locale => {
               return (
-                <li>
+                <li key={locale}>
                   <a href="#!" onClick={() => this.updateLocale(locale)}>
                     <i className="ti-user" /> {locale}
                   </a>
