@@ -47,19 +47,26 @@ export class EosioStore {
     // todo
   }
 
-  getVoters = () => {
+  getVoters = async () => {
+    // const query = {
+    //   json: true,
+    //   code: 'eosio',
+    //   scope: 'eosio',
+    //   table: 'voters',
+    //   table_key: 'owner',
+    //   limit: 1000
+    // }
+
     const query = {
       json: true,
       code: 'eosio',
       scope: 'eosio',
-      table: 'voters',
-      table_key: 'owner',
-      limit: 1000
+      table: 'producers',
+      limit: 10
     }
 
-    let voters = EosAgent.getTableRows(query)
+    let voters = await EosAgent.getTableRows(query)
     console.log(voters)
-    // todo
   }
 
   getNameBids = () => {
