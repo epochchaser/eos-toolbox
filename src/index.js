@@ -31,11 +31,12 @@ document.addEventListener('scatterLoaded', scatterExtension => {
   console.log('scatterloaded')
 
   if (window.scatter) {
-    commonStore.initScatter(true)
     EosAgent.initScatter(window.scatter)
+    commonStore.initScatter(true)
 
     if (window.scatter.identity) {
       EosAgent.initEosAgent(window.scatter.identity)
+      commonStore.initEos(true)
       accountStore.loadAccountInfo()
     }
   }
