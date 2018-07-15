@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class FindAccount extends Component {
   componentDidMount() {
-    console.log(window.scatter)
+    console.log(`야! : ${window.scatter}`)
   }
 
   render() {
