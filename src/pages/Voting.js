@@ -1,20 +1,14 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
+import eosioStore from '../stores/eosioStore'
 
 @inject('eosioStore')
+@observer
 class Voting extends Component {
-  constructor(props) {
-    super(props)
-    let { eosioStore } = this.props
-    this.eosioStore = eosioStore
-  }
-
-  componentDidMount = () => {
-    //싱글턴으로 바뀐후에 하면 됨
-    this.eosioStore.getProducers()
-  }
-
   render() {
+    const { eos } = eosioStore
+    console.log(`스캐터 불림? : ${eos}`)
+
     return (
       <div className="card">
         <div className="card-header">

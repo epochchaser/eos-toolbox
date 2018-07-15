@@ -67,17 +67,14 @@ class EosAgent {
     return this.eos.contract(contractName)
   }
 
-  getTableRows = async query => {
-    console.log(`스캐터잇냐 : ${this.scatter}`)
+  getTableRows = async (eos, query) => {
+    console.log(`겟테이블로우 eos : ${eos}`)
+    if (!eos) return
 
-    await this.loginWithScatter()
+    //await this.loginWithScatter()
 
-    console.log(`쿼리 직전 : ${this.eos}`)
-    if (!this.eos) {
-      return
-    }
-
-    this.eos.getTableRows(query).then(data => {
+    console.log('겟테이블로우 직전')
+    eos.getTableRows(query).then(data => {
       console.log('들어왓냐')
       let moreFeeds = []
       if (data.rows) {

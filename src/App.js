@@ -5,6 +5,8 @@ import Nav from './layout/Nav'
 import Main from './layout/Main'
 import LoadView from './components/LoadView'
 import './styles/App.scss'
+import commonStore from './stores/commonStore'
+import { observer, inject } from '../node_modules/mobx-react'
 
 class App extends Component {
   render() {
@@ -12,7 +14,6 @@ class App extends Component {
       <Router>
         <div>
           <LoadView />
-
           <div id="pcoded" className="pcoded">
             <div className="pcoded-overlay-box" />
             <div className="pcoded-container navbar-wrapper">

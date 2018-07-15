@@ -15,6 +15,7 @@ export class CommonStore {
 
 decorate(CommonStore, {
   isLoading: observable,
+  _initilizedScatter: observable,
   setLoading: action
 })
 

@@ -31,10 +31,12 @@ document.addEventListener('scatterLoaded', scatterExtension => {
   console.log('scatterloaded')
 
   if (window.scatter) {
+    eosioStore.setScatter(window.scatter)
     commonStore.initScatter(true)
     EosAgent.initScatter(window.scatter)
 
     if (window.scatter.identity) {
+      eosioStore.initEosAgent(window.scatter.identity)
       EosAgent.initEosAgent(window.scatter.identity)
       accountStore.loadAccountInfo()
     }

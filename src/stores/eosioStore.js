@@ -1,5 +1,7 @@
 import { decorate, observable, action, computed } from 'mobx'
+import * as Values from '../constants/Values'
 import EosAgent from '../EosAgent'
+import Eos from 'eosjs'
 
 export class EosioStore {
   global = null
@@ -7,6 +9,29 @@ export class EosioStore {
   ramMarkets = null
   voters = null
   nameBids = null
+  scatter = null
+  eos = null
+  identity = null
+  loginAccount = null
+
+  setScatter = scatter => {
+    this.scatter = scatter
+  }
+
+  initEosAgent = async id => {
+    if (id) {
+      this.scatter.useIdentity(id)
+      console.log('Possible identity', this.scatter.identity)
+      const loginAccount = this.scatter.identity.accounts.find(
+        acc => acc.blockchain === Values.NETWORK.blockchain
+      )
+
+      this.loginAccount = loginAccount
+      this.identity = id
+      this.eos = this.scatter.eos(Values.NETWORK, Eos, Values.CONFIG)
+      return this.loginAccount
+    }
+  }
 
   getGlobalInfo = () => {
     const query = {
@@ -70,7 +95,8 @@ export class EosioStore {
       limit: 1000
     }
 
-    let producers = EosAgent.getTableRows(query)
+    console.log(`이오스 : ${this.eos} 가보자`)
+    let producers = EosAgent.getTableRows(this.eos, query)
   }
 
   getNameBids = () => {
@@ -94,12 +120,17 @@ decorate(EosioStore, {
   ramMarkets: observable,
   voters: observable,
   nameBids: observable,
+  scatter: observable,
+  eos: observable,
+  identity: observable,
+  loginAccount: observable,
   getGlobalInfo: action,
   getBlockProducers: action,
   getRamMarkets: action,
   getVoters: action,
   getProducers: action,
-  getNameBids: action
+  getNameBids: action,
+  initScatter: action
 })
 
 export default new EosioStore()
