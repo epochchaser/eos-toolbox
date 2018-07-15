@@ -10,22 +10,11 @@ class EosAgent {
       throw new Error('Cannot construct singleton')
     }
 
+    this.scatter = null
     this._initialized = false
     this.identity = null
     this.loginAccount = null
     this.eos = null
-
-    document.addEventListener('scatterLoaded', scatterExtension => {
-      console.log('scatterloaded')
-      this.scatter = window.scatter
-
-      if (this.scatter) {
-        this._initialized = true
-        if (window.scatter.identity) {
-          this.initEosAgent(window.scatter.identity)
-        }
-      }
-    })
   }
 
   static get instance() {
@@ -38,6 +27,11 @@ class EosAgent {
 
   get loginaccount() {
     return this.loginAccount
+  }
+
+  initScatter = scatter => {
+    this.scatter = scatter
+    this._initialized = true
   }
 
   initEosAgent = id => {
