@@ -53,7 +53,6 @@ class EosAgent {
 
       this.eos = this.scatter.eos(Values.NETWORK, Eos, Values.CONFIG)
 
-      console.log('eos 불렸음')
       return this.loginAccount
     }
   }
@@ -87,8 +86,7 @@ class EosAgent {
       return
     }
 
-    let results = await this.eos.getTableRows(query)
-    return results
+    return await this.eos.getTableRows(query)
   }
 
   getCurrencyBalance = async tokenSymbol => {
