@@ -11,6 +11,7 @@ import localeStore from './stores/localeStore'
 import commonStore from './stores/commonStore'
 import eosioStore from './stores/eosioStore'
 import initLocale, { getUserLocale } from 'react-intl-locale'
+import EosAgent from './EosAgent'
 
 // param : defulat locale, allow locale array
 initLocale('en-US', ['ko-KR'])
@@ -26,6 +27,20 @@ const stores = {
   eosioStore
 }
 
+document.addEventListener('scatterLoaded', scatterExtension => {
+  console.log('scatterloaded')
+
+  if (window.scatter) {
+    commonStore.initScatter(true)
+    EosAgent.initScatter(window.scatter)
+
+    if (window.scatter.identity) {
+      EosAgent.initEosAgent(window.scatter.identity)
+      accountStore.loadAccountInfo()
+    }
+  }
+})
+
 ReactDOM.render(
   <Provider {...stores}>
     <IntlProvider
@@ -38,7 +53,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 )
-
-setTimeout(() => {
-  accountStore.loadAccountInfo()
-}, 1000)

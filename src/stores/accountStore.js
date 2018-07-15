@@ -33,6 +33,8 @@ export class AccountStore {
   login = async () => {
     let account = await EosAgent.loginWithScatter()
 
+    console.log('debug')
+    console.log(account)
     if (account) {
       this.account = account
       this.isLogin = true

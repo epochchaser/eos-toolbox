@@ -16,7 +16,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {this.accountStore.isLogin ? (
+        {this.accountStore.isLogin && this.accountStore.accountInfo ? (
           <Fragment>
             <MyAccountView />
             <ResourceView />
