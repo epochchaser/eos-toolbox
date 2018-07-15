@@ -1,29 +1,23 @@
 import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
-import MyAccountView from '../components/MyAccountView'
-import ResourceView from '../components/ResourceView'
-import NeedLoginView from '../components/NeedLoginView'
+import BlockView from '../components/BlockView'
 
-@inject('accountStore')
+@inject('accountStore', 'eosioStore')
 @observer
 class Home extends Component {
   constructor(props) {
     super(props)
-    let { accountStore } = this.props
+    let { accountStore, eosioStore } = this.props
     this.accountStore = accountStore
+    this.eosioStore = eosioStore
   }
 
   render() {
     return (
       <div>
-        {this.accountStore.isLogin && this.accountStore.accountInfo ? (
-          <Fragment>
-            <MyAccountView />
-            <ResourceView />
-          </Fragment>
-        ) : (
-          <NeedLoginView />
-        )}
+        <Fragment>
+          <BlockView />
+        </Fragment>
       </div>
     )
   }
