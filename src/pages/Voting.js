@@ -6,9 +6,6 @@ import eosioStore from '../stores/eosioStore'
 @observer
 class Voting extends Component {
   render() {
-    const { eos } = eosioStore
-    console.log(`스캐터 불림? : ${eos}`)
-
     return (
       <div className="card">
         <div className="card-header">

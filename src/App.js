@@ -8,31 +8,37 @@ import './styles/App.scss'
 import commonStore from './stores/commonStore'
 import { observer, inject } from '../node_modules/mobx-react'
 
+@inject('commonStore')
+@observer
 class App extends Component {
   render() {
+    const { _initilizedScatter } = this.props.commonStore
     return (
       <Router>
         <div>
           <LoadView />
-          <div id="pcoded" className="pcoded">
-            <div className="pcoded-overlay-box" />
-            <div className="pcoded-container navbar-wrapper">
-              <Header />
-              <div className="pcoded-main-container">
-                <div className="pcoded-wrapper">
-                  <Nav className="content-nav" />
-                  <div className="pcoded-content">
-                    <div className="pcoded-inner-content">
-                      <div className="main-body">
-                        <Main className="content-main" />
+
+          {_initilizedScatter && (
+            <div id="pcoded" className="pcoded">
+              <div className="pcoded-overlay-box" />
+              <div className="pcoded-container navbar-wrapper">
+                <Header />
+                <div className="pcoded-main-container">
+                  <div className="pcoded-wrapper">
+                    <Nav className="content-nav" />
+                    <div className="pcoded-content">
+                      <div className="pcoded-inner-content">
+                        <div className="main-body">
+                          <Main className="content-main" />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <footer />
             </div>
-            <footer />
-          </div>
+          )}
         </div>
       </Router>
     )
