@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
+import { inject, observer } from '../../node_modules/mobx-react'
 
+@inject('eosioStore')
+@observer
 class FindAccount extends Component {
-  componentDidMount() {
-    console.log(`야! : ${window.scatter}`)
-  }
-
   render() {
     return <div>반갑구나 find account</div>
   }

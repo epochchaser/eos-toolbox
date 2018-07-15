@@ -3,15 +3,9 @@ import { inject, observer } from 'mobx-react'
 
 @inject('eosioStore')
 class Voting extends Component {
-  constructor(props) {
-    super(props)
-    let { eosioStore } = this.props
-    this.eosioStore = eosioStore
-  }
-
   componentDidMount = () => {
-    //싱글턴으로 바뀐후에 하면 됨
-    this.eosioStore.getProducers()
+    const { eosioStore } = this.props
+    eosioStore.getProducers()
   }
 
   render() {
