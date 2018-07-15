@@ -14,7 +14,13 @@ class EosAgent {
     this._initialized = false
     this.identity = null
     this.loginAccount = null
-    this.eos = null
+
+    let endPoint = Values.NETWORK.protocol + '://' + Values.NETWORK.host + ':' + Values.NETWORK.port
+
+    this.eos = Eos({
+      httpEndpoint: endPoint,
+      chainId: Values.NETWORK.chainId
+    })
   }
 
   static get instance() {
@@ -52,6 +58,14 @@ class EosAgent {
     }
   }
 
+  getInfo = () => {
+    if (!this.eos) {
+      return
+    }
+
+    return this.eos.getInfo({})
+  }
+
   getTransaction = cb => {
     if (!this.eos) {
       return
@@ -69,23 +83,12 @@ class EosAgent {
   }
 
   getTableRows = async query => {
-    await this.loginWithScatter()
-
     if (!this.eos) {
       return
     }
 
-    this.eos.getTableRows(query).then(data => {
-      let moreFeeds = []
-      if (data.rows) {
-        console.log(data)
-      }
-
-      return
-    })
-    // let results = await this.eos.getTableRows(query)
-
-    return
+    let results = await this.eos.getTableRows(query)
+    return results
   }
 
   getCurrencyBalance = async tokenSymbol => {
