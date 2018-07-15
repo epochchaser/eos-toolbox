@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 
 @inject('eosioStore')
+@observer
 class Voting extends Component {
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const { eosioStore } = this.props
     eosioStore.getProducers()
   }
 
   render() {
+    const { blockProducers } = this.props.eosioStore
     return (
       <div className="card">
         <div className="card-header">
@@ -47,21 +49,14 @@ class Voting extends Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>starteosiobp</td>
-                  <td>2.73%</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>eos42freedom</td>
-                  <td>2.66%</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>eoscanadacom</td>
-                  <td>2.65%</td>
-                </tr>
+                {blockProducers &&
+                  blockProducers.map((p, index) => (
+                    <tr>
+                      <th scope="row">{index + 1}</th>
+                      <td>{p.owner}</td>
+                      <td>{p.votes}</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
