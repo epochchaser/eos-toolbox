@@ -4,7 +4,7 @@ export default {
   Logout: '로그아웃',
   'Irreversible Blocks': '변경불가 블록',
   'Head Blocks': '현재 블록',
-  'Head Block Producer': '현재 블록 생산자',
+  'Head Block Producer': '현재 블록 생성자',
   'Market Cap (USD)': '시가 총액 (USD)',
   'Market Cap': '시가 총액',
   'Circulating Supply': '현재 공급량',
