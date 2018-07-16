@@ -73,14 +73,14 @@ class NameBidListView extends Component {
                 </p>
                 <label
                   className={
-                    'label bg-c-blue btn-round float-right btn-browser' +
+                    'label btn-round float-right btn-browser' +
                     (index / 10 < 1
-                      ? ' bg-c-pink'
+                      ? ' bg-c-blue'
                       : index / 10 < 2
-                        ? ' bg-c-blue'
+                        ? ' bg-c-green'
                         : index / 10 < 3
-                          ? ' bg-c-green'
-                          : ' bg-c-yello')
+                          ? ' bg-c-yellow'
+                          : ' bg-c-pink')
                   }
                 >
                   <NumberFormat
