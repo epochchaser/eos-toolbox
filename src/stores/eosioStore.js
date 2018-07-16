@@ -73,6 +73,7 @@ export class EosioStore {
         const votes = parseInt(producer.total_votes, 10)
         const percent = votes / totalProducerVoteWeight
         const isBackup = backupMinimumPercent && percent > backupMinimumPercent
+        console.log(producer)
 
         return {
           key: `${producer.owner}-${producer.total_votes}`,
@@ -86,7 +87,7 @@ export class EosioStore {
         }
       })
 
-    this.blockProducers = sortBy(data, 'percent').reverse()
+    this.blockProducers = sortBy(data, 'votes').reverse()
   }
 
   getRamMarkets = () => {

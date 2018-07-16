@@ -71,7 +71,13 @@ class Voting extends Component {
                           />
                         </div>
                       </td>
-                      <td>{p.isBackup}</td>
+                      <td>
+                        {p.isBackup ? (
+                          <label class="badge badge-primary">o</label>
+                        ) : (
+                          <label class="badge badge-warning">x</label>
+                        )}
+                      </td>
                     </tr>
                   ))}
               </tbody>
