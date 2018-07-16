@@ -71,7 +71,7 @@ export class EosioStore {
       .filter(p => p.producer_key !== 'EOS1111111111111111111111111111111114T1Anm')
       .map(producer => {
         const votes = parseInt(producer.total_votes, 10)
-        const percent = Math.round(votes / totalProducerVoteWeight)
+        const percent = votes / totalProducerVoteWeight
         const isBackup = backupMinimumPercent && percent > backupMinimumPercent
 
         return {
@@ -86,7 +86,7 @@ export class EosioStore {
         }
       })
 
-    this.blockProducers = sortBy(data, 'votes').reverse()
+    this.blockProducers = sortBy(data, 'percent').reverse()
   }
 
   getRamMarkets = () => {
