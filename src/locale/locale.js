@@ -1,8 +1,7 @@
+import en from './en'
+import ko from './ko'
+
 export default {
-  en: {
-    'EOS Toolbox': 'EOS Toolbox'
-  },
-  ko: {
-    'EOS Toolbox': '이오스 툴박스'
-  }
+  en: en,
+  ko: ko
 }
