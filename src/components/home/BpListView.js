@@ -76,10 +76,10 @@ class BpListView extends Component {
                 </p>
                 <label
                   className={
-                    'label bg-c-blue btn-round float-right btn-browser' +
-                    (index / 10 < 1
-                      ? ' bg-c-blue'
-                      : index / 10 < 2
+                    'label btn-round float-right btn-browser' +
+                    (index / 21 < 1
+                      ? ' bg-c-pink'
+                      : index / 21 < 2
                         ? ' bg-c-green'
                         : index / 10 < 3
                           ? ' bg-c-yellow'
