@@ -71,15 +71,16 @@ export class EosioStore {
       .filter(p => p.producer_key !== 'EOS1111111111111111111111111111111114T1Anm')
       .map(producer => {
         const votes = parseInt(producer.total_votes, 10)
-        const percent = votes / totalProducerVoteWeight
+        const percent = Math.round(votes / totalProducerVoteWeight)
         const isBackup = backupMinimumPercent && percent > backupMinimumPercent
+
         return {
           key: `${producer.owner}-${producer.total_votes}`,
           last_produced_block_time: producer.last_produced_block_time,
           owner: producer.owner,
           producer_key: producer.producer_key,
           url: producer.url,
-          isBackup: isBackup,
+          isBackup,
           percent,
           votes
         }

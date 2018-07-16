@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
+import '../styles/pages/Voting.scss'
 
 @inject('eosioStore')
 @observer
@@ -57,7 +58,18 @@ class Voting extends Component {
                       <th scope="row">{index + 1}</th>
                       <td>{p.owner}</td>
                       <td>{p.votes}</td>
-                      <td>{p.percent}</td>
+                      <td>
+                        <div className="progress progress-sm">
+                          <div
+                            className="progress-bar progress-bar-warning"
+                            role="progressbar"
+                            style={{ width: p.percent + '%' }}
+                            aria-valuenow={p.percent}
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                          />
+                        </div>
+                      </td>
                       <td>{p.isBackup}</td>
                     </tr>
                   ))}
