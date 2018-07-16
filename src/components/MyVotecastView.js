@@ -6,7 +6,7 @@ import { inject, observer } from '../../node_modules/mobx-react'
 class MyVotecastView extends Component {
   render() {
     const { accountStore } = this.props
-    const { accountInfo } = accountStore
+    const { myBlockProducers } = accountStore
 
     return (
       <div className="card">
@@ -26,8 +26,8 @@ class MyVotecastView extends Component {
                 </tr>
               </thead>
               <tbody>
-                {accountInfo &&
-                  accountInfo.voter_info.producers.map((v, index) => (
+                {myBlockProducers &&
+                  myBlockProducers.map((v, index) => (
                     <tr key={v}>
                       <th scope="row">{index + 1}</th>
                       <td>{v}</td>
@@ -35,12 +35,12 @@ class MyVotecastView extends Component {
                   ))}
               </tbody>
             </table>
-            {(!accountInfo || !accountInfo.voter_info.producers) && (
-              <div class="preloader3 loader-block">
-                <div class="circ1" />
-                <div class="circ2" />
-                <div class="circ3" />
-                <div class="circ4" />
+            {!myBlockProducers && (
+              <div className="preloader3 loader-block">
+                <div className="circ1" />
+                <div className="circ2" />
+                <div className="circ3" />
+                <div className="circ4" />
               </div>
             )}
           </div>

@@ -1,12 +1,26 @@
 import React, { Component } from 'react'
 import { inject, observer } from '../../node_modules/mobx-react'
+import sortBy from 'lodash/sortBy'
 
-@inject('eosioStore')
+@inject('eosioStore', 'accountStore')
 @observer
 class BlockProducersView extends Component {
   componentDidMount = async () => {
     const { eosioStore } = this.props
     eosioStore.getBlockProducers()
+  }
+
+  onCheckChange = name => event => {
+    const { accountStore } = this.props
+    const { myBlockProducers } = accountStore
+
+    const checked = event.target.checked
+    let filterBaseBPList = myBlockProducers.filter(bp => bp !== name)
+
+    if (checked) {
+      filterBaseBPList = filterBaseBPList.concat(name)
+    }
+    accountStore.updateMyBlockProducers(filterBaseBPList)
   }
 
   render() {
@@ -46,8 +60,8 @@ class BlockProducersView extends Component {
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>V</th>
                   <th>Producer</th>
-                  <th>Total votes</th>
                   <th>%</th>
                   <th>Active</th>
                 </tr>
@@ -57,8 +71,18 @@ class BlockProducersView extends Component {
                   blockProducers.map((p, index) => (
                     <tr key={p.key}>
                       <th scope="row">{index + 1}</th>
+                      <td>
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id={p.owner}
+                            onChange={this.onCheckChange(p.owner)}
+                          />
+                        </div>
+                      </td>
                       <td>{p.owner}</td>
-                      <td>{p.votes}</td>
                       <td>
                         <div className="progress progress-sm">
                           <div
@@ -84,11 +108,11 @@ class BlockProducersView extends Component {
             </table>
 
             {!blockProducers && (
-              <div class="preloader3 loader-block">
-                <div class="circ1" />
-                <div class="circ2" />
-                <div class="circ3" />
-                <div class="circ4" />
+              <div className="preloader3 loader-block">
+                <div className="circ1" />
+                <div className="circ2" />
+                <div className="circ3" />
+                <div className="circ4" />
               </div>
             )}
           </div>

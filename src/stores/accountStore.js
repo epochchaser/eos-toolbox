@@ -6,14 +6,21 @@ export class AccountStore {
   eosBalance = 0.0
   accountInfo = null
   account = null
+  myBlockProducers = null
 
   loadAccountInfo = async () => {
     let accountInfo, balance
 
     accountInfo = await EosAgent.getAccountInfo()
-    console.log(accountInfo.voter_info.producers)
+
     if (accountInfo) {
       this.accountInfo = accountInfo
+      const myProducers = Object.keys(accountInfo.voter_info.producers).map(k => {
+        return accountInfo.voter_info.producers[k]
+      })
+
+      this.myBlockProducers = myProducers.sort()
+      console.log(this.blockProducers)
       this.account = EosAgent.loginaccount
 
       console.log(this.account)
@@ -96,6 +103,12 @@ export class AccountStore {
 
     EosAgent.getTransaction(cb)
   }
+
+  updateMyBlockProducers = newBlockProducers => {
+    if (newBlockProducers) {
+      this.myBlockProducers = newBlockProducers.sort()
+    }
+  }
 }
 
 decorate(AccountStore, {
@@ -103,10 +116,12 @@ decorate(AccountStore, {
   eosBalance: observable,
   accountInfo: observable,
   account: observable,
+  myBlockProducers: observable,
   loadAccountInfo: action,
   login: action,
   logout: action,
-  createNewAccount: action
+  createNewAccount: action,
+  updateMyBlockProducers: action
 })
 
 export default new AccountStore()
