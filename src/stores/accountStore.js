@@ -11,7 +11,7 @@ export class AccountStore {
     let accountInfo, balance
 
     accountInfo = await EosAgent.getAccountInfo()
-
+    console.log(accountInfo.voter_info.producers)
     if (accountInfo) {
       this.accountInfo = accountInfo
       this.account = EosAgent.loginaccount
