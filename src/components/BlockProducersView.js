@@ -34,25 +34,6 @@ class BlockProducersView extends Component {
           <span>
             vote to <code>BLOCK PRODUCERS</code> that you want
           </span>
-          <div className="card-header-right">
-            <ul className="list-unstyled card-option">
-              <li>
-                <i className="fa fa-chevron-left" />
-              </li>
-              <li>
-                <i className="fa fa-window-maximize full-card" />
-              </li>
-              <li>
-                <i className="fa fa-minus minimize-card" />
-              </li>
-              <li>
-                <i className="fa fa-refresh reload-card" />
-              </li>
-              <li>
-                <i className="fa fa-times close-card" />
-              </li>
-            </ul>
-          </div>
         </div>
         <div className="card-block table-border-style">
           <div className="table-responsive">

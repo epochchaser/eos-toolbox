@@ -16,6 +16,20 @@ class MyVotecastView extends Component {
             your <code>BLOCK PRODUCER </code> list
           </span>
         </div>
+
+        <div class="card-block">
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <div class="form-group">
+                <button class="btn btn-primary btn-block">Set voter proxy</button>
+                <button class="btn btn-danger btn-block">
+                  Submit votes for selected producers
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="card-block table-border-style">
           <div className="table-responsive">
             <table className="table">
