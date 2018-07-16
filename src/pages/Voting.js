@@ -12,6 +12,7 @@ class Voting extends Component {
 
   render() {
     const { blockProducers } = this.props.eosioStore
+
     return (
       <div className="card">
         <div className="card-header">
@@ -63,8 +64,8 @@ class Voting extends Component {
                           <div
                             className="progress-bar progress-bar-warning"
                             role="progressbar"
-                            style={{ width: p.percent + '%' }}
-                            aria-valuenow={p.percent}
+                            style={{ width: `${p.percent * 100}%` }}
+                            aria-valuenow={p.percent * 100}
                             aria-valuemin="0"
                             aria-valuemax="100"
                           />
