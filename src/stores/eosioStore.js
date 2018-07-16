@@ -67,7 +67,7 @@ export class EosioStore {
     backupMinimumPercent = 100 / tokensToProducersForVotes
 
     const result = await EosAgent.getTableRows(query)
-    console.log(result.rows)
+
     const data = result.rows
       .filter(p => p.producer_key !== 'EOS1111111111111111111111111111111114T1Anm')
       .map(producer => {
