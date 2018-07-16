@@ -41,11 +41,11 @@ class StakingView extends Component {
         {this.eosioStore.global &&
           this.eosioStore.staking && (
             <div className="row">
-              <div className="col-md-6 col-lg-3">
+              <div className="col-md-6">
                 <div className="card statustic-card">
                   <div className="card-header">
                     <h5>
-                      <FormattedMessage id="Total Stake" />
+                      <FormattedMessage id="Total Staking" />
                     </h5>
                   </div>
                   <div className="card-block text-center">
@@ -73,43 +73,11 @@ class StakingView extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-md-6 col-lg-3">
+              <div className="col-md-6">
                 <div className="card statustic-card">
                   <div className="card-header">
                     <h5>
-                      <FormattedMessage id="Total Vote" />
-                    </h5>
-                  </div>
-                  <div className="card-block text-center">
-                    <span className="d-block text-c-green f-36">
-                      <NumberFormat
-                        value={this.eosioStore.staking.totalVotingPercent.toFixed(2)}
-                        displayType={'text'}
-                        thousandSeparator={true}
-                        suffix={'%'}
-                      />
-                    </span>
-                    <div className="progress">
-                      <div className="progress-bar bg-c-green" style={totalVotingChartStyle} />
-                    </div>
-                  </div>
-                  <div className="card-footer bg-c-green">
-                    <h6 className="text-white m-b-0">
-                      <NumberFormat
-                        value={this.eosioStore.staking.totalVoting.toFixed(4)}
-                        displayType={'text'}
-                        thousandSeparator={true}
-                        suffix={' EOS'}
-                      />
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-3">
-                <div className="card statustic-card">
-                  <div className="card-header">
-                    <h5>
-                      <FormattedMessage id="Ram Stake" />
+                      <FormattedMessage id="Ram Buying" />
                     </h5>
                   </div>
                   <div className="card-block text-center">
@@ -126,38 +94,6 @@ class StakingView extends Component {
                     </div>
                   </div>
                   <div className="card-footer bg-c-pink">
-                    <h6 className="text-white m-b-0">
-                      <NumberFormat
-                        value={this.eosioStore.staking.ramStake.toFixed(4)}
-                        displayType={'text'}
-                        thousandSeparator={true}
-                        suffix={' EOS'}
-                      />
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-3">
-                <div className="card statustic-card">
-                  <div className="card-header">
-                    <h5>
-                      <FormattedMessage id="CPU, Net Stake" />
-                    </h5>
-                  </div>
-                  <div className="card-block text-center">
-                    <span className="d-block text-c-yellow f-36">
-                      <NumberFormat
-                        value={this.eosioStore.staking.ramStakePercent.toFixed(2)}
-                        displayType={'text'}
-                        thousandSeparator={true}
-                        suffix={'%'}
-                      />
-                    </span>
-                    <div className="progress">
-                      <div className="progress-bar bg-c-yellow" style={ramStakingChartStyle} />
-                    </div>
-                  </div>
-                  <div className="card-footer bg-c-yellow">
                     <h6 className="text-white m-b-0">
                       <NumberFormat
                         value={this.eosioStore.staking.ramStake.toFixed(4)}
