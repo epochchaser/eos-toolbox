@@ -4,7 +4,7 @@ import BlockView from '../components/home/BlockView'
 import MarketView from '../components/home/MarketView'
 import StakingView from '../components/home/StakingView'
 import BpListView from '../components/home/BpListView'
-import NameAuctionListView from '../components/home/NameAuctionListView'
+import NameBidListView from '../components/home/NameBidListView'
 
 @inject('accountStore', 'eosioStore')
 @observer
@@ -27,7 +27,7 @@ class Home extends Component {
               <StakingView />
               <div className="row">
                 <BpListView />
-                <NameAuctionListView />
+                <NameBidListView />
               </div>
             </div>
           </div>

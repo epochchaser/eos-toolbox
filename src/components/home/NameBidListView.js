@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl'
 
 @inject('eosioStore')
 @observer
-class BpListView extends Component {
+class NameBidListView extends Component {
   constructor(props) {
     super(props)
     const { eosioStore } = this.props
@@ -14,23 +14,22 @@ class BpListView extends Component {
 
   componentDidMount = async () => {
     await this.eosioStore.getGlobalInfo()
-    this.eosioStore.getBlockProducers()
+    this.eosioStore.getNameBids()
   }
 
   render() {
-    let bpList = []
+    let namebidList = []
 
-    if (this.eosioStore.blockProducers) {
-      bpList = this.eosioStore.blockProducers.slice(0, 30)
+    if (this.eosioStore.nameBids) {
+      namebidList = this.eosioStore.nameBids.slice(0, 30)
     }
-
     return (
       <div className="col-md-6">
         <div className="card ">
           <div className="card-header ">
             <div className="card-header-left ">
               <h5>
-                <FormattedMessage id="BP Top 30" />
+                <FormattedMessage id="Account Name Bids Top 30" />
               </h5>
             </div>
             <div className="card-header-right" style={{ display: 'none' }}>
@@ -54,7 +53,7 @@ class BpListView extends Component {
             </div>
           </div>
           <div className="card-block ">
-            {bpList.length === 0 && (
+            {namebidList.length === 0 && (
               <div className="preloader3 loader-block">
                 <div className="circ1" />
                 <div className="circ2" />
@@ -62,7 +61,7 @@ class BpListView extends Component {
                 <div className="circ4" />
               </div>
             )}
-            {bpList.map((p, index) => (
+            {namebidList.map((n, index) => (
               <div
                 key={index}
                 className={
@@ -70,23 +69,26 @@ class BpListView extends Component {
                 }
               >
                 <p className="d-inline-block m-0 ">
-                  <a href={p.url} target="_blank">
-                    {index + 1}. {p.owner}
-                  </a>
+                  {index + 1}. {n.newname}
                 </p>
                 <label
                   className={
                     'label bg-c-blue btn-round float-right btn-browser' +
                     (index / 10 < 1
-                      ? ' bg-c-blue'
+                      ? ' bg-c-pink'
                       : index / 10 < 2
-                        ? ' bg-c-green'
+                        ? ' bg-c-blue'
                         : index / 10 < 3
-                          ? ' bg-c-yellow'
-                          : ' bg-c-pink')
+                          ? ' bg-c-green'
+                          : ' bg-c-yello')
                   }
                 >
-                  {`${(p.percent * 100).toFixed(3)}%`}
+                  <NumberFormat
+                    value={(n.high_bid / 10000).toFixed(4)}
+                    displayType={'text'}
+                    thousandSeparator={true}
+                    suffix={' EOS'}
+                  />
                 </label>
               </div>
             ))}
@@ -97,4 +99,4 @@ class BpListView extends Component {
   }
 }
 
-export default BpListView
+export default NameBidListView
