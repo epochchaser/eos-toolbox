@@ -1,9 +1,11 @@
 import { decorate, observable, action } from 'mobx'
+import ApiAgent from '../ApiAgent'
 
 export class CommonStore {
   isLoading = false
   _initilizedScatter = false
   _initilizedEos = false
+  coinMarketCap = null
 
   setLoading = isLoading => {
     this.isLoading = isLoading
@@ -15,6 +17,18 @@ export class CommonStore {
 
   initEos = isInit => {
     this._initilizedEos = isInit
+  }
+
+  getCoinMarketCap = async () => {
+    try {
+      let result = await ApiAgent.getCoinMarketCap()
+
+      if (result) {
+        this.coinMarketCap = result
+      }
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 
