@@ -21,7 +21,7 @@ class MarketView extends Component {
 
   render() {
     const percent = this.eosioStore.ramInfo
-      ? this.eosioStore.ramInfo.reservedRamPercent.toFixed(0) + '%'
+      ? `${this.eosioStore.ramInfo.reservedRamPercent.toFixed(0)}%`
       : '0%'
     const reservedRamChartStyle = {
       width: percent
