@@ -4,7 +4,7 @@ import NumberFormat from 'react-number-format'
 
 @inject('eosioStore')
 @observer
-class RamMarketView extends Component {
+class MarketView extends Component {
   constructor(props) {
     super(props)
     let { eosioStore } = this.props
@@ -35,22 +35,22 @@ class RamMarketView extends Component {
                   </div>
                 </div>
                 <div className="card-block-big ">
-                  <h2 className="text-c-green d-inline-block m-b-40 f-50 ">$6,000,000</h2>
+                  <h2 className="text-c-green d-inline-block m-b-40 f-50 ">$7.31</h2>
                   <div className="d-inline-block m-l-5 super ">
                     <p className="text-muted  m-b-0 f-w-400 " />
-                    <p className="text-muted  m-b-0 f-w-400 ">Market Cap</p>
+                    <p className="text-muted  m-b-0 f-w-400 ">/ EOS</p>
                   </div>
                   <div className="row ">
-                    <div className="col-sm-5 ">
-                      <h3 className="text-muted d-inline-block">$7.31</h3>
+                    <div className="col-sm-6 ">
+                      <h3 className="text-muted d-inline-block">$6,000,000</h3>
                       <div className="d-inline-block m-l-5">
-                        <p className=" m-b-0 f-w-400 f-14 text-uppercase">/ EOS</p>
+                        <p className=" m-b-0 f-w-400 f-12 text-uppercase">Market Cap</p>
                       </div>
                     </div>
-                    <div className="col-sm-5 ">
+                    <div className="col-sm-6 ">
                       <h3 className="text-muted d-inline-block">$517,427,000</h3>
                       <div className="d-inline-block m-l-5">
-                        <p className=" m-b-0 f-w-400 f-14 text-uppercase">/ 24h</p>
+                        <p className=" m-b-0 f-w-400 f-12 text-uppercase">/ 24h</p>
                       </div>
                     </div>
                   </div>
@@ -93,7 +93,7 @@ class RamMarketView extends Component {
                     <p className="text-muted  m-b-0 f-w-400 ">EOS/KB</p>
                   </div>
                   <div className="row ">
-                    <div className="col-sm-5 ">
+                    <div className="col-sm-6 ">
                       <h3 className="text-muted d-inline-block">
                         <NumberFormat
                           value={this.eosioStore.ramInfo.freeRamGb.toFixed(2)}
@@ -102,10 +102,10 @@ class RamMarketView extends Component {
                         />
                       </h3>
                       <div className="d-inline-block m-l-5">
-                        <p className=" m-b-0 f-w-400 f-14 text-uppercase">GB Free</p>
+                        <p className=" m-b-0 f-w-400 f-12 text-uppercase">GB Free</p>
                       </div>
                     </div>
-                    <div className="col-sm-5 ">
+                    <div className="col-sm-6 ">
                       <h3 className="text-muted d-inline-block">
                         <NumberFormat
                           value={this.eosioStore.ramInfo.eos.toFixed(0)}
@@ -114,7 +114,7 @@ class RamMarketView extends Component {
                         />
                       </h3>
                       <div className="d-inline-block m-l-5">
-                        <p className=" m-b-0 f-w-400 f-14 text-uppercase">EOS</p>
+                        <p className=" m-b-0 f-w-400 f-12 text-uppercase">EOS</p>
                       </div>
                     </div>
                   </div>
@@ -122,7 +122,10 @@ class RamMarketView extends Component {
                     <div className="row text-center p-t-15 p-b-15">
                       <div className="col-sm-12 f-prog">
                         <div className="row">
-                          <div className="col-sm-6 f-16 m-0 f-w-400 text-left">
+                          <div
+                            className="col-sm-6 f-16 m-0 f-w-400 text-left"
+                            style={{ width: '50%' }}
+                          >
                             <NumberFormat
                               value={this.eosioStore.ramInfo.reservedRamGb.toFixed(2)}
                               displayType={'text'}
@@ -136,7 +139,10 @@ class RamMarketView extends Component {
                               suffix={'%'}
                             />)
                           </div>
-                          <div className="col-sm-6 f-16 m-0 f-w-400 text-right">
+                          <div
+                            className="col-sm-6 f-16 m-0 f-w-400 text-right"
+                            style={{ width: '50%' }}
+                          >
                             <NumberFormat
                               value={this.eosioStore.ramInfo.totalRamGb.toFixed(2)}
                               displayType={'text'}
@@ -167,4 +173,4 @@ class RamMarketView extends Component {
   }
 }
 
-export default RamMarketView
+export default MarketView
