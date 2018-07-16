@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import NumberFormat from 'react-number-format'
+import { FormattedMessage } from 'react-intl'
 
 @inject('eosioStore')
 @observer
@@ -31,7 +32,9 @@ class BlockView extends Component {
                       thousandSeparator={true}
                     />
                   </h2>
-                  <h6>Irreversible Blocks</h6>
+                  <h6>
+                    <FormattedMessage id="Irreversible Blocks" />
+                  </h6>
                 </div>
               </div>
             </div>
@@ -45,7 +48,9 @@ class BlockView extends Component {
                       thousandSeparator={true}
                     />
                   </h2>
-                  <h6>Head Blocks</h6>
+                  <h6>
+                    <FormattedMessage id="Head Blocks" />
+                  </h6>
                 </div>
               </div>
             </div>
@@ -53,7 +58,9 @@ class BlockView extends Component {
               <div className="card bg-c-yellow text-white widget-visitor-card">
                 <div className="card-block-small text-center">
                   <h2>{this.eosioStore.eosInfo.head_block_producer}</h2>
-                  <h6>Head Block Producer</h6>
+                  <h6>
+                    <FormattedMessage id="Head Block Producer" />
+                  </h6>
                 </div>
               </div>
             </div>
