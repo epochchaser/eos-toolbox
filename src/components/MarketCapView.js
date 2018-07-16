@@ -10,7 +10,7 @@ class MarketCapView extends Component {
     this.commonStore = commonStore
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.commonStore.getCoinMarketCap()
   }
 

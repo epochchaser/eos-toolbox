@@ -7,6 +7,7 @@ export class EosioStore {
   eosInfo = null
   blockProducers = null
   ramMarkets = null
+  ramInfo = null
   voters = null
   nameBids = null
 
@@ -90,7 +91,7 @@ export class EosioStore {
     this.blockProducers = sortBy(data, 'votes').reverse()
   }
 
-  getRamMarkets = () => {
+  getRamMarkets = async () => {
     const query = {
       json: true,
       code: 'eosio',
@@ -99,8 +100,31 @@ export class EosioStore {
       limit: 1
     }
 
-    let producers = EosAgent.getTableRows(query)
-    // todo
+    let ramMarkets = await EosAgent.getTableRows(query)
+    if (ramMarkets) {
+      this.ramMarkets = ramMarkets.rows[0]
+      const ram = Number(this.ramMarkets.base.balance.replace('RAM', ''))
+      const eos = Number(this.ramMarkets.quote.balance.replace('EOS', ''))
+      const kbPrice = (eos / ram) * 1024
+      const reservedRamPercent = Number(
+        (this.global.total_ram_bytes_reserved / this.global.max_ram_size) * 100
+      )
+      const totalRamGb = this.global.max_ram_size / 1024 / 1024 / 1024
+      const reservedRamGb = this.global.total_ram_bytes_reserved / 1024 / 1024 / 1024
+      const freeRamGb =
+        (this.global.max_ram_size - this.global.total_ram_bytes_reserved) / 1024 / 1024 / 1024
+
+      this.ramInfo = {
+        ram,
+        eos,
+        kbPrice,
+        reservedRamPercent,
+        totalRamGb,
+        reservedRamGb,
+        freeRamGb
+      }
+      //{"supply":"10000000000.0000 RAMCORE","base":{"balance":"16389760351 RAM","weight":"0.50000000000000000"},"quote":{"balance":"4192901.1209 EOS","weight":"0.50000000000000000"}}
+    }
   }
 
   getVoters = async () => {
@@ -136,6 +160,7 @@ decorate(EosioStore, {
   eosInfo: observable,
   blockProducers: observable,
   ramMarkets: observable,
+  ramInfo: observable,
   voters: observable,
   nameBids: observable,
   getInfo: action,

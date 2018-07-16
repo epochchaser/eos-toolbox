@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import BlockView from '../components/BlockView'
 import MarketCapView from '../components/MarketCapView'
+import RamMarketView from '../components/RamMarketView'
 
 @inject('accountStore', 'eosioStore')
 @observer
@@ -17,8 +18,12 @@ class Home extends Component {
     return (
       <div>
         <Fragment>
-          <BlockView />
-          <MarketCapView />
+          <div className="page-wrapper">
+            <div className="page-body">
+              <BlockView />
+              <RamMarketView />
+            </div>
+          </div>
         </Fragment>
       </div>
     )
