@@ -24,7 +24,7 @@ export class CommonStore {
       let result = await ApiAgent.getCoinMarketCap()
 
       if (result) {
-        this.coinMarketCap = result
+        this.coinMarketCap = result.data
       }
     } catch (e) {
       console.log(e)
