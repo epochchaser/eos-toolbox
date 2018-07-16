@@ -152,6 +152,11 @@ export class EosioStore {
     let nameBids = EosAgent.getTableRows(query)
     // todo
   }
+
+  voteProducer = async (account, producers, proxy = '') => {
+    const result = await EosAgent.voteProducer(account, producers, proxy)
+    console.log(result)
+  }
 }
 
 decorate(EosioStore, {
@@ -167,7 +172,8 @@ decorate(EosioStore, {
   getBlockProducers: action,
   getRamMarkets: action,
   getVoters: action,
-  getNameBids: action
+  getNameBids: action,
+  voteProducer: action
 })
 
 export default new EosioStore()
