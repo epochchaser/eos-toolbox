@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import BlockView from '../components/BlockView'
+import MarketCapView from '../components/MarketCapView'
 
 @inject('accountStore', 'eosioStore')
 @observer
@@ -17,6 +18,7 @@ class Home extends Component {
       <div>
         <Fragment>
           <BlockView />
+          <MarketCapView />
         </Fragment>
       </div>
     )
