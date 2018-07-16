@@ -78,7 +78,15 @@ class EosAgent {
       return
     }
 
-    return this.eos.contract(contractName)
+    return await this.eos.contract(contractName)
+  }
+
+  getProducers = async query => {
+    if (!this.eos) {
+      return
+    }
+
+    return await this.eos.getProducers(query)
   }
 
   getTableRows = async query => {
@@ -87,6 +95,14 @@ class EosAgent {
     }
 
     return await this.eos.getTableRows(query)
+  }
+
+  getCurrencyStats = async query => {
+    if (!this.eos) {
+      return
+    }
+
+    return await this.eos.getCurrencyStats(query)
   }
 
   getCurrencyBalance = async tokenSymbol => {

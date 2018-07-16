@@ -6,7 +6,7 @@ import { inject, observer } from 'mobx-react'
 class Voting extends Component {
   componentDidMount = async () => {
     const { eosioStore } = this.props
-    eosioStore.getProducers()
+    eosioStore.getBlockProducers()
   }
 
   render() {
@@ -46,15 +46,19 @@ class Voting extends Component {
                   <th>#</th>
                   <th>Producer</th>
                   <th>Total votes</th>
+                  <th>%</th>
+                  <th>Active</th>
                 </tr>
               </thead>
               <tbody>
                 {blockProducers &&
                   blockProducers.map((p, index) => (
-                    <tr>
+                    <tr key={p.key}>
                       <th scope="row">{index + 1}</th>
                       <td>{p.owner}</td>
                       <td>{p.votes}</td>
+                      <td>{p.percent}</td>
+                      <td>{p.isBackup}</td>
                     </tr>
                   ))}
               </tbody>
