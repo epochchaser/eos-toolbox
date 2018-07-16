@@ -48,6 +48,8 @@ export class EosioStore {
     if (!this.global) {
       await this.getGlobalInfo()
       totalProducerVoteWeight = this.global.total_producer_vote_weight
+    } else {
+      totalProducerVoteWeight = this.global.total_producer_vote_weight
     }
 
     let backupMinimumPercent = false

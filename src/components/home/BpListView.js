@@ -12,7 +12,18 @@ class BpListView extends Component {
     this.eosioStore = eosioStore
   }
 
+  componentDidMount = async () => {
+    await this.eosioStore.getGlobalInfo()
+    this.eosioStore.getBlockProducers()
+  }
+
   render() {
+    let bpList = []
+
+    if (this.eosioStore.blockProducers) {
+      bpList = this.eosioStore.blockProducers.slice(0, 30)
+    }
+
     return (
       <div className="col-md-6">
         <div className="card ">
@@ -43,30 +54,34 @@ class BpListView extends Component {
             </div>
           </div>
           <div className="card-block ">
-            <div className="browser-card p-b-15 ">
-              <p className="d-inline-block m-0 ">Google Crome</p>
-              <label className="label bg-c-blue btn-round float-right btn-browser">50%</label>
-            </div>
-            <div className="browser-card b-t-default p-t-15 p-b-15 ">
-              <p className="d-inline-block m-0 ">Mozila Firefox</p>
-              <label className="label bg-c-pink btn-round float-right btn-browser">12%</label>
-            </div>
-            <div className="browser-card b-t-default p-t-15 p-b-15 ">
-              <p className="d-inline-block m-0 ">Apple Safari</p>
-              <label className="label bg-c-yellow btn-round float-right btn-browser">23%</label>
-            </div>
-            <div className="browser-card b-t-default p-t-15 p-b-15 ">
-              <p className="d-inline-block m-0 ">Internet Explorer</p>
-              <label className="label bg-c-green btn-round float-right btn-browser">17%</label>
-            </div>
-            <div className="browser-card b-t-default p-t-15 p-b-15 ">
-              <p className="d-inline-block m-0 ">Opera Mini</p>
-              <label className="label bg-c-yellow btn-round float-right btn-browser">07%</label>
-            </div>
-            <div className="browser-card b-t-default p-t-15">
-              <p className="d-inline-block m-0 ">Microsoft Edge</p>
-              <label className="label bg-c-yellow btn-round float-right btn-browser">28%</label>
-            </div>
+            {bpList.map((p, index) => (
+              <div
+                key={index}
+                className={
+                  index === 0 ? 'browser-card p-b-15 ' : 'browser-card b-t-default p-t-15 p-b-15 '
+                }
+              >
+                <p className="d-inline-block m-0 ">
+                  <a href={p.url} target="_blank">
+                    {index + 1}. {p.owner}
+                  </a>
+                </p>
+                <label
+                  className={
+                    'label bg-c-blue btn-round float-right btn-browser' +
+                    (index / 10 < 1
+                      ? ' bg-c-blue'
+                      : index / 10 < 2
+                        ? ' bg-c-green'
+                        : index / 10 < 3
+                          ? ' bg-c-yellow'
+                          : ' bg-c-pink')
+                  }
+                >
+                  {`${(p.percent * 100).toFixed(3)}%`}
+                </label>
+              </div>
+            ))}
           </div>
         </div>
       </div>
