@@ -32,3 +32,5 @@ export const CONFIG = {
   sign: true,
   chainId: chainId
 }
+
+export const supportLanguage = ['ko-KR', 'en-US']
