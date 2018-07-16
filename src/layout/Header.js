@@ -14,9 +14,11 @@ class Header extends Component {
               <i className="ti-menu" />
             </a>
             <header>
-              <h5>
-                <FormattedMessage id="EOS Toolbox" />
-              </h5>
+              <a href="/">
+                <h5>
+                  <FormattedMessage id="EOS Toolbox" />
+                </h5>
+              </a>
             </header>
           </div>
 

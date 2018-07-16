@@ -30,5 +30,11 @@ export default {
   'Submit Votes For Selected Producers': 'Submit Votes For Selected Producers',
   Producers: 'Producers',
   Producer: 'Producer',
-  Active: 'Active'
+  Active: 'Active',
+  'Total Stake': 'Total Stake',
+  'Total Vote': 'Total Vote',
+  'Ram Stake': 'Ram Stake',
+  'CPU, Net Stake': 'CPU, Net Stake',
+  'BP Top 30': 'BP Top 30',
+  'Account Name Bids Top 30': 'Account Name Bids Top 30'
 }
