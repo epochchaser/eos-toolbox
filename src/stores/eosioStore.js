@@ -33,7 +33,7 @@ export class EosioStore {
     // todo
   }
 
-  getBlockProducers = () => {
+  getBlockProducers = async () => {
     const query = {
       json: true,
       code: 'eosio',
@@ -42,8 +42,50 @@ export class EosioStore {
       limit: 1000
     }
 
-    let producers = EosAgent.getTableRows(query)
-    // todo
+    let totalProducerVoteWeight
+    if (!this.global) {
+      await this.getGlobalInfo()
+      totalProducerVoteWeight = this.global.total_producer_vote_weight
+    }
+
+    let backupMinimumPercent = false
+    let tokensToProducersForVotes = false
+    const currencyStats = await EosAgent.getCurrencyStats({ code: 'eosio.token', symbol: 'EOS' })
+    const supply = parseFloat(currencyStats.EOS.supply)
+    // yearly inflation
+    const inflation = 0.04879
+    // Tokens per year
+    const tokensPerYear = supply * inflation
+    // Tokens per day
+    const tokensPerDay = tokensPerYear / 365
+    // 1/5th of inflation
+    const tokensToProducers = tokensPerDay * 0.2
+    // 75% rewards based on votes
+    tokensToProducersForVotes = tokensToProducers * 0.75
+    // Percentage required to earn 100 tokens/day (break point for backups)
+    backupMinimumPercent = 100 / tokensToProducersForVotes
+
+    const result = await EosAgent.getTableRows(query)
+
+    const data = result.rows
+      .filter(p => p.producer_key !== 'EOS1111111111111111111111111111111114T1Anm')
+      .map(producer => {
+        const votes = parseInt(producer.total_votes, 10)
+        const percent = votes / totalProducerVoteWeight
+        const isBackup = backupMinimumPercent && percent > backupMinimumPercent
+        return {
+          key: `${producer.owner}-${producer.total_votes}`,
+          last_produced_block_time: producer.last_produced_block_time,
+          owner: producer.owner,
+          producer_key: producer.producer_key,
+          url: producer.url,
+          isBackup: isBackup,
+          percent,
+          votes
+        }
+      })
+
+    this.blockProducers = sortBy(data, 'votes').reverse()
   }
 
   getRamMarkets = () => {
@@ -70,37 +112,6 @@ export class EosioStore {
     }
 
     let voters = await EosAgent.getTableRows(query)
-  }
-
-  getProducers = async () => {
-    const query = {
-      json: true,
-      code: 'eosio',
-      scope: 'eosio',
-      table: 'producers',
-      table_key: 'producers',
-      limit: 1000
-    }
-
-    let result = await EosAgent.getTableRows(query)
-
-    const data = result.rows
-      .filter(p => p.producer_key !== 'EOS1111111111111111111111111111111114T1Anm')
-      .map(producer => {
-        const votes = parseInt(producer.total_votes, 10)
-        // const percent = votes / current.total_producer_vote_weight;
-        // const isBackup = (backupMinimumPercent && percent > backupMinimumPercent);
-        return {
-          key: `${producer.owner}-${producer.total_votes}`,
-          last_produced_block_time: producer.last_produced_block_time,
-          owner: producer.owner,
-          producer_key: producer.producer_key,
-          url: producer.url,
-          votes
-        }
-      })
-
-    this.blockProducers = sortBy(data, 'votes').reverse()
   }
 
   getNameBids = () => {
@@ -130,7 +141,6 @@ decorate(EosioStore, {
   getBlockProducers: action,
   getRamMarkets: action,
   getVoters: action,
-  getProducers: action,
   getNameBids: action
 })
 
