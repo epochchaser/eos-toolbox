@@ -20,7 +20,6 @@ export class AccountStore {
       })
 
       this.myBlockProducers = myProducers.sort()
-      console.log(this.blockProducers)
       this.account = EosAgent.loginaccount
 
       console.log(this.account)

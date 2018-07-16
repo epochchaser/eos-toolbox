@@ -97,6 +97,15 @@ class EosAgent {
     return await this.eos.getTableRows(query)
   }
 
+  voteProducer = async (account, producers, proxy = '') => {
+    if (!this.eos) {
+      return
+    }
+
+    const result = await this.eos.voteProducer(account, proxy, producers)
+    return result
+  }
+
   getCurrencyStats = async query => {
     if (!this.eos) {
       return

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { inject, observer } from '../../node_modules/mobx-react'
 
-@inject('accountStore')
+@inject('accountStore', 'eosioStore')
 @observer
 class MyVotecastView extends Component {
   deleteProducer = name => event => {
@@ -10,6 +10,15 @@ class MyVotecastView extends Component {
 
     let filterBaseBPList = myBlockProducers.filter(bp => bp !== name)
     accountStore.updateMyBlockProducers(filterBaseBPList)
+  }
+
+  voteProducer = () => {
+    const { eosioStore, accountStore } = this.props
+    const { myBlockProducers, account } = accountStore
+
+    if (account) {
+      eosioStore.voteProducer(account.name, myBlockProducers)
+    }
   }
 
   render() {
@@ -30,7 +39,7 @@ class MyVotecastView extends Component {
             <div className="col-lg-12 col-md-12">
               <div className="form-group">
                 <button className="btn btn-primary btn-block">Set voter proxy</button>
-                <button className="btn btn-danger btn-block">
+                <button className="btn btn-danger btn-block" onClick={this.voteProducer}>
                   Submit votes for selected producers
                 </button>
               </div>
@@ -54,12 +63,12 @@ class MyVotecastView extends Component {
                     <tr key={v}>
                       <th scope="row">{index + 1}</th>
                       <td>
-                        <div class="icon-btn">
+                        <div className="icon-btn">
                           <button
-                            class="btn btn-secondary btn-outline-secondary btn-icon"
+                            className="btn btn-secondary btn-outline-secondary btn-icon"
                             onClick={this.deleteProducer(v)}
                           >
-                            <i class="icofont icofont-not-allowed" />
+                            <i className="icofont icofont-not-allowed" />
                           </button>
                         </div>
                       </td>
