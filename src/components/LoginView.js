@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
+import { FormattedMessage } from 'react-intl'
 
 @inject('accountStore', 'commonStore')
 @observer
@@ -33,25 +34,26 @@ class LoginView extends Component {
     return (
       <Fragment>
         <a href="#!">
-          {!this.accountStore.isLogin && <span>Login</span>}
-          {this.accountStore.isLogin && (
+          {!this.accountStore.isLogin ? (
+            <span>
+              <FormattedMessage id="Login" />
+            </span>
+          ) : (
             <span>
               {this.accountStore.account.name}@{this.accountStore.account.authority}
             </span>
           )}
-
           <i className="ti-angle-down" />
         </a>
 
         <ul className="show-notification profile-notification">
-          {!this.accountStore.isLogin && (
+          {!this.accountStore.isLogin ? (
             <li>
               <a href="#!" onClick={this.loginClick}>
-                <i className="ti-settings" /> Login
+                <i className="ti-settings" /> <FormattedMessage id="Login" />
               </a>
             </li>
-          )}
-          {this.accountStore.isLogin && (
+          ) : (
             <div>
               <li>
                 <a href="user-profile.html">
@@ -70,7 +72,7 @@ class LoginView extends Component {
               </li>
               <li>
                 <a href="#!" onClick={this.logoutClick}>
-                  <i className="ti-layout-sidebar-left" /> Logout
+                  <i className="ti-layout-sidebar-left" /> <FormattedMessage id="Logout" />
                 </a>
               </li>
             </div>

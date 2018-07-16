@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import NumberFormat from 'react-number-format'
+import { FormattedMessage } from 'react-intl'
 
 @inject('eosioStore', 'commonStore')
 @observer
@@ -34,7 +35,9 @@ class MarketView extends Component {
                 <div className="card task-sale-card ">
                   <div className="card-header ">
                     <div className="card-header-left ">
-                      <h5>Market Cap (USD)</h5>
+                      <h5>
+                        <FormattedMessage id="Market Cap (USD)" />
+                      </h5>
                     </div>
                   </div>
                   <div className="card-block-big ">
@@ -43,6 +46,7 @@ class MarketView extends Component {
                         value={this.commonStore.coinMarketCap.data.quotes.USD.price.toFixed(4)}
                         displayType={'text'}
                         thousandSeparator={true}
+                        prefix={'$'}
                       />
                     </h2>
                     <div className="d-inline-block m-l-5 super ">
@@ -62,7 +66,9 @@ class MarketView extends Component {
                           />
                         </h3>
                         <div className="d-inline-block m-l-5">
-                          <p className=" m-b-0 f-w-400 f-12 text-uppercase">Market Cap</p>
+                          <p className=" m-b-0 f-w-400 f-12 text-uppercase">
+                            <FormattedMessage id="Market Cap" />
+                          </p>
                         </div>
                       </div>
                       <div className="col-sm-6 ">
@@ -77,14 +83,18 @@ class MarketView extends Component {
                           />
                         </h3>
                         <div className="d-inline-block m-l-5">
-                          <p className=" m-b-0 f-w-400 f-12 text-uppercase">/ 24h</p>
+                          <p className=" m-b-0 f-w-400 f-12 text-uppercase">
+                            <FormattedMessage id="24h Volume" />
+                          </p>
                         </div>
                       </div>
                     </div>
                     <div className="b-t-default p-t-20 m-t-5">
                       <div className="row text-center p-t-15 p-b-15">
                         <div className="col-sm-4 f-prog">
-                          <p className="f-16 m-0 f-w-400">Circulating Supply</p>
+                          <p className="f-16 m-0 f-w-400">
+                            <FormattedMessage id="Circulating Supply" />
+                          </p>
                           <span className="text-muted">
                             <NumberFormat
                               value={this.commonStore.coinMarketCap.data.circulating_supply.toFixed(
@@ -97,7 +107,9 @@ class MarketView extends Component {
                           </span>
                         </div>
                         <div className="col-sm-4 f-prog">
-                          <p className="f-16 m-0 f-w-400">Total Supply</p>
+                          <p className="f-16 m-0 f-w-400">
+                            <FormattedMessage id="Total Supply" />
+                          </p>
                           <span className="text-muted">
                             <NumberFormat
                               value={this.commonStore.coinMarketCap.data.total_supply.toFixed(0)}
@@ -108,7 +120,9 @@ class MarketView extends Component {
                           </span>
                         </div>
                         <div className="col-sm-4">
-                          <p className="f-16 m-0 f-w-400">Max Supply</p>
+                          <p className="f-16 m-0 f-w-400">
+                            <FormattedMessage id="Max Supply" />
+                          </p>
                           <span className="text-muted">
                             <NumberFormat
                               value={this.commonStore.coinMarketCap.data.max_supply.toFixed(0)}
@@ -127,7 +141,9 @@ class MarketView extends Component {
                 <div className="card task-sale-card ">
                   <div className="card-header ">
                     <div className="card-header-left ">
-                      <h5>RAM Market</h5>
+                      <h5>
+                        <FormattedMessage id="RAM Market" />
+                      </h5>
                     </div>
                   </div>
                   <div className="card-block-big ">
@@ -152,7 +168,9 @@ class MarketView extends Component {
                           />
                         </h3>
                         <div className="d-inline-block m-l-5">
-                          <p className=" m-b-0 f-w-400 f-12 text-uppercase">GB Free</p>
+                          <p className=" m-b-0 f-w-400 f-12 text-uppercase">
+                            <FormattedMessage id="GB Free" />
+                          </p>
                         </div>
                       </div>
                       <div className="col-sm-6 ">

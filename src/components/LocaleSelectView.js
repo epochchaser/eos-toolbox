@@ -20,7 +20,7 @@ class LocaleSelectView extends Component {
           <span>{this.selectedLocale}</span>
           <i className="ti-angle-down" />
         </a>
-        <ul className="show-notification profile-notification">
+        <ul className="show-notification profile-notification" style={{ width: '120px' }}>
           <div>
             {this.locales.map(locale => {
               params['lang'] = locale
