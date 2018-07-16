@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { inject, observer } from '../../node_modules/mobx-react'
 import sortBy from 'lodash/sortBy'
+import { FormattedMessage } from 'react-intl'
 
 @inject('eosioStore', 'accountStore')
 @observer
@@ -30,7 +31,9 @@ class BlockProducersView extends Component {
     return (
       <div className="card">
         <div className="card-header">
-          <h5>Producers</h5>
+          <h5>
+            <FormattedMessage id="Producers" />
+          </h5>
           <span>
             vote to <code>BLOCK PRODUCERS</code> that you want
           </span>
@@ -42,9 +45,13 @@ class BlockProducersView extends Component {
                 <tr>
                   <th>#</th>
                   <th>V</th>
-                  <th>Producer</th>
+                  <th>
+                    <FormattedMessage id="Producer" />
+                  </th>
                   <th>%</th>
-                  <th>Active</th>
+                  <th>
+                    <FormattedMessage id="Active" />
+                  </th>
                 </tr>
               </thead>
               <tbody>

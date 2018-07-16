@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { inject, observer } from '../../node_modules/mobx-react'
+import { FormattedMessage } from 'react-intl'
 
 @inject('accountStore', 'eosioStore')
 @observer
@@ -28,7 +29,9 @@ class MyVotecastView extends Component {
     return (
       <div className="card">
         <div className="card-header">
-          <h5>Your vote cast</h5>
+          <h5>
+            <FormattedMessage id="Your vote cast" />
+          </h5>
           <span>
             your <code>BLOCK PRODUCER </code> list
           </span>
@@ -38,9 +41,11 @@ class MyVotecastView extends Component {
           <div className="row">
             <div className="col-lg-12 col-md-12">
               <div className="form-group">
-                <button className="btn btn-primary btn-block">Set voter proxy</button>
+                <button className="btn btn-primary btn-block">
+                  <FormattedMessage id="Set voter proxy" />
+                </button>
                 <button className="btn btn-danger btn-block" onClick={this.voteProducer}>
-                  Submit votes for selected producers
+                  <FormattedMessage id="Submit Votes For Selected Producers" />
                 </button>
               </div>
             </div>
@@ -54,7 +59,9 @@ class MyVotecastView extends Component {
                 <tr>
                   <th>#</th>
                   <th>-</th>
-                  <th>Producer</th>
+                  <th>
+                    <FormattedMessage id="Producer" />
+                  </th>
                 </tr>
               </thead>
               <tbody>
