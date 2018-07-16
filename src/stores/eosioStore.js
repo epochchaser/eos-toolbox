@@ -174,8 +174,7 @@ export class EosioStore {
   }
 
   voteProducer = async (account, producers, proxy = '') => {
-    const result = await EosAgent.voteProducer(account, producers, proxy)
-    console.log(result)
+    return await EosAgent.voteProducer(account, producers, proxy)
   }
 }
 
