@@ -7,21 +7,38 @@ import ko from 'react-intl/locale-data/ko'
 import locale from './locale/locale'
 import { Provider } from 'mobx-react'
 import accountStore from './stores/accountStore'
-import localeStore from './stores/localeStore'
 import commonStore from './stores/commonStore'
 import eosioStore from './stores/eosioStore'
 import initLocale, { getUserLocale } from 'react-intl-locale'
 import EosAgent from './EosAgent'
+import * as Utils from './utils/Utils'
+import * as Values from './constants/Values'
 
 // param : defulat locale, allow locale array
-initLocale('en-US', ['ko-KR'])
+initLocale('en-US', Values.supportLanguage.slice())
 addLocaleData([...en, ...ko])
 
-const userLocale = getUserLocale()
-localeStore.updateLocale(userLocale.split('-')[0])
+const lang = Utils.getJsonFromUrl().lang
+
+console.log(lang)
+
+let i18nLang
+
+if (lang) {
+  i18nLang = lang.split('-')[0]
+  localStorage.setItem('locale', lang)
+} else {
+  const savedLocale = localStorage.getItem('locale')
+
+  if (savedLocale) {
+    i18nLang = savedLocale.split('-')[0]
+  } else {
+    const userLocale = getUserLocale()
+    i18nLang = userLocale.split('-')[0]
+  }
+}
 
 const stores = {
-  localeStore,
   accountStore,
   commonStore,
   eosioStore
@@ -44,11 +61,7 @@ document.addEventListener('scatterLoaded', scatterExtension => {
 
 ReactDOM.render(
   <Provider {...stores}>
-    <IntlProvider
-      key={localeStore.locale}
-      locale={localeStore.locale}
-      messages={locale[localeStore.locale]}
-    >
+    <IntlProvider key={i18nLang} locale={i18nLang} messages={locale[i18nLang]}>
       <App />
     </IntlProvider>
   </Provider>,
