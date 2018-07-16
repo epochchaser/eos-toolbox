@@ -10,6 +10,7 @@ export class EosioStore {
   ramInfo = null
   voters = null
   nameBids = null
+  staking = null
 
   getInfo = async () => {
     let info = await EosAgent.getInfo()
@@ -90,6 +91,25 @@ export class EosioStore {
     this.blockProducers = sortBy(data, 'votes').reverse()
   }
 
+  getStakingInfo = () => {
+    const totalStake = this.global.total_activated_stake / 10000
+    const totalStakePercent = (totalStake / 1000000000) * 100
+    const ramStake = this.global.total_ram_stake / 10000
+    const ramStakePercent = (ramStake / 1000000000) * 100
+    // todo
+    const totalVoting = 89039232
+    const totalVotingPercent = (89039232 / 1000000000) * 100
+
+    this.staking = {
+      totalStake,
+      totalStakePercent,
+      ramStake,
+      ramStakePercent,
+      totalVoting,
+      totalVotingPercent
+    }
+  }
+
   getRamMarkets = async () => {
     const query = {
       json: true,
@@ -167,9 +187,11 @@ decorate(EosioStore, {
   ramInfo: observable,
   voters: observable,
   nameBids: observable,
+  staking: observable,
   getInfo: action,
   getGlobalInfo: action,
   getBlockProducers: action,
+  getStakingInfo: action,
   getRamMarkets: action,
   getVoters: action,
   getNameBids: action,

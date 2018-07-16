@@ -30,5 +30,11 @@ export default {
   'Submit Votes For Selected Producers': '선택된 블록생성자들에게 투표합니다',
   Producers: '블록생성자들',
   Producer: '블록생성자',
-  Active: '활성'
+  Active: '활성',
+  'Total Stake': '총 스테이크',
+  'Total Vote': '총 투표',
+  'Ram Stake': '램 스테이크',
+  'CPU, Net Stake': 'CPU, Net 스테이크',
+  'BP Top 30': '블록 프로듀서 상위 30',
+  'Account Name Bids Top 30': '계정명 입찰 상위 30'
 }
