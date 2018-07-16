@@ -36,5 +36,7 @@ export default {
   'Ram Stake': '램 스테이크',
   'CPU, Net Stake': 'CPU, Net 스테이크',
   'BP Top 30': '블록 프로듀서 상위 30',
-  'Account Name Bids Top 30': '계정명 입찰 상위 30'
+  'Account Name Bids Top 30': '계정명 입찰 상위 30',
+  '성공!': '성공!',
+  '트랜젹신이 블록체인으로 전송되었습니다.': '트랜젹신이 블록체인으로 전송되었습니다.'
 }

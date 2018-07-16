@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
 import { inject, observer } from '../../../node_modules/mobx-react'
 import { FormattedMessage } from 'react-intl'
+import Swal from 'sweetalert2'
 
 @inject('accountStore', 'eosioStore')
 @observer
 class MyVotecastView extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      show: false
+    }
+  }
+
   deleteProducer = name => event => {
     const { accountStore } = this.props
     const { myBlockProducers } = accountStore
@@ -13,12 +22,15 @@ class MyVotecastView extends Component {
     accountStore.updateMyBlockProducers(filterBaseBPList)
   }
 
-  voteProducer = () => {
+  voteProducer = async () => {
     const { eosioStore, accountStore } = this.props
     const { myBlockProducers, account } = accountStore
 
     if (account) {
-      eosioStore.voteProducer(account.name, myBlockProducers)
+      const result = await eosioStore.voteProducer(account.name, myBlockProducers)
+      if (result) {
+        Swal('Good job!', 'Your transaction(s) have been submitted to the blockchain.', 'success')
+      }
     }
   }
 
@@ -44,6 +56,7 @@ class MyVotecastView extends Component {
                 <button className="btn btn-primary btn-block">
                   <FormattedMessage id="Set voter proxy" />
                 </button>
+
                 <button className="btn btn-danger btn-block" onClick={this.voteProducer}>
                   <FormattedMessage id="Submit Votes For Selected Producers" />
                 </button>

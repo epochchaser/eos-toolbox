@@ -36,5 +36,8 @@ export default {
   'Ram Stake': 'Ram Stake',
   'CPU, Net Stake': 'CPU, Net Stake',
   'BP Top 30': 'BP Top 30',
-  'Account Name Bids Top 30': 'Account Name Bids Top 30'
+  'Account Name Bids Top 30': 'Account Name Bids Top 30',
+  'Good job!': 'Good job!',
+  'Your transaction(s) have been submitted to the blockchain.':
+    'Your transaction(s) have been submitted to the blockchain.'
 }
