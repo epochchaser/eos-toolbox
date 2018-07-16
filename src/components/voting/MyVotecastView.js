@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { inject, observer } from '../../node_modules/mobx-react'
+import { inject, observer } from '../../../node_modules/mobx-react'
 import { FormattedMessage } from 'react-intl'
 
 @inject('accountStore', 'eosioStore')

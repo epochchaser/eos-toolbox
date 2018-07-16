@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import MyVotecastView from '../components/MyVotecastView'
-import BlockProducersView from '../components/BlockProducersView'
+import MyVotecastView from '../components/voting/MyVotecastView'
+import BlockProducersView from '../components/voting/BlockProducersView'
 import '../styles/pages/Voting.scss'
 
 class Voting extends Component {
