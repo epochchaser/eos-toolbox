@@ -39,5 +39,9 @@ export default {
   'Account Name Bids Top 30': '계정명 입찰 상위 30',
   '성공!': '성공!',
   '트랜젹신이 블록체인으로 전송되었습니다.': '트랜젹신이 블록체인으로 전송되었습니다.',
-  'Block Explorer': '블록 익스플로러'
+  'Block Explorer': '블록 익스플로러',
+  'EOS Block Explorer': '이오스 블록 익스플로러',
+  'Search with account, public key, transaction id, block number':
+    '계정, 공개키, 트랜잭션 ID, 블록 번호로 검색하세요',
+  'No Seasrch Results': '검색 결과가 없습니다'
 }

@@ -40,5 +40,9 @@ export default {
   'Good job!': 'Good job!',
   'Your transaction(s) have been submitted to the blockchain.':
     'Your transaction(s) have been submitted to the blockchain.',
-  'Block Explorer': 'Block Explorer'
+  'Block Explorer': 'Block Explorer',
+  'EOS Block Explorer': 'EOS Block Explorer',
+  'Search with account, public key, transaction id, block number':
+    'Search with account, public key, transaction id, block number',
+  'No Seasrch Results': 'No Seasrch Results'
 }

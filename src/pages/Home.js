@@ -18,21 +18,19 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        <Fragment>
-          <div className="page-wrapper">
-            <div className="page-body">
-              <BlockView />
-              <MarketView />
-              <StakingView />
-              <div className="row">
-                <BpListView />
-                <NameBidListView />
-              </div>
+      <Fragment>
+        <div className="page-wrapper">
+          <div className="page-body">
+            <BlockView />
+            <MarketView />
+            <StakingView />
+            <div className="row">
+              <BpListView />
+              <NameBidListView />
             </div>
           </div>
-        </Fragment>
-      </div>
+        </div>
+      </Fragment>
     )
   }
 }

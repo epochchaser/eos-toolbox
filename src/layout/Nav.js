@@ -26,9 +26,7 @@ class Nav extends Component {
             <li
               className={
                 'pcoded-hasmenu' +
-                (this.routeActive(['block/account', 'block/transaction'])
-                  ? ' active pcoded-trigger'
-                  : '')
+                (this.routeActive(['blockexplorer']) ? ' active pcoded-trigger' : '')
               }
             >
               <a>
@@ -42,24 +40,13 @@ class Nav extends Component {
                 <span className="pcoded-mcaret" />
               </a>
               <ul className="pcoded-submenu">
-                <li className={this.routeActive('block/account') ? ' active' : ''}>
-                  <Link to="/block/account">
+                <li className={this.routeActive('blockexplorer') ? ' active' : ''}>
+                  <Link to="/blockexplorer">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
                     <span className="pcoded-mtext">
-                      <FormattedMessage id="Find Account" />
-                    </span>
-                    <span className="pcoded-mcaret" />
-                  </Link>
-                </li>
-                <li className={this.routeActive('block/transaction') ? ' active' : ''}>
-                  <Link to="/block/transaction">
-                    <span className="pcoded-micon">
-                      <i className="ti-angle-right" />
-                    </span>
-                    <span className="pcoded-mtext">
-                      <FormattedMessage id="Find Transaction" />
+                      <FormattedMessage id="Block Explorer" />
                     </span>
                     <span className="pcoded-mcaret" />
                   </Link>
