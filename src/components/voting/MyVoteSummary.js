@@ -29,7 +29,7 @@ class MyVoteSummary extends Component {
         <div className="card-block">
           <div className="row">
             <div className="col-sm-6 b-r-default p-b-40">
-              <h2 className="f-w-400">{myProducersLength}</h2>
+              <h2 className="f-w-400">{`${myProducersLength} / 21`}</h2>
               <p className="text-muted f-w-400">Your votes</p>
               <div className="progress">
                 <div
@@ -42,7 +42,7 @@ class MyVoteSummary extends Component {
               </div>
             </div>
             <div className="col-sm-6 p-b-40">
-              <h2 className="f-w-400">{staked} EOS</h2>
+              <h2 className="f-w-400">{`${staked} / ${totalBalance}`} EOS</h2>
               <p className="text-muted f-w-400">Staked</p>
               <div className="progress">
                 <div

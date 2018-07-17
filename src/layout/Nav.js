@@ -164,7 +164,7 @@ class Nav extends Component {
               </a>
               <ul className="pcoded-submenu">
                 <li className={this.routeActive('voting') ? ' active' : ''}>
-                  <Link to="/voting">
+                  <Link to="/voting/dovoting">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
