@@ -34,6 +34,45 @@ class MyVotecastView extends Component {
     }
   }
 
+  voteAsProxy = async () => {
+    const { eosioStore, accountStore } = this.props
+    const { myBlockProducers, account } = accountStore
+
+    if (account) {
+      Swal({
+        title: 'Enter the account name you wish to proxy your producer voting weight to:',
+        input: 'text',
+        inputAttributes: {
+          autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Comfirm',
+        showLoaderOnConfirm: true,
+        preConfirm: proxy => {
+          return eosioStore
+            .voteProducer(account.name, [], proxy)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(response.statusText)
+              }
+              return response
+            })
+            .catch(error => {
+              Swal.showValidationError(`Request failed: ${error}`)
+            })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then(result => {
+        if (result.value) {
+          Swal({
+            title: 'Success'
+            // imageUrl: result.value.avatar_url
+          })
+        }
+      })
+    }
+  }
+
   render() {
     const { accountStore } = this.props
     const { myBlockProducers } = accountStore
@@ -53,7 +92,7 @@ class MyVotecastView extends Component {
           <div className="row">
             <div className="col-lg-12 col-md-12">
               <div className="form-group">
-                <button className="btn btn-primary btn-block">
+                <button className="btn btn-primary btn-block" onClick={this.voteAsProxy}>
                   <FormattedMessage id="Set voter proxy" />
                 </button>
 

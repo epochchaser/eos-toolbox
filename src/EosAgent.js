@@ -97,7 +97,7 @@ class EosAgent {
     return await this.eos.getTableRows(query)
   }
 
-  voteProducer = async (account, producers, proxy = '') => {
+  voteProducer = async (account, producers = [], proxy = '') => {
     if (!this.eos) {
       return
     }

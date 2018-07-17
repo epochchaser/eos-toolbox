@@ -186,7 +186,7 @@ export class EosioStore {
     }
   }
 
-  voteProducer = async (account, producers, proxy = '') => {
+  voteProducer = async (account, producers = [], proxy = '') => {
     return await EosAgent.voteProducer(account, producers, proxy)
   }
 }
