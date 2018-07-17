@@ -26,7 +26,7 @@ class Nav extends Component {
             <li
               className={
                 'pcoded-hasmenu' +
-                (this.routeActive(['blockexplorer']) ? ' active pcoded-trigger' : '')
+                (this.routeActive(['blockexplorers']) ? ' active pcoded-trigger' : '')
               }
             >
               <a>
@@ -40,8 +40,8 @@ class Nav extends Component {
                 <span className="pcoded-mcaret" />
               </a>
               <ul className="pcoded-submenu">
-                <li className={this.routeActive('blockexplorer') ? ' active' : ''}>
-                  <Link to="/blockexplorer">
+                <li className={this.routeActive('blockexplorers') ? ' active' : ''}>
+                  <Link to="/blockexplorers">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
@@ -59,7 +59,16 @@ class Nav extends Component {
             <li
               className={
                 'pcoded-hasmenu' +
-                (this.routeActive(['account/create']) ? ' active pcoded-trigger' : '')
+                (this.routeActive([
+                  'accounts/create',
+                  'accounts/delegate',
+                  'accounts/undelegate',
+                  'accounts/rammarket',
+                  'accounts/refund',
+                  'accounts/permission'
+                ])
+                  ? ' active pcoded-trigger'
+                  : '')
               }
             >
               <a>
@@ -74,7 +83,7 @@ class Nav extends Component {
               <span className="pcoded-mcaret" />
               <ul className="pcoded-submenu">
                 <li className="">
-                  <Link to="account/create">
+                  <Link to="accounts/create">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
@@ -85,7 +94,7 @@ class Nav extends Component {
                   </Link>
                 </li>
                 <li className="">
-                  <Link to="account/delegate">
+                  <Link to="accounts/delegate">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
@@ -97,7 +106,7 @@ class Nav extends Component {
                   </Link>
                 </li>
                 <li className=" ">
-                  <Link to="account/undelegate">
+                  <Link to="accounts/undelegate">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
@@ -109,7 +118,7 @@ class Nav extends Component {
                   </Link>
                 </li>
                 <li className=" ">
-                  <Link to="account/rammarket">
+                  <Link to="accounts/rammarket">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
@@ -121,7 +130,7 @@ class Nav extends Component {
                   </Link>
                 </li>
                 <li className=" ">
-                  <Link to="account/refund">
+                  <Link to="accounts/refund">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
@@ -132,7 +141,7 @@ class Nav extends Component {
                   </Link>
                 </li>
                 <li className=" ">
-                  <Link to="account/permissions">
+                  <Link to="accounts/permission">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>

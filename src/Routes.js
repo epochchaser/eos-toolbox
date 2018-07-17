@@ -13,9 +13,9 @@ class Routes extends Component {
       <Switch>
         <Route exact path="/" component={Home} />
         {_initilizedEos && <Route exact path="/findaccount" component={FindAccount} />}
-        <Route exact path="/account" component={MyAccount} />
-        <Route exact path="/account/undelegate" component={Undelegate} />
-        <Route exact path="/blockexplorer" component={BlockExplorer} />
+        <Route exact path="/accounts" component={MyAccount} />
+        <Route exact path="/accounts/undelegate" component={Undelegate} />
+        <Route exact path="/blockexplorers" component={BlockExplorer} />
         <Route exact path="/voting/dovoting" component={Voting} />
       </Switch>
     )
