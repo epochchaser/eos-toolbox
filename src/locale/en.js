@@ -50,7 +50,7 @@ export default {
   Unstaking: 'Unstaking',
   Liquid: 'Liquid',
   Profile: 'Profile',
-  Created: 'Created'
+  Created: 'Created',
   'Your Resource Summary': 'Your Resource Summary',
   'Simulate values you want to undelegate and click confirm.':
     'Simulate values you want to undelegate and click confirm.',
