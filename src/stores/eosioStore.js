@@ -1,4 +1,4 @@
-import { decorate, observable, action, computed } from 'mobx'
+import { decorate, observable, action } from 'mobx'
 import EosAgent from '../EosAgent'
 import sortBy from 'lodash/sortBy'
 

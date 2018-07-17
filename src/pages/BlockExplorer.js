@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import AccountView from '../components/blockexplorer/AccountView'
 import SearchResult from '../components/blockexplorer/SearchResult'
 import SearchView from '../components/blockexplorer/SearchView'
-import TransactionView from '../components/blockexplorer/TransactionView'
 
 class BlockExplorer extends Component {
   render() {

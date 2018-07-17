@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
-import { Router, Route, Link, History, withRouter, Redirect } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import '../styles/layout/Nav.scss'
 import { FormattedMessage } from 'react-intl'
 
 class Nav extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   routeActive = paths => {
     paths = Array.isArray(paths) ? paths : [paths]
     if (paths.indexOf(this.props.location.pathname.replace('/', '')) > -1) return true

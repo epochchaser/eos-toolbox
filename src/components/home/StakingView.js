@@ -21,17 +21,11 @@ class StakingView extends Component {
     const totalPercent = this.eosioStore.staking
       ? `${this.eosioStore.staking.totalStakePercent.toFixed(0)}%`
       : '0%'
-    const votingPercent = this.eosioStore.staking
-      ? `${this.eosioStore.staking.totalVotingPercent.toFixed(0)}%`
-      : '0%'
     const ramPercent = this.eosioStore.staking
       ? `${this.eosioStore.staking.ramStakePercent.toFixed(0)}%`
       : '0%'
     const totalStakingChartStyle = {
       width: totalPercent
-    }
-    const totalVotingChartStyle = {
-      width: votingPercent
     }
     const ramStakingChartStyle = {
       width: ramPercent
