@@ -33,25 +33,6 @@ class BpListView extends Component {
                 <FormattedMessage id="BP Top 30" />
               </h5>
             </div>
-            <div className="card-header-right" style={{ display: 'none' }}>
-              <ul className="list-unstyled card-option">
-                <li>
-                  <i className="icofont icofont-simple-left " />
-                </li>
-                <li>
-                  <i className="icofont icofont-maximize full-card" />
-                </li>
-                <li>
-                  <i className="icofont icofont-minus minimize-card" />
-                </li>
-                <li>
-                  <i className="icofont icofont-refresh reload-card" />
-                </li>
-                <li>
-                  <i className="icofont icofont-error close-card" />
-                </li>
-              </ul>
-            </div>
           </div>
           <div className="card-block ">
             {bpList.length === 0 && (
