@@ -6,6 +6,11 @@ export class AccountStore {
   eosBalance = 0.0
   totalBalance = 0.0
   staked = 0.0
+  cpu_staked = 0.0
+  cpu_max = 0.0
+  net_staked = 0.0
+  net_max = 0.0
+  liquid = 0.0
   accountInfo = null
   account = null
   myBlockProducers = null
@@ -17,7 +22,10 @@ export class AccountStore {
 
     if (accountInfo) {
       this.accountInfo = accountInfo
-
+      console.log(accountInfo)
+      this.liquid = parseFloat(accountInfo.core_liquid_balance.split(' ')[0])
+      this.cpu_max = parseFloat(accountInfo.cpu_limit.max / 10000)
+      this.net_max = parseFloat(accountInfo.net_limit.max / 10000)
       let refunding_cpu_amount = 0.0
       let refunding_net_amount = 0.0
 
@@ -26,11 +34,12 @@ export class AccountStore {
         refunding_net_amount = parseFloat(accountInfo.refund_request.net_amount.split(' ')[0])
       }
 
-      const net_weight = parseFloat(accountInfo.total_resources.net_weight.split(' ')[0])
-      const cpu_weight = parseFloat(accountInfo.total_resources.cpu_weight.split(' ')[0])
+      this.net_staked = parseFloat(accountInfo.total_resources.net_weight.split(' ')[0])
+      this.cpu_staked = parseFloat(accountInfo.total_resources.cpu_weight.split(' ')[0])
 
       this.staked = parseFloat(accountInfo.voter_info.staked) / 10000
-      this.totalBalance = net_weight + cpu_weight + refunding_cpu_amount + refunding_net_amount
+      this.totalBalance =
+        this.net_staked + this.cpu_staked + refunding_cpu_amount + refunding_net_amount
       const myProducers = Object.keys(accountInfo.voter_info.producers).map(k => {
         return accountInfo.voter_info.producers[k]
       })
@@ -131,6 +140,11 @@ decorate(AccountStore, {
   eosBalance: observable,
   totalBalance: observable,
   staked: observable,
+  cpu_staked: observable,
+  net_staked: observable,
+  cpu_max: observable,
+  net_max: observable,
+  liquid: observable,
   accountInfo: observable,
   account: observable,
   myBlockProducers: observable,

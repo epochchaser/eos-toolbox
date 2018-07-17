@@ -43,5 +43,9 @@ export default {
   'EOS Block Explorer': '이오스 블록 익스플로러',
   'Search with account, public key, transaction id, block number':
     '계정, 공개키, 트랜잭션 ID, 블록 번호로 검색하세요',
-  'No Seasrch Results': '검색 결과가 없습니다'
+  'No Seasrch Results': '검색 결과가 없습니다',
+  'CPU Staked': '스테이크된 CPU',
+  'NET Staked': '스테이크된 NET',
+  Unstaking: 'Unstaking',
+  Liquid: '유동 자원'
 }
