@@ -67,5 +67,6 @@ export default {
   TYPE: '종류',
   DATA: '데이터',
   TRANSACTION: '거래',
-  DATE: '날짜'
+  DATE: '날짜',
+  'Simulate values you want to delegate and click confirm.': '자원을 설정하고 확인버튼을 누르세요.'
 }

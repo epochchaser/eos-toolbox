@@ -169,12 +169,24 @@ class EosAgent {
     return accounts
   }
 
+  delegate = async query => {
+    if (!this.eos) {
+      return
+    }
+
+    const result = await this.eos.transaction(tr => {
+      tr.delegatebw(query)
+    })
+
+    console.log(result)
+    return result
+  }
+
   undelegate = async query => {
     const result = await this.eos.transaction(tr => {
       tr.undelegatebw(query)
     })
 
-    console.log(result)
     return result
   }
 
