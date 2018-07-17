@@ -1,11 +1,18 @@
-import { decorate, observable, action, computed } from 'mobx'
+import { decorate, observable, action } from 'mobx'
+import sortBy from 'lodash/sortBy'
 import EosAgent from '../EosAgent'
 
 export class ExplorerStore {
   isLoading = false
+  isActionLoading = false
   account = null
   accounts = null
   transaction = null
+  actions = null
+
+  setIsActionLoading(isActionLoading) {
+    this.isActionLoading = isActionLoading
+  }
 
   setIsLoading(isLoading) {
     this.isLoading = isLoading
@@ -21,7 +28,6 @@ export class ExplorerStore {
     this.accounts = null
     this.transaction = null
 
-    console.log(query.length)
     if (query.length < 13) {
       // account
       try {
@@ -65,6 +71,20 @@ export class ExplorerStore {
 
     this.isLoading = false
   }
+
+  getActions = async accountName => {
+    this.isActionLoading = true
+    this.actions = null
+
+    try {
+      let actions = await EosAgent.getActions(accountName, 0, 10000)
+      if (actions) {
+        this.actions = sortBy(actions.actions, 'block_time').reverse()
+      }
+    } catch (e) {}
+
+    this.isActionLoading = false
+  }
 }
 
 decorate(ExplorerStore, {
@@ -72,8 +92,12 @@ decorate(ExplorerStore, {
   account: observable,
   accounts: observable,
   transaction: observable,
+  isActionLoading: observable,
+  actions: observable,
   search: action,
-  setIsLoading: action
+  setIsLoading: action,
+  getActions: action,
+  setIsActionLoading: action
 })
 
 export default new ExplorerStore()

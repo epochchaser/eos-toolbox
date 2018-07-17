@@ -170,16 +170,26 @@ class EosAgent {
   }
 
   undelegate = async query => {
-    if (!this.eos) {
-      return
-    }
-
     const result = await this.eos.transaction(tr => {
       tr.undelegatebw(query)
     })
 
     console.log(result)
     return result
+  }
+
+  getActions = async (account_name, pos, offset) => {
+    if (!this.eos) {
+      return
+    }
+
+    let actions = await this.eos.getActions({
+      account_name,
+      pos,
+      offset
+    })
+
+    return actions
   }
 
   loginWithPrivateKey = privKey => {

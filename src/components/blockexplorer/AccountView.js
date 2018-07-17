@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react'
 import NumberFormat from 'react-number-format'
 import { FormattedMessage } from 'react-intl'
 import { format } from 'date-fns'
+import { action } from '../../../node_modules/mobx'
 
 @inject('explorerStore')
 @observer
@@ -11,6 +12,10 @@ class AccountView extends Component {
     super(props)
     let { explorerStore } = this.props
     this.explorerStore = explorerStore
+  }
+
+  componentDidMount = async () => {
+    await this.explorerStore.getActions(this.explorerStore.account.account_name)
   }
 
   render() {
@@ -85,7 +90,10 @@ class AccountView extends Component {
                     suffix={' EOS'}
                   />
                 </p>
-                <div className="bg-c-blue counter-block m-t-10 p-20">
+                <div
+                  className="bg-c-blue counter-block m-t-10"
+                  style={{ height: '68px;', paddingBottom: '10px' }}
+                >
                   <div className="row">
                     <div className="col-4">
                       <p>Unstake</p>
@@ -163,7 +171,7 @@ class AccountView extends Component {
                         thousandSeparator={true}
                         suffix={' EOS'}
                       />{' '}
-                      EOS ({`${usageEosRate.toFixed(2)}%`})
+                      ({`${usageEosRate.toFixed(2)}%`})
                     </h6>
                   </div>
                 </div>
@@ -304,33 +312,99 @@ class AccountView extends Component {
         </div>
         <div className="row">
           <div className="col-sm-12">
-            <div class="card">
-              <div class="card-header">
-                <h5>Actions</h5>
+            <div className="card">
+              <div className="card-header">
+                <h5>
+                  <FormattedMessage id="Actions" />
+                </h5>
                 <span>EOS Network Actoins</span>
               </div>
-              <div class="card-block">
-                <div class="dt-responsive table-responsive">
-                  <table id="base-style" class="table table-striped table-bordered nowrap">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>TYPE</th>
-                        <th>MESSAGE</th>
-                        <th>TRANSACTION</th>
-                        <th>DATE</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>7852145</td>
-                        <td>write</td>
-                        <td>CPU: 0.1 EOS / NET: 0 EOS</td>
-                        <td>396c0f126ae9d5b10c2d0d7bd66ed7bc3363bf89b4e85cf45a0de24e7e335833</td>
-                        <td>2018-06-06 12:10:00.000</td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <div className="card-block">
+                <div className="dt-responsive table-responsive">
+                  {this.explorerStore.isActionLoading && (
+                    <div className="preloader3 loader-block m-t-20" style={{ height: '9px' }}>
+                      <div className="circ1" />
+                      <div className="circ2" />
+                      <div className="circ3" />
+                      <div className="circ4" />
+                    </div>
+                  )}
+                  {this.explorerStore.actions &&
+                    this.explorerStore.actions.length === 0 && (
+                      <table id="base-style" className="table table-striped table-bordered nowrap">
+                        <thead>
+                          <tr>
+                            <th>
+                              <FormattedMessage id="ID" />
+                            </th>
+                            <th>
+                              <FormattedMessage id="TYPE" />
+                            </th>
+                            <th>
+                              <FormattedMessage id="MESSAGE" />
+                            </th>
+                            <th>
+                              <FormattedMessage id="TRANSACTION" />
+                            </th>
+                            <th>
+                              <FormattedMessage id="DATE" />
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td colsPan="5" className="text-center">
+                              <FormattedMessage id="No Actions" />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    )}
+                  {this.explorerStore.actions &&
+                    this.explorerStore.actions.length > 0 && (
+                      <table
+                        id="base-style"
+                        className="table table-striped table-bordered"
+                        style={{ tableLayout: 'fixed' }}
+                      >
+                        <thead>
+                          <tr>
+                            <th style={{ width: '8%' }}>
+                              <FormattedMessage id="ID" />
+                            </th>
+                            <th style={{ width: '8%' }}>
+                              <FormattedMessage id="TYPE" />
+                            </th>
+                            <th style={{ width: '40%' }}>
+                              <FormattedMessage id="DATA" />
+                            </th>
+                            <th style={{ width: '34%' }}>
+                              <FormattedMessage id="TRANSACTION" />
+                            </th>
+                            <th style={{ width: '10%' }}>
+                              <FormattedMessage id="DATE" />
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {this.explorerStore.actions.map((action, index) => (
+                            <tr key={index}>
+                              <td style={{ whiteSpace: 'normal' }}>{action.global_action_seq}</td>
+                              <td style={{ whiteSpace: 'normal' }}>
+                                {action.action_trace.act.name}
+                              </td>
+                              <td style={{ whiteSpace: 'normal' }}>
+                                {JSON.stringify(action.action_trace.act.data)}
+                              </td>
+                              <td style={{ whiteSpace: 'normal' }}>{action.action_trace.trx_id}</td>
+                              <td style={{ whiteSpace: 'normal' }}>
+                                {format(new Date(action.block_time), 'YYYY-MM-DD HH:mm:ss.SSS')}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    )}
                 </div>
               </div>
             </div>

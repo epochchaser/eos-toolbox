@@ -61,5 +61,11 @@ export default {
   Usaged: '사용중',
   Staked: '스테이크중',
   Error: '오류',
-  'Insufficient available EOS balance to complete transaction.': '한도 초과입니다.'
+  'Insufficient available EOS balance to complete transaction.': '한도 초과입니다.',
+  Actions: '액션',
+  ID: '번호',
+  TYPE: '종류',
+  DATA: '데이터',
+  TRANSACTION: '거래',
+  DATE: '날짜'
 }
