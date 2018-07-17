@@ -3,7 +3,6 @@ import { inject, observer } from 'mobx-react'
 import NumberFormat from 'react-number-format'
 import { FormattedMessage } from 'react-intl'
 import { format } from 'date-fns'
-import { action } from '../../../node_modules/mobx'
 
 @inject('explorerStore')
 @observer
