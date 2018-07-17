@@ -23,7 +23,6 @@ export class ExplorerStore {
 
     console.log(query.length)
     if (query.length < 13) {
-      console.log('test1')
       // account
       try {
         let acc = await EosAgent.getAccount(query)
@@ -33,7 +32,6 @@ export class ExplorerStore {
         }
       } catch (e) {}
     } else {
-      console.log('test2')
       if (query.startsWith('EOS')) {
         try {
           // public key

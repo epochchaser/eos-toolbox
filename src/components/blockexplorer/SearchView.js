@@ -21,6 +21,12 @@ class SearchView extends Component {
     })
   }
 
+  handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.explorerStore.search(this.state.query)
+    }
+  }
+
   onSearchClick = e => {
     this.explorerStore.search(this.state.query)
   }
@@ -31,7 +37,7 @@ class SearchView extends Component {
         <div className="card">
           <div className="card-block">
             <div className="row">
-              <div className="col-lg-6 offset-lg-3">
+              <div className="col-lg-6 offset-lg-3 m-t-10">
                 <h5 className="txt-highlight text-center">
                   <FormattedMessage id="EOS Block Explorer" />
                 </h5>
@@ -49,6 +55,7 @@ class SearchView extends Component {
                     placeholder="Search here..."
                     value={this.state.query}
                     onChange={this.onQueryChange}
+                    onKeyPress={this.handleKeyPress}
                   />
                   <button
                     className="btn btn-primary input-group-addon"
