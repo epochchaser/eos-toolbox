@@ -49,5 +49,6 @@ export default {
   'NET Staked': 'NET Staked',
   Unstaking: 'Unstaking',
   Liquid: 'Liquid',
-  Profile: 'Profile'
+  Profile: 'Profile',
+  Created: 'Created'
 }
