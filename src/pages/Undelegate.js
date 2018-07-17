@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import MyResourceView from '../components/account/MyResourceView'
-import UndelegateSimulationView from '../components/account/UndelegateSimulationView'
+import UndelegateView from '../components/account/UndelegateView'
 import { inject, observer } from '../../node_modules/mobx-react'
 
 @inject('accountStore')
@@ -16,7 +16,7 @@ class Undelegate extends Component {
           <div className="page-wrapper">
             <div className="page-body">
               <MyResourceView />
-              <UndelegateSimulationView />
+              <UndelegateView />
               <div className="row" />
             </div>
           </div>

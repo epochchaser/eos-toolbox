@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 
 @inject('accountStore')
 @observer
-class UndelegateSimulationView extends Component {
+class UndelegateView extends Component {
   constructor(props) {
     super(props)
 
@@ -65,9 +65,6 @@ class UndelegateSimulationView extends Component {
     const validCpu = new Decimal(targetCpu).lessThanOrEqualTo(currentCpuAmount)
     const validNet = new Decimal(targetNet).lessThanOrEqualTo(currentNetAmount)
 
-    console.log(currentCpuAmount)
-    console.log(currentNetAmount)
-
     return validCpu & validNet ? true : false
   }
 
@@ -122,7 +119,7 @@ class UndelegateSimulationView extends Component {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Comfirm',
       showLoaderOnConfirm: true,
-      preConfirm: proxy => {
+      preConfirm: () => {
         return EosAgent.undelegate(
           this.undelegatebwParams(
             name,
@@ -165,8 +162,6 @@ class UndelegateSimulationView extends Component {
     const currentNetAmount = new Decimal(net_weight.split(' ')[0])
     const afterUnstakeCpu = currentCpuAmount.minus(new Decimal(targetUnstakeCpu)).toNumber()
     const afterUnstakeNet = currentNetAmount.minus(new Decimal(targetUnstakeNet)).toNumber()
-    const cpuWidth = `${(afterUnstakeCpu / cpu_weight) * 100}%`
-    console.log(cpuWidth)
 
     const afterUnstakeCpuChartStyle = {
       width: `${(afterUnstakeCpu / currentCpuAmount.toNumber()) * 100}%`
@@ -283,4 +278,4 @@ class UndelegateSimulationView extends Component {
   }
 }
 
-export default UndelegateSimulationView
+export default UndelegateView

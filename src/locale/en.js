@@ -69,5 +69,7 @@ export default {
   TYPE: 'TYPE',
   DATA: 'DATA',
   TRANSACTION: 'TRANSACTION',
-  DATE: 'DATE'
+  DATE: 'DATE',
+  'Simulate values you want to delegate and click confirm.':
+    'Simulate values you want to delegate and click confirm.'
 }
