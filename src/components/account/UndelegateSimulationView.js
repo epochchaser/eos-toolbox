@@ -94,6 +94,21 @@ class UndelegateSimulationView extends Component {
     }
   }
 
+  undelegatebwParams = (delegator, receiver, netAmount, cpuAmount) => {
+    const unstakeNetAmount = netAmount || 0
+    const unstakeCpuAmount = cpuAmount || 0
+
+    return {
+      from: delegator,
+      receiver,
+      unstake_net_quantity: `${unstakeNetAmount.toFixed(4)} EOS`,
+      unstake_cpu_quantity: `${unstakeCpuAmount.toFixed(4)} EOS`,
+      transfer: 0
+    }
+  }
+
+  onConfirm = () => {}
+
   render() {
     return (
       <div>
