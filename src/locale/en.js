@@ -63,5 +63,11 @@ export default {
   Staked: 'Staked',
   Error: 'Error',
   'Insufficient available EOS balance to complete transaction.':
-    'Insufficient available EOS balance to complete transaction.'
+    'Insufficient available EOS balance to complete transaction.',
+  Actions: 'Actions',
+  ID: 'ID',
+  TYPE: 'TYPE',
+  DATA: 'DATA',
+  TRANSACTION: 'TRANSACTION',
+  DATE: 'DATE'
 }
