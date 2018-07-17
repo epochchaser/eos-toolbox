@@ -48,5 +48,6 @@ export default {
   'NET Staked': '스테이크된 NET',
   Unstaking: 'Unstaking',
   Liquid: '유동 자원',
-  Profile: '프로필'
+  Profile: '프로필',
+  Created: '생성일'
 }
