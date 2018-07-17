@@ -10,6 +10,19 @@ class SearchView extends Component {
     super(props)
     let { explorerStore } = this.props
     this.explorerStore = explorerStore
+    this.state = {
+      query: ''
+    }
+  }
+
+  onQueryChange = e => {
+    this.setState({
+      query: e.target.value
+    })
+  }
+
+  onSearchClick = e => {
+    this.explorerStore.search(this.state.query)
   }
 
   render() {
@@ -30,8 +43,18 @@ class SearchView extends Component {
             <div className="row seacrh-header">
               <div className="col-lg-6 offset-lg-3 offset-sm-2 col-sm-8 offset-sm-1 col-xs-12">
                 <div className="input-group input-group-button input-group-primary">
-                  <input type="text" className="form-control" placeholder="Search here..." />
-                  <button className="btn btn-primary input-group-addon" id="basic-addon1">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search here..."
+                    value={this.state.query}
+                    onChange={this.onQueryChange}
+                  />
+                  <button
+                    className="btn btn-primary input-group-addon"
+                    id="block-search"
+                    onClick={this.onSearchClick}
+                  >
                     Search
                   </button>
                 </div>
