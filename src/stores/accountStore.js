@@ -17,10 +17,20 @@ export class AccountStore {
 
     if (accountInfo) {
       this.accountInfo = accountInfo
-      this.staked = parseFloat(accountInfo.voter_info.staked) / 10000
+
+      let refunding_cpu_amount = 0.0
+      let refunding_net_amount = 0.0
+
+      if (accountInfo.refund_request) {
+        refunding_cpu_amount = parseFloat(accountInfo.refund_request.cpu_amount.split(' ')[0])
+        refunding_net_amount = parseFloat(accountInfo.refund_request.net_amount.split(' ')[0])
+      }
+
       const net_weight = parseFloat(accountInfo.total_resources.net_weight.split(' ')[0])
       const cpu_weight = parseFloat(accountInfo.total_resources.cpu_weight.split(' ')[0])
-      this.totalBalance = net_weight + cpu_weight
+
+      this.staked = parseFloat(accountInfo.voter_info.staked) / 10000
+      this.totalBalance = net_weight + cpu_weight + refunding_cpu_amount + refunding_net_amount
       const myProducers = Object.keys(accountInfo.voter_info.producers).map(k => {
         return accountInfo.voter_info.producers[k]
       })
