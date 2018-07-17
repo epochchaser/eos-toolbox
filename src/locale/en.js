@@ -44,5 +44,9 @@ export default {
   'EOS Block Explorer': 'EOS Block Explorer',
   'Search with account, public key, transaction id, block number':
     'Search with account, public key, transaction id, block number',
-  'No Seasrch Results': 'No Seasrch Results'
+  'No Seasrch Results': 'No Seasrch Results',
+  'CPU Staked': 'CPU Staked',
+  'NET Staked': 'NET Staked',
+  Unstaking: 'Unstaking',
+  Liquid: 'Liquid'
 }

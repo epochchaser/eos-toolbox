@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import MyResourceView from '../components/account/MyResourceView'
 
-class Undelegate extends Component {
+class Delegate extends Component {
   render() {
     return (
       <Fragment>
@@ -16,4 +16,4 @@ class Undelegate extends Component {
   }
 }
 
-export default Undelegate
+export default Delegate
