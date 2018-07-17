@@ -114,7 +114,7 @@ class UndelegateSimulationView extends Component {
               <div className="col-sm-6 p-b-30">
                 <div className="input-group input-group-primary">
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
                     placeholder="CPU goes here..."
                     value={this.state.toCpu}
@@ -125,7 +125,7 @@ class UndelegateSimulationView extends Component {
               <div className="col-sm-6 p-b-30">
                 <div className="input-group input-group-primary">
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
                     placeholder="NET goes here..."
                     value={this.state.toNet}
