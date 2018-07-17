@@ -60,5 +60,8 @@ export default {
   'CPU Available': 'CPU Available',
   'NET Available': 'NET Available',
   Usaged: 'Usaged',
-  Staked: 'Staked'
+  Staked: 'Staked',
+  Error: 'Error',
+  'Insufficient available EOS balance to complete transaction.':
+    'Insufficient available EOS balance to complete transaction.'
 }

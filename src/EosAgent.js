@@ -169,6 +169,19 @@ class EosAgent {
     return accounts
   }
 
+  undelegate = async query => {
+    if (!this.eos) {
+      return
+    }
+
+    const result = await this.eos.transaction(tr => {
+      tr.undelegatebw(query)
+    })
+
+    console.log(result)
+    return result
+  }
+
   loginWithPrivateKey = privKey => {
     let endPoint = Values.NETWORK.protocol + '://' + Values.NETWORK.host + ':' + Values.NETWORK.port
 
