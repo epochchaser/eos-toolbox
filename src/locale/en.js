@@ -54,5 +54,11 @@ export default {
   'Your Resource Summary': 'Your Resource Summary',
   'Simulate values you want to undelegate and click confirm.':
     'Simulate values you want to undelegate and click confirm.',
-  Confirm: 'Confirm'
+  Confirm: 'Confirm',
+  'EOS Available': 'EOS Available',
+  'RAM Available': 'RAM Available',
+  'CPU Available': 'CPU Available',
+  'NET Available': 'NET Available',
+  Usaged: 'Usaged',
+  Staked: 'Staked'
 }
