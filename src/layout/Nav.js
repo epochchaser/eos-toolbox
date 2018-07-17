@@ -60,12 +60,12 @@ class Nav extends Component {
               className={
                 'pcoded-hasmenu' +
                 (this.routeActive([
-                  'accounts/create',
-                  'accounts/delegate',
-                  'accounts/undelegate',
-                  'accounts/rammarket',
-                  'accounts/refund',
-                  'accounts/permission'
+                  'account/create',
+                  'account/delegate',
+                  'account/undelegate',
+                  'account/rammarket',
+                  'account/refund',
+                  'account/permission'
                 ])
                   ? ' active pcoded-trigger'
                   : '')
@@ -82,8 +82,8 @@ class Nav extends Component {
               </a>
               <span className="pcoded-mcaret" />
               <ul className="pcoded-submenu">
-                <li className={this.routeActive('accounts/create') ? ' active' : ''}>
-                  <Link to="/accounts/create">
+                <li className={this.routeActive('account/create') ? ' active' : ''}>
+                  <Link to="/account/create">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
@@ -93,8 +93,8 @@ class Nav extends Component {
                     <span className="pcoded-mcaret" />
                   </Link>
                 </li>
-                <li className={this.routeActive('accounts/delegate') ? ' active' : ''}>
-                  <Link to="/accounts/delegate">
+                <li className={this.routeActive('account/delegate') ? ' active' : ''}>
+                  <Link to="/account/delegate">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
@@ -105,8 +105,8 @@ class Nav extends Component {
                     <span className="pcoded-mcaret" />
                   </Link>
                 </li>
-                <li className={this.routeActive('accounts/undelegate') ? ' active' : ''}>
-                  <Link to="/accounts/undelegate">
+                <li className={this.routeActive('account/undelegate') ? ' active' : ''}>
+                  <Link to="/account/undelegate">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
@@ -117,8 +117,8 @@ class Nav extends Component {
                     <span className="pcoded-mcaret" />
                   </Link>
                 </li>
-                <li className={this.routeActive('accounts/rammarket') ? ' active' : ''}>
-                  <Link to="/accounts/rammarket">
+                <li className={this.routeActive('account/rammarket') ? ' active' : ''}>
+                  <Link to="/account/rammarket">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
@@ -129,8 +129,8 @@ class Nav extends Component {
                     <span className="pcoded-mcaret" />
                   </Link>
                 </li>
-                <li className={this.routeActive('accounts/refund') ? ' active' : ''}>
-                  <Link to="/accounts/refund">
+                <li className={this.routeActive('account/refund') ? ' active' : ''}>
+                  <Link to="/account/refund">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
@@ -140,8 +140,8 @@ class Nav extends Component {
                     <span className="pcoded-mcaret" />
                   </Link>
                 </li>
-                <li className={this.routeActive('accounts/permission') ? ' active' : ''}>
-                  <Link to="/accounts/permission">
+                <li className={this.routeActive('account/permission') ? ' active' : ''}>
+                  <Link to="/account/permission">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
@@ -158,7 +158,8 @@ class Nav extends Component {
           <ul className="pcoded-item pcoded-left-item">
             <li
               className={
-                'pcoded-hasmenu' + (this.routeActive(['voting']) ? ' active pcoded-trigger' : '')
+                'pcoded-hasmenu' +
+                (this.routeActive(['voting/voting']) ? ' active pcoded-trigger' : '')
               }
             >
               <a>
@@ -172,7 +173,7 @@ class Nav extends Component {
                 <span className="pcoded-mcaret" />
               </a>
               <ul className="pcoded-submenu">
-                <li className={this.routeActive('voting') ? ' active' : ''}>
+                <li className={this.routeActive('voting/voting') ? ' active' : ''}>
                   <Link to="/voting/voting">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
