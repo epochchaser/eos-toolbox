@@ -14,13 +14,13 @@ export default {
   'RAM Market': 'RAM Market',
   'GB Free': 'GB Free',
   function: 'function',
+  'Find Transaction': 'Find Transaction',
   Account: 'Account',
   'Find Account': 'Find Account',
   'Create Account': 'Create Account',
   Delegate: 'Delegate',
   Undelegate: 'Undelegate',
-  'Buy Ram': 'Buy Ram',
-  'Sell Ram': 'Sell Ram',
+  'Ram Market': 'Ram Market',
   Refund: 'Refund',
   Permissions: 'Permissions',
   Voting: 'Voting',
@@ -39,5 +39,6 @@ export default {
   'Account Name Bids Top 30': 'Account Name Bids Top 30',
   'Good job!': 'Good job!',
   'Your transaction(s) have been submitted to the blockchain.':
-    'Your transaction(s) have been submitted to the blockchain.'
+    'Your transaction(s) have been submitted to the blockchain.',
+  'Block Explorer': 'Block Explorer'
 }
