@@ -9,6 +9,7 @@ class MyVoteSummary extends Component {
     const { accountStore } = this.props
     const { myBlockProducers, staked, totalBalance } = accountStore
 
+    console.log(totalBalance)
     const stakedPercent = (totalBalance === 0 ? 0 : (staked / totalBalance) * 100) + '%'
     let myProducersLength = 0
     let myVotesPercent = 0.0
@@ -17,9 +18,6 @@ class MyVoteSummary extends Component {
       myProducersLength = myBlockProducers.length
       myVotesPercent = (myProducersLength / 21) * 100 + '%'
     }
-
-    console.log(stakedPercent)
-    console.log(myVotesPercent)
 
     return (
       <div className="card summery-card">
