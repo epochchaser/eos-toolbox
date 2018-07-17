@@ -48,5 +48,6 @@ export default {
   'CPU Staked': 'CPU Staked',
   'NET Staked': 'NET Staked',
   Unstaking: 'Unstaking',
-  Liquid: 'Liquid'
+  Liquid: 'Liquid',
+  Profile: 'Profile'
 }

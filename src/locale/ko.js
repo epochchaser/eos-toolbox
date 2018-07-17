@@ -47,5 +47,6 @@ export default {
   'CPU Staked': '스테이크된 CPU',
   'NET Staked': '스테이크된 NET',
   Unstaking: 'Unstaking',
-  Liquid: '유동 자원'
+  Liquid: '유동 자원',
+  Profile: '프로필'
 }
