@@ -59,5 +59,7 @@ export default {
   'CPU Available': 'CPU 이용 가능량',
   'NET Available': 'NET 이용 가능량',
   Usaged: '사용중',
-  Staked: '스테이크중'
+  Staked: '스테이크중',
+  Error: '오류',
+  'Insufficient available EOS balance to complete transaction.': '한도 초과입니다.'
 }

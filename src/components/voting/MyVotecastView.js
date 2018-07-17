@@ -36,7 +36,7 @@ class MyVotecastView extends Component {
 
   voteAsProxy = async () => {
     const { eosioStore, accountStore } = this.props
-    const { myBlockProducers, account } = accountStore
+    const { account } = accountStore
 
     if (account) {
       Swal({

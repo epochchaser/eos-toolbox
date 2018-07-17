@@ -3,7 +3,8 @@ import { inject, observer } from 'mobx-react'
 import NumberFormat from 'react-number-format'
 import { FormattedMessage } from 'react-intl'
 import Decimal from 'decimal.js'
-import debounce from 'lodash.debounce'
+import EosAgent from '../../EosAgent'
+import Swal from 'sweetalert2'
 
 @inject('accountStore')
 @observer
@@ -12,8 +13,8 @@ class UndelegateSimulationView extends Component {
     super(props)
 
     this.state = {
-      toCpu: 0,
-      toNet: 0,
+      unstakeCpu: 0,
+      unstakeNet: 0,
       isValid: false
     }
   }
@@ -23,29 +24,29 @@ class UndelegateSimulationView extends Component {
 
     const isValid = this.isValid(accountStore.cpu_staked, accountStore.net_staked)
     this.setState({
-      toCpu: accountStore.cpu_staked,
-      toNet: accountStore.net_staked,
+      unstakeCpu: accountStore.cpu_staked,
+      unstakeNet: accountStore.net_staked,
       isValid
     })
   }
 
   onValueChange = name => event => {
-    let toCpu
-    let toNet
+    let unstakeCpu
+    let unstakeNet
     let isValid = false
 
     if (name === 'cpu') {
-      toCpu = event.target.value
-      toNet = this.state.toNet
+      unstakeCpu = event.target.value
+      unstakeNet = this.state.unstakeNet
     } else if (name === 'net') {
-      toCpu = this.state.toCpu
-      toNet = event.target.value
+      unstakeCpu = this.state.unstakeCpu
+      unstakeNet = event.target.value
     }
 
-    isValid = this.isValid(toCpu, toNet)
+    isValid = this.isValid(unstakeCpu, unstakeNet)
     this.setState({
-      toCpu,
-      toNet,
+      unstakeCpu,
+      unstakeNet,
       isValid
     })
   }
@@ -55,18 +56,19 @@ class UndelegateSimulationView extends Component {
     let targetCpu = nextCpu ? nextCpu : 0
     let targetNet = nextNet ? nextNet : 0
 
-    if (!accountStore || !accountStore.accountInfo || !accountStore.liquid) return false
-    const core_liquid_balance = accountStore.accountInfo.core_liquid_balance
+    if (!accountStore || !accountStore.accountInfo) return false
     const { cpu_weight, net_weight } = accountStore.accountInfo.self_delegated_bandwidth
 
-    const currentLiquidAmount = new Decimal(core_liquid_balance.split(' ')[0])
     const currentCpuAmount = new Decimal(cpu_weight.split(' ')[0])
     const currentNetAmount = new Decimal(net_weight.split(' ')[0])
 
-    const limit = currentLiquidAmount.plus(currentCpuAmount).plus(currentNetAmount)
-    const newValue = new Decimal(targetCpu).plus(targetNet)
+    const validCpu = new Decimal(targetCpu).lessThanOrEqualTo(currentCpuAmount)
+    const validNet = new Decimal(targetNet).lessThanOrEqualTo(currentNetAmount)
 
-    return newValue.lessThan(limit) ? true : false
+    console.log(currentCpuAmount)
+    console.log(currentNetAmount)
+
+    return validCpu & validNet ? true : false
   }
 
   getStakeChanges = (nextNetAmount, nextCpuAmount) => {
@@ -107,9 +109,73 @@ class UndelegateSimulationView extends Component {
     }
   }
 
-  onConfirm = () => {}
+  onConfirm = () => {
+    const { accountStore } = this.props
+    const { name } = accountStore.account
+
+    Swal({
+      title: 'Update Staked Balances',
+      text:
+        'You are about to unstake some coins, please note that all coins that were unstaked will have to be claimed in 72 hours.',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Comfirm',
+      showLoaderOnConfirm: true,
+      preConfirm: proxy => {
+        return EosAgent.undelegate(
+          this.undelegatebwParams(
+            name,
+            name,
+            new Decimal(this.state.unstakeNet),
+            new Decimal(this.state.unstakeCpu)
+          )
+        )
+          .then(async response => {
+            if (!response) {
+              throw new Error(response.statusText)
+            }
+
+            await accountStore.loadAccountInfo()
+            return response
+          })
+          .catch(error => {
+            Swal.showValidationError(`Request failed: ${error}`)
+          })
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then(result => {
+      if (result.value) {
+        Swal({
+          title: 'Success'
+          // imageUrl: result.value.avatar_url
+        })
+      }
+    })
+  }
 
   render() {
+    const { unstakeCpu, unstakeNet } = this.state
+    const { accountStore } = this.props
+    const { cpu_weight, net_weight } = accountStore.accountInfo.self_delegated_bandwidth
+
+    const targetUnstakeCpu = unstakeCpu ? unstakeCpu : 0
+    const targetUnstakeNet = unstakeNet ? unstakeNet : 0
+    const currentCpuAmount = new Decimal(cpu_weight.split(' ')[0])
+    const currentNetAmount = new Decimal(net_weight.split(' ')[0])
+    const afterUnstakeCpu = currentCpuAmount.minus(new Decimal(targetUnstakeCpu)).toNumber()
+    const afterUnstakeNet = currentNetAmount.minus(new Decimal(targetUnstakeNet)).toNumber()
+    const cpuWidth = `${(afterUnstakeCpu / cpu_weight) * 100}%`
+    console.log(cpuWidth)
+
+    const afterUnstakeCpuChartStyle = {
+      width: `${(afterUnstakeCpu / currentCpuAmount.toNumber()) * 100}%`
+    }
+
+    const afterUnstakeNetChartStyle = {
+      width: `${(afterUnstakeNet / currentNetAmount.toNumber()) * 100}%`
+    }
+
     return (
       <div>
         <div className="card">
@@ -132,7 +198,7 @@ class UndelegateSimulationView extends Component {
                     type="number"
                     className="form-control"
                     placeholder="CPU goes here..."
-                    value={this.state.toCpu}
+                    value={this.state.unstakeCpu}
                     onChange={this.onValueChange('cpu')}
                   />
                 </div>
@@ -143,7 +209,7 @@ class UndelegateSimulationView extends Component {
                     type="number"
                     className="form-control"
                     placeholder="NET goes here..."
-                    value={this.state.toNet}
+                    value={this.state.unstakeNet}
                     onChange={this.onValueChange('net')}
                   />
                 </div>
@@ -167,7 +233,7 @@ class UndelegateSimulationView extends Component {
                 <div className="card-block">
                   <div className="row">
                     <div className="col-sm-6 b-r-default p-b-30">
-                      <h2 className="f-w-400">{this.state.toCpu} EOS</h2>
+                      <h2 className="f-w-400">{afterUnstakeCpu} EOS</h2>
                       <p className="text-muted f-w-400">to CPU</p>
                       <div className="progress">
                         <div
@@ -175,12 +241,12 @@ class UndelegateSimulationView extends Component {
                           role="progressbar"
                           aria-valuemin="0"
                           aria-valuemax="100"
-                          style={{ width: '50%' }}
+                          style={afterUnstakeCpuChartStyle}
                         />
                       </div>
                     </div>
                     <div className="col-sm-6 p-b-30">
-                      <h2 className="f-w-400">{this.state.toNet} EOS</h2>
+                      <h2 className="f-w-400">{afterUnstakeNet} EOS</h2>
                       <p className="text-muted f-w-400">to NET</p>
                       <div className="progress">
                         <div
@@ -188,7 +254,7 @@ class UndelegateSimulationView extends Component {
                           role="progressbar"
                           aria-valuemin="0"
                           aria-valuemax="100"
-                          style={{ width: '50%' }}
+                          style={afterUnstakeNetChartStyle}
                         />
                       </div>
                     </div>
@@ -205,6 +271,7 @@ class UndelegateSimulationView extends Component {
                     ? 'btn btn-primary btn-block'
                     : 'btn btn-primary btn-block disabled'
                 }
+                onClick={this.onConfirm}
               >
                 <FormattedMessage id="Confirm" />
               </button>
