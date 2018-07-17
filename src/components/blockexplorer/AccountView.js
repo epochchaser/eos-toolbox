@@ -14,9 +14,46 @@ class AccountView extends Component {
   }
 
   render() {
+    const stakeEos = this.explorerStore.account.stake
+    const unstakeEos = this.explorerStore.account.unstake
+    const refundEos = this.explorerStore.account.refund
+    const totalEos = stakeEos + unstakeEos + refundEos
+    const usageEosRate = (stakeEos / totalEos) * 100
+
+    const cpuUsed = this.explorerStore.account.cpu_limit.used
+    const cpuAvailable = this.explorerStore.account.cpu_limit.available
+    const cpuMax = this.explorerStore.account.cpu_limit.max
+    const usageCpuRate = (cpuUsed / cpuMax) * 100
+
+    const netUsed = this.explorerStore.account.net_limit.used
+    const netAvailable = this.explorerStore.account.net_limit.available
+    const netMax = this.explorerStore.account.net_limit.max
+    const usageNetRate = (netUsed / netMax) * 100
+
+    const ramUsed = this.explorerStore.account.ram_usage
+    const ramMax = this.explorerStore.account.ram_quota
+    const ramAvailable = ramMax - ramUsed
+    const usageRamRate = (ramUsed / ramMax) * 100
+
+    const availableEosChartStyle = {
+      width: `${usageEosRate.toFixed(0)}%`
+    }
+
+    const availableCpuChartStyle = {
+      width: `${usageCpuRate.toFixed(0)}%`
+    }
+
+    const availableRamChartStyle = {
+      width: `${usageRamRate.toFixed(0)}%`
+    }
+
+    const availableNetChartStyle = {
+      width: `${usageNetRate.toFixed(0)}%`
+    }
+
     return (
       <div className="row">
-        <div className="col-lg-4 col-md-12">
+        <div className="col-lg-6 col-xl-4 col-md-12 m-b-30">
           <div className="card user-card">
             <div className="card-header">
               <h5>
@@ -35,7 +72,7 @@ class AccountView extends Component {
               <h6 className="f-w-600 m-t-25 m-b-10">{this.explorerStore.account.account_name}</h6>
               <p className="text-muted">
                 <FormattedMessage id="Created" />{' '}
-                {format(new Date(this.explorerStore.account.created), 'YYYY-MM-DD HH:mm:ss.sss')}
+                {format(new Date(this.explorerStore.account.created), 'YYYY-MM-DD HH:mm:ss.SSS')}
               </p>
               <hr />
               <p className="text-muted m-t-15">
@@ -87,23 +124,46 @@ class AccountView extends Component {
             </div>
           </div>
         </div>
-        <div className="col-lg-4 col-md-12">
+        <div className="col-lg-6 col-md-12 col-xl-4">
           <div className="row">
             <div className="col-md-12">
               <div className="card statustic-card">
                 <div className="card-header">
                   <h5>
-                    <FormattedMessage id="Total Staking" />
+                    <FormattedMessage id="EOS Available" />
                   </h5>
                 </div>
                 <div className="card-block text-center">
-                  <span className="d-block text-c-blue f-36">123</span>
+                  <span className="d-block text-c-pink f-36">
+                    <NumberFormat
+                      value={unstakeEos.toFixed(4)}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' EOS'}
+                    />
+                  </span>
                   <div className="progress">
-                    <div className="progress-bar bg-c-blue" />
+                    <div className="progress-bar bg-c-pink" style={availableEosChartStyle} />
                   </div>
                 </div>
-                <div className="card-footer bg-c-blue">
-                  <h6 className="text-white m-b-0">123</h6>
+                <div className="card-footer bg-c-pink">
+                  <h6 className="text-white m-b-0">
+                    <FormattedMessage id="Staked" />{' '}
+                    <NumberFormat
+                      value={stakeEos.toFixed(4)}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' EOS'}
+                    />{' '}
+                    /{' '}
+                    <NumberFormat
+                      value={totalEos.toFixed(4)}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' EOS'}
+                    />{' '}
+                    EOS ({`${usageEosRate.toFixed(2)}%`})
+                  </h6>
                 </div>
               </div>
             </div>
@@ -113,39 +173,85 @@ class AccountView extends Component {
               <div className="card statustic-card">
                 <div className="card-header">
                   <h5>
-                    <FormattedMessage id="Total Staking" />
+                    <FormattedMessage id="CPU Available" />
                   </h5>
                 </div>
                 <div className="card-block text-center">
-                  <span className="d-block text-c-blue f-36">123</span>
+                  <span className="d-block text-c-green f-36">
+                    <NumberFormat
+                      value={cpuAvailable}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' µs'}
+                    />
+                  </span>
                   <div className="progress">
-                    <div className="progress-bar bg-c-blue" />
+                    <div className="progress-bar bg-c-green" style={availableCpuChartStyle} />
                   </div>
                 </div>
-                <div className="card-footer bg-c-blue">
-                  <h6 className="text-white m-b-0">123</h6>
+                <div className="card-footer bg-c-green">
+                  <h6 className="text-white m-b-0">
+                    <FormattedMessage id="Usaged" />{' '}
+                    <NumberFormat
+                      value={cpuUsed}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' µs'}
+                    />{' '}
+                    /{' '}
+                    <NumberFormat
+                      value={cpuMax}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' µs'}
+                    />{' '}
+                    ({`${usageCpuRate.toFixed(2)}%`})
+                  </h6>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="col-lg-4 col-md-12">
+        <div className="col-lg-6 col-md-12 col-xl-4">
           <div className="row">
             <div className="col-md-12">
               <div className="card statustic-card">
                 <div className="card-header">
                   <h5>
-                    <FormattedMessage id="Total Staking" />
+                    <FormattedMessage id="RAM Available" />
                   </h5>
                 </div>
                 <div className="card-block text-center">
-                  <span className="d-block text-c-blue f-36">123</span>
+                  <span className="d-block text-c-blue f-36">
+                    <NumberFormat
+                      value={(ramAvailable / 1024).toFixed(4)}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' KB'}
+                    />
+                  </span>
                   <div className="progress">
-                    <div className="progress-bar bg-c-blue" />
+                    <div className="progress-bar bg-c-blue" style={availableRamChartStyle} />
                   </div>
                 </div>
                 <div className="card-footer bg-c-blue">
-                  <h6 className="text-white m-b-0">123</h6>
+                  <h6 className="text-white m-b-0">
+                    <FormattedMessage id="Usaged" />{' '}
+                    <NumberFormat
+                      value={(ramUsed / 1024).toFixed(4)}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' KB'}
+                    />{' '}
+                    /{' '}
+                    <NumberFormat
+                      value={(ramMax / 1024).toFixed(4)}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' KB'}
+                    />{' '}
+                    ({`${usageRamRate.toFixed(2)}%`})
+                  </h6>
                 </div>
               </div>
             </div>
@@ -155,17 +261,40 @@ class AccountView extends Component {
               <div className="card statustic-card">
                 <div className="card-header">
                   <h5>
-                    <FormattedMessage id="Total Staking" />
+                    <FormattedMessage id="NET Available" />
                   </h5>
                 </div>
                 <div className="card-block text-center">
-                  <span className="d-block text-c-blue f-36">123</span>
+                  <span className="d-block text-c-yellow f-36">
+                    <NumberFormat
+                      value={(netAvailable / 1024).toFixed(4)}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' KB'}
+                    />
+                  </span>
                   <div className="progress">
-                    <div className="progress-bar bg-c-blue" />
+                    <div className="progress-bar bg-c-yellow" style={availableNetChartStyle} />
                   </div>
                 </div>
-                <div className="card-footer bg-c-blue">
-                  <h6 className="text-white m-b-0">123</h6>
+                <div className="card-footer bg-c-yellow">
+                  <h6 className="text-white m-b-0">
+                    <FormattedMessage id="Usaged" />{' '}
+                    <NumberFormat
+                      value={(netUsed / 1024).toFixed(4)}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' KB'}
+                    />{' '}
+                    /{' '}
+                    <NumberFormat
+                      value={(netMax / 1024).toFixed(4)}
+                      displayType={'text'}
+                      thousandSeparator={true}
+                      suffix={' KB'}
+                    />{' '}
+                    ({`${usageNetRate.toFixed(2)}%`})
+                  </h6>
                 </div>
               </div>
             </div>
