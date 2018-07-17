@@ -21,8 +21,6 @@ export class AccountStore {
     accountInfo = await EosAgent.getAccountInfo()
 
     if (accountInfo) {
-      this.accountInfo = accountInfo
-      console.log(accountInfo)
       this.liquid = parseFloat(accountInfo.core_liquid_balance.split(' ')[0])
       this.cpu_max = parseFloat(accountInfo.cpu_limit.max / 10000)
       this.net_max = parseFloat(accountInfo.net_limit.max / 10000)
@@ -58,6 +56,8 @@ export class AccountStore {
       } else {
         this.eosBalance = 0.0
       }
+
+      this.accountInfo = accountInfo
     }
   }
 

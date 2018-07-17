@@ -50,4 +50,8 @@ export default {
   Liquid: '유동 자원',
   Profile: '프로필',
   Created: '생성일'
+  'Your Resource Summary': '나의 자원 상황',
+  'Simulate values you want to undelegate and click confirm.':
+    '자원을 설정하고 확인버튼을 누르세요.',
+  Confirm: '확인'
 }

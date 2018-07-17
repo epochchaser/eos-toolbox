@@ -51,4 +51,8 @@ export default {
   Liquid: 'Liquid',
   Profile: 'Profile',
   Created: 'Created'
+  'Your Resource Summary': 'Your Resource Summary',
+  'Simulate values you want to undelegate and click confirm.':
+    'Simulate values you want to undelegate and click confirm.',
+  Confirm: 'Confirm'
 }
