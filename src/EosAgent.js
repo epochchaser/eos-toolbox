@@ -139,6 +139,36 @@ class EosAgent {
     return account
   }
 
+  getAccount = async accountName => {
+    if (!this.eos) {
+      return
+    }
+
+    let account = await this.eos.getAccount({ account_name: accountName })
+
+    return account
+  }
+
+  getTransaction = async transactionId => {
+    if (!this.eos) {
+      return
+    }
+
+    let transaction = await this.eos.getTransaction({ id: transactionId })
+
+    return transaction
+  }
+
+  getKeyAccounts = async publicKey => {
+    if (!this.eos) {
+      return
+    }
+
+    let accounts = await this.eos.getKeyAccounts({ public_key: publicKey })
+
+    return accounts
+  }
+
   loginWithPrivateKey = privKey => {
     let endPoint = Values.NETWORK.protocol + '://' + Values.NETWORK.host + ':' + Values.NETWORK.port
 
