@@ -9,6 +9,7 @@ import { Provider } from 'mobx-react'
 import accountStore from './stores/accountStore'
 import commonStore from './stores/commonStore'
 import eosioStore from './stores/eosioStore'
+import explorerStore from './stores/explorerStore'
 import initLocale, { getUserLocale } from 'react-intl-locale'
 import EosAgent from './EosAgent'
 import * as Utils from './utils/Utils'
@@ -41,7 +42,8 @@ if (lang) {
 const stores = {
   accountStore,
   commonStore,
-  eosioStore
+  eosioStore,
+  explorerStore
 }
 
 document.addEventListener('scatterLoaded', scatterExtension => {
