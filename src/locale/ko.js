@@ -14,13 +14,13 @@ export default {
   'RAM Market': '램 시장',
   'GB Free': 'GB 이용 가능',
   function: '기능들',
+  'Find Transaction': '트랜잭션 찾기',
   Account: '계정',
   'Find Account': '계정 찾기',
   'Create Account': '계정 생성',
   Delegate: '위임하기',
   Undelegate: '위임 철회',
-  'Buy Ram': '램 구매',
-  'Sell Ram': '램 판매',
+  'Ram Market': '램 시장',
   Refund: '환불',
   Permissions: '권한',
   Voting: '투표',
@@ -38,5 +38,6 @@ export default {
   'BP Top 30': '블록 프로듀서 상위 30',
   'Account Name Bids Top 30': '계정명 입찰 상위 30',
   '성공!': '성공!',
-  '트랜젹신이 블록체인으로 전송되었습니다.': '트랜젹신이 블록체인으로 전송되었습니다.'
+  '트랜젹신이 블록체인으로 전송되었습니다.': '트랜젹신이 블록체인으로 전송되었습니다.',
+  'Block Explorer': '블록 익스플로러'
 }
