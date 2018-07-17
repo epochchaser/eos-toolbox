@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import MyVotecastView from '../components/voting/MyVotecastView'
+import MyVoteSummary from '../components/voting/MyVoteSummary'
 import BlockProducersView from '../components/voting/BlockProducersView'
 import '../styles/pages/Voting.scss'
 
@@ -10,6 +11,7 @@ class Voting extends Component {
         <div className="page-body">
           <div className="row">
             <div className="col-md-12 col-xl-4">
+              <MyVoteSummary/>
               <MyVotecastView />
             </div>
 

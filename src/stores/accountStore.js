@@ -4,6 +4,8 @@ import EosAgent from '../EosAgent'
 export class AccountStore {
   isLogin = false
   eosBalance = 0.0
+  totalBalance = 0.0
+  staked = 0.0
   accountInfo = null
   account = null
   myBlockProducers = null
@@ -15,6 +17,10 @@ export class AccountStore {
 
     if (accountInfo) {
       this.accountInfo = accountInfo
+      this.staked = parseFloat(accountInfo.voter_info.staked) / 10000
+      const net_weight = parseFloat(accountInfo.total_resources.net_weight.split(' ')[0])
+      const cpu_weight = parseFloat(accountInfo.total_resources.cpu_weight.split(' ')[0])
+      this.totalBalance = net_weight + cpu_weight
       const myProducers = Object.keys(accountInfo.voter_info.producers).map(k => {
         return accountInfo.voter_info.producers[k]
       })
@@ -113,6 +119,8 @@ export class AccountStore {
 decorate(AccountStore, {
   isLogin: observable,
   eosBalance: observable,
+  totalBalance: observable,
+  staked: observable,
   accountInfo: observable,
   account: observable,
   myBlockProducers: observable,

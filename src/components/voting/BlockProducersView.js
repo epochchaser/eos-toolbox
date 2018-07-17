@@ -70,7 +70,13 @@ class BlockProducersView extends Component {
                           />
                         </div>
                       </td>
-                      <td>{p.owner}</td>
+                      <td>
+                        <p className="d-inline-block m-0 ">
+                          <a href={p.url} target="_blank">
+                            {p.owner}
+                          </a>
+                        </p>
+                      </td>
                       <td>
                         <div className="progress progress-sm">
                           <div
@@ -84,7 +90,7 @@ class BlockProducersView extends Component {
                         </div>
                       </td>
                       <td>
-                        {p.isBackup ? (
+                        {index < 21 ? (
                           <label className="badge badge-primary">o</label>
                         ) : (
                           <label className="badge badge-warning">x</label>
