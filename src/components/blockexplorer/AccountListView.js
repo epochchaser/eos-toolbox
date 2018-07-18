@@ -17,16 +17,18 @@ class AccountListView extends Component {
       <Fragment>
         {this.explorerStore.accounts.account_names.map((account, index) => (
           <div className="col-md-4 col-sm-6" key={index}>
-            <div className="card user-card">
-              <div className="card-header">
-                <h5>
-                  <FormattedMessage id="Account" />
-                </h5>
+            <Link to={'/blockexplorers/' + account}>
+              <div className="card user-card">
+                <div className="card-header">
+                  <h5>
+                    <FormattedMessage id="Account" />
+                  </h5>
+                </div>
+                <div className="card-block">
+                  <h4>{account}</h4>
+                </div>
               </div>
-              <div className="card-block">
-                <h4>{account}</h4>
-              </div>
-            </div>
+            </Link>
           </div>
         ))}
       </Fragment>
