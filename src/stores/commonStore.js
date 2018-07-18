@@ -2,7 +2,7 @@ import { decorate, observable, action } from 'mobx'
 import ApiAgent from '../ApiAgent'
 
 export class CommonStore {
-  isLoading = false
+  isLoading = true
   _initilizedScatter = false
   _initilizedEos = false
   coinMarketCap = null
