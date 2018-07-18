@@ -25,20 +25,32 @@ class AccountView extends Component {
     const totalEos = stakeEos + unstakeEos + refundEos
     const usageEosRate = (stakeEos / totalEos) * 100
 
-    const cpuUsed = this.explorerStore.account.cpu_limit.used
-    const cpuAvailable = this.explorerStore.account.cpu_limit.available
-    const cpuMax = this.explorerStore.account.cpu_limit.max
-    const usageCpuRate = (cpuUsed / cpuMax) * 100
+    const cpuUsed =
+      this.explorerStore.account.cpu_limit.used > 0 ? this.explorerStore.account.cpu_limit.used : 0
+    const cpuAvailable =
+      this.explorerStore.account.cpu_limit.available > 0
+        ? this.explorerStore.account.cpu_limit.available
+        : 0
+    const cpuMax =
+      this.explorerStore.account.cpu_limit.max > 0 ? this.explorerStore.account.cpu_limit.max : 0
+    const usageCpuRate = cpuMax > 0 ? (cpuUsed / cpuMax) * 100 : 0
 
-    const netUsed = this.explorerStore.account.net_limit.used
-    const netAvailable = this.explorerStore.account.net_limit.available
-    const netMax = this.explorerStore.account.net_limit.max
-    const usageNetRate = (netUsed / netMax) * 100
+    const netUsed =
+      this.explorerStore.account.net_limit.used > 0 ? this.explorerStore.account.net_limit.used : 0
+    const netAvailable =
+      this.explorerStore.account.net_limit.available > 0
+        ? this.explorerStore.account.net_limit.available
+        : 0
+    const netMax =
+      this.explorerStore.account.net_limit.max > 0 ? this.explorerStore.account.net_limit.max : 0
+    const usageNetRate = netMax > 0 ? (netUsed / netMax) * 100 : 0
 
-    const ramUsed = this.explorerStore.account.ram_usage
-    const ramMax = this.explorerStore.account.ram_quota
+    const ramUsed =
+      this.explorerStore.account.ram_usage > 0 ? this.explorerStore.account.ram_usage : 0
+    const ramMax =
+      this.explorerStore.account.ram_quota > 0 ? this.explorerStore.account.ram_quota : 0
     const ramAvailable = ramMax - ramUsed
-    const usageRamRate = (ramUsed / ramMax) * 100
+    const usageRamRate = ramMax > 0 ? (ramUsed / ramMax) * 100 : 0
 
     const availableEosChartStyle = {
       width: `${usageEosRate.toFixed(0)}%`

@@ -34,11 +34,15 @@ export class ExplorerStore {
         let acc = await EosAgent.getAccount(query)
         if (acc) {
           this.account = acc
-          const balance = this.account.devmasmehshs
+          const balance = this.account.core_liquid_balance
             ? Number(this.account.core_liquid_balance.replace('EOS', ''))
             : 0.0
-          const cpu = Number(this.account.total_resources.cpu_weight.replace('EOS', ''))
-          const net = Number(this.account.total_resources.net_weight.replace('EOS', ''))
+          const cpu = this.account.total_resources
+            ? Number(this.account.total_resources.cpu_weight.replace('EOS', ''))
+            : 0.0
+          const net = this.account.total_resources
+            ? Number(this.account.total_resources.net_weight.replace('EOS', ''))
+            : 0.0
           const refundCpu = this.account.refund_request
             ? Number(this.account.refund_request.cpu_amount.replace('EOS', ''))
             : 0.0
