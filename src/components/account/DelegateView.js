@@ -18,7 +18,41 @@ class DelegateView extends Component {
     }
   }
 
-  onValueChange = name => event => {}
+  componentDidMount = () => {
+    this.loadInitialSeed()
+  }
+
+  loadInitialSeed = () => {
+    const { accountStore } = this.props
+
+    const isValid = this.isValid(accountStore.cpu_staked, accountStore.net_staked)
+    this.setState({
+      stakeCpu: accountStore.cpu_staked,
+      stakeNet: accountStore.net_staked,
+      isValid
+    })
+  }
+
+  onValueChange = name => event => {
+    let stakeCpu
+    let stakeNet
+    let isValid = false
+
+    if (name === 'cpu') {
+      stakeCpu = event.target.value
+      stakeNet = this.state.stakeNet
+    } else if (name === 'net') {
+      stakeCpu = this.state.stakeCpu
+      stakeNet = event.target.value
+    }
+
+    isValid = this.isValid(stakeCpu, stakeNet)
+    this.setState({
+      stakeCpu,
+      stakeNet,
+      isValid
+    })
+  }
 
   isValid = (nextCpu, nextNet) => {
     const { accountStore } = this.props
@@ -27,13 +61,10 @@ class DelegateView extends Component {
 
     if (!accountStore || !accountStore.accountInfo || !accountStore.liquid) return false
     const core_liquid_balance = accountStore.accountInfo.core_liquid_balance
-    const { cpu_weight, net_weight } = accountStore.accountInfo.self_delegated_bandwidth
+    const unstaked = new Decimal(accountStore.totalBalance - accountStore.staked)
 
     const currentLiquidAmount = new Decimal(core_liquid_balance.split(' ')[0])
-    const currentCpuAmount = new Decimal(cpu_weight.split(' ')[0])
-    const currentNetAmount = new Decimal(net_weight.split(' ')[0])
-
-    const limit = currentLiquidAmount.plus(currentCpuAmount).plus(currentNetAmount)
+    const limit = unstaked.plus(currentLiquidAmount)
     const newValue = new Decimal(targetCpu).plus(targetNet)
 
     return newValue.lessThan(limit) ? true : false
@@ -93,8 +124,8 @@ class DelegateView extends Component {
           this.delegatebwParams(
             name,
             name,
-            new Decimal(this.state.unstakeNet),
-            new Decimal(this.state.unstakeCpu)
+            new Decimal(this.state.stakeNet),
+            new Decimal(this.state.stakeCpu)
           )
         )
           .then(async response => {
@@ -103,6 +134,7 @@ class DelegateView extends Component {
             }
 
             await accountStore.loadAccountInfo()
+            this.loadInitialSeed()
             return response
           })
           .catch(error => {
@@ -123,24 +155,21 @@ class DelegateView extends Component {
   render() {
     const { stakeCpu, stakeNet } = this.state
     const { accountStore } = this.props
-    const { cpu_weight, net_weight } = accountStore.accountInfo.self_delegated_bandwidth
 
-    const unstaked = accountStore.totalBalance - accountStore.staked
-    const liquid = accountStore.liquid
-    console.log(liquid)
-    const targetStakeCpu = stakeCpu ? stakeCpu : 0
-    const targetStakeNet = stakeNet ? stakeNet : 0
-    const currentCpuAmount = new Decimal(cpu_weight.split(' ')[0])
-    const currentNetAmount = new Decimal(net_weight.split(' ')[0])
-    const afterStakeCpu = currentCpuAmount.minus(new Decimal(targetStakeCpu)).toNumber()
-    const afterStakeNet = currentNetAmount.minus(new Decimal(targetStakeNet)).toNumber()
+    const core_liquid_balance = accountStore.accountInfo.core_liquid_balance
+    const currentLiquidAmount = new Decimal(core_liquid_balance.split(' ')[0])
+    const unstaked = new Decimal(accountStore.totalBalance - accountStore.staked)
+    const limit = unstaked.plus(currentLiquidAmount).toNumber()
+
+    const afterStakeCpu = Number(stakeCpu)
+    const afterStakeNet = Number(stakeNet)
 
     const afterUnstakeCpuChartStyle = {
-      width: '10%'
+      width: `${(afterStakeCpu / limit) * 100}%`
     }
 
     const afterUnstakeNetChartStyle = {
-      width: '10%'
+      width: `${(afterStakeNet / limit) * 100}%`
     }
 
     return (
@@ -165,7 +194,7 @@ class DelegateView extends Component {
                     type="number"
                     className="form-control"
                     placeholder="CPU goes here..."
-                    value={this.state.unstakeCpu}
+                    value={this.state.stakeCpu}
                     onChange={this.onValueChange('cpu')}
                   />
                 </div>
@@ -176,7 +205,7 @@ class DelegateView extends Component {
                     type="number"
                     className="form-control"
                     placeholder="NET goes here..."
-                    value={this.state.unstakeNet}
+                    value={this.state.stakeNet}
                     onChange={this.onValueChange('net')}
                   />
                 </div>
@@ -201,7 +230,7 @@ class DelegateView extends Component {
                   <div className="row">
                     <div className="col-sm-6 b-r-default p-b-30">
                       <h2 className="f-w-400">{afterStakeCpu} EOS</h2>
-                      <p className="text-muted f-w-400">to CPU</p>
+                      <p className="text-muted f-w-400">Staked after update CPU</p>
                       <div className="progress">
                         <div
                           className="progress-bar bg-c-yellow"
@@ -214,7 +243,7 @@ class DelegateView extends Component {
                     </div>
                     <div className="col-sm-6 p-b-30">
                       <h2 className="f-w-400">{afterStakeNet} EOS</h2>
-                      <p className="text-muted f-w-400">to NET</p>
+                      <p className="text-muted f-w-400">Staked after update NET</p>
                       <div className="progress">
                         <div
                           className="progress-bar bg-c-green "
@@ -233,11 +262,10 @@ class DelegateView extends Component {
 
             <div className="form-group">
               <button
-                disabled={true}
                 className={
                   this.state.isValid
                     ? 'btn btn-primary btn-block'
-                    : 'btn btn-primary btn-block disabled'
+                    : 'btn btn-primary btn-block diabled'
                 }
                 onClick={this.onConfirm}
               >
