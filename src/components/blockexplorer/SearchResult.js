@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import { FormattedMessage } from 'react-intl'
 import AccountView from './AccountView'
+import AccountListView from './AccountListView'
 import TransactionView from './TransactionView'
 
 @inject('explorerStore')
@@ -29,9 +30,9 @@ class SearchResult extends Component {
                       <div className="search-content">
                         <div className="card-block m-t-40 col-sm-12">
                           {!this.explorerStore.isLoading &&
-                          !this.explorerStore.account &&
-                          !this.explorerStore.accounts &&
-                          !this.explorerStore.transaction && (
+                          (!this.explorerStore.account &&
+                            !this.explorerStore.accounts &&
+                            !this.explorerStore.transaction) && (
                               <p className="card-text text-muted text-center">
                                 <FormattedMessage id="No Seasrch Results" />
                               </p>
@@ -54,6 +55,7 @@ class SearchResult extends Component {
           )}
         {!this.explorerStore.isLoading && this.explorerStore.account && <AccountView />}
         {!this.explorerStore.isLoading && this.explorerStore.transaction && <TransactionView />}
+        {!this.explorerStore.isLoading && this.explorerStore.accounts && <AccountListView />}
       </Fragment>
     )
   }

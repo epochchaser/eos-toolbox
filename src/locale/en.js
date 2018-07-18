@@ -80,5 +80,6 @@ export default {
   CPU: 'CPU',
   NET: 'NET',
   'Block Time': 'Block Time',
-  'Expiration Time': 'Expiration Time'
+  'Expiration Time': 'Expiration Time',
+  Account: 'Account'
 }
