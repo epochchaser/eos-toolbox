@@ -59,7 +59,16 @@ document.addEventListener('scatterLoaded', scatterExtension => {
       accountStore.loadAccountInfo()
     }
   }
+
+  commonStore.setLoading(false)
 })
+
+setTimeout(() => {
+  if (!commonStore._initilizedScatter) {
+    commonStore.setLoading(false)
+    commonStore.initEos(true)
+  }
+}, 1000)
 
 ReactDOM.render(
   <Provider {...stores}>
