@@ -10,8 +10,25 @@ class SearchView extends Component {
     let { explorerStore } = this.props
     this.explorerStore = explorerStore
     this.state = {
-      query: ''
+      query: this.props.query,
+      pathname: this.props.pathname
     }
+
+    this.props.history.listen((location, action) => {
+      if (location.pathname !== this.state.pathname) {
+        const query = location.pathname.replace('/blockexplorers/', '')
+        this.setState({
+          query: query,
+          pathname: location.pathname
+        })
+
+        this.explorerStore.search(query)
+      }
+    })
+  }
+
+  componentDidMount = () => {
+    this.explorerStore.search(this.state.query)
   }
 
   onQueryChange = e => {
