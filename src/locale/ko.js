@@ -66,7 +66,16 @@ export default {
   ID: '번호',
   TYPE: '종류',
   DATA: '데이터',
-  TRANSACTION: '거래',
+  'TRANSACTION ID': '거래 ID',
   DATE: '날짜',
-  'Simulate values you want to delegate and click confirm.': '자원을 설정하고 확인버튼을 누르세요.'
+  ACTOR: '행위자',
+  RECEIVER: '수신자',
+  'Simulate values you want to delegate and click confirm.': '자원을 설정하고 확인버튼을 누르세요.',
+  Transaction: '거래',
+  Block: '블록',
+  Status: '상태',
+  CPU: 'CPU',
+  NET: 'NET',
+  'Block Time': '생성 시간',
+  'Expiration Time': '만료 시간'
 }

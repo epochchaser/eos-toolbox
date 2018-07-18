@@ -17,6 +17,7 @@ class Routes extends Component {
         <Route exact path="/account/delegate" component={Delegate} />
         <Route exact path="/account/undelegate" component={Undelegate} />
         <Route exact path="/blockexplorers" component={BlockExplorer} />
+        <Route exact path="/blockexplorers/:query" component={BlockExplorer} />
         <Route exact path="/voting/voting" component={Voting} />
       </Switch>
     )

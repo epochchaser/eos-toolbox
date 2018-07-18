@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
+import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format'
 import { FormattedMessage } from 'react-intl'
 import { format } from 'date-fns'
@@ -90,7 +91,7 @@ class AccountView extends Component {
               </p>
               <div
                 className="bg-c-blue counter-block m-t-10 p-15"
-                style={{ height: '68px;', paddingBottom: '10px' }}
+                style={{ height: '68px', paddingBottom: '10px' }}
               >
                 <div className="row">
                   <div className="col-4">
@@ -337,10 +338,10 @@ class AccountView extends Component {
                             <FormattedMessage id="TYPE" />
                           </th>
                           <th>
-                            <FormattedMessage id="MESSAGE" />
+                            <FormattedMessage id="DATA" />
                           </th>
                           <th>
-                            <FormattedMessage id="TRANSACTION" />
+                            <FormattedMessage id="TRANSACTION ID" />
                           </th>
                           <th>
                             <FormattedMessage id="DATE" />
@@ -375,7 +376,7 @@ class AccountView extends Component {
                             <FormattedMessage id="DATA" />
                           </th>
                           <th style={{ width: '34%' }}>
-                            <FormattedMessage id="TRANSACTION" />
+                            <FormattedMessage id="TRANSACTION ID" />
                           </th>
                           <th style={{ width: '10%' }}>
                             <FormattedMessage id="DATE" />
@@ -390,7 +391,11 @@ class AccountView extends Component {
                             <td style={{ whiteSpace: 'normal' }}>
                               {JSON.stringify(action.action_trace.act.data)}
                             </td>
-                            <td style={{ whiteSpace: 'normal' }}>{action.action_trace.trx_id}</td>
+                            <td style={{ whiteSpace: 'normal' }}>
+                              <Link to={'/blockexplorers/' + action.action_trace.trx_id}>
+                                <span className="text-c-blue">{action.action_trace.trx_id}</span>
+                              </Link>
+                            </td>
                             <td style={{ whiteSpace: 'normal' }}>
                               {format(new Date(action.block_time), 'YYYY-MM-DD HH:mm:ss.SSS')}
                             </td>

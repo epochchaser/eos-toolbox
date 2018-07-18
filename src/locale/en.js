@@ -68,8 +68,17 @@ export default {
   ID: 'ID',
   TYPE: 'TYPE',
   DATA: 'DATA',
-  TRANSACTION: 'TRANSACTION',
+  'TRANSACTION ID': 'TRANSACTION ID',
   DATE: 'DATE',
+  ACTOR: 'ACTOR',
+  RECEIVER: 'RECEIVER',
   'Simulate values you want to delegate and click confirm.':
-    'Simulate values you want to delegate and click confirm.'
+    'Simulate values you want to delegate and click confirm.',
+  Transaction: 'Transaction',
+  Block: 'Block',
+  Status: 'Status',
+  CPU: 'CPU',
+  NET: 'NET',
+  'Block Time': 'Block Time',
+  'Expiration Time': 'Expiration Time'
 }
