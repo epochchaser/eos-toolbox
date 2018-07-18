@@ -4,9 +4,6 @@ import SearchResult from '../components/blockexplorer/SearchResult'
 import SearchView from '../components/blockexplorer/SearchView'
 
 class BlockExplorer extends Component {
-  constructor(props) {
-    super(props)
-  }
   render() {
     return (
       <Fragment>
