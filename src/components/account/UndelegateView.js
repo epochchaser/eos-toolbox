@@ -20,6 +20,10 @@ class UndelegateView extends Component {
   }
 
   componentDidMount = () => {
+    this.loadInitialSeed()
+  }
+
+  loadInitialSeed = () => {
     const { accountStore } = this.props
 
     const isValid = this.isValid(accountStore.cpu_staked, accountStore.net_staked)
@@ -134,6 +138,7 @@ class UndelegateView extends Component {
             }
 
             await accountStore.loadAccountInfo()
+            this.loadInitialSeed()
             return response
           })
           .catch(error => {
@@ -229,7 +234,7 @@ class UndelegateView extends Component {
                   <div className="row">
                     <div className="col-sm-6 b-r-default p-b-30">
                       <h2 className="f-w-400">{afterUnstakeCpu} EOS</h2>
-                      <p className="text-muted f-w-400">to CPU</p>
+                      <p className="text-muted f-w-400">Staked after update CPU</p>
                       <div className="progress">
                         <div
                           className="progress-bar bg-c-yellow"
@@ -242,7 +247,7 @@ class UndelegateView extends Component {
                     </div>
                     <div className="col-sm-6 p-b-30">
                       <h2 className="f-w-400">{afterUnstakeNet} EOS</h2>
-                      <p className="text-muted f-w-400">to NET</p>
+                      <p className="text-muted f-w-400">Staked after update NET</p>
                       <div className="progress">
                         <div
                           className="progress-bar bg-c-green "
