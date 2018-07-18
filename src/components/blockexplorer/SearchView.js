@@ -13,7 +13,6 @@ class SearchView extends Component {
     this.state = {
       query: this.props.query ? this.props.query : '',
       pathname: this.props.pathname,
-      redirection: false,
       redirectionPath: ''
     }
 
@@ -22,7 +21,8 @@ class SearchView extends Component {
         const query = location.pathname.replace('/blockexplorers/', '')
         this.setState({
           query: query,
-          pathname: location.pathname
+          pathname: location.pathname,
+          redirectionPath: ''
         })
 
         this.explorerStore.search(query)
@@ -54,17 +54,12 @@ class SearchView extends Component {
 
   goToSearch = () => {
     this.setState({
-      redirectionPath: '/blockexplorers/' + this.state.query,
-      redirection: true
+      redirectionPath: '/blockexplorers/' + this.state.query
     })
   }
 
   render() {
-    if (this.state.redirection) {
-      // todo - 위치이동
-      this.setState({
-        redirection: false
-      })
+    if (this.state.redirectionPath && this.state.redirectionPath !== this.state.pathname) {
       return <Redirect push to={this.state.redirectionPath} />
     }
 
