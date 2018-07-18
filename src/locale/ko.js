@@ -77,5 +77,6 @@ export default {
   CPU: 'CPU',
   NET: 'NET',
   'Block Time': '생성 시간',
-  'Expiration Time': '만료 시간'
+  'Expiration Time': '만료 시간',
+  Account: '계정'
 }
