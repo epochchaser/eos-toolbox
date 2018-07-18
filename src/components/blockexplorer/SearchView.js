@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
+import { Redirect } from 'react-router'
 import { FormattedMessage } from 'react-intl'
 
 @inject('explorerStore')
@@ -10,8 +11,10 @@ class SearchView extends Component {
     let { explorerStore } = this.props
     this.explorerStore = explorerStore
     this.state = {
-      query: this.props.query,
-      pathname: this.props.pathname
+      query: this.props.query ? this.props.query : '',
+      pathname: this.props.pathname,
+      redirection: false,
+      redirectionPath: ''
     }
 
     this.props.history.listen((location, action) => {
@@ -39,15 +42,32 @@ class SearchView extends Component {
 
   handleKeyPress = e => {
     if (e.key === 'Enter') {
-      this.explorerStore.search(this.state.query)
+      this.goToSearch()
+      //this.explorerStore.search(this.state.query)
     }
   }
 
   onSearchClick = e => {
-    this.explorerStore.search(this.state.query)
+    this.goToSearch()
+    //this.explorerStore.search(this.state.query)
+  }
+
+  goToSearch = () => {
+    this.setState({
+      redirectionPath: '/blockexplorers/' + this.state.query,
+      redirection: true
+    })
   }
 
   render() {
+    if (this.state.redirection) {
+      // todo - 위치이동
+      this.setState({
+        redirection: false
+      })
+      return <Redirect push to={this.state.redirectionPath} />
+    }
+
     return (
       <div className="col-sm-12">
         <div className="card">
