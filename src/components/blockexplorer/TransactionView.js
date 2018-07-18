@@ -17,55 +17,53 @@ class TransactionView extends Component {
   render() {
     return (
       <Fragment>
-        <div class="col-sm-12">
-          <div class="card">
-            <div class="card-header" style={{ paddingBottom: '0px' }}>
-              <div class="card-header-left">
+        <div className="col-sm-12">
+          <div className="card">
+            <div className="card-header" style={{ paddingBottom: '0px' }}>
+              <div className="card-header-left">
                 <h5>
                   <FormattedMessage id="Transaction" />
                 </h5>
               </div>
-              <div class="card-header-right" style={{ display: 'none' }}>
-                <ul class="list-unstyled card-option">
+              <div className="card-header-right" style={{ display: 'none' }}>
+                <ul className="list-unstyled card-option">
                   <li>
-                    <i class="icofont icofont-simple-left " />
+                    <i className="icofont icofont-simple-left " />
                   </li>
                   <li>
-                    <i class="icofont icofont-maximize full-card" />
+                    <i className="icofont icofont-maximize full-card" />
                   </li>
                   <li>
-                    <i class="icofont icofont-minus minimize-card" />
+                    <i className="icofont icofont-minus minimize-card" />
                   </li>
                   <li>
-                    <i class="icofont icofont-refresh reload-card" />
+                    <i className="icofont icofont-refresh reload-card" />
                   </li>
                   <li>
-                    <i class="icofont icofont-error close-card" />
+                    <i className="icofont icofont-error close-card" />
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="card-block p-0">
+            <div className="card-block p-0">
               <div
-                class="card-block-big revenue-report"
+                className="card-block-big revenue-report"
                 style={{ paddingTop: '0px', paddingLeft: '15px' }}
               >
-                <div class="row m-t-10 b-b-default m-l-10">
-                  <div class="col-sm-12">
-                    <h3 class="f-w-400">
-                      <h6 class="text-muted d-inline-block">ID</h6>
-                      <h6 class="d-inline-block m-l-20 f-w-400">
-                        {this.explorerStore.transaction.id}
-                      </h6>
-                    </h3>
+                <div className="row m-t-10 b-b-default m-l-10">
+                  <div className="col-sm-12">
+                    <h6 className="text-muted d-inline-block">ID</h6>
+                    <h6 className="d-inline-block m-l-20 f-w-400">
+                      {this.explorerStore.transaction.id}
+                    </h6>
                   </div>
                 </div>
-                <div class="row m-l-5 m-t-30 m-b-15">
-                  <div class="col-sm-12 col-md-6">
-                    <h5 class="text-muted d-inline-block">
+                <div className="row m-l-5 m-t-30 m-b-15">
+                  <div className="col-sm-12 col-md-6">
+                    <h5 className="text-muted d-inline-block">
                       <FormattedMessage id="Block" /> :
                     </h5>
-                    <h5 class="d-inline-block m-l-10 f-w-400">
+                    <h5 className="d-inline-block m-l-10 f-w-400">
                       <NumberFormat
                         value={this.explorerStore.transaction.block_num}
                         displayType={'text'}
@@ -73,21 +71,21 @@ class TransactionView extends Component {
                       />
                     </h5>
                   </div>
-                  <div class="col-sm-12 col-md-6">
-                    <h5 class="text-muted d-inline-block">
+                  <div className="col-sm-12 col-md-6">
+                    <h5 className="text-muted d-inline-block">
                       <FormattedMessage id="Status" /> :
                     </h5>
-                    <h5 class="d-inline-block m-l-10 f-w-400">
+                    <h5 className="d-inline-block m-l-10 f-w-400">
                       {this.explorerStore.transaction.trx.receipt.status}
                     </h5>
                   </div>
                 </div>
-                <div class="row m-l-5 m-t-10 m-b-15">
-                  <div class="col-sm-12 col-md-6">
-                    <h5 class="text-muted d-inline-block">
+                <div className="row m-l-5 m-t-10 m-b-15">
+                  <div className="col-sm-12 col-md-6">
+                    <h5 className="text-muted d-inline-block">
                       <FormattedMessage id="CPU" /> :
                     </h5>
-                    <h5 class="d-inline-block m-l-10 f-w-400">
+                    <h5 className="d-inline-block m-l-10 f-w-400">
                       <NumberFormat
                         value={this.explorerStore.transaction.trx.receipt.cpu_usage_us}
                         displayType={'text'}
@@ -96,11 +94,11 @@ class TransactionView extends Component {
                       />
                     </h5>
                   </div>
-                  <div class="col-sm-12 col-md-6">
-                    <h5 class="text-muted d-inline-block">
+                  <div className="col-sm-12 col-md-6">
+                    <h5 className="text-muted d-inline-block">
                       <FormattedMessage id="NET" /> :
                     </h5>
-                    <h5 class="d-inline-block m-l-10 f-w-400">
+                    <h5 className="d-inline-block m-l-10 f-w-400">
                       <NumberFormat
                         value={this.explorerStore.transaction.trx.receipt.net_usage_words}
                         displayType={'text'}
@@ -110,23 +108,23 @@ class TransactionView extends Component {
                     </h5>
                   </div>
                 </div>
-                <div class="row m-l-5 m-t-10 m-b-15">
-                  <div class="col-sm-12 col-md-6">
-                    <h5 class="text-muted d-inline-block">
+                <div className="row m-l-5 m-t-10 m-b-15">
+                  <div className="col-sm-12 col-md-6">
+                    <h5 className="text-muted d-inline-block">
                       <FormattedMessage id="Block Time" /> :
                     </h5>
-                    <h5 class="d-inline-block m-l-10 f-w-400">
+                    <h5 className="d-inline-block m-l-10 f-w-400">
                       {format(
                         new Date(this.explorerStore.transaction.block_time),
                         'YYYY-MM-DD HH:mm:ss.SSS'
                       )}
                     </h5>
                   </div>
-                  <div class="col-sm-12 col-md-6">
-                    <h5 class="text-muted d-inline-block">
+                  <div className="col-sm-12 col-md-6">
+                    <h5 className="text-muted d-inline-block">
                       <FormattedMessage id="Expiration Time" /> :
                     </h5>
-                    <h5 class="d-inline-block m-l-10 f-w-400">
+                    <h5 className="d-inline-block m-l-10 f-w-400">
                       {this.explorerStore.transaction.trx &&
                       this.explorerStore.transaction.trx.trx &&
                       this.explorerStore.transaction.trx.trx.expiration
