@@ -102,12 +102,10 @@ class TransactionView extends Component {
                     </h5>
                     <h5 class="d-inline-block m-l-10 f-w-400">
                       <NumberFormat
-                        value={(
-                          this.explorerStore.transaction.trx.receipt.net_usage_words / 1024
-                        ).toFixed(4)}
+                        value={this.explorerStore.transaction.trx.receipt.net_usage_words}
                         displayType={'text'}
                         thousandSeparator={true}
-                        suffix={' KB'}
+                        suffix={' words'}
                       />
                     </h5>
                   </div>
