@@ -127,10 +127,14 @@ class TransactionView extends Component {
                       <FormattedMessage id="Expiration Time" /> :
                     </h5>
                     <h5 class="d-inline-block m-l-10 f-w-400">
-                      {format(
-                        new Date(this.explorerStore.transaction.trx.trx.expiration),
-                        'YYYY-MM-DD HH:mm:ss.SSS'
-                      )}
+                      {this.explorerStore.transaction.trx &&
+                      this.explorerStore.transaction.trx.trx &&
+                      this.explorerStore.transaction.trx.trx.expiration
+                        ? format(
+                          new Date(this.explorerStore.transaction.trx.trx.expiration),
+                          'YYYY-MM-DD HH:mm:ss.SSS'
+                        )
+                        : '-'}
                     </h5>
                   </div>
                 </div>
