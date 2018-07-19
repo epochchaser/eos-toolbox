@@ -80,7 +80,6 @@ export default {
   NET: 'NET',
   'Block Time': 'Block Time',
   'Expiration Time': 'Expiration Time',
-  Account: 'Account',
   'Block Producer': 'Block Producer',
   'Block ID': 'Block ID',
   'Transaction Merkle Root': 'Transaction Merkle Root',
@@ -91,5 +90,7 @@ export default {
   ACTIONS: 'ACTIONS',
   EXPIRATION: 'EXPIRATION',
   'No Transactions': 'No Transactions',
-  'No Actions': 'No Actions'
+  'No Actions': 'No Actions',
+  'How many amount do you want to delegate?': 'How many amount do you want to delegate?',
+  'How many amount do you want to undelegate?': 'How many amount do you want to undelegate?'
 }

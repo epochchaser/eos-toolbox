@@ -13,6 +13,8 @@ class UndelegateView extends Component {
     super(props)
 
     this.state = {
+      originStakeCpu: 0,
+      originStakeNet: 0,
       unstakeCpu: 0,
       unstakeNet: 0,
       isValid: false
@@ -26,11 +28,12 @@ class UndelegateView extends Component {
   loadInitialSeed = () => {
     const { accountStore } = this.props
 
-    const isValid = this.isValid(accountStore.cpu_staked, accountStore.net_staked)
     this.setState({
-      unstakeCpu: accountStore.cpu_staked,
-      unstakeNet: accountStore.net_staked,
-      isValid
+      originStakeCpu: accountStore.cpu_staked,
+      originStakeNet: accountStore.net_staked,
+      unstakeCpu: 0,
+      unstakeNet: 0,
+      isValid: true
     })
   }
 
@@ -56,19 +59,20 @@ class UndelegateView extends Component {
   }
 
   isValid = (nextCpu, nextNet) => {
-    const { accountStore } = this.props
+    if (0 > nextCpu || 0 > nextNet) return false
+
+    const { originStakeCpu, originStakeNet } = this.state
     let targetCpu = nextCpu ? nextCpu : 0
     let targetNet = nextNet ? nextNet : 0
 
-    if (!accountStore || !accountStore.accountInfo) return false
-    const { cpu_weight, net_weight } = accountStore.accountInfo.self_delegated_bandwidth
+    console.log(originStakeCpu)
+    console.log(originStakeNet)
 
-    const currentCpuAmount = new Decimal(cpu_weight.split(' ')[0])
-    const currentNetAmount = new Decimal(net_weight.split(' ')[0])
+    const validCpu = new Decimal(targetCpu).lessThanOrEqualTo(originStakeCpu)
+    const validNet = new Decimal(targetNet).lessThanOrEqualTo(originStakeNet)
 
-    const validCpu = new Decimal(targetCpu).lessThanOrEqualTo(currentCpuAmount)
-    const validNet = new Decimal(targetNet).lessThanOrEqualTo(currentNetAmount)
-
+    // console.log(`cpu : ${validCpu}`)
+    // console.log(`net : ${validNet}`)
     return validCpu & validNet ? true : false
   }
 
@@ -187,7 +191,7 @@ class UndelegateView extends Component {
                   <FormattedMessage id="Undelegate" />
                 </h5>
                 <p className="text-muted text-center m-t-20">
-                  <FormattedMessage id="Simulate values you want to undelegate and click confirm." />
+                  <FormattedMessage id="How many amount do you want to undelegate?" />
                 </p>
               </div>
             </div>
@@ -234,11 +238,11 @@ class UndelegateView extends Component {
                 <div className="card-block">
                   <div className="row">
                     <div className="col-sm-6 b-r-default p-b-30">
-                      <h2 className="f-w-400">{afterUnstakeCpu} EOS</h2>
-                      <p className="text-muted f-w-400">Staked after update CPU</p>
+                      <h2 className="f-w-400">{`${afterUnstakeCpu} EOS`}</h2>
+                      <p className="text-muted f-w-400">Staked after update for CPU</p>
                       <div className="progress">
                         <div
-                          className="progress-bar bg-c-yellow"
+                          className="progress-bar bg-warning"
                           role="progressbar"
                           aria-valuemin="0"
                           aria-valuemax="100"
@@ -247,8 +251,8 @@ class UndelegateView extends Component {
                       </div>
                     </div>
                     <div className="col-sm-6 p-b-30">
-                      <h2 className="f-w-400">{afterUnstakeNet} EOS</h2>
-                      <p className="text-muted f-w-400">Staked after update NET</p>
+                      <h2 className="f-w-400">{`${afterUnstakeNet} EOS`}</h2>
+                      <p className="text-muted f-w-400">Staked after update for NET</p>
                       <div className="progress">
                         <div
                           className="progress-bar bg-c-green "
@@ -267,8 +271,11 @@ class UndelegateView extends Component {
 
             <div className="form-group">
               <button
-                disabled={this.state.isValid}
-                className="btn btn-primary btn-block"
+                className={
+                  this.state.isValid
+                    ? 'btn btn-primary btn-block'
+                    : 'btn btn-primary btn-block diabled'
+                }
                 onClick={this.onConfirm}
               >
                 <FormattedMessage id="Confirm" />

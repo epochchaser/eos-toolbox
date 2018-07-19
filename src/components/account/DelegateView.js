@@ -12,6 +12,8 @@ class DelegateView extends Component {
     super(props)
 
     this.state = {
+      originStakeCpu: 0,
+      originStakeNet: 0,
       stakeCpu: 0,
       stakeNet: 0,
       isValid: false
@@ -25,11 +27,12 @@ class DelegateView extends Component {
   loadInitialSeed = () => {
     const { accountStore } = this.props
 
-    const isValid = this.isValid(accountStore.cpu_staked, accountStore.net_staked)
     this.setState({
-      stakeCpu: accountStore.cpu_staked,
-      stakeNet: accountStore.net_staked,
-      isValid
+      originStakeCpu: accountStore.cpu_staked,
+      originStakeNet: accountStore.net_staked,
+      stakeCpu: 0,
+      stakeNet: 0,
+      isValid: true
     })
   }
 
@@ -55,6 +58,7 @@ class DelegateView extends Component {
   }
 
   isValid = (nextCpu, nextNet) => {
+    if (0 > nextCpu || 0 > nextNet) return false
     const { accountStore } = this.props
     let targetCpu = nextCpu ? nextCpu : 0
     let targetNet = nextNet ? nextNet : 0
@@ -113,7 +117,8 @@ class DelegateView extends Component {
 
     Swal({
       title: 'Update Staked Balances',
-      text: '',
+      text:
+        'You are about to stake some coins, please note that all coins that were staked will have to be claimed in 72 hours.',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -135,6 +140,7 @@ class DelegateView extends Component {
 
             await accountStore.loadAccountInfo()
             this.loadInitialSeed()
+
             return response
           })
           .catch(error => {
@@ -153,7 +159,7 @@ class DelegateView extends Component {
   }
 
   render() {
-    const { stakeCpu, stakeNet } = this.state
+    const { stakeCpu, stakeNet, originStakeCpu, originStakeNet } = this.state
     const { accountStore } = this.props
 
     const core_liquid_balance = accountStore.accountInfo.core_liquid_balance
@@ -161,8 +167,8 @@ class DelegateView extends Component {
     const unstaked = new Decimal(accountStore.totalBalance - accountStore.staked)
     const limit = unstaked.plus(currentLiquidAmount).toNumber()
 
-    const afterStakeCpu = Number(stakeCpu)
-    const afterStakeNet = Number(stakeNet)
+    const afterStakeCpu = Number(stakeCpu) + originStakeCpu
+    const afterStakeNet = Number(stakeNet) + originStakeNet
 
     const afterUnstakeCpuChartStyle = {
       width: `${(afterStakeCpu / limit) * 100}%`
@@ -182,7 +188,7 @@ class DelegateView extends Component {
                   <FormattedMessage id="Delegate" />
                 </h5>
                 <p className="text-muted text-center m-t-20">
-                  <FormattedMessage id="Simulate values you want to delegate and click confirm." />
+                  <FormattedMessage id="How many amount do you want to delegate?" />
                 </p>
               </div>
             </div>
@@ -230,7 +236,7 @@ class DelegateView extends Component {
                   <div className="row">
                     <div className="col-sm-6 b-r-default p-b-30">
                       <h2 className="f-w-400">{afterStakeCpu} EOS</h2>
-                      <p className="text-muted f-w-400">Staked after update CPU</p>
+                      <p className="text-muted f-w-400">Staked after update for CPU</p>
                       <div className="progress">
                         <div
                           className="progress-bar bg-c-yellow"
@@ -243,7 +249,7 @@ class DelegateView extends Component {
                     </div>
                     <div className="col-sm-6 p-b-30">
                       <h2 className="f-w-400">{afterStakeNet} EOS</h2>
-                      <p className="text-muted f-w-400">Staked after update NET</p>
+                      <p className="text-muted f-w-400">Staked after update for NET</p>
                       <div className="progress">
                         <div
                           className="progress-bar bg-c-green "
