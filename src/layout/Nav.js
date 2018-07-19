@@ -7,6 +7,11 @@ class Nav extends Component {
   routeActive = paths => {
     paths = Array.isArray(paths) ? paths : [paths]
     if (paths.indexOf(this.props.location.pathname.replace('/', '')) > -1) return true
+
+    if (paths.indexOf('blockexplorers') > -1) {
+      return this.props.location.pathname.replace('/', '').startsWith('blockexplorers')
+    }
+
     return false
   }
 
