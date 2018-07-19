@@ -21,9 +21,9 @@ class BlockView extends Component {
           <div className="card">
             <div className="card-header" style={{ paddingBottom: '0px' }}>
               <div className="card-header-left">
-                <h7>
-                  <FormattedMessage id="block" />
-                </h7>
+                <h5>
+                  <FormattedMessage id="Block" />
+                </h5>
               </div>
               <div className="card-header-right" style={{ display: 'none' }}>
                 <ul className="list-unstyled card-option">
@@ -116,10 +116,48 @@ class BlockView extends Component {
                 <div className="row m-l-5 m-t-10 m-b-15">
                   <div className="col-sm-12">
                     <h6 className="text-muted d-inline-block">
-                      <FormattedMessage id="Transaction Murkle Root" /> :
+                      <FormattedMessage id="Transaction Merkle Root" /> :
                     </h6>
                     <h6 className="d-inline-block m-l-10 f-w-400">
                       {this.explorerStore.block.transaction_mroot}
+                    </h6>
+                  </div>
+                </div>
+                <div className="row m-l-5 m-t-10 m-b-15">
+                  <div className="col-sm-12">
+                    <h6 className="text-muted d-inline-block">
+                      <FormattedMessage id="Actions Merkle Root" /> :
+                    </h6>
+                    <h6 className="d-inline-block m-l-10 f-w-400">
+                      {this.explorerStore.block.action_mroot}
+                    </h6>
+                  </div>
+                </div>
+                <div className="row m-l-5 m-t-10 m-b-15">
+                  <div className="col-sm-12">
+                    <h6 className="text-muted d-inline-block">
+                      <FormattedMessage id="Transactions" /> :
+                    </h6>
+                    <h6 className="d-inline-block m-l-10 f-w-400">
+                      <NumberFormat
+                        value={this.explorerStore.block.transactions.length}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                      />
+                    </h6>
+                  </div>
+                </div>
+                <div className="row m-l-5 m-t-10 m-b-15">
+                  <div className="col-sm-12">
+                    <h6 className="text-muted d-inline-block">
+                      <FormattedMessage id="Confirmations" /> :
+                    </h6>
+                    <h6 className="d-inline-block m-l-10 f-w-400">
+                      <NumberFormat
+                        value={this.explorerStore.block.confirmed}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                      />
                     </h6>
                   </div>
                 </div>
@@ -131,45 +169,46 @@ class BlockView extends Component {
           <div className="card">
             <div className="card-header">
               <h6>
-                <FormattedMessage id="Actions" />
+                <FormattedMessage id="Transactions" />
               </h6>
-              <span>Actoins in transaction</span>
+              <span className="d-inline-block">
+                Transactions in block (#<NumberFormat
+                  value={this.explorerStore.block.block_num}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  className="d-inline-block"
+                />)
+              </span>
             </div>
             <div className="card-block">
               <div className="dt-responsive table-responsive">
-                {this.explorerStore.block.traces &&
-                  this.explorerStore.block.traces.length === 0 && (
+                {this.explorerStore.block.transactions &&
+                  this.explorerStore.block.transactions.length === 0 && (
                     <table id="base-style" className="table table-striped table-bordered nowrap">
                       <thead>
                         <tr>
-                          <th>
-                            <FormattedMessage id="ID" />
+                          <th style={{ width: '60%' }}>
+                            <FormattedMessage id="TRANSACTION ID" />
                           </th>
-                          <th>
-                            <FormattedMessage id="TYPE" />
+                          <th style={{ width: '10%' }}>
+                            <FormattedMessage id="ACTIONS" />
                           </th>
-                          <th>
-                            <FormattedMessage id="ACTOR" />
-                          </th>
-                          <th>
-                            <FormattedMessage id="RECEIVER" />
-                          </th>
-                          <th>
-                            <FormattedMessage id="DATA" />
+                          <th style={{ width: '30%' }}>
+                            <FormattedMessage id="EXPIRATION" />
                           </th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td colsPan="5" className="text-center">
-                            <FormattedMessage id="No Actions" />
+                          <td colsPan="3" className="text-center">
+                            <FormattedMessage id="No Transactions" />
                           </td>
                         </tr>
                       </tbody>
                     </table>
                   )}
-                {this.explorerStore.block.traces &&
-                  this.explorerStore.block.traces.length > 0 && (
+                {this.explorerStore.block.transactions &&
+                  this.explorerStore.block.transactions.length > 0 && (
                     <table
                       id="base-style"
                       className="table table-striped table-bordered"
@@ -177,48 +216,33 @@ class BlockView extends Component {
                     >
                       <thead>
                         <tr>
-                          <th style={{ width: '10%' }}>
-                            <FormattedMessage id="ID" />
-                          </th>
-                          <th style={{ width: '10%' }}>
-                            <FormattedMessage id="TYPE" />
-                          </th>
-                          <th style={{ width: '10%' }}>
-                            <FormattedMessage id="ACTOR" />
-                          </th>
-                          <th style={{ width: '10%' }}>
-                            <FormattedMessage id="RECEIVER" />
-                          </th>
                           <th style={{ width: '60%' }}>
-                            <FormattedMessage id="DATA" />
+                            <FormattedMessage id="TRANSACTION ID" />
+                          </th>
+                          <th style={{ width: '10%' }}>
+                            <FormattedMessage id="ACTIONS" />
+                          </th>
+                          <th style={{ width: '30%' }}>
+                            <FormattedMessage id="EXPIRATION" />
                           </th>
                         </tr>
                       </thead>
                       <tbody>
-                        {this.explorerStore.transaction.traces.map((action, index) => (
+                        {this.explorerStore.block.transactions.map((transaction, index) => (
                           <tr key={index}>
                             <td style={{ whiteSpace: 'normal' }}>
-                              {action.receipt.global_sequence}
-                            </td>
-                            <td style={{ whiteSpace: 'normal' }}>{action.act.name}</td>
-                            <td style={{ whiteSpace: 'normal' }}>
-                              {action.act.authorization.length > 0 ? (
-                                <Link to={'/blockexplorers/' + action.act.authorization[0].actor}>
-                                  <span className="text-c-blue">
-                                    {action.act.authorization[0].actor}
-                                  </span>
-                                </Link>
-                              ) : (
-                                'NONE'
-                              )}
-                            </td>
-                            <td style={{ whiteSpace: 'normal' }}>
-                              <Link to={'/blockexplorers/' + action.receipt.receiver}>
-                                <span className="text-c-blue">{action.receipt.receiver}</span>
+                              <Link to={'/blockexplorers/' + transaction.trx.id}>
+                                <span className="text-c-blue">{transaction.trx.id}</span>
                               </Link>
                             </td>
                             <td style={{ whiteSpace: 'normal' }}>
-                              {JSON.stringify(action.act.data)}
+                              {transaction.trx.transaction.actions.length}
+                            </td>
+                            <td style={{ whiteSpace: 'normal' }}>
+                              {format(
+                                new Date(transaction.trx.transaction.expiration),
+                                'YYYY-MM-DD HH:mm:ss.SSS'
+                              )}
                             </td>
                           </tr>
                         ))}

@@ -14,7 +14,6 @@ export default {
   'RAM Market': 'RAM Market',
   'GB Free': 'GB Free',
   function: 'function',
-  'Find Transaction': 'Find Transaction',
   Account: 'Account',
   'Find Account': 'Find Account',
   'Create Account': 'Create Account',
@@ -81,5 +80,14 @@ export default {
   NET: 'NET',
   'Block Time': 'Block Time',
   'Expiration Time': 'Expiration Time',
-  Account: 'Account'
+  Account: 'Account',
+  'Block Producer': 'Block Producer',
+  'Block ID': 'Block ID',
+  'Transaction Merkle Root': 'Transaction Merkle Root',
+  'Previous Block ID': 'Previous Block ID',
+  'Actions Merkle Root': 'Actions Merkle Root',
+  Transactions: 'Transactions',
+  Confirmations: 'Confirmations',
+  ACTIONS: 'ACTIONS',
+  EXPIRATION: 'EXPIRATION'
 }
