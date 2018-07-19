@@ -99,5 +99,10 @@ export default {
   'you are currently a voter proxy!': '당신은 투표 대리인 입니다.',
   'you are currently not a voter proxy!': '당신은 투표 대리인이 아닙니다.',
   'Unregister as proxy voter': '투표대리인 등록을 취소합니다.',
-  'Register as proxy voter': '투표대리인으로 등록합니다.'
+  'Register as proxy voter': '투표대리인으로 등록합니다.',
+  'Claim Refund': '환불 요청',
+  'By executing this action you are agreeing to the EOS constitution and this actions associated ricardian contract.':
+    '이오스 헌법에 동의하며 환불을 요청합니다.',
+  'Unstaked amount': '언스테이크된 금액',
+  Claim: '요청'
 }
