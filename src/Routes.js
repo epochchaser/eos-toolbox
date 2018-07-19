@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import {
   Home,
   MyAccount,
+  CreateAccount,
   FindAccount,
   Voting,
   BlockExplorer,
@@ -24,6 +25,7 @@ class Routes extends Component {
         <Route exact path="/" component={Home} />
         {_initilizedEos && <Route exact path="/findaccount" component={FindAccount} />}
         <Route exact path="/account" component={MyAccount} />
+        <Route exact path="/account/create" component={CreateAccount} />
         <Route exact path="/account/delegate" component={Delegate} />
         <Route exact path="/account/undelegate" component={Undelegate} />
         <Route exact path="/account/refund" component={Refund} />
