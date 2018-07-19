@@ -27,7 +27,7 @@ class Routes extends Component {
         <Route exact path="/account/undelegate" component={Undelegate} />
         <Route exact path="/blockexplorers" component={BlockExplorer} />
         <Route exact path="/blockexplorers/:query" component={BlockExplorer} />
-        <Route exact path="/voting/voting" component={Voting} />
+        <Route exact path="/voting/vote" component={Voting} />
         <Route exact path="/voting/proxy" component={RegVoteProxy} />
       </Switch>
     )

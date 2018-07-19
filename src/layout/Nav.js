@@ -169,7 +169,7 @@ class Nav extends Component {
                   <b>D</b>
                 </span>
                 <span className="pcoded-mtext">
-                  <FormattedMessage id="Voting" />
+                  <FormattedMessage id="Vote" />
                 </span>
                 <span className="pcoded-mcaret" />
               </a>
