@@ -86,5 +86,7 @@ export default {
   Transactions: '거래',
   Confirmations: '승인',
   ACTIONS: '액션',
-  EXPIRATION: '만료'
+  EXPIRATION: '만료',
+  'No Transactions': '거래가 없습니다',
+  'No Actions': '액션이 없습니다'
 }
