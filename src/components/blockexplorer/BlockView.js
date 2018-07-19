@@ -54,7 +54,11 @@ class BlockView extends Component {
                   <div className="col-sm-12">
                     <h6 className="text-muted d-inline-block">ID</h6>
                     <h6 className="d-inline-block m-l-20 f-w-400">
-                      #{this.explorerStore.block.block_num}
+                      #<NumberFormat
+                        value={this.explorerStore.block.block_num}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                      />
                     </h6>
                   </div>
                 </div>
