@@ -11,6 +11,7 @@ export class AccountStore {
   net_staked = 0.0
   net_max = 0.0
   liquid = 0.0
+  is_proxy = 0
   accountInfo = null
   account = null
   myBlockProducers = null
@@ -57,6 +58,7 @@ export class AccountStore {
         this.eosBalance = 0.0
       }
 
+      this.is_proxy = accountInfo.voter_info.is_proxy
       this.accountInfo = accountInfo
     }
   }
@@ -145,6 +147,7 @@ decorate(AccountStore, {
   cpu_max: observable,
   net_max: observable,
   liquid: observable,
+  is_proxy: observable,
   accountInfo: observable,
   account: observable,
   myBlockProducers: observable,
