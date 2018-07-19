@@ -130,10 +130,15 @@ export class AccountStore {
     EosAgent.getTransaction(cb)
   }
 
-  updateMyBlockProducers = newBlockProducers => {
-    if (newBlockProducers) {
-      this.myBlockProducers = newBlockProducers.sort()
+  updateMyBlockProducers = (name, include) => {
+    if (!this.myBlockProducers) return
+    let filterBaseBPList = this.myBlockProducers.filter(bp => bp !== name)
+
+    if (include) {
+      filterBaseBPList = filterBaseBPList.concat(name)
     }
+
+    this.myBlockProducers = filterBaseBPList.sort()
   }
 }
 

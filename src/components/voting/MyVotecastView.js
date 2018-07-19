@@ -6,20 +6,11 @@ import Swal from 'sweetalert2'
 @inject('accountStore', 'eosioStore')
 @observer
 class MyVotecastView extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      show: false
-    }
-  }
-
   deleteProducer = name => event => {
     const { accountStore } = this.props
-    const { myBlockProducers } = accountStore
 
-    let filterBaseBPList = myBlockProducers.filter(bp => bp !== name)
-    accountStore.updateMyBlockProducers(filterBaseBPList)
+    if (!accountStore) return
+    accountStore.updateMyBlockProducers(name, false)
   }
 
   voteProducer = async () => {
