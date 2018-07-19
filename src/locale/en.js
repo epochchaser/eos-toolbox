@@ -101,5 +101,10 @@ export default {
   'you are currently a voter proxy!': 'you are currently a voter proxy!',
   'you are currently not a voter proxy!': 'you are currently not a voter proxy!',
   'Unregister as proxy voter': 'Unregister as proxy voter',
-  'Register as proxy voter': 'Register as proxy voter'
+  'Register as proxy voter': 'Register as proxy voter',
+  'Claim Refund': 'Claim Refund',
+  'By executing this action you are agreeing to the EOS constitution and this actions associated ricardian contract.':
+    'By executing this action you are agreeing to the EOS constitution and this actions associated ricardian contract.',
+  'Unstaked amount': 'Unstaked amount',
+  Claim: 'Claim'
 }
