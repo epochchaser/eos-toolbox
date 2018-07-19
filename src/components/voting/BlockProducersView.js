@@ -8,20 +8,16 @@ import { FormattedMessage } from 'react-intl'
 class BlockProducersView extends Component {
   componentDidMount = async () => {
     const { eosioStore } = this.props
+
+    if (!eosioStore) return
     eosioStore.getBlockProducers()
   }
 
   onCheckChange = name => event => {
     const { accountStore } = this.props
-    const { myBlockProducers } = accountStore
 
-    const checked = event.target.checked
-    let filterBaseBPList = myBlockProducers.filter(bp => bp !== name)
-
-    if (checked) {
-      filterBaseBPList = filterBaseBPList.concat(name)
-    }
-    accountStore.updateMyBlockProducers(filterBaseBPList)
+    if (!accountStore) return
+    accountStore.updateMyBlockProducers(name, event.target.checked)
   }
 
   render() {
