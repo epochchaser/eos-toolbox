@@ -115,6 +115,11 @@ class DelegateView extends Component {
           })
           .catch(err => {
             if (err) {
+              if (err.message) {
+                Swal.showValidationError(err.message)
+                return
+              }
+
               const parsedResult = JSON.parse(err)
 
               if (parsedResult.error.details && parsedResult.error.details.length > 0) {

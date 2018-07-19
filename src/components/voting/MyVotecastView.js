@@ -66,7 +66,22 @@ class MyVotecastView extends Component {
               return response
             })
             .catch(err => {
-              Swal.showValidationError(err)
+              if (err) {
+                if (err.message) {
+                  Swal.showValidationError(err.message)
+                  return
+                }
+
+                const parsedResult = JSON.parse(err)
+
+                if (parsedResult.error.details && parsedResult.error.details.length > 0) {
+                  Swal.showValidationError(parsedResult.error.details[0].message)
+                } else {
+                  Swal.showValidationError(parsedResult.message)
+                }
+              } else {
+                Swal.showValidationError(err)
+              }
             })
         },
         allowOutsideClick: () => !Swal.isLoading()
