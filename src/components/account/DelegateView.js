@@ -74,30 +74,6 @@ class DelegateView extends Component {
     return newValue.lessThan(limit) ? true : false
   }
 
-  getStakeChanges = (nextNetAmount, nextCpuAmount) => {
-    const { accountStore } = this.props
-
-    if (!accountStore || !accountStore.accountInfo) return null
-    const { cpu_weight, net_weight } = accountStore.accountInfo.self_delegated_bandwidth
-
-    const currentCpuAmount = new Decimal(cpu_weight.split(' ')[0])
-    const currentNetAmount = new Decimal(net_weight.split(' ')[0])
-
-    const increaseInStake = {
-      netAmount: Math.max(0, nextNetAmount - currentNetAmount),
-      cpuAmount: Math.max(0, nextCpuAmount - currentCpuAmount)
-    }
-
-    const decreaseInStake = {
-      netAmount: Math.max(0, currentNetAmount - nextNetAmount),
-      cpuAmount: Math.max(0, currentCpuAmount - nextCpuAmount)
-    }
-
-    return {
-      increaseInStake,
-      decreaseInStake
-    }
-  }
   delegatebwParams = (delegator, receiver, netAmount, cpuAmount) => {
     const stakeNetAmount = netAmount || 0
     const stakeCpuAmount = cpuAmount || 0
