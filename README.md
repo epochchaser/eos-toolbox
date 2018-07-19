@@ -41,10 +41,12 @@ This project is to utilize Eos easily.
 ```
 
 ## Block Explorer
+```
 - [o] Search by account
 - [x] Search by pubkey
 - [o] Transaction History
 - [x] Airdrop list
+```
 
 ## Account
 
