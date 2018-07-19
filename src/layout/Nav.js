@@ -160,7 +160,7 @@ class Nav extends Component {
             <li
               className={
                 'pcoded-hasmenu' +
-                (this.routeActive(['voting/voting']) ? ' active pcoded-trigger' : '')
+                (this.routeActive(['voting/vote', 'voting/proxy']) ? ' active pcoded-trigger' : '')
               }
             >
               <a>
@@ -174,13 +174,25 @@ class Nav extends Component {
                 <span className="pcoded-mcaret" />
               </a>
               <ul className="pcoded-submenu">
-                <li className={this.routeActive('voting/voting') ? ' active' : ''}>
-                  <Link to="/voting/voting">
+                <li className={this.routeActive('voting/vote') ? ' active' : ''}>
+                  <Link to="/voting/vote">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
                     <span className="pcoded-mtext">
-                      <FormattedMessage id="Do Voting" />
+                      <FormattedMessage id="Vote" />
+                    </span>
+                    <span className="pcoded-mcaret" />
+                  </Link>
+                </li>
+
+                <li className={this.routeActive('voting/proxy') ? ' active' : ''}>
+                  <Link to="/voting/proxy">
+                    <span className="pcoded-micon">
+                      <i className="ti-angle-right" />
+                    </span>
+                    <span className="pcoded-mtext">
+                      <FormattedMessage id="Register Proxy" />
                     </span>
                     <span className="pcoded-mcaret" />
                   </Link>
