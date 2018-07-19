@@ -90,5 +90,14 @@ export default {
   'No Actions': '액션이 없습니다',
   'How many amount do you want to delegate?': '위임하실 양이 얼마나 되시나요?',
   'How many amount do you want to undelegate?': '위임철회하실 양이 얼마나 되시나요?',
-  'Register Proxy': '대리인 등록'
+  'Register Proxy': '대리인 등록',
+  'Proxy Voter Registration': '투표 대리인 등록',
+  'This account is now registered and available to be used as a proxy account.':
+    '이 계정은 현재 투표대리자로 등록되어 있습니다.',
+  "This account isn't registered and unavailable to be used as a proxy account.":
+    '이 계정은 현재 투표대리자로 등록되어 있지않습니다.',
+  'you are currently a voter proxy!': '당신은 투표 대리인 입니다.',
+  'you are currently not a voter proxy!': '당신은 투표 대리인이 아닙니다.',
+  'Unregister as proxy voter': '투표대리인 등록을 취소합니다.',
+  'Register as proxy voter': '투표대리인으로 등록합니다.'
 }

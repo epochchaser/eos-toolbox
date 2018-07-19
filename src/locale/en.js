@@ -92,5 +92,14 @@ export default {
   'No Actions': 'No Actions',
   'How many amount do you want to delegate?': 'How many amount do you want to delegate?',
   'How many amount do you want to undelegate?': 'How many amount do you want to undelegate?',
-  'Register Proxy': 'Register Proxy'
+  'Register Proxy': 'Register Proxy',
+  'Proxy Voter Registration': 'Proxy Voter Registration',
+  'This account is now registered and available to be used as a proxy account.':
+    'This account is now registered and available to be used as a proxy account.',
+  "This account isn't registered and unavailable to be used as a proxy account.":
+    "This account isn't registered and unavailable to be used as a proxy account.",
+  'you are currently a voter proxy!': 'you are currently a voter proxy!',
+  'you are currently not a voter proxy!': 'you are currently not a voter proxy!',
+  'Unregister as proxy voter': 'Unregister as proxy voter',
+  'Register as proxy voter': 'Register as proxy voter'
 }

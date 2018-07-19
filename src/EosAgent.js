@@ -178,16 +178,41 @@ class EosAgent {
       tr.delegatebw(query)
     })
 
-    console.log(result)
     return result
   }
 
   undelegate = async query => {
+    if (!this.eos) {
+      return
+    }
+
     const result = await this.eos.transaction(tr => {
       tr.undelegatebw(query)
     })
 
     return result
+  }
+
+  regproxy = async accountName => {
+    if (!this.eos) {
+      return
+    }
+
+    return await this.eos.regproxy({
+      proxy: accountName,
+      isproxy: 1
+    })
+  }
+
+  unregproxy = async accountName => {
+    if (!this.eos) {
+      return
+    }
+
+    return await this.eos.regproxy({
+      proxy: accountName,
+      isproxy: 0
+    })
   }
 
   getActions = async (account_name, pos, offset) => {
