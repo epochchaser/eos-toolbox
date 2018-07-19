@@ -14,6 +14,7 @@ export default {
   'RAM Market': '램 시장',
   'GB Free': 'GB 이용 가능',
   function: '기능들',
+  'Find Transaction': '트랜잭션 찾기',
   Account: '계정',
   'Find Account': '계정 찾기',
   'Create Account': '계정 생성',
@@ -22,8 +23,7 @@ export default {
   'Ram Market': '램 시장',
   Refund: '환불',
   Permissions: '권한',
-  Voting: '투표',
-  'Do Voting': '투표하기',
+  Vote: '투표',
   'Your vote cast': '당신의 투표상황',
   'Set voter proxy': '대리 투표인을 설정하세요',
   'Submit Votes For Selected Producers': '선택된 블록생성자들에게 투표합니다',
@@ -41,7 +41,7 @@ export default {
   'Block Explorer': '블록 익스플로러',
   'EOS Block Explorer': '이오스 블록 익스플로러',
   'Search with account, public key, transaction id, block number':
-    '계정, 공개키, 거래 ID, 블록 번호로 검색하세요',
+    '계정, 공개키, 트랜잭션 ID, 블록 번호로 검색하세요',
   'No Seasrch Results': '검색 결과가 없습니다',
   'CPU Staked': '스테이크된 CPU',
   'NET Staked': '스테이크된 NET',
@@ -77,7 +77,6 @@ export default {
   NET: 'NET',
   'Block Time': '생성 시간',
   'Expiration Time': '만료 시간',
-  Account: '계정',
   'Block Producer': '블록 생성자',
   'Block ID': '블록 ID',
   'Transaction Merkle Root': '거래 머클 루트',
@@ -88,5 +87,8 @@ export default {
   ACTIONS: '액션',
   EXPIRATION: '만료',
   'No Transactions': '거래가 없습니다',
-  'No Actions': '액션이 없습니다'
+  'No Actions': '액션이 없습니다',
+  'How many amount do you want to delegate?': '위임하실 양이 얼마나 되시나요?',
+  'How many amount do you want to undelegate?': '위임철회하실 양이 얼마나 되시나요?',
+  'Register Proxy': '대리인 등록'
 }

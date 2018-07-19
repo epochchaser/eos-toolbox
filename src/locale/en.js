@@ -22,8 +22,7 @@ export default {
   'Ram Market': 'Ram Market',
   Refund: 'Refund',
   Permissions: 'Permissions',
-  Voting: 'Voting',
-  'Do Voting': 'Do Voting',
+  Vote: 'Vote',
   'Your vote cast': 'Your vote cast',
   'Set voter proxy': 'Set voter proxy',
   'Submit Votes For Selected Producers': 'Submit Votes For Selected Producers',
@@ -92,5 +91,6 @@ export default {
   'No Transactions': 'No Transactions',
   'No Actions': 'No Actions',
   'How many amount do you want to delegate?': 'How many amount do you want to delegate?',
-  'How many amount do you want to undelegate?': 'How many amount do you want to undelegate?'
+  'How many amount do you want to undelegate?': 'How many amount do you want to undelegate?',
+  'Register Proxy': 'Register Proxy'
 }

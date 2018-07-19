@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { Home, MyAccount, FindAccount, Voting, BlockExplorer, Delegate, Undelegate } from './pages'
+import {
+  Home,
+  MyAccount,
+  FindAccount,
+  Voting,
+  BlockExplorer,
+  Delegate,
+  Undelegate,
+  RegVoteProxy
+} from './pages'
 import { inject, observer } from '../node_modules/mobx-react'
 
 @inject('commonStore')
@@ -19,6 +28,7 @@ class Routes extends Component {
         <Route exact path="/blockexplorers" component={BlockExplorer} />
         <Route exact path="/blockexplorers/:query" component={BlockExplorer} />
         <Route exact path="/voting/voting" component={Voting} />
+        <Route exact path="/voting/proxy" component={RegVoteProxy} />
       </Switch>
     )
   }

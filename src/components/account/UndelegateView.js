@@ -271,10 +271,11 @@ class UndelegateView extends Component {
 
             <div className="form-group">
               <button
+                disabled={!this.state.isValid}
                 className={
                   this.state.isValid
                     ? 'btn btn-primary btn-block'
-                    : 'btn btn-primary btn-block diabled'
+                    : 'btn btn-primary btn-block disabled'
                 }
                 onClick={this.onConfirm}
               >
