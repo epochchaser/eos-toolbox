@@ -71,34 +71,7 @@ class UndelegateView extends Component {
     const validCpu = new Decimal(targetCpu).lessThanOrEqualTo(originStakeCpu)
     const validNet = new Decimal(targetNet).lessThanOrEqualTo(originStakeNet)
 
-    // console.log(`cpu : ${validCpu}`)
-    // console.log(`net : ${validNet}`)
     return validCpu & validNet ? true : false
-  }
-
-  getStakeChanges = (nextNetAmount, nextCpuAmount) => {
-    const { accountStore } = this.props
-
-    if (!accountStore || !accountStore.accountInfo) return null
-    const { cpu_weight, net_weight } = accountStore.accountInfo.self_delegated_bandwidth
-
-    const currentCpuAmount = new Decimal(cpu_weight.split(' ')[0])
-    const currentNetAmount = new Decimal(net_weight.split(' ')[0])
-
-    const increaseInStake = {
-      netAmount: Math.max(0, nextNetAmount - currentNetAmount),
-      cpuAmount: Math.max(0, nextCpuAmount - currentCpuAmount)
-    }
-
-    const decreaseInStake = {
-      netAmount: Math.max(0, currentNetAmount - nextNetAmount),
-      cpuAmount: Math.max(0, currentCpuAmount - nextCpuAmount)
-    }
-
-    return {
-      increaseInStake,
-      decreaseInStake
-    }
   }
 
   undelegatebwParams = (delegator, receiver, netAmount, cpuAmount) => {
@@ -161,24 +134,19 @@ class UndelegateView extends Component {
   }
 
   render() {
-    const { unstakeCpu, unstakeNet } = this.state
-    const { accountStore } = this.props
-    // todo - accountStore.accountInfo.self_delegated_bandwidth null 에러처리
-    const { cpu_weight, net_weight } = accountStore.accountInfo.self_delegated_bandwidth
+    const { unstakeCpu, unstakeNet, originStakeCpu, originStakeNet } = this.state
 
     const targetUnstakeCpu = unstakeCpu ? unstakeCpu : 0
     const targetUnstakeNet = unstakeNet ? unstakeNet : 0
-    const currentCpuAmount = new Decimal(cpu_weight.split(' ')[0])
-    const currentNetAmount = new Decimal(net_weight.split(' ')[0])
-    const afterUnstakeCpu = currentCpuAmount.minus(new Decimal(targetUnstakeCpu)).toNumber()
-    const afterUnstakeNet = currentNetAmount.minus(new Decimal(targetUnstakeNet)).toNumber()
+    const afterUnstakeCpu = originStakeCpu - targetUnstakeCpu
+    const afterUnstakeNet = originStakeNet - targetUnstakeNet
 
     const afterUnstakeCpuChartStyle = {
-      width: `${(afterUnstakeCpu / currentCpuAmount.toNumber()) * 100}%`
+      width: `${(afterUnstakeCpu / originStakeCpu) * 100}%`
     }
 
     const afterUnstakeNetChartStyle = {
-      width: `${(afterUnstakeNet / currentNetAmount.toNumber()) * 100}%`
+      width: `${(afterUnstakeNet / originStakeNet) * 100}%`
     }
 
     return (
