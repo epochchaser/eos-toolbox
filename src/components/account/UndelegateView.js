@@ -96,8 +96,6 @@ class UndelegateView extends Component {
       text:
         'You are about to unstake some coins, please note that all coins that were unstaked will have to be claimed in 72 hours.',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: 'Comfirm',
       showLoaderOnConfirm: true,
       preConfirm: () => {

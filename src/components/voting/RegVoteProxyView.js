@@ -17,8 +17,6 @@ class RegVoteProxyView extends Component {
         text:
           'You are about to register this account as a proxy voter. After registration other accounts will be able to set this account as a proxy.',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
         confirmButtonText: 'Comfirm',
         showLoaderOnConfirm: true,
         preConfirm: () => {
@@ -58,8 +56,6 @@ class RegVoteProxyView extends Component {
         text:
           'You are about to unregister this account as a proxy voter. After unregistration other accounts will not be able to set this account as a proxy.',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
         confirmButtonText: 'Comfirm',
         showLoaderOnConfirm: true,
         preConfirm: () => {

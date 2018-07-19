@@ -40,11 +40,13 @@ class MyVotecastView extends Component {
 
     if (account) {
       Swal({
-        title: 'Enter the account name you wish to proxy your producer voting weight to:',
+        title: 'Set Voter Proxy',
+        text: 'Enter the account name you wish to proxy your producer voting weight to:',
         input: 'text',
         inputAttributes: {
           autocapitalize: 'off'
         },
+        inputPlaceholder: 'proxy',
         showCancelButton: true,
         confirmButtonText: 'Comfirm',
         showLoaderOnConfirm: true,
