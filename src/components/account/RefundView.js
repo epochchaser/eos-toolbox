@@ -30,17 +30,24 @@ class RefundView extends Component {
             await accountStore.loadAccountInfo()
             return response
           })
-          .catch(error => {
-            Swal.showValidationError('refund is not available yet')
-            // Swal.showValidationError(`Request failed: ${error}`)
+          .catch(err => {
+            if (err) {
+              const parsedResult = JSON.parse(err)
+
+              if (parsedResult.error.details && parsedResult.error.details.length > 0) {
+                Swal.showValidationError(parsedResult.error.details[0].message)
+              } else {
+                Swal.showValidationError(parsedResult.message)
+              }
+            } else {
+              Swal.showValidationError(err)
+            }
           })
       },
       allowOutsideClick: () => !Swal.isLoading()
     }).then(result => {
       if (result.value) {
-        Swal({
-          title: 'Success'
-        })
+        Swal('Good job!', 'Your transaction(s) have been submitted to the blockchain.', 'success')
       }
     })
   }
