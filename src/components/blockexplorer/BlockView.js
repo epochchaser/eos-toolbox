@@ -204,7 +204,7 @@ class BlockView extends Component {
                       </thead>
                       <tbody>
                         <tr>
-                          <td colsPan="3" className="text-center">
+                          <td colSpan="3" className="text-center">
                             <FormattedMessage id="No Transactions" />
                           </td>
                         </tr>

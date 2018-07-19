@@ -89,5 +89,7 @@ export default {
   Transactions: 'Transactions',
   Confirmations: 'Confirmations',
   ACTIONS: 'ACTIONS',
-  EXPIRATION: 'EXPIRATION'
+  EXPIRATION: 'EXPIRATION',
+  'No Transactions': 'No Transactions',
+  'No Actions': 'No Actions'
 }
