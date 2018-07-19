@@ -8,7 +8,8 @@ import {
   BlockExplorer,
   Delegate,
   Undelegate,
-  RegVoteProxy
+  RegVoteProxy,
+  Refund
 } from './pages'
 import { inject, observer } from '../node_modules/mobx-react'
 
@@ -25,6 +26,7 @@ class Routes extends Component {
         <Route exact path="/account" component={MyAccount} />
         <Route exact path="/account/delegate" component={Delegate} />
         <Route exact path="/account/undelegate" component={Undelegate} />
+        <Route exact path="/account/refund" component={Refund} />
         <Route exact path="/blockexplorers" component={BlockExplorer} />
         <Route exact path="/blockexplorers/:query" component={BlockExplorer} />
         <Route exact path="/voting/vote" component={Voting} />

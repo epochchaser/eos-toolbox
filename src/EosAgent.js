@@ -215,6 +215,16 @@ class EosAgent {
     })
   }
 
+  refund = async owner => {
+    if (!this.eos) {
+      return
+    }
+
+    return await this.eos.refund({
+      owner
+    })
+  }
+
   getActions = async (account_name, pos, offset) => {
     if (!this.eos) {
       return

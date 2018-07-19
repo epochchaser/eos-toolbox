@@ -46,7 +46,7 @@ export class AccountStore {
       this.myBlockProducers = myProducers.sort()
       this.account = EosAgent.loginaccount
 
-      console.log(this.account)
+      console.log(EosAgent.loginaccount)
       if (this.account) {
         this.isLogin = true
       }
