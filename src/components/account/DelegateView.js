@@ -1,95 +1,24 @@
 import React, { Component } from 'react'
-import Decimal from 'decimal.js'
 import { FormattedMessage } from 'react-intl'
 import { inject, observer } from '../../../node_modules/mobx-react'
-import EosAgent from '../../EosAgent'
 import Swal from 'sweetalert2'
 
 @inject('accountStore')
 @observer
 class DelegateView extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      originStakeCpu: 0,
-      originStakeNet: 0,
-      stakeCpu: 0,
-      stakeNet: 0,
-      isValid: false
-    }
-  }
-
-  componentDidMount = () => {
-    this.loadInitialSeed()
-  }
-
-  loadInitialSeed = () => {
-    const { accountStore } = this.props
-
-    this.setState({
-      originStakeCpu: accountStore.cpu_staked,
-      originStakeNet: accountStore.net_staked,
-      stakeCpu: 0,
-      stakeNet: 0,
-      isValid: true
-    })
-  }
-
   onValueChange = name => event => {
-    let stakeCpu
-    let stakeNet
-    let isValid = false
+    const { accountStore } = this.props
+    const userInput = Number(event.target.value)
 
     if (name === 'cpu') {
-      stakeCpu = event.target.value
-      stakeNet = this.state.stakeNet
+      accountStore.validateStakingInput(userInput, accountStore.net_user)
     } else if (name === 'net') {
-      stakeCpu = this.state.stakeCpu
-      stakeNet = event.target.value
-    }
-
-    isValid = this.isValid(stakeCpu, stakeNet)
-    this.setState({
-      stakeCpu,
-      stakeNet,
-      isValid
-    })
-  }
-
-  isValid = (nextCpu, nextNet) => {
-    if (0 > nextCpu || 0 > nextNet) return false
-    const { accountStore } = this.props
-    let targetCpu = nextCpu ? nextCpu : 0
-    let targetNet = nextNet ? nextNet : 0
-
-    if (!accountStore || !accountStore.accountInfo || !accountStore.liquid) return false
-    const core_liquid_balance = accountStore.accountInfo.core_liquid_balance
-    const unstaked = new Decimal(accountStore.totalBalance - accountStore.staked)
-
-    const currentLiquidAmount = new Decimal(core_liquid_balance.split(' ')[0])
-    const limit = unstaked.plus(currentLiquidAmount)
-    const newValue = new Decimal(targetCpu).plus(targetNet)
-
-    return newValue.lessThan(limit) ? true : false
-  }
-
-  delegatebwParams = (delegator, receiver, netAmount, cpuAmount) => {
-    const stakeNetAmount = netAmount || 0
-    const stakeCpuAmount = cpuAmount || 0
-
-    return {
-      from: delegator,
-      receiver,
-      stake_net_quantity: `${stakeNetAmount.toFixed(4)} EOS`,
-      stake_cpu_quantity: `${stakeCpuAmount.toFixed(4)} EOS`,
-      transfer: 0
+      accountStore.validateStakingInput(accountStore.cpu_user, userInput)
     }
   }
 
   onConfirm = () => {
     const { accountStore } = this.props
-    const { name } = accountStore.account
 
     Swal({
       title: 'Update Staked Balances',
@@ -99,17 +28,10 @@ class DelegateView extends Component {
       confirmButtonText: 'Comfirm',
       showLoaderOnConfirm: true,
       preConfirm: () => {
-        return EosAgent.delegate(
-          this.delegatebwParams(
-            name,
-            name,
-            new Decimal(this.state.stakeNet),
-            new Decimal(this.state.stakeCpu)
-          )
-        )
+        return accountStore
+          .delegate()
           .then(async response => {
             await accountStore.loadAccountInfo()
-            this.loadInitialSeed()
 
             return response
           })
@@ -141,16 +63,22 @@ class DelegateView extends Component {
   }
 
   render() {
-    const { stakeCpu, stakeNet, originStakeCpu, originStakeNet } = this.state
     const { accountStore } = this.props
 
-    const core_liquid_balance = accountStore.accountInfo.core_liquid_balance
-    const currentLiquidAmount = new Decimal(core_liquid_balance.split(' ')[0])
-    const unstaked = new Decimal(accountStore.totalBalance - accountStore.staked)
-    const limit = unstaked.plus(currentLiquidAmount).toNumber()
+    const {
+      unstaked,
+      cpu_staked,
+      net_staked,
+      cpu_user,
+      net_user,
+      liquid,
+      isValidInput
+    } = accountStore
 
-    const afterStakeCpu = Number(stakeCpu) + originStakeCpu
-    const afterStakeNet = Number(stakeNet) + originStakeNet
+    const limit = unstaked + liquid
+
+    const afterStakeCpu = cpu_user + cpu_staked
+    const afterStakeNet = net_user + net_staked
 
     const afterUnstakeCpuChartStyle = {
       width: `${(afterStakeCpu / limit) * 100}%`
@@ -182,7 +110,7 @@ class DelegateView extends Component {
                     type="number"
                     className="form-control"
                     placeholder="CPU goes here..."
-                    value={this.state.stakeCpu}
+                    value={cpu_user}
                     onChange={this.onValueChange('cpu')}
                   />
                 </div>
@@ -193,14 +121,14 @@ class DelegateView extends Component {
                     type="number"
                     className="form-control"
                     placeholder="NET goes here..."
-                    value={this.state.stakeNet}
+                    value={net_user}
                     onChange={this.onValueChange('net')}
                   />
                 </div>
               </div>
             </div>
 
-            {!this.state.isValid && (
+            {!isValidInput && (
               <div className="b-t-default b-b-default p-t-10 color-danger">
                 <h5 className="text-center text-white">
                   <FormattedMessage id="Error" />
@@ -256,11 +184,9 @@ class DelegateView extends Component {
 
             <div className="form-group">
               <button
-                disabled={!this.state.isValid}
+                disabled={!isValidInput}
                 className={
-                  this.state.isValid
-                    ? 'btn btn-primary btn-block'
-                    : 'btn btn-primary btn-block disabled'
+                  isValidInput ? 'btn btn-primary btn-block' : 'btn btn-primary btn-block disabled'
                 }
                 onClick={this.onConfirm}
               >

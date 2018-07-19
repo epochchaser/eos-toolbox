@@ -1,92 +1,24 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import NumberFormat from 'react-number-format'
 import { FormattedMessage } from 'react-intl'
-import Decimal from 'decimal.js'
-import EosAgent from '../../EosAgent'
 import Swal from 'sweetalert2'
 
 @inject('accountStore')
 @observer
 class UndelegateView extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      originStakeCpu: 0,
-      originStakeNet: 0,
-      unstakeCpu: 0,
-      unstakeNet: 0,
-      isValid: false
-    }
-  }
-
-  componentDidMount = () => {
-    this.loadInitialSeed()
-  }
-
-  loadInitialSeed = () => {
-    const { accountStore } = this.props
-
-    this.setState({
-      originStakeCpu: accountStore.cpu_staked,
-      originStakeNet: accountStore.net_staked,
-      unstakeCpu: 0,
-      unstakeNet: 0,
-      isValid: true
-    })
-  }
-
   onValueChange = name => event => {
-    let unstakeCpu
-    let unstakeNet
-    let isValid = false
+    const { accountStore } = this.props
+    const userInput = Number(event.target.value)
 
     if (name === 'cpu') {
-      unstakeCpu = event.target.value
-      unstakeNet = this.state.unstakeNet
+      accountStore.validateUnstakingInput(userInput, accountStore.net_user)
     } else if (name === 'net') {
-      unstakeCpu = this.state.unstakeCpu
-      unstakeNet = event.target.value
-    }
-
-    isValid = this.isValid(unstakeCpu, unstakeNet)
-    this.setState({
-      unstakeCpu,
-      unstakeNet,
-      isValid
-    })
-  }
-
-  isValid = (nextCpu, nextNet) => {
-    if (0 > nextCpu || 0 > nextNet) return false
-
-    const { originStakeCpu, originStakeNet } = this.state
-    let targetCpu = nextCpu ? nextCpu : 0
-    let targetNet = nextNet ? nextNet : 0
-
-    const validCpu = new Decimal(targetCpu).lessThanOrEqualTo(originStakeCpu)
-    const validNet = new Decimal(targetNet).lessThanOrEqualTo(originStakeNet)
-
-    return validCpu & validNet ? true : false
-  }
-
-  undelegatebwParams = (delegator, receiver, netAmount, cpuAmount) => {
-    const unstakeNetAmount = netAmount || 0
-    const unstakeCpuAmount = cpuAmount || 0
-
-    return {
-      from: delegator,
-      receiver,
-      unstake_net_quantity: `${unstakeNetAmount.toFixed(4)} EOS`,
-      unstake_cpu_quantity: `${unstakeCpuAmount.toFixed(4)} EOS`,
-      transfer: 0
+      accountStore.validateUnstakingInput(accountStore.cpu_user, userInput)
     }
   }
 
   onConfirm = () => {
     const { accountStore } = this.props
-    const { name } = accountStore.account
 
     Swal({
       title: 'Update Staked Balances',
@@ -96,17 +28,10 @@ class UndelegateView extends Component {
       confirmButtonText: 'Comfirm',
       showLoaderOnConfirm: true,
       preConfirm: () => {
-        return EosAgent.undelegate(
-          this.undelegatebwParams(
-            name,
-            name,
-            new Decimal(this.state.unstakeNet),
-            new Decimal(this.state.unstakeCpu)
-          )
-        )
+        return accountStore
+          .undelegate()
           .then(async response => {
             await accountStore.loadAccountInfo()
-            this.loadInitialSeed()
             return response
           })
           .catch(err => {
@@ -137,19 +62,18 @@ class UndelegateView extends Component {
   }
 
   render() {
-    const { unstakeCpu, unstakeNet, originStakeCpu, originStakeNet } = this.state
+    const { accountStore } = this.props
+    const { cpu_staked, net_staked, cpu_user, net_user, isValidInput } = accountStore
 
-    const targetUnstakeCpu = unstakeCpu ? unstakeCpu : 0
-    const targetUnstakeNet = unstakeNet ? unstakeNet : 0
-    const afterUnstakeCpu = originStakeCpu - targetUnstakeCpu
-    const afterUnstakeNet = originStakeNet - targetUnstakeNet
+    const afterUnstakeCpu = cpu_staked - cpu_user
+    const afterUnstakeNet = net_staked - net_user
 
     const afterUnstakeCpuChartStyle = {
-      width: `${(afterUnstakeCpu / originStakeCpu) * 100}%`
+      width: `${(afterUnstakeCpu / cpu_staked) * 100}%`
     }
 
     const afterUnstakeNetChartStyle = {
-      width: `${(afterUnstakeNet / originStakeNet) * 100}%`
+      width: `${(afterUnstakeNet / net_staked) * 100}%`
     }
 
     return (
@@ -174,7 +98,7 @@ class UndelegateView extends Component {
                     type="number"
                     className="form-control"
                     placeholder="CPU goes here..."
-                    value={this.state.unstakeCpu}
+                    value={cpu_user}
                     onChange={this.onValueChange('cpu')}
                   />
                 </div>
@@ -185,14 +109,14 @@ class UndelegateView extends Component {
                     type="number"
                     className="form-control"
                     placeholder="NET goes here..."
-                    value={this.state.unstakeNet}
+                    value={net_user}
                     onChange={this.onValueChange('net')}
                   />
                 </div>
               </div>
             </div>
 
-            {!this.state.isValid && (
+            {!isValidInput && (
               <div className="b-t-default b-b-default p-t-10 color-danger">
                 <h5 className="text-center text-white">
                   <FormattedMessage id="Error" />
@@ -248,11 +172,9 @@ class UndelegateView extends Component {
 
             <div className="form-group">
               <button
-                disabled={!this.state.isValid}
+                disabled={!isValidInput}
                 className={
-                  this.state.isValid
-                    ? 'btn btn-primary btn-block'
-                    : 'btn btn-primary btn-block disabled'
+                  isValidInput ? 'btn btn-primary btn-block' : 'btn btn-primary btn-block disabled'
                 }
                 onClick={this.onConfirm}
               >
