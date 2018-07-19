@@ -6,6 +6,9 @@ import { FormattedMessage } from 'react-intl'
 class Nav extends Component {
   routeActive = paths => {
     paths = Array.isArray(paths) ? paths : [paths]
+
+    console.log(paths)
+    console.log(this.props.location.pathname)
     if (paths.indexOf(this.props.location.pathname.replace('/', '')) > -1) return true
 
     if (paths.indexOf('blockexplorers') > -1) {
@@ -193,6 +196,39 @@ class Nav extends Component {
                     </span>
                     <span className="pcoded-mtext">
                       <FormattedMessage id="Register Proxy" />
+                    </span>
+                    <span className="pcoded-mcaret" />
+                  </Link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul className="pcoded-item pcoded-left-item">
+            <li
+              className={
+                'pcoded-hasmenu' +
+                (this.routeActive(['constitution/provision']) ? ' active pcoded-trigger' : '')
+              }
+            >
+              <a>
+                <span className="pcoded-micon">
+                  <i className="ti-home" />
+                  <b>D</b>
+                </span>
+                <span className="pcoded-mtext">
+                  <FormattedMessage id="Constitution" />
+                </span>
+                <span className="pcoded-mcaret" />
+              </a>
+              <ul className="pcoded-submenu">
+                <li className={this.routeActive('constitution/provision') ? ' active' : ''}>
+                  <Link to="/constitution/provision">
+                    <span className="pcoded-micon">
+                      <i className="ti-angle-right" />
+                    </span>
+                    <span className="pcoded-mtext">
+                      <FormattedMessage id="Constitutional Provision" />
                     </span>
                     <span className="pcoded-mcaret" />
                   </Link>

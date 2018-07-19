@@ -10,7 +10,8 @@ import {
   Delegate,
   Undelegate,
   RegVoteProxy,
-  Refund
+  Refund,
+  Constitution
 } from './pages'
 import { inject, observer } from '../node_modules/mobx-react'
 
@@ -33,6 +34,7 @@ class Routes extends Component {
         <Route exact path="/blockexplorers/:query" component={BlockExplorer} />
         <Route exact path="/voting/vote" component={Voting} />
         <Route exact path="/voting/proxy" component={RegVoteProxy} />
+        <Route exact path="/constitution/provision" component={Constitution} />
       </Switch>
     )
   }
