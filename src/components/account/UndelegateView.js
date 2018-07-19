@@ -159,6 +159,7 @@ class UndelegateView extends Component {
   render() {
     const { unstakeCpu, unstakeNet } = this.state
     const { accountStore } = this.props
+    // todo - accountStore.accountInfo.self_delegated_bandwidth null 에러처리
     const { cpu_weight, net_weight } = accountStore.accountInfo.self_delegated_bandwidth
 
     const targetUnstakeCpu = unstakeCpu ? unstakeCpu : 0
@@ -266,11 +267,8 @@ class UndelegateView extends Component {
 
             <div className="form-group">
               <button
-                className={
-                  this.state.isValid
-                    ? 'btn btn-primary btn-block'
-                    : 'btn btn-primary btn-block disabled'
-                }
+                disabled={this.state.isValid}
+                className="btn btn-primary btn-block"
                 onClick={this.onConfirm}
               >
                 <FormattedMessage id="Confirm" />
