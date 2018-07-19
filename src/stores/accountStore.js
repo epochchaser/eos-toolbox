@@ -3,13 +3,16 @@ import EosAgent from '../EosAgent'
 
 export class AccountStore {
   isLogin = false
+  isValidInput = true
   eosBalance = 0.0
   totalBalance = 0.0
   staked = 0.0
   cpu_staked = 0.0
   cpu_max = 0.0
+  cpu_user = 0.0
   net_staked = 0.0
   net_max = 0.0
+  net_user = 0.0
   liquid = 0.0
   is_proxy = 0
   accountInfo = null
@@ -33,12 +36,15 @@ export class AccountStore {
         refunding_net_amount = parseFloat(accountInfo.refund_request.net_amount.split(' ')[0])
       }
 
-      this.net_staked = parseFloat(accountInfo.total_resources.net_weight.split(' ')[0])
       this.cpu_staked = parseFloat(accountInfo.total_resources.cpu_weight.split(' ')[0])
+      this.net_staked = parseFloat(accountInfo.total_resources.net_weight.split(' ')[0])
+      this.cpu_user = 0
+      this.net_user = 0
 
       this.staked = parseFloat(accountInfo.voter_info.staked) / 10000
       this.totalBalance =
         this.net_staked + this.cpu_staked + refunding_cpu_amount + refunding_net_amount
+      this.unstaked = this.totalBalance - this.staked
       const myProducers = Object.keys(accountInfo.voter_info.producers).map(k => {
         return accountInfo.voter_info.producers[k]
       })
@@ -140,6 +146,86 @@ export class AccountStore {
 
     this.myBlockProducers = filterBaseBPList.sort()
   }
+
+  validateStakingInput = (nextCpu, nextNet) => {
+    if (0 > nextCpu || 0 > nextNet) {
+      this.updateValidationResult(false, nextCpu, nextNet)
+      return
+    }
+
+    if (!this.liquid) return false
+
+    const limit = this.unstaked + this.liquid
+    const nextTotalStaking = nextCpu + nextNet
+
+    const isValid = nextTotalStaking < limit ? true : false
+    this.updateValidationResult(isValid, nextCpu, nextNet)
+  }
+
+  validateUnstakingInput = (nextCpu, nextNet) => {
+    if (0 > nextCpu || 0 > nextNet) {
+      this.updateValidationResult(false, nextCpu, nextNet)
+      return
+    }
+
+    const validCpu = nextCpu <= this.cpu_staked
+    const validNet = nextNet <= this.net_staked
+
+    const isValid = validCpu & validNet ? true : false
+    this.updateValidationResult(isValid, nextCpu, nextNet)
+  }
+
+  updateValidationResult = (isValidInput, cpu_user, net_user) => {
+    this.isValidInput = isValidInput
+    this.cpu_user = cpu_user
+    this.net_user = net_user
+  }
+
+  delegatebwParams = (delegator, receiver, netAmount, cpuAmount) => {
+    const stakeNetAmount = netAmount || 0
+    const stakeCpuAmount = cpuAmount || 0
+
+    return {
+      from: delegator,
+      receiver,
+      stake_net_quantity: `${stakeNetAmount.toFixed(4)} EOS`,
+      stake_cpu_quantity: `${stakeCpuAmount.toFixed(4)} EOS`,
+      transfer: 0
+    }
+  }
+
+  undelegatebwParams = (delegator, receiver, netAmount, cpuAmount) => {
+    const unstakeNetAmount = netAmount || 0
+    const unstakeCpuAmount = cpuAmount || 0
+
+    return {
+      from: delegator,
+      receiver,
+      unstake_net_quantity: `${unstakeNetAmount.toFixed(4)} EOS`,
+      unstake_cpu_quantity: `${unstakeCpuAmount.toFixed(4)} EOS`,
+      transfer: 0
+    }
+  }
+
+  delegate = async () => {
+    if (!this.account) {
+      return
+    }
+
+    return await EosAgent.delegate(
+      this.delegatebwParams(this.account.name, this.account.name, this.net_user, this.cpu_user)
+    )
+  }
+
+  undelegate = async () => {
+    if (!this.account) {
+      return
+    }
+
+    return await EosAgent.undelegate(
+      this.undelegatebwParams(this.account.name, this.account.name, this.net_user, this.cpu_user)
+    )
+  }
 }
 
 decorate(AccountStore, {
@@ -148,9 +234,11 @@ decorate(AccountStore, {
   totalBalance: observable,
   staked: observable,
   cpu_staked: observable,
-  net_staked: observable,
   cpu_max: observable,
+  cpu_user: observable,
+  net_staked: observable,
   net_max: observable,
+  net_user: observable,
   liquid: observable,
   is_proxy: observable,
   accountInfo: observable,
@@ -160,7 +248,11 @@ decorate(AccountStore, {
   login: action,
   logout: action,
   createNewAccount: action,
-  updateMyBlockProducers: action
+  updateMyBlockProducers: action,
+  validateStakingInput: action,
+  validateUnstakingInput: action,
+  delegate: action,
+  undelegate: action
 })
 
 export default new AccountStore()
