@@ -31,18 +31,7 @@ class MyVotecastView extends Component {
               return response
             })
             .catch(err => {
-              if (err) {
-                console.log(err)
-                const parsedResult = JSON.parse(err)
-
-                if (parsedResult.error.details && parsedResult.error.details.length > 0) {
-                  Swal.showValidationError(parsedResult.error.details[0].message)
-                } else {
-                  Swal.showValidationError(parsedResult.message)
-                }
-              } else {
-                Swal.showValidationError(err)
-              }
+              Swal.showValidationError(err)
             })
         },
         allowOutsideClick: () => !Swal.isLoading()
@@ -74,23 +63,10 @@ class MyVotecastView extends Component {
           return eosioStore
             .voteProducer(account.name, [], proxy)
             .then(response => {
-              if (!response.ok) {
-                throw new Error(response.statusText)
-              }
               return response
             })
             .catch(err => {
-              if (err) {
-                const parsedResult = JSON.parse(err)
-
-                if (parsedResult.error.details && parsedResult.error.details.length > 0) {
-                  Swal.showValidationError(parsedResult.error.details[0].message)
-                } else {
-                  Swal.showValidationError(parsedResult.message)
-                }
-              } else {
-                Swal.showValidationError(err)
-              }
+              Swal.showValidationError(err)
             })
         },
         allowOutsideClick: () => !Swal.isLoading()
