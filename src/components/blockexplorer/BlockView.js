@@ -7,7 +7,7 @@ import { format } from 'date-fns'
 
 @inject('explorerStore')
 @observer
-class TransactionView extends Component {
+class BlockView extends Component {
   constructor(props) {
     super(props)
     let { explorerStore } = this.props
@@ -21,9 +21,9 @@ class TransactionView extends Component {
           <div className="card">
             <div className="card-header" style={{ paddingBottom: '0px' }}>
               <div className="card-header-left">
-                <h6>
-                  <FormattedMessage id="Transaction" />
-                </h6>
+                <h7>
+                  <FormattedMessage id="block" />
+                </h7>
               </div>
               <div className="card-header-right" style={{ display: 'none' }}>
                 <ul className="list-unstyled card-option">
@@ -54,85 +54,72 @@ class TransactionView extends Component {
                   <div className="col-sm-12">
                     <h6 className="text-muted d-inline-block">ID</h6>
                     <h6 className="d-inline-block m-l-20 f-w-400">
-                      {this.explorerStore.transaction.id}
+                      #{this.explorerStore.block.block_num}
                     </h6>
                   </div>
                 </div>
                 <div className="row m-l-5 m-t-30 m-b-15">
-                  <div className="col-sm-12 col-md-6">
+                  <div className="col-sm-12">
                     <h6 className="text-muted d-inline-block">
                       <FormattedMessage id="Block" /> :
                     </h6>
                     <h6 className="d-inline-block m-l-10 f-w-400">
                       <NumberFormat
-                        value={this.explorerStore.transaction.block_num}
+                        value={this.explorerStore.block.block_num}
                         displayType={'text'}
                         thousandSeparator={true}
-                      />
-                    </h6>
-                  </div>
-                  <div className="col-sm-12 col-md-6">
-                    <h6 className="text-muted d-inline-block">
-                      <FormattedMessage id="Status" /> :
-                    </h6>
-                    <h6 className="d-inline-block m-l-10 f-w-400">
-                      {this.explorerStore.transaction.trx.receipt.status}
-                    </h6>
-                  </div>
-                </div>
-                <div className="row m-l-5 m-t-10 m-b-15">
-                  <div className="col-sm-12 col-md-6">
-                    <h6 className="text-muted d-inline-block">
-                      <FormattedMessage id="CPU" /> :
-                    </h6>
-                    <h6 className="d-inline-block m-l-10 f-w-400">
-                      <NumberFormat
-                        value={this.explorerStore.transaction.trx.receipt.cpu_usage_us}
-                        displayType={'text'}
-                        thousandSeparator={true}
-                        suffix={' µs'}
-                      />
-                    </h6>
-                  </div>
-                  <div className="col-sm-12 col-md-6">
-                    <h6 className="text-muted d-inline-block">
-                      <FormattedMessage id="NET" /> :
-                    </h6>
-                    <h6 className="d-inline-block m-l-10 f-w-400">
-                      <NumberFormat
-                        value={this.explorerStore.transaction.trx.receipt.net_usage_words}
-                        displayType={'text'}
-                        thousandSeparator={true}
-                        suffix={' words'}
                       />
                     </h6>
                   </div>
                 </div>
                 <div className="row m-l-5 m-t-10 m-b-15">
-                  <div className="col-sm-12 col-md-6">
+                  <div className="col-sm-12">
                     <h6 className="text-muted d-inline-block">
-                      <FormattedMessage id="Block Time" /> :
+                      <FormattedMessage id="Block Producer" /> :
+                    </h6>
+                    <h6 className="d-inline-block m-l-10 f-w-400">
+                      {this.explorerStore.block.producer}
+                    </h6>
+                  </div>
+                </div>
+                <div className="row m-l-5 m-t-10 m-b-15">
+                  <div className="col-sm-12">
+                    <h6 className="text-muted d-inline-block">
+                      <FormattedMessage id="Created" /> :
                     </h6>
                     <h6 className="d-inline-block m-l-10 f-w-400">
                       {format(
-                        new Date(this.explorerStore.transaction.block_time),
+                        new Date(this.explorerStore.block.timestamp),
                         'YYYY-MM-DD HH:mm:ss.SSS'
                       )}
                     </h6>
                   </div>
-                  <div className="col-sm-12 col-md-6">
+                </div>
+                <div className="row m-l-5 m-t-10 m-b-15">
+                  <div className="col-sm-12">
                     <h6 className="text-muted d-inline-block">
-                      <FormattedMessage id="Expiration Time" /> :
+                      <FormattedMessage id="Block ID" /> :
+                    </h6>
+                    <h6 className="d-inline-block m-l-10 f-w-400">{this.explorerStore.block.id}</h6>
+                  </div>
+                </div>
+                <div className="row m-l-5 m-t-10 m-b-15">
+                  <div className="col-sm-12">
+                    <h6 className="text-muted d-inline-block">
+                      <FormattedMessage id="Previous Block ID" /> :
                     </h6>
                     <h6 className="d-inline-block m-l-10 f-w-400">
-                      {this.explorerStore.transaction.trx &&
-                      this.explorerStore.transaction.trx.trx &&
-                      this.explorerStore.transaction.trx.trx.expiration
-                        ? format(
-                          new Date(this.explorerStore.transaction.trx.trx.expiration),
-                          'YYYY-MM-DD HH:mm:ss.SSS'
-                        )
-                        : '-'}
+                      {this.explorerStore.block.previous}
+                    </h6>
+                  </div>
+                </div>
+                <div className="row m-l-5 m-t-10 m-b-15">
+                  <div className="col-sm-12">
+                    <h6 className="text-muted d-inline-block">
+                      <FormattedMessage id="Transaction Murkle Root" /> :
+                    </h6>
+                    <h6 className="d-inline-block m-l-10 f-w-400">
+                      {this.explorerStore.block.transaction_mroot}
                     </h6>
                   </div>
                 </div>
@@ -150,8 +137,8 @@ class TransactionView extends Component {
             </div>
             <div className="card-block">
               <div className="dt-responsive table-responsive">
-                {this.explorerStore.transaction.traces &&
-                  this.explorerStore.transaction.traces.length === 0 && (
+                {this.explorerStore.block.traces &&
+                  this.explorerStore.block.traces.length === 0 && (
                     <table id="base-style" className="table table-striped table-bordered nowrap">
                       <thead>
                         <tr>
@@ -181,8 +168,8 @@ class TransactionView extends Component {
                       </tbody>
                     </table>
                   )}
-                {this.explorerStore.transaction.traces &&
-                  this.explorerStore.transaction.traces.length > 0 && (
+                {this.explorerStore.block.traces &&
+                  this.explorerStore.block.traces.length > 0 && (
                     <table
                       id="base-style"
                       className="table table-striped table-bordered"
@@ -247,4 +234,4 @@ class TransactionView extends Component {
   }
 }
 
-export default TransactionView
+export default BlockView

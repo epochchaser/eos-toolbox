@@ -204,6 +204,16 @@ class EosAgent {
     return actions
   }
 
+  getBlock = async blockNum => {
+    if (!this.eos) {
+      return
+    }
+
+    let block = await this.eos.getBlock(blockNum)
+
+    return block
+  }
+
   loginWithPrivateKey = privKey => {
     let endPoint = Values.NETWORK.protocol + '://' + Values.NETWORK.host + ':' + Values.NETWORK.port
 
