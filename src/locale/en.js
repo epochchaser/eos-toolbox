@@ -106,5 +106,8 @@ export default {
   'By executing this action you are agreeing to the EOS constitution and this actions associated ricardian contract.':
     'By executing this action you are agreeing to the EOS constitution and this actions associated ricardian contract.',
   'Unstaked amount': 'Unstaked amount',
-  Claim: 'Claim'
+  Claim: 'Claim',
+  'Staked after update for CPU': 'Staked after update for CPU',
+  'Staked after update for NET': 'Staked after update for NET',
+  'Simulation Summary': 'Simulation Summary'
 }

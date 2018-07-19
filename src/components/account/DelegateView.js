@@ -208,12 +208,16 @@ class DelegateView extends Component {
 
             <div className="row p-t-20">
               <div className="col-md-12 col-xl-12">
-                <h5>Simulation Summary</h5>
+                <h5>
+                  <FormattedMessage id="Simulation Summary" />
+                </h5>
                 <div className="card-block">
                   <div className="row">
                     <div className="col-sm-6 b-r-default p-b-30">
                       <h2 className="f-w-400">{afterStakeCpu} EOS</h2>
-                      <p className="text-muted f-w-400">Staked after update for CPU</p>
+                      <p className="text-muted f-w-400">
+                        <FormattedMessage id="Staked after update for CPU" />
+                      </p>
                       <div className="progress">
                         <div
                           className="progress-bar bg-c-yellow"
@@ -226,7 +230,9 @@ class DelegateView extends Component {
                     </div>
                     <div className="col-sm-6 p-b-30">
                       <h2 className="f-w-400">{afterStakeNet} EOS</h2>
-                      <p className="text-muted f-w-400">Staked after update for NET</p>
+                      <p className="text-muted f-w-400">
+                        <FormattedMessage id="Staked after update for NET" />
+                      </p>
                       <div className="progress">
                         <div
                           className="progress-bar bg-c-green "
