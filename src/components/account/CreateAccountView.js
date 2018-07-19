@@ -1,8 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 class CreateAccountView extends Component {
   render() {
-    return <div />
+    return (
+      <Fragment>
+        <div>test</div>
+      </Fragment>
+    )
   }
 }
 
