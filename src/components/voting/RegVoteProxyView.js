@@ -22,23 +22,27 @@ class RegVoteProxyView extends Component {
         preConfirm: () => {
           return EosAgent.regproxy(accountStore.account.name)
             .then(async response => {
-              if (!response) {
-                throw new Error(response.statusText)
-              }
-
               await accountStore.loadAccountInfo()
               return response
             })
-            .catch(error => {
-              Swal.showValidationError(`Request failed: ${error}`)
+            .catch(err => {
+              if (err) {
+                const parsedResult = JSON.parse(err)
+
+                if (parsedResult.error.details && parsedResult.error.details.length > 0) {
+                  Swal.showValidationError(parsedResult.error.details[0].message)
+                } else {
+                  Swal.showValidationError(parsedResult.message)
+                }
+              } else {
+                Swal.showValidationError(err)
+              }
             })
         },
         allowOutsideClick: () => !Swal.isLoading()
       }).then(result => {
         if (result.value) {
-          Swal({
-            title: 'Success'
-          })
+          Swal('Good job!', 'Your transaction(s) have been submitted to the blockchain.', 'success')
         }
       })
     } catch (err) {
@@ -61,23 +65,27 @@ class RegVoteProxyView extends Component {
         preConfirm: () => {
           return EosAgent.unregproxy(accountStore.account.name)
             .then(async response => {
-              if (!response) {
-                throw new Error(response.statusText)
-              }
-
               await accountStore.loadAccountInfo()
               return response
             })
-            .catch(error => {
-              Swal.showValidationError(`Request failed: ${error}`)
+            .catch(err => {
+              if (err) {
+                const parsedResult = JSON.parse(err)
+
+                if (parsedResult.error.details && parsedResult.error.details.length > 0) {
+                  Swal.showValidationError(parsedResult.error.details[0].message)
+                } else {
+                  Swal.showValidationError(parsedResult.message)
+                }
+              } else {
+                Swal.showValidationError(err)
+              }
             })
         },
         allowOutsideClick: () => !Swal.isLoading()
       }).then(result => {
         if (result.value) {
-          Swal({
-            title: 'Success'
-          })
+          Swal('Good job!', 'Your transaction(s) have been submitted to the blockchain.', 'success')
         }
       })
     } catch (err) {

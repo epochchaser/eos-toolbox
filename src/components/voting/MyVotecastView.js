@@ -27,10 +27,39 @@ class MyVotecastView extends Component {
     const { myBlockProducers, account } = accountStore
 
     if (account) {
-      const result = await eosioStore.voteProducer(account.name, myBlockProducers)
-      if (result) {
-        Swal('Good job!', 'Your transaction(s) have been submitted to the blockchain.', 'success')
-      }
+      Swal({
+        title: 'Vote',
+        text: 'By completing this transaction, I agree to the EOS constitution',
+        showCancelButton: true,
+        confirmButtonText: 'Comfirm',
+        showLoaderOnConfirm: true,
+        preConfirm: () => {
+          return eosioStore
+            .voteProducer(account.name, myBlockProducers)
+            .then(response => {
+              return response
+            })
+            .catch(err => {
+              if (err) {
+                console.log(err)
+                const parsedResult = JSON.parse(err)
+
+                if (parsedResult.error.details && parsedResult.error.details.length > 0) {
+                  Swal.showValidationError(parsedResult.error.details[0].message)
+                } else {
+                  Swal.showValidationError(parsedResult.message)
+                }
+              } else {
+                Swal.showValidationError(err)
+              }
+            })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then(result => {
+        if (result.value) {
+          Swal('Good job!', 'Your transaction(s) have been submitted to the blockchain.', 'success')
+        }
+      })
     }
   }
 
@@ -59,8 +88,18 @@ class MyVotecastView extends Component {
               }
               return response
             })
-            .catch(error => {
-              Swal.showValidationError(`Request failed: ${error}`)
+            .catch(err => {
+              if (err) {
+                const parsedResult = JSON.parse(err)
+
+                if (parsedResult.error.details && parsedResult.error.details.length > 0) {
+                  Swal.showValidationError(parsedResult.error.details[0].message)
+                } else {
+                  Swal.showValidationError(parsedResult.message)
+                }
+              } else {
+                Swal.showValidationError(err)
+              }
             })
         },
         allowOutsideClick: () => !Swal.isLoading()

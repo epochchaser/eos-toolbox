@@ -65,9 +65,6 @@ class UndelegateView extends Component {
     let targetCpu = nextCpu ? nextCpu : 0
     let targetNet = nextNet ? nextNet : 0
 
-    console.log(originStakeCpu)
-    console.log(originStakeNet)
-
     const validCpu = new Decimal(targetCpu).lessThanOrEqualTo(originStakeCpu)
     const validNet = new Decimal(targetNet).lessThanOrEqualTo(originStakeNet)
 
@@ -108,25 +105,28 @@ class UndelegateView extends Component {
           )
         )
           .then(async response => {
-            if (!response) {
-              throw new Error(response.statusText)
-            }
-
             await accountStore.loadAccountInfo()
             this.loadInitialSeed()
             return response
           })
-          .catch(error => {
-            Swal.showValidationError(`Request failed: ${error}`)
+          .catch(err => {
+            if (err) {
+              const parsedResult = JSON.parse(err)
+
+              if (parsedResult.error.details && parsedResult.error.details.length > 0) {
+                Swal.showValidationError(parsedResult.error.details[0].message)
+              } else {
+                Swal.showValidationError(parsedResult.message)
+              }
+            } else {
+              Swal.showValidationError(err)
+            }
           })
       },
       allowOutsideClick: () => !Swal.isLoading()
     }).then(result => {
       if (result.value) {
-        Swal({
-          title: 'Success'
-          // imageUrl: result.value.avatar_url
-        })
+        Swal('Good job!', 'Your transaction(s) have been submitted to the blockchain.', 'success')
       }
     })
   }
