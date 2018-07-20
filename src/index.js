@@ -46,7 +46,7 @@ const stores = {
   explorerStore
 }
 
-document.addEventListener('scatterLoaded', scatterExtension => {
+document.addEventListener('scatterLoaded', async scatterExtension => {
   console.log('scatterloaded')
 
   if (window.scatter) {
@@ -56,7 +56,7 @@ document.addEventListener('scatterLoaded', scatterExtension => {
     if (window.scatter.identity) {
       EosAgent.initEosAgent(window.scatter.identity)
       commonStore.initEos(true)
-      accountStore.loadAccountInfo()
+      await accountStore.loadAccountInfo()
     }
   }
 
