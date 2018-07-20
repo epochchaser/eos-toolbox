@@ -57,12 +57,12 @@ class EosAgent {
     }
   }
 
-  createTransaction = cb => {
+  createTransaction = async cb => {
     if (!this.eos) {
       return
     }
 
-    this.eos.transaction(cb)
+    return await this.eos.transaction(cb)
   }
 
   getInfo = () => {
@@ -167,30 +167,6 @@ class EosAgent {
     let accounts = await this.eos.getKeyAccounts({ public_key: publicKey })
 
     return accounts
-  }
-
-  delegate = async query => {
-    if (!this.eos) {
-      return
-    }
-
-    const result = await this.eos.transaction(tr => {
-      tr.delegatebw(query)
-    })
-
-    return result
-  }
-
-  undelegate = async query => {
-    if (!this.eos) {
-      return
-    }
-
-    const result = await this.eos.transaction(tr => {
-      tr.undelegatebw(query)
-    })
-
-    return result
   }
 
   regproxy = async accountName => {

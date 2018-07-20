@@ -73,8 +73,7 @@ class Nav extends Component {
                 (this.routeActive([
                   'account/my',
                   'account/create',
-                  'account/delegate',
-                  'account/undelegate',
+                  'account/staking',
                   'account/rammarket',
                   'account/refund',
                   'account/permission'
@@ -116,27 +115,14 @@ class Nav extends Component {
                     <span className="pcoded-mcaret" />
                   </Link>
                 </li>
-                <li className={this.routeActive('account/delegate') ? ' active' : ''}>
-                  <Link to="/account/delegate">
+                <li className={this.routeActive('account/staking') ? ' active' : ''}>
+                  <Link to="/account/staking">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
                     <span className="pcoded-mtext">
-                      <FormattedMessage id="Delegate" />
+                      <FormattedMessage id="Staking" />
                     </span>
-                    <span className="pcoded-badge label label-info ">Stake</span>
-                    <span className="pcoded-mcaret" />
-                  </Link>
-                </li>
-                <li className={this.routeActive('account/undelegate') ? ' active' : ''}>
-                  <Link to="/account/undelegate">
-                    <span className="pcoded-micon">
-                      <i className="ti-angle-right" />
-                    </span>
-                    <span className="pcoded-mtext">
-                      <FormattedMessage id="Undelegate" />
-                    </span>
-                    <span className="pcoded-badge label label-info ">Unstake</span>
                     <span className="pcoded-mcaret" />
                   </Link>
                 </li>

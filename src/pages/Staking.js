@@ -1,14 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import MyResourceView from '../components/account/MyResourceView'
-import UndelegateView from '../components/account/UndelegateView'
+import StakingView from '../components/account/StakingView'
 import { inject, observer } from '../../node_modules/mobx-react'
 
 @inject('accountStore')
 @observer
-class Undelegate extends Component {
+class Staking extends Component {
   render() {
     const { accountStore } = this.props
-
     return (
       accountStore &&
       accountStore.accountInfo && (
@@ -16,7 +15,7 @@ class Undelegate extends Component {
           <div className="page-wrapper">
             <div className="page-body">
               <MyResourceView />
-              <UndelegateView />
+              <StakingView />
               <div className="row" />
             </div>
           </div>
@@ -26,4 +25,4 @@ class Undelegate extends Component {
   }
 }
 
-export default Undelegate
+export default Staking

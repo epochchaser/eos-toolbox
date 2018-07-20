@@ -17,6 +17,8 @@ export default {
   Account: 'Account',
   'My Account': 'My Account',
   'Create Account': 'Create Account',
+  Staking: 'Staking',
+  'Update staked balances': 'Update staked balances',
   Delegate: 'Delegate',
   Undelegate: 'Undelegate',
   'Ram Market': 'Ram Market',
@@ -60,8 +62,8 @@ export default {
   Usaged: 'Usaged',
   Staked: 'Staked',
   Error: 'Error',
-  'Insufficient available EOS balance to complete transaction.':
-    'Insufficient available EOS balance to complete transaction.',
+  'Insufficient available EOS balance to complete transaction. Or Unable to set staked amount to 0. Doing so would prevent you from performing any transactions on the network.':
+    'Insufficient available EOS balance to complete transaction. Or Unable to set staked amount to 0. Doing so would prevent you from performing any transactions on the network.',
   Actions: 'Actions',
   ID: 'ID',
   TYPE: 'TYPE',
@@ -90,8 +92,7 @@ export default {
   EXPIRATION: 'EXPIRATION',
   'No Transactions': 'No Transactions',
   'No Actions': 'No Actions',
-  'How many amount do you want to delegate?': 'How many amount do you want to delegate?',
-  'How many amount do you want to undelegate?': 'How many amount do you want to undelegate?',
+  'Update amount to stake or unstake': 'Update amount to stake or unstake',
   'Register Proxy': 'Register Proxy',
   'Proxy Voter Registration': 'Proxy Voter Registration',
   'This account is now registered and available to be used as a proxy account.':

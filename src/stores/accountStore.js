@@ -148,12 +148,12 @@ export class AccountStore {
   }
 
   validateStakingInput = (nextCpu, nextNet) => {
-    if (0 > nextCpu || 0 > nextNet) {
+    if (0 >= nextCpu || 0 >= nextNet) {
       this.updateValidationResult(false, nextCpu, nextNet)
       return
     }
 
-    if (!this.liquid) return false
+    if (!this.liquid) return
 
     const limit = this.cpu_staked + this.net_staked + this.liquid
     const nextTotal = nextCpu + nextNet
@@ -165,19 +165,6 @@ export class AccountStore {
   seedStakingUserInput = (cpu_user, net_user) => {
     this.cpu_user = cpu_user
     this.net_user = net_user
-  }
-
-  validateUnstakingInput = (nextCpu, nextNet) => {
-    if (0 > nextCpu || 0 > nextNet) {
-      this.updateValidationResult(false, nextCpu, nextNet)
-      return
-    }
-
-    const validCpu = nextCpu <= this.cpu_staked
-    const validNet = nextNet <= this.net_staked
-
-    const isValid = validCpu & validNet ? true : false
-    this.updateValidationResult(isValid, nextCpu, nextNet)
   }
 
   updateValidationResult = (isValidInput, cpu_user, net_user) => {
@@ -212,24 +199,55 @@ export class AccountStore {
     }
   }
 
-  delegate = async () => {
-    if (!this.account) {
-      return
+  getStakeChanges = (nextNetAmount, nextCpuAmount) => {
+    const increaseInStake = {
+      netAmount: Math.max(0, nextNetAmount - this.net_staked),
+      cpuAmount: Math.max(0, nextCpuAmount - this.cpu_staked)
     }
 
-    return await EosAgent.delegate(
-      this.delegatebwParams(this.account.name, this.account.name, this.net_user, this.cpu_user)
-    )
+    const decreaseInStake = {
+      netAmount: Math.max(0, this.net_staked - nextNetAmount),
+      cpuAmount: Math.max(0, this.cpu_staked - nextCpuAmount)
+    }
+
+    return {
+      increaseInStake,
+      decreaseInStake
+    }
   }
 
-  undelegate = async () => {
+  setStake = async () => {
     if (!this.account) {
       return
     }
 
-    return await EosAgent.undelegate(
-      this.undelegatebwParams(this.account.name, this.account.name, this.net_user, this.cpu_user)
-    )
+    const { increaseInStake, decreaseInStake } = this.getStakeChanges(this.net_user, this.cpu_user)
+
+    const cb = tr => {
+      if (increaseInStake.netAmount > 0 || increaseInStake.cpuAmount > 0) {
+        tr.delegatebw(
+          this.delegatebwParams(
+            this.account.name,
+            this.account.name,
+            increaseInStake.netAmount,
+            increaseInStake.cpuAmount
+          )
+        )
+      }
+
+      if (decreaseInStake.netAmount > 0 || decreaseInStake.cpuAmount > 0) {
+        tr.undelegatebw(
+          this.undelegatebwParams(
+            this.account.name,
+            this.account.name,
+            decreaseInStake.netAmount,
+            decreaseInStake.cpuAmount
+          )
+        )
+      }
+    }
+
+    return await EosAgent.createTransaction(cb)
   }
 }
 
@@ -257,8 +275,7 @@ decorate(AccountStore, {
   validateStakingInput: action,
   validateUnstakingInput: action,
   seedStakingUserInput: action,
-  delegate: action,
-  undelegate: action
+  setStake: action
 })
 
 export default new AccountStore()
