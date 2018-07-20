@@ -60,7 +60,8 @@ export default {
   Usaged: '사용중',
   Staked: '스테이크중',
   Error: '오류',
-  'Insufficient available EOS balance to complete transaction.': '한도 초과입니다.',
+  'Insufficient available EOS balance to complete transaction. Or Unable to set staked amount to 0. Doing so would prevent you from performing any transactions on the network.':
+    '한도 초과입니다. 또는 값이 0이 될수 업습니다. 그렇게 되면 트랜잭션 수행이 차단될 것입니다.',
   Actions: '액션',
   ID: '번호',
   TYPE: '종류',
@@ -105,6 +106,7 @@ export default {
     '이오스 헌법에 동의하며 환불을 요청합니다.',
   'Unstaked amount': '언스테이크된 금액',
   Claim: '요청',
+  'Update amount to stake or unstake': '스테이크 하거나 언스테이크 할 금액을 정정하세요.',
   'Total Staked after update for CPU': '변경 후 총 스테이크 된 CPU',
   'Total Staked after update for NET': '변경 후 총 스테이크 된 NET',
   'Simulation Summary': '시뮬레이션',

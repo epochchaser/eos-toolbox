@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 
 @inject('accountStore')
 @observer
-class DelegateView extends Component {
+class StakingView extends Component {
   componentDidMount = () => {
     const { accountStore } = this.props
     accountStore.seedStakingUserInput(accountStore.cpu_staked, accountStore.net_staked)
@@ -28,16 +28,16 @@ class DelegateView extends Component {
     Swal({
       title: 'Update Staked Balances',
       text:
-        'You are about to stake some coins, please note that all coins that were staked will have to be claimed in 72 hours.',
+        'You are about to update staked balances, please note that all coins that were staked will have to be claimed in 72 hours.',
       showCancelButton: true,
       confirmButtonText: 'Comfirm',
       showLoaderOnConfirm: true,
       preConfirm: () => {
         return accountStore
-          .delegate()
+          .setStake()
           .then(async response => {
             await accountStore.loadAccountInfo()
-
+            accountStore.seedStakingUserInput(accountStore.cpu_staked, accountStore.net_staked)
             return response
           })
           .catch(err => {
@@ -90,10 +90,10 @@ class DelegateView extends Component {
             <div className="row">
               <div className="col-lg-6 offset-lg-3">
                 <h5 className="txt-highlight text-center">
-                  <FormattedMessage id="Delegate" />
+                  <FormattedMessage id="Update staked balances" />
                 </h5>
                 <p className="text-muted text-center m-t-20">
-                  <FormattedMessage id="How many amount do you want to delegate?" />
+                  <FormattedMessage id="Update amount to stake or unstake" />
                 </p>
               </div>
             </div>
@@ -135,7 +135,7 @@ class DelegateView extends Component {
                   <FormattedMessage id="Error" />
                 </h5>
                 <p className="text-white text-center m-t-20">
-                  <FormattedMessage id="Insufficient available EOS balance to complete transaction." />
+                  <FormattedMessage id="Insufficient available EOS balance to complete transaction. Or Unable to set staked amount to 0. Doing so would prevent you from performing any transactions on the network." />
                 </p>
               </div>
             )}
@@ -201,4 +201,4 @@ class DelegateView extends Component {
   }
 }
 
-export default DelegateView
+export default StakingView

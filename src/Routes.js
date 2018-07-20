@@ -6,8 +6,7 @@ import {
   CreateAccount,
   Voting,
   BlockExplorer,
-  Delegate,
-  Undelegate,
+  Staking,
   RegVoteProxy,
   Refund,
   Constitution
@@ -20,8 +19,7 @@ class Routes extends Component {
         <Route exact path="/" component={Home} />
         <Route exact path="/account/my" component={MyAccount} />
         <Route exact path="/account/create" component={CreateAccount} />
-        <Route exact path="/account/delegate" component={Delegate} />
-        <Route exact path="/account/undelegate" component={Undelegate} />
+        <Route exact path="/account/staking" component={Staking} />
         <Route exact path="/account/refund" component={Refund} />
         <Route exact path="/blockexplorers" component={BlockExplorer} />
         <Route exact path="/blockexplorers/:query" component={BlockExplorer} />
