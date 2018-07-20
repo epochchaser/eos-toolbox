@@ -15,7 +15,7 @@ export default {
   'GB Free': 'GB Free',
   function: 'function',
   Account: 'Account',
-  'Find Account': 'Find Account',
+  'My Account': 'My Account',
   'Create Account': 'Create Account',
   Delegate: 'Delegate',
   Undelegate: 'Undelegate',

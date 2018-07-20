@@ -18,7 +18,7 @@ class Routes extends Component {
     return (
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/account" component={MyAccount} />
+        <Route exact path="/account/my" component={MyAccount} />
         <Route exact path="/account/create" component={CreateAccount} />
         <Route exact path="/account/delegate" component={Delegate} />
         <Route exact path="/account/undelegate" component={Undelegate} />

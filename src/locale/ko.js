@@ -16,7 +16,7 @@ export default {
   function: '기능들',
   'Find Transaction': '트랜잭션 찾기',
   Account: '계정',
-  'Find Account': '계정 찾기',
+  'My Account': '내 계정',
   'Create Account': '계정 생성',
   Delegate: '위임하기',
   Undelegate: '위임 철회',
