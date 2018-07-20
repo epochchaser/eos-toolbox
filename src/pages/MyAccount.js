@@ -4,26 +4,27 @@ import MyAccountView from '../components/MyAccountView'
 import ResourceView from '../components/ResourceView'
 import NeedLoginView from '../components/NeedLoginView'
 
-@inject('accountStore')
+@inject('accountStore', 'commonStore')
 @observer
 class MyAccount extends Component {
   constructor(props) {
     super(props)
-    let { accountStore } = this.props
+    let { accountStore, commonStore } = this.props
     this.accountStore = accountStore
+    this.commonStore = commonStore
   }
 
   render() {
     return (
       <div>
-        {this.accountStore.isLogin && this.accountStore.accountInfo ? (
-          <Fragment>
-            <MyAccountView />
-            <ResourceView />
-          </Fragment>
-        ) : (
-          <NeedLoginView />
-        )}
+        {this.accountStore.isLogin &&
+          this.accountStore.accountInfo && (
+            <Fragment>
+              <MyAccountView />
+              <ResourceView />
+            </Fragment>
+          )}
+        {!this.commonStore.isLoading && !this.accountStore.isLogin && <NeedLoginView />}
       </div>
     )
   }
