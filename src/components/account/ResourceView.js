@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import NumberFormat from 'react-number-format'
+import UsageResourceView from '../UsageResourceView'
 
 @inject('accountStore')
 @observer
@@ -12,32 +13,52 @@ class ResourceView extends Component {
   }
 
   render() {
-    let ramUsagePercent =
-      parseInt(
-        (this.accountStore.accountInfo.ram_usage / this.accountStore.accountInfo.ram_quota) * 100,
-        10
-      ) + '%'
-    let cpuUsagePercent =
-      parseInt(
-        (this.accountStore.accountInfo.cpu_limit.used /
-          this.accountStore.accountInfo.cpu_limit.max) *
-          100,
-        10
-      ) + '%'
-    let netUsagePercent =
-      parseInt(
-        (this.accountStore.accountInfo.net_limit.used /
-          this.accountStore.accountInfo.net_limit.max) *
-          100,
-        10
-      ) + '%'
+    const cpu = this.accountStore.accountInfo.total_resources
+      ? Number(this.accountStore.accountInfo.total_resources.cpu_weight.replace('EOS', ''))
+      : 0.0
+    const net = this.accountStore.accountInfo.total_resources
+      ? Number(this.accountStore.accountInfo.total_resources.net_weight.replace('EOS', ''))
+      : 0.0
+
+    const stakeEos = cpu + net
+    const unstakeEos = this.accountStore.accountInfo.core_liquid_balance
+      ? Number(this.accountStore.accountInfo.core_liquid_balance.replace('EOS', ''))
+      : 0.0
+
+    const refundCpu = this.accountStore.accountInfo.refund_request
+      ? Number(this.accountStore.accountInfo.refund_request.cpu_amount.replace('EOS', ''))
+      : 0.0
+    const refundNet = this.accountStore.accountInfo.refund_request
+      ? Number(this.accountStore.accountInfo.refund_request.replace('EOS', ''))
+      : 0.0
+
+    const refundEos = refundCpu + refundNet
+    const totalEos = stakeEos + unstakeEos + refundEos
+    const usageEosRate = (stakeEos / totalEos) * 100
+
+    const eosResource = {
+      title: 'EOS Available',
+      fixed: 4,
+      available: unstakeEos,
+      unit: ' EOS',
+      used: stakeEos,
+      max: totalEos,
+      usageRate: usageEosRate,
+      color: 'pink'
+    }
     return (
       <Fragment>
         <div className="main-body">
           <div className="page-wrapper">
             <div className="page-body">
               <div className="row">
-                <div className="col-md-12 col-xl-12">
+                <div className="col-lg-6 col-md-12">
+                  <UsageResourceView resource={eosResource} />
+                </div>
+                <div className="col-lg-6 col-md-12">
+                  <UsageResourceView resource={eosResource} />
+                </div>
+                {/* <div className="col-md-12 col-xl-12">
                   <div className="card summery-card">
                     <div className="card-header">
                       <div className="card-header-left ">
@@ -141,7 +162,7 @@ class ResourceView extends Component {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

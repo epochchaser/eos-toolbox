@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
-import MyAccountView from '../components/MyAccountView'
-import ResourceView from '../components/ResourceView'
+import MyAccountView from '../components/account/MyAccountView'
+import ResourceView from '../components/account/ResourceView'
 import NeedLoginView from '../components/NeedLoginView'
 
 @inject('accountStore', 'commonStore')
