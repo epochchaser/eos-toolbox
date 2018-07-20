@@ -94,19 +94,17 @@ class Nav extends Component {
               </a>
               <span className="pcoded-mcaret" />
               <ul className="pcoded-submenu">
-                {this.accountStore.isLogin && (
-                  <li className={this.routeActive('account/my') ? ' active' : ''}>
-                    <Link to="/account/my">
-                      <span className="pcoded-micon">
-                        <i className="ti-angle-right" />
-                      </span>
-                      <span className="pcoded-mtext">
-                        <FormattedMessage id="My Account" />
-                      </span>
-                      <span className="pcoded-mcaret" />
-                    </Link>
-                  </li>
-                )}
+                <li className={this.routeActive('account/my') ? ' active' : ''}>
+                  <Link to="/account/my">
+                    <span className="pcoded-micon">
+                      <i className="ti-angle-right" />
+                    </span>
+                    <span className="pcoded-mtext">
+                      <FormattedMessage id="My Account" />
+                    </span>
+                    <span className="pcoded-mcaret" />
+                  </Link>
+                </li>
                 <li className={this.routeActive('account/create') ? ' active' : ''}>
                   <Link to="/account/create">
                     <span className="pcoded-micon">
