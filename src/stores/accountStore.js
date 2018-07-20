@@ -133,7 +133,7 @@ export class AccountStore {
       )
     }
 
-    EosAgent.getTransaction(cb)
+    EosAgent.createTransaction(cb)
   }
 
   updateMyBlockProducers = (name, include) => {
