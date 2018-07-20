@@ -36,6 +36,52 @@ class ResourceView extends Component {
     const totalEos = stakeEos + unstakeEos + refundEos
     const usageEosRate = (stakeEos / totalEos) * 100
 
+    const cpuUsed =
+      this.accountStore.accountInfo.cpu_limit.used > 0
+        ? this.accountStore.accountInfo.cpu_limit.used
+        : 0
+    const cpuAvailable =
+      this.accountStore.accountInfo.cpu_limit.available > 0
+        ? this.accountStore.accountInfo.cpu_limit.available
+        : 0
+    const cpuMax =
+      this.accountStore.accountInfo.cpu_limit.max > 0
+        ? this.accountStore.accountInfo.cpu_limit.max
+        : 0
+    const usageCpuRate = cpuMax > 0 ? (cpuUsed / cpuMax) * 100 : 0
+
+    const netUsed =
+      this.accountStore.accountInfo.net_limit.used > 0
+        ? this.accountStore.accountInfo.net_limit.used
+        : 0
+    const netAvailable =
+      this.accountStore.accountInfo.net_limit.available > 0
+        ? this.accountStore.accountInfo.net_limit.available
+        : 0
+    const netMax =
+      this.accountStore.accountInfo.net_limit.max > 0
+        ? this.accountStore.accountInfo.net_limit.max
+        : 0
+    const usageNetRate = netMax > 0 ? (netUsed / netMax) * 100 : 0
+
+    const ramUsed =
+      this.accountStore.accountInfo.ram_usage > 0 ? this.accountStore.accountInfo.ram_usage : 0
+    const ramMax =
+      this.accountStore.accountInfo.ram_quota > 0 ? this.accountStore.accountInfo.ram_quota : 0
+    const ramAvailable = ramMax - ramUsed
+    const usageRamRate = ramMax > 0 ? (ramUsed / ramMax) * 100 : 0
+
+    const cpuResource = {
+      title: 'CPU Available',
+      fixed: 4,
+      available: cpuAvailable,
+      unit: ' µs',
+      used: cpuUsed,
+      max: cpuMax,
+      usageRate: usageCpuRate,
+      color: 'green'
+    }
+
     const eosResource = {
       title: 'EOS Available',
       fixed: 4,
@@ -45,6 +91,28 @@ class ResourceView extends Component {
       max: totalEos,
       usageRate: usageEosRate,
       color: 'pink'
+    }
+
+    const ramResource = {
+      title: 'RAM Available',
+      fixed: 4,
+      available: ramAvailable / 1024,
+      unit: ' KB',
+      used: ramUsed,
+      max: ramMax,
+      usageRate: usageRamRate,
+      color: 'blue'
+    }
+
+    const netResource = {
+      title: 'NET Available',
+      fixed: 4,
+      available: netAvailable / 1024,
+      unit: ' KB',
+      used: netUsed,
+      max: netMax,
+      usageRate: usageNetRate,
+      color: 'yellow'
     }
     return (
       <Fragment>
@@ -56,113 +124,16 @@ class ResourceView extends Component {
                   <UsageResourceView resource={eosResource} />
                 </div>
                 <div className="col-lg-6 col-md-12">
-                  <UsageResourceView resource={eosResource} />
+                  <UsageResourceView resource={ramResource} />
                 </div>
-                {/* <div className="col-md-12 col-xl-12">
-                  <div className="card summery-card">
-                    <div className="card-header">
-                      <div className="card-header-left ">
-                        <h5>Resource Usage</h5>
-                      </div>
-                      <div className="card-header-right">
-                        <ul className="list-unstyled card-option">
-                          <li>
-                            <i className="icofont icofont-simple-left " />
-                          </li>
-                          <li>
-                            <i className="icofont icofont-maximize full-card" />
-                          </li>
-                          <li>
-                            <i className="icofont icofont-minus minimize-card" />
-                          </li>
-                          <li>
-                            <i className="icofont icofont-refresh reload-card" />
-                          </li>
-                          <li>
-                            <i className="icofont icofont-error close-card" />
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6 col-lg-4">
-                        <div>
-                          <div className="card-block user-radial-card">
-                            <div
-                              data-label="RAM"
-                              className="radial-bar radial-bar-90 radial-bar-lg radial-bar-danger"
-                            />
-                            <span className="f-26 text-c-pink">
-                              <NumberFormat
-                                value={this.accountStore.accountInfo.ram_usage}
-                                displayType={'text'}
-                                thousandSeparator={true}
-                              />({ramUsagePercent})
-                            </span>
-                            <p>
-                              From{' '}
-                              <NumberFormat
-                                value={this.accountStore.accountInfo.ram_quota}
-                                displayType={'text'}
-                                thousandSeparator={true}
-                              />
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6 col-lg-4">
-                        <div>
-                          <div className="card-block user-radial-card">
-                            <div
-                              data-label="CPU"
-                              className="radial-bar radial-bar-90 radial-bar-lg radial-bar-danger"
-                            />
-                            <span className="f-26 text-c-pink">
-                              <NumberFormat
-                                value={this.accountStore.accountInfo.cpu_limit.used}
-                                displayType={'text'}
-                                thousandSeparator={true}
-                              />({cpuUsagePercent})
-                            </span>
-                            <p>
-                              From{' '}
-                              <NumberFormat
-                                value={this.accountStore.accountInfo.cpu_limit.max}
-                                displayType={'text'}
-                                thousandSeparator={true}
-                              />
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6 col-lg-4">
-                        <div>
-                          <div className="card-block user-radial-card">
-                            <div
-                              data-label="NET"
-                              className="radial-bar radial-bar-90 radial-bar-lg radial-bar-danger"
-                            />
-                            <span className="f-26 text-c-pink">
-                              <NumberFormat
-                                value={this.accountStore.accountInfo.net_limit.used}
-                                displayType={'text'}
-                                thousandSeparator={true}
-                              />({netUsagePercent})
-                            </span>
-                            <p>
-                              From{' '}
-                              <NumberFormat
-                                value={this.accountStore.accountInfo.net_limit.max}
-                                displayType={'text'}
-                                thousandSeparator={true}
-                              />
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
+              </div>
+              <div className="row">
+                <div className="col-lg-6 col-md-12">
+                  <UsageResourceView resource={cpuResource} />
+                </div>
+                <div className="col-lg-6 col-md-12">
+                  <UsageResourceView resource={netResource} />
+                </div>
               </div>
             </div>
           </div>
