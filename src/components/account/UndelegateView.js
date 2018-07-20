@@ -93,6 +93,7 @@ class UndelegateView extends Component {
 
             <div className="row">
               <div className="col-sm-6 p-b-30">
+                <span>Cpu amount to unstake</span>
                 <div className="input-group input-group-primary">
                   <input
                     type="number"
@@ -104,6 +105,7 @@ class UndelegateView extends Component {
                 </div>
               </div>
               <div className="col-sm-6 p-b-30">
+                <span>Net amount to unstake</span>
                 <div className="input-group input-group-primary">
                   <input
                     type="number"
@@ -137,7 +139,7 @@ class UndelegateView extends Component {
                     <div className="col-sm-6 b-r-default p-b-30">
                       <h2 className="f-w-400">{`${afterUnstakeCpu} EOS`}</h2>
                       <p className="text-muted f-w-400">
-                        <FormattedMessage id="Staked after update for CPU" />
+                        <FormattedMessage id="Total Staked after update for CPU" />
                       </p>
                       <div className="progress">
                         <div
@@ -152,7 +154,7 @@ class UndelegateView extends Component {
                     <div className="col-sm-6 p-b-30">
                       <h2 className="f-w-400">{`${afterUnstakeNet} EOS`}</h2>
                       <p className="text-muted f-w-400">
-                        <FormattedMessage id="Staked after update for NET" />
+                        <FormattedMessage id="Total Staked after update for NET" />
                       </p>
                       <div className="progress">
                         <div
