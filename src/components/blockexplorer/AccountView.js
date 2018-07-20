@@ -53,22 +53,6 @@ class AccountView extends Component {
     const ramAvailable = ramMax - ramUsed
     const usageRamRate = ramMax > 0 ? (ramUsed / ramMax) * 100 : 0
 
-    const availableEosChartStyle = {
-      width: `${usageEosRate.toFixed(0)}%`
-    }
-
-    const availableCpuChartStyle = {
-      width: `${usageCpuRate.toFixed(0)}%`
-    }
-
-    const availableRamChartStyle = {
-      width: `${usageRamRate.toFixed(0)}%`
-    }
-
-    const availableNetChartStyle = {
-      width: `${usageNetRate.toFixed(0)}%`
-    }
-
     const cpuResource = {
       title: 'CPU Available',
       fixed: 4,
