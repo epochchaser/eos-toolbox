@@ -4,7 +4,6 @@ import {
   Home,
   MyAccount,
   CreateAccount,
-  FindAccount,
   Voting,
   BlockExplorer,
   Delegate,
@@ -13,18 +12,12 @@ import {
   Refund,
   Constitution
 } from './pages'
-import { inject, observer } from '../node_modules/mobx-react'
 
-@inject('commonStore')
-@observer
 class Routes extends Component {
   render() {
-    const { _initilizedEos } = this.props.commonStore
-
     return (
       <Switch>
         <Route exact path="/" component={Home} />
-        {_initilizedEos && <Route exact path="/findaccount" component={FindAccount} />}
         <Route exact path="/account" component={MyAccount} />
         <Route exact path="/account/create" component={CreateAccount} />
         <Route exact path="/account/delegate" component={Delegate} />
