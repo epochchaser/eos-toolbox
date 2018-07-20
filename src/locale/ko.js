@@ -166,5 +166,7 @@ export default {
     'A contract is deemed accepted when a member signs a transaction which incorporates a TAPOS proof of a block whose implied state incorporates an ABI of said contract and said transaction is incorporated into the blockchain.',
   'Article XIX - Counterparts': 'Article XIX - Counterparts',
   'This Constitution may be executed in any number of counterparts, each of which when executed and delivered shall constitute a duplicate original, but all counterparts together shall constitute a single agreement.':
-    'This Constitution may be executed in any number of counterparts, each of which when executed and delivered shall constitute a duplicate original, but all counterparts together shall constitute a single agreement.'
+    'This Constitution may be executed in any number of counterparts, each of which when executed and delivered shall constitute a duplicate original, but all counterparts together shall constitute a single agreement.',
+  'Set EOS staked in CPU': 'CPU 스테이크 양',
+  'Set EOS staked in NET': 'NET 스테이크 양'
 }

@@ -6,6 +6,11 @@ import Swal from 'sweetalert2'
 @inject('accountStore')
 @observer
 class DelegateView extends Component {
+  componentDidMount = () => {
+    const { accountStore } = this.props
+    accountStore.seedStakingUserInput(accountStore.cpu_staked, accountStore.net_staked)
+  }
+
   onValueChange = name => event => {
     const { accountStore } = this.props
     const userInput = Number(event.target.value)
@@ -65,27 +70,17 @@ class DelegateView extends Component {
   render() {
     const { accountStore } = this.props
 
-    const {
-      unstaked,
-      cpu_staked,
-      net_staked,
-      cpu_user,
-      net_user,
-      liquid,
-      isValidInput
-    } = accountStore
+    const { cpu_staked, net_staked, cpu_user, net_user, liquid, isValidInput } = accountStore
 
-    const limit = unstaked + liquid
-
-    const afterStakeCpu = cpu_user + cpu_staked
-    const afterStakeNet = net_user + net_staked
+    const cpu_limit = cpu_staked + liquid
+    const net_limit = net_staked + liquid
 
     const afterUnstakeCpuChartStyle = {
-      width: `${(afterStakeCpu / limit) * 100}%`
+      width: `${(cpu_user / cpu_limit) * 100}%`
     }
 
     const afterUnstakeNetChartStyle = {
-      width: `${(afterStakeNet / limit) * 100}%`
+      width: `${(net_user / net_limit) * 100}%`
     }
 
     return (
@@ -106,7 +101,7 @@ class DelegateView extends Component {
             <div className="row">
               <div className="col-sm-6 p-b-30">
                 <h6>
-                  <span>Cpu amount to stake</span>
+                  <FormattedMessage id="Set EOS staked in CPU" />
                 </h6>
                 <div className="input-group input-group-primary">
                   <input
@@ -120,7 +115,7 @@ class DelegateView extends Component {
               </div>
               <div className="col-sm-6 p-b-30">
                 <h6>
-                  <span>Net amount to stake</span>
+                  <FormattedMessage id="Set EOS staked in NET" />
                 </h6>
                 <div className="input-group input-group-primary">
                   <input
@@ -153,7 +148,7 @@ class DelegateView extends Component {
                 <div className="card-block">
                   <div className="row">
                     <div className="col-sm-6 b-r-default p-b-30">
-                      <h2 className="f-w-400">{afterStakeCpu} EOS</h2>
+                      <h2 className="f-w-400">{cpu_user} EOS</h2>
                       <p className="text-muted f-w-400">
                         <FormattedMessage id="Total Staked after update for CPU" />
                       </p>
@@ -168,7 +163,7 @@ class DelegateView extends Component {
                       </div>
                     </div>
                     <div className="col-sm-6 p-b-30">
-                      <h2 className="f-w-400">{afterStakeNet} EOS</h2>
+                      <h2 className="f-w-400">{net_user} EOS</h2>
                       <p className="text-muted f-w-400">
                         <FormattedMessage id="Total Staked after update for NET" />
                       </p>

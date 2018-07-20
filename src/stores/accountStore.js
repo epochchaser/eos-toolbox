@@ -155,11 +155,16 @@ export class AccountStore {
 
     if (!this.liquid) return false
 
-    const limit = this.unstaked + this.liquid
-    const nextTotalStaking = nextCpu + nextNet
+    const limit = this.cpu_staked + this.net_staked + this.liquid
+    const nextTotal = nextCpu + nextNet
 
-    const isValid = nextTotalStaking < limit ? true : false
+    const isValid = nextTotal <= limit ? true : false
     this.updateValidationResult(isValid, nextCpu, nextNet)
+  }
+
+  seedStakingUserInput = (cpu_user, net_user) => {
+    this.cpu_user = cpu_user
+    this.net_user = net_user
   }
 
   validateUnstakingInput = (nextCpu, nextNet) => {
@@ -251,6 +256,7 @@ decorate(AccountStore, {
   updateMyBlockProducers: action,
   validateStakingInput: action,
   validateUnstakingInput: action,
+  seedStakingUserInput: action,
   delegate: action,
   undelegate: action
 })

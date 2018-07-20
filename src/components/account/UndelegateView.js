@@ -6,6 +6,11 @@ import Swal from 'sweetalert2'
 @inject('accountStore')
 @observer
 class UndelegateView extends Component {
+  componentDidMount = () => {
+    const { accountStore } = this.props
+    accountStore.seedStakingUserInput(accountStore.cpu_staked, accountStore.net_staked)
+  }
+
   onValueChange = name => event => {
     const { accountStore } = this.props
     const userInput = Number(event.target.value)
@@ -65,15 +70,12 @@ class UndelegateView extends Component {
     const { accountStore } = this.props
     const { cpu_staked, net_staked, cpu_user, net_user, isValidInput } = accountStore
 
-    const afterUnstakeCpu = cpu_staked - cpu_user
-    const afterUnstakeNet = net_staked - net_user
-
     const afterUnstakeCpuChartStyle = {
-      width: `${(afterUnstakeCpu / cpu_staked) * 100}%`
+      width: `${(cpu_user / cpu_staked) * 100}%`
     }
 
     const afterUnstakeNetChartStyle = {
-      width: `${(afterUnstakeNet / net_staked) * 100}%`
+      width: `${(net_user / net_staked) * 100}%`
     }
 
     return (
@@ -93,7 +95,9 @@ class UndelegateView extends Component {
 
             <div className="row">
               <div className="col-sm-6 p-b-30">
-                <span>Cpu amount to unstake</span>
+                <h6>
+                  <FormattedMessage id="Set EOS staked in CPU" />
+                </h6>
                 <div className="input-group input-group-primary">
                   <input
                     type="number"
@@ -105,7 +109,9 @@ class UndelegateView extends Component {
                 </div>
               </div>
               <div className="col-sm-6 p-b-30">
-                <span>Net amount to unstake</span>
+                <h6>
+                  <FormattedMessage id="Set EOS staked in NET" />
+                </h6>
                 <div className="input-group input-group-primary">
                   <input
                     type="number"
@@ -137,7 +143,7 @@ class UndelegateView extends Component {
                 <div className="card-block">
                   <div className="row">
                     <div className="col-sm-6 b-r-default p-b-30">
-                      <h2 className="f-w-400">{`${afterUnstakeCpu} EOS`}</h2>
+                      <h2 className="f-w-400">{`${cpu_user} EOS`}</h2>
                       <p className="text-muted f-w-400">
                         <FormattedMessage id="Total Staked after update for CPU" />
                       </p>
@@ -152,7 +158,7 @@ class UndelegateView extends Component {
                       </div>
                     </div>
                     <div className="col-sm-6 p-b-30">
-                      <h2 className="f-w-400">{`${afterUnstakeNet} EOS`}</h2>
+                      <h2 className="f-w-400">{`${net_user} EOS`}</h2>
                       <p className="text-muted f-w-400">
                         <FormattedMessage id="Total Staked after update for NET" />
                       </p>
