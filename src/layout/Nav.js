@@ -2,13 +2,20 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import '../styles/layout/Nav.scss'
 import { FormattedMessage } from 'react-intl'
+import { inject, observer } from '../../node_modules/mobx-react'
 
+@inject('accountStore')
+@observer
 class Nav extends Component {
+  constructor(props) {
+    super(props)
+    let { accountStore } = this.props
+    this.accountStore = accountStore
+  }
+
   routeActive = paths => {
     paths = Array.isArray(paths) ? paths : [paths]
 
-    console.log(paths)
-    console.log(this.props.location.pathname)
     if (paths.indexOf(this.props.location.pathname.replace('/', '')) > -1) return true
 
     if (paths.indexOf('blockexplorers') > -1) {
@@ -64,6 +71,7 @@ class Nav extends Component {
               className={
                 'pcoded-hasmenu' +
                 (this.routeActive([
+                  'account/my',
                   'account/create',
                   'account/delegate',
                   'account/undelegate',
@@ -86,6 +94,19 @@ class Nav extends Component {
               </a>
               <span className="pcoded-mcaret" />
               <ul className="pcoded-submenu">
+                {this.accountStore.isLogin && (
+                  <li className={this.routeActive('account/my') ? ' active' : ''}>
+                    <Link to="/account/my">
+                      <span className="pcoded-micon">
+                        <i className="ti-angle-right" />
+                      </span>
+                      <span className="pcoded-mtext">
+                        <FormattedMessage id="My Account" />
+                      </span>
+                      <span className="pcoded-mcaret" />
+                    </Link>
+                  </li>
+                )}
                 <li className={this.routeActive('account/create') ? ' active' : ''}>
                   <Link to="/account/create">
                     <span className="pcoded-micon">

@@ -51,7 +51,7 @@ class MyResourceView extends Component {
                     </h2>
                     <div className="d-inline-block m-l-5 super ">
                       <p className="text-muted  m-b-0 f-w-400 " />
-                      <p className="text-muted  m-b-0 f-w-400 ">/ EOS (Unstaked)</p>
+                      <p className="text-muted  m-b-0 f-w-400 ">/ EOS (Total staked)</p>
                     </div>
                   </div>
                 </div>
