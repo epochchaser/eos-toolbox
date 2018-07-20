@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import NumberFormat from 'react-number-format'
 import { FormattedMessage } from 'react-intl'
 import { format } from 'date-fns'
+import UsageResourceView from '../UsageResourceView'
 
 @inject('explorerStore')
 @observer
@@ -66,6 +67,50 @@ class AccountView extends Component {
 
     const availableNetChartStyle = {
       width: `${usageNetRate.toFixed(0)}%`
+    }
+
+    const cpuResource = {
+      title: 'CPU Available',
+      fixed: 4,
+      available: cpuAvailable,
+      unit: ' µs',
+      used: cpuUsed,
+      max: cpuMax,
+      usageRate: usageCpuRate,
+      color: 'green'
+    }
+
+    const eosResource = {
+      title: 'EOS Available',
+      fixed: 4,
+      available: unstakeEos,
+      unit: ' EOS',
+      used: stakeEos,
+      max: totalEos,
+      usageRate: usageEosRate,
+      color: 'pink'
+    }
+
+    const ramResource = {
+      title: 'RAM Available',
+      fixed: 4,
+      available: ramAvailable / 1024,
+      unit: ' KB',
+      used: ramUsed,
+      max: ramMax,
+      usageRate: usageRamRate,
+      color: 'blue'
+    }
+
+    const netResource = {
+      title: 'NET Available',
+      fixed: 4,
+      available: netAvailable / 1024,
+      unit: ' KB',
+      used: netUsed,
+      max: netMax,
+      usageRate: usageNetRate,
+      color: 'yellow'
     }
 
     return (
@@ -145,180 +190,12 @@ class AccountView extends Component {
           </div>
         </div>
         <div className="col-lg-6 col-md-12 col-xl-4">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="card statustic-card">
-                <div className="card-header">
-                  <h5>
-                    <FormattedMessage id="EOS Available" />
-                  </h5>
-                </div>
-                <div className="card-block text-center">
-                  <span className="d-block text-c-pink f-36">
-                    <NumberFormat
-                      value={unstakeEos.toFixed(4)}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' EOS'}
-                    />
-                  </span>
-                  <div className="progress">
-                    <div className="progress-bar bg-c-pink" style={availableEosChartStyle} />
-                  </div>
-                </div>
-                <div className="card-footer bg-c-pink">
-                  <h6 className="text-white m-b-0">
-                    <FormattedMessage id="Staked" />{' '}
-                    <NumberFormat
-                      value={stakeEos.toFixed(4)}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' EOS'}
-                    />{' '}
-                    /{' '}
-                    <NumberFormat
-                      value={totalEos.toFixed(4)}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' EOS'}
-                    />{' '}
-                    ({`${usageEosRate.toFixed(2)}%`})
-                  </h6>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-12">
-              <div className="card statustic-card">
-                <div className="card-header">
-                  <h5>
-                    <FormattedMessage id="CPU Available" />
-                  </h5>
-                </div>
-                <div className="card-block text-center">
-                  <span className="d-block text-c-green f-36">
-                    <NumberFormat
-                      value={cpuAvailable}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' µs'}
-                    />
-                  </span>
-                  <div className="progress">
-                    <div className="progress-bar bg-c-green" style={availableCpuChartStyle} />
-                  </div>
-                </div>
-                <div className="card-footer bg-c-green">
-                  <h6 className="text-white m-b-0">
-                    <FormattedMessage id="Usaged" />{' '}
-                    <NumberFormat
-                      value={cpuUsed}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' µs'}
-                    />{' '}
-                    /{' '}
-                    <NumberFormat
-                      value={cpuMax}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' µs'}
-                    />{' '}
-                    ({`${usageCpuRate.toFixed(2)}%`})
-                  </h6>
-                </div>
-              </div>
-            </div>
-          </div>
+          <UsageResourceView resource={eosResource} />
+          <UsageResourceView resource={cpuResource} />
         </div>
         <div className="col-lg-6 col-md-12 col-xl-4">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="card statustic-card">
-                <div className="card-header">
-                  <h5>
-                    <FormattedMessage id="RAM Available" />
-                  </h5>
-                </div>
-                <div className="card-block text-center">
-                  <span className="d-block text-c-blue f-36">
-                    <NumberFormat
-                      value={(ramAvailable / 1024).toFixed(4)}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' KB'}
-                    />
-                  </span>
-                  <div className="progress">
-                    <div className="progress-bar bg-c-blue" style={availableRamChartStyle} />
-                  </div>
-                </div>
-                <div className="card-footer bg-c-blue">
-                  <h6 className="text-white m-b-0">
-                    <FormattedMessage id="Usaged" />{' '}
-                    <NumberFormat
-                      value={(ramUsed / 1024).toFixed(4)}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' KB'}
-                    />{' '}
-                    /{' '}
-                    <NumberFormat
-                      value={(ramMax / 1024).toFixed(4)}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' KB'}
-                    />{' '}
-                    ({`${usageRamRate.toFixed(2)}%`})
-                  </h6>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-12">
-              <div className="card statustic-card">
-                <div className="card-header">
-                  <h5>
-                    <FormattedMessage id="NET Available" />
-                  </h5>
-                </div>
-                <div className="card-block text-center">
-                  <span className="d-block text-c-yellow f-36">
-                    <NumberFormat
-                      value={(netAvailable / 1024).toFixed(4)}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' KB'}
-                    />
-                  </span>
-                  <div className="progress">
-                    <div className="progress-bar bg-c-yellow" style={availableNetChartStyle} />
-                  </div>
-                </div>
-                <div className="card-footer bg-c-yellow">
-                  <h6 className="text-white m-b-0">
-                    <FormattedMessage id="Usaged" />{' '}
-                    <NumberFormat
-                      value={(netUsed / 1024).toFixed(4)}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' KB'}
-                    />{' '}
-                    /{' '}
-                    <NumberFormat
-                      value={(netMax / 1024).toFixed(4)}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      suffix={' KB'}
-                    />{' '}
-                    ({`${usageNetRate.toFixed(2)}%`})
-                  </h6>
-                </div>
-              </div>
-            </div>
-          </div>
+          <UsageResourceView resource={ramResource} />
+          <UsageResourceView resource={netResource} />
         </div>
         <div className="col-sm-12">
           <div className="card">
