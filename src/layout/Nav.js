@@ -104,6 +104,17 @@ class Nav extends Component {
                     <span className="pcoded-mcaret" />
                   </Link>
                 </li>
+                <li className={this.routeActive('account/transfer') ? ' active' : ''}>
+                  <Link to="/account/transfer">
+                    <span className="pcoded-micon">
+                      <i className="ti-angle-right" />
+                    </span>
+                    <span className="pcoded-mtext">
+                      <FormattedMessage id="Transfer" />
+                    </span>
+                    <span className="pcoded-mcaret" />
+                  </Link>
+                </li>
                 <li className={this.routeActive('account/create') ? ' active' : ''}>
                   <Link to="/account/create">
                     <span className="pcoded-micon">

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 import { FormattedMessage } from 'react-intl'
 
@@ -56,19 +57,9 @@ class LoginView extends Component {
           ) : (
             <div>
               <li>
-                <a href="user-profile.html">
-                  <i className="ti-user" /> Profile
-                </a>
-              </li>
-              <li>
-                <a href="email-inbox.html">
-                  <i className="ti-email" /> My Messages
-                </a>
-              </li>
-              <li>
-                <a href="auth-lock-screen.html">
-                  <i className="ti-lock" /> Lock Screen
-                </a>
+                <Link to="/account/my">
+                  <i className="ti-user" /> <FormattedMessage id="My Account" />
+                </Link>
               </li>
               <li>
                 <a href="#!" onClick={this.logoutClick}>
