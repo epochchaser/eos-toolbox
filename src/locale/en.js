@@ -171,5 +171,7 @@ export default {
   'This Constitution may be executed in any number of counterparts, each of which when executed and delivered shall constitute a duplicate original, but all counterparts together shall constitute a single agreement.':
     'This Constitution may be executed in any number of counterparts, each of which when executed and delivered shall constitute a duplicate original, but all counterparts together shall constitute a single agreement.',
   'Set EOS staked in CPU': 'Set EOS staked in CPU',
-  'Set EOS staked in NET': 'Set EOS staked in NET'
+  'Set EOS staked in NET': 'Set EOS staked in NET',
+  Staking: 'Staking',
+  Transfer: 'Transfer'
 }

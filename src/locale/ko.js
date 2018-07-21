@@ -170,5 +170,7 @@ export default {
   'This Constitution may be executed in any number of counterparts, each of which when executed and delivered shall constitute a duplicate original, but all counterparts together shall constitute a single agreement.':
     'This Constitution may be executed in any number of counterparts, each of which when executed and delivered shall constitute a duplicate original, but all counterparts together shall constitute a single agreement.',
   'Set EOS staked in CPU': 'CPU 스테이크 양',
-  'Set EOS staked in NET': 'NET 스테이크 양'
+  'Set EOS staked in NET': 'NET 스테이크 양',
+  Staking: '스테이킹',
+  Transfer: '전송하기'
 }
