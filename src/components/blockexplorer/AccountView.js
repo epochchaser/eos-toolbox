@@ -80,8 +80,8 @@ class AccountView extends Component {
       fixed: 4,
       available: ramAvailable / 1024,
       unit: ' KB',
-      used: ramUsed,
-      max: ramMax,
+      used: ramUsed / 1024,
+      max: ramMax / 1024,
       usageRate: usageRamRate,
       color: 'blue'
     }
@@ -91,8 +91,8 @@ class AccountView extends Component {
       fixed: 4,
       available: netAvailable / 1024,
       unit: ' KB',
-      used: netUsed,
-      max: netMax,
+      used: netUsed / 1024,
+      max: netMax / 1024,
       usageRate: usageNetRate,
       color: 'yellow'
     }

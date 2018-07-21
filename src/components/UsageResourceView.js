@@ -44,14 +44,14 @@ class UsageResourceView extends Component {
                   value={this.props.resource.used.toFixed(this.props.resource.fixed)}
                   displayType={'text'}
                   thousandSeparator={true}
-                  suffix={' KB'}
+                  suffix={this.props.resource.unit}
                 />{' '}
                 /{' '}
                 <NumberFormat
                   value={this.props.resource.max.toFixed(this.props.resource.fixed)}
                   displayType={'text'}
                   thousandSeparator={true}
-                  suffix={' KB'}
+                  suffix={this.props.resource.unit}
                 />{' '}
                 ({`${this.props.resource.usageRate.toFixed(2)}%`})
               </h6>
