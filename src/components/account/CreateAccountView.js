@@ -115,7 +115,9 @@ class CreateAccountView extends Component {
         <div className="col-sm-12">
           <div className="card">
             <div className="card-header">
-              <h5>Create Account</h5>
+              <h5>
+                <FormattedMessage id="Create Account" />
+              </h5>
               <span>
                 Create your <code> new account</code> with <code>information</code> below
               </span>
@@ -124,7 +126,7 @@ class CreateAccountView extends Component {
               <div className={accountNameForm}>
                 <div className="col-sm-2">
                   <label className="col-form-label" htmlFor="newAccountInputDanger">
-                    New account name
+                    <FormattedMessage id="New account name" />
                   </label>
                 </div>
                 <div className="col-sm-10">
@@ -138,7 +140,9 @@ class CreateAccountView extends Component {
                   />
 
                   {!isAccountNameValid && (
-                    <div className="col-form-label">Invalid account name.</div>
+                    <div className="col-form-label">
+                      <FormattedMessage id="Invalid account name" />
+                    </div>
                   )}
                 </div>
               </div>
@@ -146,7 +150,7 @@ class CreateAccountView extends Component {
               <div className={ownerForm}>
                 <div className="col-sm-2">
                   <label className="col-form-label" htmlFor="ownerInputDanger">
-                    Owner
+                    <FormattedMessage id="Owner" />
                   </label>
                 </div>
                 <div className="col-sm-10">
@@ -159,14 +163,18 @@ class CreateAccountView extends Component {
                     onChange={this.onInputChange('owner')}
                   />
 
-                  {!isOwnerValid && <div className="col-form-label">Owner cannot be empty</div>}
+                  {!isOwnerValid && (
+                    <div className="col-form-label">
+                      <FormattedMessage id="Owner cannot be empty" />
+                    </div>
+                  )}
                 </div>
               </div>
 
               <div className={ownerPublicKeyForm}>
                 <div className="col-sm-2">
                   <label className="col-form-label" htmlFor="ownerPublicKeyInputDanger">
-                    Owner public key
+                    <FormattedMessage id="Owner public key" />
                   </label>
                 </div>
                 <div className="col-sm-10">
@@ -180,7 +188,9 @@ class CreateAccountView extends Component {
                   />
 
                   {!isOwnerPubKeyValid && (
-                    <div className="col-form-label">Owner pubkey cannot be empty</div>
+                    <div className="col-form-label">
+                      <FormattedMessage id="Owner pubkey cannot be empty" />
+                    </div>
                   )}
                 </div>
               </div>
@@ -188,7 +198,7 @@ class CreateAccountView extends Component {
               <div className={activePublicKeyForm}>
                 <div className="col-sm-2">
                   <label className="col-form-label" htmlFor="activePublicKeyInputDanger">
-                    Active public key
+                    <FormattedMessage id="Active public key" />
                   </label>
                 </div>
                 <div className="col-sm-10">
@@ -202,7 +212,9 @@ class CreateAccountView extends Component {
                   />
 
                   {!isActivePubKeyValid && (
-                    <div className="col-form-label">Active pubkey cannot be empty</div>
+                    <div className="col-form-label">
+                      <FormattedMessage id="Active pubkey cannot be empty" />
+                    </div>
                   )}
                 </div>
               </div>
@@ -210,7 +222,7 @@ class CreateAccountView extends Component {
               <div className={cpuStakeForm}>
                 <div className="col-sm-2">
                   <label className="col-form-label" htmlFor="cpuStakeInputDanger">
-                    CPU Stake (in EOS)
+                    <FormattedMessage id="CPU Stake (in EOS)" />
                   </label>
                 </div>
                 <div className="col-sm-10">
@@ -223,14 +235,18 @@ class CreateAccountView extends Component {
                     onChange={this.onInputChange('cpustake')}
                   />
 
-                  {!isCPUstakeValid && <div className="col-form-label">CPU Stake is requied</div>}
+                  {!isCPUstakeValid && (
+                    <div className="col-form-label">
+                      <FormattedMessage id="CPU Stake is requied" />
+                    </div>
+                  )}
                 </div>
               </div>
 
               <div className={netStakeForm}>
                 <div className="col-sm-2">
                   <label className="col-form-label" htmlFor="netStakeInputDanger">
-                    NET Stake (in EOS)
+                    <FormattedMessage id="NET Stake (in EOS)" />
                   </label>
                 </div>
                 <div className="col-sm-10">
@@ -243,14 +259,18 @@ class CreateAccountView extends Component {
                     onChange={this.onInputChange('netstake')}
                   />
 
-                  {!isNETstakeValid && <div className="col-form-label">NET Stake is requied</div>}
+                  {!isNETstakeValid && (
+                    <div className="col-form-label">
+                      <FormattedMessage id="NET Stake is requied" />
+                    </div>
+                  )}
                 </div>
               </div>
 
               <div className={ramPurchaseForm}>
                 <div className="col-sm-2">
                   <label className="col-form-label" htmlFor="ramPurchaseInputDanger">
-                    RAM purchase (in bytes)
+                    <FormattedMessage id="RAM purchase (in bytes)" />
                   </label>
                 </div>
                 <div className="col-sm-10">
@@ -264,14 +284,18 @@ class CreateAccountView extends Component {
                   />
 
                   {!isRAMpurchaseValid && (
-                    <div className="col-form-label">RAM purchase is required</div>
+                    <div className="col-form-label">
+                      <FormattedMessage id="RAM purchase is required" />
+                    </div>
                   )}
                 </div>
               </div>
 
               <div className={ramPurchaseForm}>
                 <div className="col-sm-2">
-                  <label className="col-form-label">Transfer</label>
+                  <label className="col-form-label">
+                    <FormattedMessage id="Transfer" />
+                  </label>
                 </div>
                 <div className="col-sm-10">
                   <span
