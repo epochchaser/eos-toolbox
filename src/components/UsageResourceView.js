@@ -8,8 +8,14 @@ class UsageResourceView extends Component {
   }
 
   render() {
+    let width = this.props.resource.usageRate
+
+    if (this.props.resource.usageRate > 0 && this.props.resource.usageRate < 1) {
+      width = 1
+    } else if (this.props.resource.usageRate > 99 && this.props.resource.usageRate < 100) width = 99
+
     const availableChartStyle = {
-      width: `${this.props.resource.usageRate.toFixed(0)}%`
+      width: `${width.toFixed(0)}%`
     }
 
     return (
