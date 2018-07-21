@@ -4,6 +4,13 @@ import EosAgent from '../EosAgent'
 export class AccountStore {
   isLogin = false
   isValidInput = true
+  isAccountNameValid = false
+  isOwnerValid = false
+  isOwnerPublicKeyValid = false
+  isActivePublicKeyValid = false
+  isCPUstakeValid = false
+  isNETstakeValid = false
+  isRAMpurchaseValid = false
   eosBalance = 0.0
   totalBalance = 0.0
   staked = 0.0
@@ -253,6 +260,13 @@ export class AccountStore {
 
 decorate(AccountStore, {
   isLogin: observable,
+  isAccountNameValid: observable,
+  isOwnerValid: observable,
+  isOwnerPublicKeyValid: observable,
+  isActivePublicKeyValid: observable,
+  isCPUstakeValid: observable,
+  isNETstakeValid: observable,
+  isRAMpurchaseValid: observable,
   eosBalance: observable,
   totalBalance: observable,
   staked: observable,
