@@ -143,10 +143,20 @@ class TransactionView extends Component {
         <div className="col-sm-12">
           <div className="card">
             <div className="card-header">
-              <h6>
+              <h5>
                 <FormattedMessage id="Actions" />
-              </h6>
-              <span>Actoins in transaction</span>
+              </h5>
+              <h5>
+                {this.explorerStore.transaction.traces && (
+                  <NumberFormat
+                    value={this.explorerStore.transaction.traces.length}
+                    displayType={'text'}
+                    thousandSeparator={true}
+                    prefix={'('}
+                    suffix={')'}
+                  />
+                )}
+              </h5>
             </div>
             <div className="card-block">
               <div className="dt-responsive table-responsive">
