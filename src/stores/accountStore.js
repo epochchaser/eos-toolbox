@@ -1,6 +1,11 @@
 import { decorate, observable, action } from 'mobx'
 import EosAgent from '../EosAgent'
 
+const ACCOUNT_NAME_PATTERN = /([a-z1-5]){12,}/
+const MIN_RAM_BYTES = 8192
+const MIN_CPU = 0.1
+const MIN_NET = 0.1
+
 export class AccountStore {
   isLogin = false
   isValidInput = true
@@ -11,6 +16,14 @@ export class AccountStore {
   isCPUstakeValid = false
   isNETstakeValid = false
   isRAMpurchaseValid = false
+  accountNameInput = ''
+  ownerInput = ''
+  ownerPubKeyInput = ''
+  activePubKeyInput = ''
+  cpuStakeInput = MIN_CPU
+  netStakeInput = MIN_NET
+  ramPurchaseInput = MIN_RAM_BYTES
+  transferInput = false
   eosBalance = 0.0
   totalBalance = 0.0
   staked = 0.0
@@ -256,6 +269,34 @@ export class AccountStore {
 
     return await EosAgent.createTransaction(cb)
   }
+
+  validateAccountName = newVal => {
+    this.isAccountNameValid = null === ACCOUNT_NAME_PATTERN.exec(newVal) ? false : true
+  }
+
+  validateOwner = newVal => {
+    this.isOwnerValid = null === newVal ? false : true
+  }
+
+  validateOwnerPubKey = newVal => {
+    this.isOwnerPubKeyValid = null === newVal ? false : true
+  }
+
+  validateActivePubKey = newVal => {
+    this.isActivePubKeyValid = null === newVal ? false : true
+  }
+
+  validateCpuStake = newVal => {
+    this.isCPUstakeValid = newVal >= MIN_CPU ? true : false
+  }
+
+  validateNetStake = newVal => {
+    this.isNETstakeValid = newVal >= MIN_NET ? true : false
+  }
+
+  validateRamPurchase = newVal => {
+    this.isRAMpurchaseValid = newVal >= MIN_RAM_BYTES ? true : false
+  }
 }
 
 decorate(AccountStore, {
@@ -267,6 +308,14 @@ decorate(AccountStore, {
   isCPUstakeValid: observable,
   isNETstakeValid: observable,
   isRAMpurchaseValid: observable,
+  accountNameInput: observable,
+  ownerInput: observable,
+  ownerPubKeyInput: observable,
+  activePubKeyInput: observable,
+  cpuStakeInput: observable,
+  netStakeInput: observable,
+  ramPurchaseInput: observable,
+  transferInput: observable,
   eosBalance: observable,
   totalBalance: observable,
   staked: observable,
@@ -289,7 +338,14 @@ decorate(AccountStore, {
   validateStakingInput: action,
   validateUnstakingInput: action,
   seedStakingUserInput: action,
-  setStake: action
+  setStake: action,
+  validateAccountName: action,
+  validateOwner: action,
+  validateOwnerPubKey: action,
+  validateActivePubKey: action,
+  validateCpuStake: action,
+  validateNetStake: action,
+  validateRamPurchase: action
 })
 
 export default new AccountStore()
