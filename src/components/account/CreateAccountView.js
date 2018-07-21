@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { FormattedMessage } from 'react-intl'
-import EosAgent from '../../EosAgent'
 import Swal from 'sweetalert2'
 
 @inject('accountStore')
@@ -28,13 +27,58 @@ class CreateAccountView extends Component {
     }
   }
 
+  createAccount = () => {
+    const { accountStore } = this.props
+    if (!accountStore || !accountStore.account || !accountStore.accountInfo) return
+
+    Swal({
+      title: 'Create Account',
+      text:
+        'By executing this action you are agreeing to the EOS constitution and this actions associated ricardian contract.',
+      showCancelButton: true,
+      confirmButtonText: 'Create',
+      showLoaderOnConfirm: true,
+      preConfirm: () => {
+        return accountStore
+          .createNewAccount()
+          .then(async response => {
+            await accountStore.seedCreateAccountInput()
+            return response
+          })
+          .catch(err => {
+            if (err) {
+              if (err.message) {
+                Swal.showValidationError(err.message)
+                return
+              }
+
+              const parsedResult = JSON.parse(err)
+
+              if (parsedResult.error.details && parsedResult.error.details.length > 0) {
+                Swal.showValidationError(parsedResult.error.details[0].message)
+              } else {
+                Swal.showValidationError(parsedResult.message)
+              }
+            } else {
+              Swal.showValidationError(err)
+            }
+          })
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then(result => {
+      if (result.value) {
+        Swal('Good job!', 'Your transaction(s) have been submitted to the blockchain.', 'success')
+      }
+    })
+  }
+
   render() {
     const { accountStore } = this.props
     const {
       isAccountNameValid,
       isOwnerValid,
-      isOwnerPublicKeyValid,
-      isActivePublicKeyValid,
+      isOwnerPubKeyValid,
+      isActivePubKeyValid,
       isCPUstakeValid,
       isNETstakeValid,
       isRAMpurchaseValid,
@@ -48,14 +92,18 @@ class CreateAccountView extends Component {
       transferInput
     } = accountStore
 
+    const canSubmit =
+      isAccountNameValid &&
+      isOwnerValid &&
+      isOwnerPubKeyValid &&
+      isActivePubKeyValid &&
+      isCPUstakeValid &&
+      isNETstakeValid &&
+      isRAMpurchaseValid
     const accountNameForm = isAccountNameValid ? 'form-group row' : 'form-group has-danger row'
     const ownerForm = isOwnerValid ? 'form-group row' : 'form-group has-danger row'
-    const ownerPublicKeyForm = isOwnerPublicKeyValid
-      ? 'form-group row'
-      : 'form-group has-danger row'
-    const activePublicKeyForm = isActivePublicKeyValid
-      ? 'form-group row'
-      : 'form-group has-danger row'
+    const ownerPublicKeyForm = isOwnerPubKeyValid ? 'form-group row' : 'form-group has-danger row'
+    const activePublicKeyForm = isActivePubKeyValid ? 'form-group row' : 'form-group has-danger row'
     const cpuStakeForm = isCPUstakeValid ? 'form-group row' : 'form-group has-danger row'
     const netStakeForm = isNETstakeValid ? 'form-group row' : 'form-group has-danger row'
     const ramPurchaseForm = isRAMpurchaseValid ? 'form-group row' : 'form-group has-danger row'
@@ -75,7 +123,7 @@ class CreateAccountView extends Component {
             <div className="card-block">
               <div className={accountNameForm}>
                 <div className="col-sm-2">
-                  <label className="col-form-label" for="newAccountInputDanger">
+                  <label className="col-form-label" htmlFor="newAccountInputDanger">
                     New account name
                   </label>
                 </div>
@@ -97,7 +145,7 @@ class CreateAccountView extends Component {
 
               <div className={ownerForm}>
                 <div className="col-sm-2">
-                  <label className="col-form-label" for="ownerInputDanger">
+                  <label className="col-form-label" htmlFor="ownerInputDanger">
                     Owner
                   </label>
                 </div>
@@ -117,7 +165,7 @@ class CreateAccountView extends Component {
 
               <div className={ownerPublicKeyForm}>
                 <div className="col-sm-2">
-                  <label className="col-form-label" for="ownerPublicKeyInputDanger">
+                  <label className="col-form-label" htmlFor="ownerPublicKeyInputDanger">
                     Owner public key
                   </label>
                 </div>
@@ -131,7 +179,7 @@ class CreateAccountView extends Component {
                     onChange={this.onInputChange('ownerpubkey')}
                   />
 
-                  {!isOwnerPublicKeyValid && (
+                  {!isOwnerPubKeyValid && (
                     <div className="col-form-label">Owner pubkey cannot be empty</div>
                   )}
                 </div>
@@ -139,7 +187,7 @@ class CreateAccountView extends Component {
 
               <div className={activePublicKeyForm}>
                 <div className="col-sm-2">
-                  <label className="col-form-label" for="activePublicKeyInputDanger">
+                  <label className="col-form-label" htmlFor="activePublicKeyInputDanger">
                     Active public key
                   </label>
                 </div>
@@ -153,7 +201,7 @@ class CreateAccountView extends Component {
                     onChange={this.onInputChange('activepubkey')}
                   />
 
-                  {!isActivePublicKeyValid && (
+                  {!isActivePubKeyValid && (
                     <div className="col-form-label">Active pubkey cannot be empty</div>
                   )}
                 </div>
@@ -161,7 +209,7 @@ class CreateAccountView extends Component {
 
               <div className={cpuStakeForm}>
                 <div className="col-sm-2">
-                  <label className="col-form-label" for="cpuStakeInputDanger">
+                  <label className="col-form-label" htmlFor="cpuStakeInputDanger">
                     CPU Stake (in EOS)
                   </label>
                 </div>
@@ -181,7 +229,7 @@ class CreateAccountView extends Component {
 
               <div className={netStakeForm}>
                 <div className="col-sm-2">
-                  <label className="col-form-label" for="netStakeInputDanger">
+                  <label className="col-form-label" htmlFor="netStakeInputDanger">
                     NET Stake (in EOS)
                   </label>
                 </div>
@@ -201,7 +249,7 @@ class CreateAccountView extends Component {
 
               <div className={ramPurchaseForm}>
                 <div className="col-sm-2">
-                  <label className="col-form-label" for="ramPurchaseInputDanger">
+                  <label className="col-form-label" htmlFor="ramPurchaseInputDanger">
                     RAM purchase (in bytes)
                   </label>
                 </div>
@@ -243,7 +291,11 @@ class CreateAccountView extends Component {
               <div className="row">
                 <div className="col-lg-6 offset-lg-3">
                   <div className="card-block text-center">
-                    <button className="btn btn-success btn-md btn-round">
+                    <button
+                      disabled={!canSubmit}
+                      className="btn btn-success btn-md btn-round"
+                      onClick={this.createAccount}
+                    >
                       <FormattedMessage id="Create Account" />
                     </button>
                   </div>

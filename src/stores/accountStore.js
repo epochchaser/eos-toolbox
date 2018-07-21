@@ -13,9 +13,9 @@ export class AccountStore {
   isOwnerValid = false
   isOwnerPublicKeyValid = false
   isActivePublicKeyValid = false
-  isCPUstakeValid = false
-  isNETstakeValid = false
-  isRAMpurchaseValid = false
+  isCPUstakeValid = true
+  isNETstakeValid = true
+  isRAMpurchaseValid = true
   accountNameInput = ''
   ownerInput = ''
   ownerPubKeyInput = ''
@@ -43,7 +43,6 @@ export class AccountStore {
     let accountInfo, balance
 
     accountInfo = await EosAgent.getAccountInfo()
-
     if (accountInfo) {
       this.liquid = parseFloat(accountInfo.core_liquid_balance.split(' ')[0])
       this.cpu_max = parseFloat(accountInfo.cpu_limit.max / 10000)
@@ -109,51 +108,44 @@ export class AccountStore {
     this.account = null
   }
 
-  createNewAccount = async (
-    owner,
-    authority,
-    newAccount,
-    newAccountOwnerPubKey,
-    newAccountActivePubKey,
-    buyrambytes,
-    stakeCpuQuantity,
-    stakeNetQuantity
-  ) => {
+  createNewAccount = async () => {
+    if (!this.account) return
+
     const cb = tr => {
-      const options = { authorization: [`${owner}@${authority}`] }
+      const options = { authorization: [`${this.account.name}@${this.account.authority}`] }
 
       tr.newaccount(
         {
-          creator: owner,
-          name: newAccount,
-          owner: newAccountOwnerPubKey,
-          active: newAccountActivePubKey
+          creator: this.account.name,
+          name: this.accountNameInput,
+          owner: this.ownerPubKeyInput,
+          active: this.activePubKeyInput
         },
         options
       )
 
       tr.buyrambytes(
         {
-          payer: owner,
-          receiver: newAccount,
-          bytes: buyrambytes
+          payer: this.account.name,
+          receiver: this.accountNameInput,
+          bytes: this.ramPurchaseInput
         },
         options
       )
 
       tr.delegatebw(
         {
-          from: owner,
-          receiver: newAccount,
-          stake_net_quantity: stakeNetQuantity + ' EOS',
-          stake_cpu_quantity: stakeCpuQuantity + ' EOS',
+          from: this.account.name,
+          receiver: this.accountNameInput,
+          stake_net_quantity: Number(this.netStakeInput).toFixed(4) + ' EOS',
+          stake_cpu_quantity: Number(this.cpuStakeInput).toFixed(4) + ' EOS',
           transfer: 0
         },
         options
       )
     }
 
-    EosAgent.createTransaction(cb)
+    await EosAgent.createTransaction(cb)
   }
 
   updateMyBlockProducers = (name, include) => {
@@ -271,31 +263,49 @@ export class AccountStore {
   }
 
   validateAccountName = newVal => {
+    this.accountNameInput = newVal
     this.isAccountNameValid = null === ACCOUNT_NAME_PATTERN.exec(newVal) ? false : true
   }
 
   validateOwner = newVal => {
+    this.ownerInput = newVal
     this.isOwnerValid = null === newVal ? false : true
   }
 
   validateOwnerPubKey = newVal => {
+    this.ownerPubKeyInput = newVal
     this.isOwnerPubKeyValid = null === newVal ? false : true
   }
 
   validateActivePubKey = newVal => {
+    this.activePubKeyInput = newVal
     this.isActivePubKeyValid = null === newVal ? false : true
   }
 
   validateCpuStake = newVal => {
+    this.cpuStakeInput = newVal
     this.isCPUstakeValid = newVal >= MIN_CPU ? true : false
   }
 
   validateNetStake = newVal => {
+    this.netStakeInput = newVal
     this.isNETstakeValid = newVal >= MIN_NET ? true : false
   }
 
   validateRamPurchase = newVal => {
+    this.ramPurchaseInput = newVal
     this.isRAMpurchaseValid = newVal >= MIN_RAM_BYTES ? true : false
+  }
+
+  seedCreateAccountInput = () => {
+    this.accountNameInput = ''
+    this.ownerInput = ''
+    this.ownerPubKeyInput = ''
+    this.activePubKeyInput = ''
+    this.cpuStakeInput = MIN_CPU
+    this.netStakeInput = MIN_NET
+    this.ramPurchaseInput = MIN_RAM_BYTES
+    this.transferInput = false
   }
 }
 
@@ -345,7 +355,8 @@ decorate(AccountStore, {
   validateActivePubKey: action,
   validateCpuStake: action,
   validateNetStake: action,
-  validateRamPurchase: action
+  validateRamPurchase: action,
+  seedCreateAccountInput: action
 })
 
 export default new AccountStore()
