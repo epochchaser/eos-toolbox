@@ -172,17 +172,20 @@ class BlockView extends Component {
         <div className="col-sm-12">
           <div className="card">
             <div className="card-header">
-              <h6>
+              <h5>
                 <FormattedMessage id="Transactions" />
-              </h6>
-              <span className="d-inline-block">
-                Transactions in block (#<NumberFormat
-                  value={this.explorerStore.block.block_num}
-                  displayType={'text'}
-                  thousandSeparator={true}
-                  className="d-inline-block"
-                />)
-              </span>
+              </h5>
+              <h5>
+                {this.explorerStore.block.transactions && (
+                  <NumberFormat
+                    value={this.explorerStore.block.transactions.length}
+                    displayType={'text'}
+                    thousandSeparator={true}
+                    prefix={'('}
+                    suffix={')'}
+                  />
+                )}
+              </h5>
             </div>
             <div className="card-block">
               <div className="dt-responsive table-responsive">

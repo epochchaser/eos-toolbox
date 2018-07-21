@@ -187,7 +187,17 @@ class AccountView extends Component {
               <h5>
                 <FormattedMessage id="Actions" />
               </h5>
-              <span>EOS Network Actoins</span>
+              <h5>
+                {this.explorerStore.actions && (
+                  <NumberFormat
+                    value={this.explorerStore.actions.length}
+                    displayType={'text'}
+                    thousandSeparator={true}
+                    prefix={'('}
+                    suffix={')'}
+                  />
+                )}
+              </h5>
             </div>
             <div className="card-block">
               <div className="dt-responsive table-responsive">

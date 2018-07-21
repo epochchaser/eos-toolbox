@@ -62,7 +62,7 @@ class MyAccountView extends Component {
                         {this.accountStore.accountInfo && (
                           <span className="f-right">
                             <NumberFormat
-                              value={totalEos}
+                              value={totalEos.toFixed(4)}
                               displayType={'text'}
                               thousandSeparator={true}
                               suffix={' EOS'}
@@ -82,7 +82,7 @@ class MyAccountView extends Component {
                         {this.accountStore.accountInfo && (
                           <span>
                             <NumberFormat
-                              value={stakeEos}
+                              value={stakeEos.toFixed(4)}
                               displayType={'text'}
                               thousandSeparator={true}
                               suffix={' EOS'}
@@ -95,7 +95,7 @@ class MyAccountView extends Component {
                         {this.accountStore.accountInfo && (
                           <span className="f-right">
                             <NumberFormat
-                              value={totalEos}
+                              value={totalEos.toFixed(4)}
                               displayType={'text'}
                               thousandSeparator={true}
                               suffix={' EOS'}
@@ -115,7 +115,7 @@ class MyAccountView extends Component {
                         {this.accountStore.accountInfo && (
                           <span>
                             <NumberFormat
-                              value={refundEos}
+                              value={refundEos.toFixed(4)}
                               displayType={'text'}
                               thousandSeparator={true}
                               suffix={' EOS'}
@@ -128,7 +128,7 @@ class MyAccountView extends Component {
                         {this.accountStore.accountInfo && (
                           <span className="f-right">
                             <NumberFormat
-                              value={totalEos}
+                              value={totalEos.toFixed(4)}
                               displayType={'text'}
                               thousandSeparator={true}
                               suffix={' EOS'}
@@ -194,6 +194,7 @@ class MyAccountView extends Component {
                               value={this.accountStore.accountInfo.cpu_limit.max}
                               displayType={'text'}
                               thousandSeparator={true}
+                              suffix={' µs'}
                             />
                           </span>
                         )}
@@ -226,6 +227,7 @@ class MyAccountView extends Component {
                               value={this.accountStore.accountInfo.net_limit.max}
                               displayType={'text'}
                               thousandSeparator={true}
+                              suffix={' bytes'}
                             />
                           </span>
                         )}
