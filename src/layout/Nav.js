@@ -72,6 +72,7 @@ class Nav extends Component {
                 'pcoded-hasmenu' +
                 (this.routeActive([
                   'account/my',
+                  'account/transfer',
                   'account/create',
                   'account/staking',
                   'account/rammarket',
