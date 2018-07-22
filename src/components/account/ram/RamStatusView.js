@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
-import UsageResourceView from '../UsageResourceView'
-import { inject, observer } from '../../../node_modules/mobx-react'
+import UsageResourceView from '../../UsageResourceView'
+import { inject, observer } from '../../../../node_modules/mobx-react'
 
 @inject('accountStore')
 @observer

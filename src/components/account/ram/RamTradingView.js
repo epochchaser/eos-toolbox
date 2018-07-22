@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { inject, observer } from '../../../node_modules/mobx-react'
+import { inject, observer } from '../../../../node_modules/mobx-react'
 import Swal from 'sweetalert2'
 
 @inject('accountStore')
@@ -30,6 +30,7 @@ class RamTradingView extends Component {
     if (name === 'receiveraccount') {
       this.accountStore.validateReceiverAccountName(validationValue)
     } else if (name === 'rampurchase') {
+      console.log('들오냐')
       this.accountStore.validateRamPurchase(validationValue)
     } else if (name === 'ramsell') {
       this.accountStore.validateRamSell(validationValue)
@@ -141,6 +142,7 @@ class RamTradingView extends Component {
 
     const ramPurchaseForm = isRAMpurchaseValid ? 'form-group row' : 'form-group has-danger row'
     const ramSellForm = isRAMsellValid ? 'form-group row' : 'form-group has-danger row'
+    const canBuyRam = isReceiverAccountValid & isRAMpurchaseValid
 
     return (
       <Fragment>
@@ -229,7 +231,7 @@ class RamTradingView extends Component {
 
               <div className="card-block text-center">
                 <button
-                  disabled={!isRAMpurchaseValid}
+                  disabled={!canBuyRam}
                   className="btn btn-success btn-md btn-round"
                   onClick={this.buyRam}
                 >

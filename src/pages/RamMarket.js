@@ -1,35 +1,42 @@
 import React, { Component, Fragment } from 'react'
-import RamMarketChartView from '../components/account/RamMarketChartView'
-import RamTradingView from '../components/account/RamTradingView'
-import RamStatusView from '../components/account/RamStatusView'
+import RamMarketChartView from '../components/account/ram/RamMarketChartView'
+import RamTradingView from '../components/account/ram/RamTradingView'
+import RamStatusView from '../components/account/ram/RamStatusView'
+import NeedLoginView from '../components/NeedLoginView'
 import { inject, observer } from '../../node_modules/mobx-react'
 
-@inject('accountStore')
+@inject('accountStore', 'commonStore')
 @observer
 class RamMarket extends Component {
+  constructor(props) {
+    super(props)
+    const { commonStore, accountStore } = this.props
+    this.commonStore = commonStore
+    this.accountStore = accountStore
+  }
+
   render() {
-    const { accountStore } = this.props
-
     return (
-      accountStore &&
-      accountStore.accountInfo && (
-        <Fragment>
-          <div className="page-wrapper">
-            <div className="page-body">
-              <div className="row">
-                <RamMarketChartView />
-              </div>
+      <div>
+        {this.accountStore &&
+          this.accountStore.accountInfo && (
+            <Fragment>
+              <div className="page-wrapper">
+                <div className="page-body">
+                  <RamMarketChartView />
 
-              <div className="row">
-                <RamStatusView />
+                  <div className="row">
+                    <RamStatusView />
+                  </div>
+                  <div className="row">
+                    <RamTradingView />
+                  </div>
+                </div>
               </div>
-              <div className="row">
-                <RamTradingView />
-              </div>
-            </div>
-          </div>
-        </Fragment>
-      )
+            </Fragment>
+          )}
+        {!this.commonStore.isLoading && !this.accountStore.isLogin && <NeedLoginView />}
+      </div>
     )
   }
 }
