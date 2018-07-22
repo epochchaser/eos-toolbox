@@ -173,7 +173,6 @@ export default {
   'Set EOS staked in CPU': 'Set EOS staked in CPU',
   'Set EOS staked in NET': 'Set EOS staked in NET',
   Transfer: 'Transfer',
-  'Create Account': 'Create Account',
   'New account name': 'New account name',
   '12 characters, a-z, 1-5': '12 characters, a-z, 1-5',
   'Invalid account name': 'Invalid account name',
@@ -193,6 +192,13 @@ export default {
   'Required to use network': 'Required to use network',
   'NET Stake is requied': 'NET Stake is requied',
   'RAM purchase (in bytes)': 'RAM purchase (in bytes)',
+  'RAM purchase (in EOS)': 'RAM purchase (in EOS)',
   'Required to store account': 'Required to store account',
-  'RAM purchase is required': 'RAM purchase is required'
+  'RAM purchase is required': 'RAM purchase is required',
+  'Buy RAM': 'Buy RAM',
+  'Sell RAM': 'Sell RAM',
+  'Receiver account name': 'Receiver account name',
+  'The account that receives the RAM': 'The account that receives the RAM',
+  'Account name is requied': 'Account name is requied',
+  'RAM purchase is requied': 'RAM purchase is requied'
 }

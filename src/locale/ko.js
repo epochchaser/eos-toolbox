@@ -192,6 +192,13 @@ export default {
   'Required to use network': '네트워크 사용을 위해 필요합니다.',
   'NET Stake is requied': 'NET 스테이크가 필요합니다.',
   'RAM purchase (in bytes)': '램 구매 (in bytes)',
+  'RAM purchase (in EOS)': '램 구매 (in EOS)',
   'Required to store account': '계정 저장을 위해 필요합니다.',
-  'RAM purchase is required': '램 구매가 필요합니다.'
+  'RAM purchase is required': '램 구매가 필요합니다.',
+  'Buy RAM': '램 구매',
+  'Sell RAM': '램 판매',
+  'Receiver account name': '받는 계정',
+  'The account that receives the RAM': '램을 받는 계정',
+  'Account name is requied': '계정 이름이 필요합니다.',
+  'RAM purchase is requied': '램 구매가 필요합니다.'
 }

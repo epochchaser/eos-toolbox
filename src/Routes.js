@@ -9,7 +9,8 @@ import {
   Staking,
   RegVoteProxy,
   Refund,
-  Constitution
+  Constitution,
+  RamMarket
 } from './pages'
 
 class Routes extends Component {
@@ -21,6 +22,7 @@ class Routes extends Component {
         <Route exact path="/account/create" component={CreateAccount} />
         <Route exact path="/account/staking" component={Staking} />
         <Route exact path="/account/refund" component={Refund} />
+        <Route exact path="/account/rammarket" component={RamMarket} />
         <Route exact path="/blockexplorers" component={BlockExplorer} />
         <Route exact path="/blockexplorers/:query" component={BlockExplorer} />
         <Route exact path="/voting/vote" component={Voting} />
