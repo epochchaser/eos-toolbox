@@ -11,7 +11,7 @@ class Voting extends Component {
         <div className="page-body">
           <div className="row">
             <div className="col-md-12 col-xl-4">
-              <MyVoteSummary/>
+              <MyVoteSummary />
               <MyVotecastView />
             </div>
 

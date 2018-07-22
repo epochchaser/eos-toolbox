@@ -78,7 +78,7 @@ class CreateAccountView extends Component {
       isActivePubKeyValid,
       isCPUstakeValid,
       isNETstakeValid,
-      isRAMpurchaseValid,
+      isRAMpurchaseOnCreationValid,
       accountNameInput,
       ownerPubKeyInput,
       activePubKeyInput,
@@ -94,13 +94,15 @@ class CreateAccountView extends Component {
       isActivePubKeyValid &&
       isCPUstakeValid &&
       isNETstakeValid &&
-      isRAMpurchaseValid
+      isRAMpurchaseOnCreationValid
     const accountNameForm = isAccountNameValid ? 'form-group row' : 'form-group has-danger row'
     const ownerPublicKeyForm = isOwnerPubKeyValid ? 'form-group row' : 'form-group has-danger row'
     const activePublicKeyForm = isActivePubKeyValid ? 'form-group row' : 'form-group has-danger row'
     const cpuStakeForm = isCPUstakeValid ? 'form-group row' : 'form-group has-danger row'
     const netStakeForm = isNETstakeValid ? 'form-group row' : 'form-group has-danger row'
-    const ramPurchaseForm = isRAMpurchaseValid ? 'form-group row' : 'form-group has-danger row'
+    const ramPurchaseForm = isRAMpurchaseOnCreationValid
+      ? 'form-group row'
+      : 'form-group has-danger row'
 
     return (
       accountStore &&
@@ -253,7 +255,7 @@ class CreateAccountView extends Component {
                     onChange={this.onInputChange('rampurchase')}
                   />
 
-                  {!isRAMpurchaseValid && (
+                  {!isRAMpurchaseOnCreationValid && (
                     <div className="col-form-label">
                       <FormattedMessage id="RAM purchase is required" />
                     </div>

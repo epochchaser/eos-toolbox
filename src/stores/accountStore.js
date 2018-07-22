@@ -331,20 +331,17 @@ export class AccountStore {
     this.ramPurchaseInput = newVal
 
     if (this.isEosUnit === false) {
-      this.isRAMpurchaseValid = newVal >= SEED_RAM_BYTES ? true : false
+      this.isRAMpurchaseOnCreationValid = newVal >= SEED_RAM_BYTES ? true : false
     } else {
-      this.isRAMpurchaseValid = newVal >= SEED_RAM_EOS ? true : false
+      this.isRAMpurchaseOnCreationValid = newVal >= SEED_RAM_EOS ? true : false
     }
   }
 
   validateRamPurchase = newVal => {
     this.ramPurchaseInput = newVal
 
-    if (this.isEosUnit === false) {
-      this.isRAMpurchaseValid = newVal > 0 ? true : false
-    } else {
-      this.isRAMpurchaseValid = newVal > 0 ? true : false
-    }
+    console.log(newVal > 0 ? true : false)
+    this.isRAMpurchaseValid = newVal > 0 ? true : false
   }
 
   validateRamSell = newVal => {
