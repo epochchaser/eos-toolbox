@@ -200,5 +200,7 @@ export default {
   'Receiver account name': '받는 계정',
   'The account that receives the RAM': '램을 받는 계정',
   'Account name is requied': '계정 이름이 필요합니다.',
-  'RAM purchase is requied': '램 구매가 필요합니다.'
+  'RAM purchase is requied': '램 구매가 필요합니다.',
+  'RAM sell (in bytes)': '램 판매 (in bytes)',
+  'RAM sell is requied': '램 판매가 필요합니다.'
 }
