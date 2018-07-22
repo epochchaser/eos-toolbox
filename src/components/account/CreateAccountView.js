@@ -12,8 +12,6 @@ class CreateAccountView extends Component {
 
     if ('accoutname' === name) {
       accountStore.validateAccountName(validationValue)
-    } else if ('owner' === name) {
-      accountStore.validateOwner(validationValue)
     } else if ('ownerpubkey' === name) {
       accountStore.validateOwnerPubKey(validationValue)
     } else if ('activepubkey' === name) {
@@ -76,14 +74,12 @@ class CreateAccountView extends Component {
     const { accountStore } = this.props
     const {
       isAccountNameValid,
-      isOwnerValid,
       isOwnerPubKeyValid,
       isActivePubKeyValid,
       isCPUstakeValid,
       isNETstakeValid,
       isRAMpurchaseValid,
       accountNameInput,
-      ownerInput,
       ownerPubKeyInput,
       activePubKeyInput,
       cpuStakeInput,
@@ -94,14 +90,12 @@ class CreateAccountView extends Component {
 
     const canSubmit =
       isAccountNameValid &&
-      isOwnerValid &&
       isOwnerPubKeyValid &&
       isActivePubKeyValid &&
       isCPUstakeValid &&
       isNETstakeValid &&
       isRAMpurchaseValid
     const accountNameForm = isAccountNameValid ? 'form-group row' : 'form-group has-danger row'
-    const ownerForm = isOwnerValid ? 'form-group row' : 'form-group has-danger row'
     const ownerPublicKeyForm = isOwnerPubKeyValid ? 'form-group row' : 'form-group has-danger row'
     const activePublicKeyForm = isActivePubKeyValid ? 'form-group row' : 'form-group has-danger row'
     const cpuStakeForm = isCPUstakeValid ? 'form-group row' : 'form-group has-danger row'
@@ -142,30 +136,6 @@ class CreateAccountView extends Component {
                   {!isAccountNameValid && (
                     <div className="col-form-label">
                       <FormattedMessage id="Invalid account name" />
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className={ownerForm}>
-                <div className="col-sm-2">
-                  <label className="col-form-label" htmlFor="ownerInputDanger">
-                    <FormattedMessage id="Owner" />
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Account that performs action"
-                    id="ownerInputDanger"
-                    value={ownerInput}
-                    onChange={this.onInputChange('owner')}
-                  />
-
-                  {!isOwnerValid && (
-                    <div className="col-form-label">
-                      <FormattedMessage id="Owner cannot be empty" />
                     </div>
                   )}
                 </div>

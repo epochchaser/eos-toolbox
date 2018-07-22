@@ -1,28 +1,31 @@
 import { decorate, observable, action } from 'mobx'
 import EosAgent from '../EosAgent'
+import * as Values from '../constants/Values'
 
 const ACCOUNT_NAME_PATTERN = /([a-z1-5]){12,}/
-const MIN_RAM_BYTES = 8192
-const MIN_CPU = 0.1
-const MIN_NET = 0.1
+const SEED_RAM_BYTES = 8192
+const SEED_RAM_EOS = 1
+const SEED_CPU = 0.1
+const SEED_NET = 0.1
 
 export class AccountStore {
   isLogin = false
   isValidInput = true
   isAccountNameValid = false
-  isOwnerValid = false
   isOwnerPublicKeyValid = false
   isActivePublicKeyValid = false
   isCPUstakeValid = true
   isNETstakeValid = true
   isRAMpurchaseValid = true
+  isReceiverAccountValid = false
   accountNameInput = ''
-  ownerInput = ''
+  receiverAccountNameInput = ''
   ownerPubKeyInput = ''
   activePubKeyInput = ''
-  cpuStakeInput = MIN_CPU
-  netStakeInput = MIN_NET
-  ramPurchaseInput = MIN_RAM_BYTES
+  cpuStakeInput = SEED_CPU
+  netStakeInput = SEED_NET
+  ramPurchaseUnit = Values.RAM_PURCHASE_UNIT_BYTES
+  ramPurchaseInput = SEED_RAM_BYTES
   transferInput = false
   eosBalance = 0.0
   totalBalance = 0.0
@@ -267,9 +270,9 @@ export class AccountStore {
     this.isAccountNameValid = null === ACCOUNT_NAME_PATTERN.exec(newVal) ? false : true
   }
 
-  validateOwner = newVal => {
-    this.ownerInput = newVal
-    this.isOwnerValid = null === newVal ? false : true
+  validateReceiverAccountName = newVal => {
+    this.receiverAccountNameInput = newVal
+    this.isReceiverAccountValid = null === newVal ? false : true
   }
 
   validateOwnerPubKey = newVal => {
@@ -284,46 +287,61 @@ export class AccountStore {
 
   validateCpuStake = newVal => {
     this.cpuStakeInput = newVal
-    this.isCPUstakeValid = newVal >= MIN_CPU ? true : false
+    this.isCPUstakeValid = newVal >= SEED_CPU ? true : false
   }
 
   validateNetStake = newVal => {
     this.netStakeInput = newVal
-    this.isNETstakeValid = newVal >= MIN_NET ? true : false
+    this.isNETstakeValid = newVal >= SEED_NET ? true : false
   }
 
   validateRamPurchase = newVal => {
     this.ramPurchaseInput = newVal
-    this.isRAMpurchaseValid = newVal >= MIN_RAM_BYTES ? true : false
+
+    if (this.ramPurchaseUnit === Values.RAM_PURCHASE_UNIT_BYTES) {
+      this.isRAMpurchaseValid = newVal >= SEED_RAM_BYTES ? true : false
+    } else if (this.ramPurchaseUnit === Values.RAM_PURCHASE_UNIT_EOS) {
+      this.isRAMpurchaseValid = newVal >= SEED_RAM_EOS ? true : false
+    }
   }
 
   seedCreateAccountInput = () => {
     this.accountNameInput = ''
-    this.ownerInput = ''
     this.ownerPubKeyInput = ''
     this.activePubKeyInput = ''
-    this.cpuStakeInput = MIN_CPU
-    this.netStakeInput = MIN_NET
-    this.ramPurchaseInput = MIN_RAM_BYTES
+    this.cpuStakeInput = SEED_CPU
+    this.netStakeInput = SEED_NET
+    this.ramPurchaseInput = SEED_RAM_BYTES
     this.transferInput = false
+  }
+
+  changeRamPurchaseUnit = unit => {
+    if (Values.RAM_PURCHASE_UNIT_EOS === unit) {
+      this.ramPurchaseInput = SEED_RAM_EOS
+    } else if (Values.RAM_PURCHASE_UNIT_BYTES === unit) {
+      this.ramPurchaseInput = SEED_RAM_BYTES
+    }
+
+    this.ramPurchaseUnit = unit
   }
 }
 
 decorate(AccountStore, {
   isLogin: observable,
   isAccountNameValid: observable,
-  isOwnerValid: observable,
+  isReceiverAccountValid: observable,
   isOwnerPublicKeyValid: observable,
   isActivePublicKeyValid: observable,
   isCPUstakeValid: observable,
   isNETstakeValid: observable,
   isRAMpurchaseValid: observable,
   accountNameInput: observable,
-  ownerInput: observable,
+  receiverAccountNameInput: observable,
   ownerPubKeyInput: observable,
   activePubKeyInput: observable,
   cpuStakeInput: observable,
   netStakeInput: observable,
+  ramPurchaseUnit: observable,
   ramPurchaseInput: observable,
   transferInput: observable,
   eosBalance: observable,
@@ -350,13 +368,15 @@ decorate(AccountStore, {
   seedStakingUserInput: action,
   setStake: action,
   validateAccountName: action,
+  validateReceiverAccountName: action,
   validateOwner: action,
   validateOwnerPubKey: action,
   validateActivePubKey: action,
   validateCpuStake: action,
   validateNetStake: action,
   validateRamPurchase: action,
-  seedCreateAccountInput: action
+  seedCreateAccountInput: action,
+  changeRamPurchaseUnit: action
 })
 
 export default new AccountStore()
