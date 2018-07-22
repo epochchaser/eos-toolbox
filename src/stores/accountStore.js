@@ -55,6 +55,7 @@ export class AccountStore {
   net_user = 0.0
   liquid = 0.0
   is_proxy = 0
+  proxy = ''
   accountInfo = null
   account = null
   actions = null
@@ -70,6 +71,7 @@ export class AccountStore {
     let accountInfo, balance
 
     accountInfo = await EosAgent.getAccountInfo()
+    console.log(accountInfo)
     if (accountInfo) {
       this.liquid = parseFloat(accountInfo.core_liquid_balance.split(' ')[0])
       this.cpu_max = parseFloat(accountInfo.cpu_limit.max / 10000)
@@ -116,6 +118,7 @@ export class AccountStore {
       }
 
       this.is_proxy = accountInfo.voter_info.is_proxy
+      this.proxy = accountInfo.voter_info.proxy
       this.accountInfo = accountInfo
     }
   }
@@ -483,6 +486,18 @@ export class AccountStore {
 
     return await EosAgent.createTransaction(token.contract, cb)
   }
+
+  voteProducer = async (proxy = '') => {
+    if (!proxy) {
+      return await EosAgent.voteProducer(this.account.name, this.myBlockProducers, proxy)
+    } else {
+      return await EosAgent.voteProducer(this.account.name, [], proxy)
+    }
+  }
+
+  changeVoterProxy = async () => {
+    return await EosAgent.voteProducer(this.account.name, [], '')
+  }
 }
 
 decorate(AccountStore, {
@@ -521,6 +536,7 @@ decorate(AccountStore, {
   net_user: observable,
   liquid: observable,
   is_proxy: observable,
+  proxy: observable,
   accountInfo: observable,
   account: observable,
   myBlockProducers: observable,
@@ -549,7 +565,9 @@ decorate(AccountStore, {
   buyRAM: action,
   sellRAM: action,
   transferToken: action,
-  seedTransferTokenInput: action
+  seedTransferTokenInput: action,
+  voteProducer: action,
+  changeVoterProxy: action
 })
 
 export default new AccountStore()
