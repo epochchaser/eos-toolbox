@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import TokenView from './TokenView'
-import NumberFormat from 'react-number-format'
-import UsageResourceView from '../UsageResourceView'
 
 @inject('accountStore', 'explorerStore')
 @observer
@@ -27,7 +25,7 @@ class ActionView extends Component {
         <div className="main-body">
           <div className="page-wrapper">
             <div className="page-body">
-              <div className="row">
+              <div className="row m-l-5 m-r-5">
                 <TokenView tokens={tokens} />
               </div>
               <div className="row" />

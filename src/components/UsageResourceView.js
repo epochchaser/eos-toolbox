@@ -3,10 +3,6 @@ import NumberFormat from 'react-number-format'
 import { FormattedMessage } from 'react-intl'
 
 class UsageResourceView extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     let width = this.props.resource.usageRate
 

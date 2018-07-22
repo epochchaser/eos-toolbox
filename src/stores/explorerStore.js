@@ -106,6 +106,7 @@ export class ExplorerStore {
   getActions = async accountName => {
     this.isActionLoading = true
     this.actions = null
+    this.tokens = null
 
     try {
       let actions = await EosAgent.getActions(accountName, 0, 10000)
