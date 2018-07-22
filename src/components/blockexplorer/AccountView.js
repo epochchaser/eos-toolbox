@@ -17,6 +17,7 @@ class AccountView extends Component {
 
   componentDidMount = async () => {
     await this.explorerStore.getActions(this.explorerStore.account.account_name)
+    await this.explorerStore.getAccountTokens(this.explorerStore.account.account_name)
   }
 
   render() {
@@ -180,6 +181,27 @@ class AccountView extends Component {
         <div className="col-lg-6 col-md-12 col-xl-4">
           <UsageResourceView resource={ramResource} />
           <UsageResourceView resource={netResource} />
+        </div>
+        <div className="col-sm-12">
+          <div className="row">
+            {this.explorerStore.tokens &&
+              this.explorerStore.tokens.length > 0 && (
+                <Fragment>
+                  {this.explorerStore.tokens.map((token, index) => (
+                    <div className="col-md-4 col-sm-6" key={index}>
+                      <div className="card user-card">
+                        <div className="card-header">
+                          <h5>{token.split(' ')[1]}</h5>
+                        </div>
+                        <div className="card-block">
+                          <h4>{token.split(' ')[0]}</h4>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </Fragment>
+              )}
+          </div>
         </div>
         <div className="col-sm-12">
           <div className="card">
