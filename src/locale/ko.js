@@ -210,5 +210,6 @@ export default {
   Memo: '메모',
   'Symbol is required': '심볼이 필요합니다.',
   'Total balance after trasfer token': '토큰 전송 후 총 잔액',
-  'Available EOS (liquid)': '이용가능한 잔액'
+  'Available EOS (liquid)': '이용가능한 잔액',
+  'You have no voter proxy': '현재 투표대리인이 없습니다.'
 }

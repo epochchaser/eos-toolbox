@@ -168,7 +168,7 @@ class MyVotecastView extends Component {
                 <div className="col-sm-12 p-b-40">
                   <div className="card-block text-center">
                     <i className="fa fa-sign-in text-c-green d-block f-40" />
-                    <p className="m-b-20">You have no voting proxy</p>
+                    <p className="m-b-20">You have no voter proxy</p>
                     <button className="btn btn-success btn-md btn-round" onClick={this.voteAsProxy}>
                       <FormattedMessage id="Set voter proxy" />
                     </button>
