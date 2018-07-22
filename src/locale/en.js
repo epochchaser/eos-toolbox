@@ -202,5 +202,6 @@ export default {
   'Account name is requied': 'Account name is requied',
   'RAM purchase is requied': 'RAM purchase is requied',
   'RAM sell (in bytes)': 'RAM sell (in bytes)',
-  'RAM sell is requied': 'RAM sell is requied'
+  'RAM sell is requied': 'RAM sell is requied',
+  Tokens: 'Tokens'
 }
