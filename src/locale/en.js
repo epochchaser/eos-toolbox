@@ -203,5 +203,12 @@ export default {
   'RAM purchase is requied': 'RAM purchase is requied',
   'RAM sell (in bytes)': 'RAM sell (in bytes)',
   'RAM sell is requied': 'RAM sell is requied',
-  Tokens: 'Tokens'
+  Tokens: 'Tokens',
+  'Transfer Token': 'Transfer Token',
+  'Quantity (in Tokens)': 'Quantity (in Tokens)',
+  Symbol: 'Symbol',
+  Memo: 'Memo',
+  'Symbol is required': 'Symbol is required',
+  'Total balance after trasfer token': 'Total balance after trasfer token',
+  'Available EOS (liquid)': 'Available EOS (liquid)'
 }

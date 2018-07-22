@@ -1,12 +1,20 @@
 import { decorate, observable, action } from 'mobx'
 import EosAgent from '../EosAgent'
-import * as Values from '../constants/Values'
 
 const ACCOUNT_NAME_PATTERN = /([a-z1-5]){12,}/
 const SEED_RAM_BYTES = 8192
 const SEED_RAM_EOS = 1
 const SEED_CPU = 0.1
 const SEED_NET = 0.1
+const SEED_TRANSFER_SYMBOL = 'EOS'
+
+const TOKENS = [
+  {
+    contract: 'eosio.token',
+    symbol: 'EOS',
+    precision: 4
+  }
+]
 
 export class AccountStore {
   isLogin = false
@@ -20,6 +28,9 @@ export class AccountStore {
   isRAMpurchaseValid = true
   isRAMsellValid = true
   isReceiverAccountValid = false
+  isTransferQuantityValid = true
+  isTransferSymbolValid = true
+  isMemoValid = true
   accountNameInput = ''
   receiverAccountNameInput = ''
   ownerPubKeyInput = ''
@@ -29,7 +40,10 @@ export class AccountStore {
   isEosUnit = false
   ramPurchaseInput = SEED_RAM_BYTES
   ramSellInput = SEED_RAM_BYTES
+  transferQuantityInput = 0.0
+  transferSymbolInput = SEED_TRANSFER_SYMBOL
   transferInput = false
+  memoInput = ''
   eosBalance = 0.0
   totalBalance = 0.0
   staked = 0.0
@@ -282,22 +296,22 @@ export class AccountStore {
 
   validateAccountName = newVal => {
     this.accountNameInput = newVal
-    this.isAccountNameValid = null === ACCOUNT_NAME_PATTERN.exec(newVal) ? false : true
+    this.isAccountNameValid = ACCOUNT_NAME_PATTERN.exec(newVal) ? true : false
   }
 
   validateReceiverAccountName = newVal => {
     this.receiverAccountNameInput = newVal
-    this.isReceiverAccountValid = null === newVal ? false : true
+    this.isReceiverAccountValid = newVal ? true : false
   }
 
   validateOwnerPubKey = newVal => {
     this.ownerPubKeyInput = newVal
-    this.isOwnerPubKeyValid = null === newVal ? false : true
+    this.isOwnerPubKeyValid = newVal ? true : false
   }
 
   validateActivePubKey = newVal => {
     this.activePubKeyInput = newVal
-    this.isActivePubKeyValid = null === newVal ? false : true
+    this.isActivePubKeyValid = newVal ? true : false
   }
 
   validateCpuStake = newVal => {
@@ -335,6 +349,21 @@ export class AccountStore {
     this.isRAMsellValid = newVal > 0 ? true : false
   }
 
+  validateTransferQuantity = newVal => {
+    this.transferQuantityInput = newVal
+    this.isTransferQuantityValid = newVal <= this.liquid ? true : false
+  }
+
+  validateTransferSymbol = newVal => {
+    this.transferSymbolInput = newVal
+    this.isTransferSymbolValid = newVal ? true : false
+  }
+
+  validateMemo = newVal => {
+    this.memoInput = newVal
+    this.isMemoValid = true
+  }
+
   seedCreateAccountInput = () => {
     this.accountNameInput = ''
     this.ownerPubKeyInput = ''
@@ -351,6 +380,12 @@ export class AccountStore {
     this.transferInput = false
   }
 
+  seedTransferTokenInput = () => {
+    this.receiverAccountNameInput = ''
+    this.transferQuantityInput = 0
+    this.transferSymbolInput = SEED_TRANSFER_SYMBOL
+    this.memoInput = ''
+  }
   changeRamPurchaseUnit = isEosUnit => {
     if (isEosUnit === true) {
       this.ramPurchaseInput = SEED_RAM_EOS
@@ -424,6 +459,30 @@ export class AccountStore {
 
     return await EosAgent.createTransaction(cb)
   }
+
+  transferToken = async () => {
+    const filteredTokens = TOKENS.filter(t => t.symbol === this.transferSymbolInput)
+    if (!filteredTokens || filteredTokens.length === 0) return
+
+    const token = filteredTokens[0]
+    const cb = tr => {
+      const options = { authorization: [`${this.account.name}@${this.account.authority}`] }
+
+      tr.transfer(
+        {
+          from: this.account.name,
+          to: this.receiverAccountNameInput,
+          quantity: `${Number(this.transferQuantityInput)
+            .toFixed(token.precision)
+            .toString()} ${token.symbol}`,
+          memo: this.memoInput
+        },
+        options
+      )
+    }
+
+    return await EosAgent.createTransaction(token.contract, cb)
+  }
 }
 
 decorate(AccountStore, {
@@ -437,6 +496,7 @@ decorate(AccountStore, {
   isRAMpurchaseOnCreationValid: observable,
   isRAMpurchaseValid: observable,
   isRAMsellValid: observable,
+  isMemoValid: observable,
   isEosUnit: observable,
   accountNameInput: observable,
   receiverAccountNameInput: observable,
@@ -447,6 +507,9 @@ decorate(AccountStore, {
   ramPurchaseInput: observable,
   ramSellInput: observable,
   transferInput: observable,
+  transferQuantityInput: observable,
+  transferSymbolInput: observable,
+  memoInput: observable,
   eosBalance: observable,
   totalBalance: observable,
   staked: observable,
@@ -478,10 +541,15 @@ decorate(AccountStore, {
   validateCpuStake: action,
   validateNetStake: action,
   validateRamPurchase: action,
+  validateTransferQuantity: action,
+  validateTransferSymbol: action,
+  validateMemo: action,
   seedCreateAccountInput: action,
   changeRamPurchaseUnit: action,
   buyRAM: action,
-  sellRAM: action
+  sellRAM: action,
+  transferToken: action,
+  seedTransferTokenInput: action
 })
 
 export default new AccountStore()

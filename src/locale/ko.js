@@ -203,5 +203,12 @@ export default {
   'RAM purchase is requied': '램 구매가 필요합니다.',
   'RAM sell (in bytes)': '램 판매 (in bytes)',
   'RAM sell is requied': '램 판매가 필요합니다.',
-  Tokens: '보유 토큰'
+  Tokens: '보유 토큰',
+  'Transfer Token': '토큰 전송',
+  'Quantity (in Tokens)': '갯수 (in Tokens)',
+  Symbol: '토큰 심볼',
+  Memo: '메모',
+  'Symbol is required': '심볼이 필요합니다.',
+  'Total balance after trasfer token': '토큰 전송 후 총 잔액',
+  'Available EOS (liquid)': '이용가능한 잔액'
 }
