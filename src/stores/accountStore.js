@@ -43,6 +43,13 @@ export class AccountStore {
   is_proxy = 0
   accountInfo = null
   account = null
+  actions = null
+  tokens = null
+  permissions = null
+  childAccounts = null
+  votes = null
+  bidNames = null
+  otherActions = null
   myBlockProducers = null
 
   loadAccountInfo = async () => {

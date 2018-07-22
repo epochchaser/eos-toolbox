@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import MyAccountView from '../components/account/MyAccountView'
 import ResourceView from '../components/account/ResourceView'
+import ActionView from '../components/account/ActionView'
 import NeedLoginView from '../components/NeedLoginView'
 
 @inject('accountStore', 'commonStore')
@@ -22,6 +23,7 @@ class MyAccount extends Component {
             <Fragment>
               <MyAccountView />
               <ResourceView />
+              <ActionView />
             </Fragment>
           )}
         {!this.commonStore.isLoading && !this.accountStore.isLogin && <NeedLoginView />}
