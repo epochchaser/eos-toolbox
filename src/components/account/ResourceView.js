@@ -28,7 +28,7 @@ class ResourceView extends Component {
       ? Number(this.accountStore.accountInfo.refund_request.cpu_amount.replace('EOS', ''))
       : 0.0
     const refundNet = this.accountStore.accountInfo.refund_request
-      ? Number(this.accountStore.accountInfo.refund_request.replace('EOS', ''))
+      ? Number(this.accountStore.accountInfo.refund_request.net_amount.replace('EOS', ''))
       : 0.0
 
     const refundEos = refundCpu + refundNet
