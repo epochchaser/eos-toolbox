@@ -183,6 +183,11 @@ class AccountView extends Component {
           <UsageResourceView resource={netResource} />
         </div>
         <div className="col-sm-12">
+          <div className="row m-l-10 m-b-20">
+            <div className="col-sm-12 p-0">
+              <h5><FormattedMessage id="Tokens" /></h5>
+            </div>
+          </div>
           <div className="row">
             {this.explorerStore.tokens &&
               this.explorerStore.tokens.length > 0 && (
