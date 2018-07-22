@@ -185,10 +185,6 @@ export class EosioStore {
       this.nameBids = sortBy(data, 'high_bid').reverse()
     }
   }
-
-  voteProducer = async (account, producers = [], proxy = '') => {
-    return await EosAgent.voteProducer(account, producers, proxy)
-  }
 }
 
 decorate(EosioStore, {
@@ -206,8 +202,7 @@ decorate(EosioStore, {
   getStakingInfo: action,
   getRamMarkets: action,
   getVoters: action,
-  getNameBids: action,
-  voteProducer: action
+  getNameBids: action
 })
 
 export default new EosioStore()
