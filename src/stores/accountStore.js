@@ -82,7 +82,12 @@ export class AccountStore {
         this.isLogin = true
       }
 
-      balance = await EosAgent.getCurrencyBalance('EOS')
+      balance = await EosAgent.getCurrencyBalance({
+        code: 'eosio.token',
+        account: this.account.name,
+        symbol: 'EOS'
+      })
+
       if (balance && balance.length > 0) {
         this.eosBalance = balance[0].split(' ')[0]
       } else {

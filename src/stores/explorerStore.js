@@ -6,8 +6,10 @@ import $ from 'jquery'
 export class ExplorerStore {
   isLoading = false
   isActionLoading = false
+  isTokenLoading = false
   account = null
   accounts = null
+  tokens = null
   transaction = null
   actions = null
   block = null
@@ -114,6 +116,49 @@ export class ExplorerStore {
 
     this.isActionLoading = false
   }
+
+  // mayajuni(itam_ma) in itam netrowk
+  // https://eoscanner.io
+  getAccountTokens = async accountName => {
+    this.isTokenLoading = true
+    this.tokens = null
+
+    if (this.actions) {
+      let results = this.actions
+        .filter((action, idx, array) => {
+          if (
+            action.action_trace.act.name === 'transfer' &&
+            action.action_trace.act.data.to === accountName &&
+            action.action_trace.act.data.quantity.split(' ')[1] !== 'EOS'
+          ) {
+            return true
+          }
+
+          return false
+        })
+        .map(action => {
+          return {
+            code: action.action_trace.act.account,
+            account: action.action_trace.act.data.to,
+            symbol: action.action_trace.act.data.quantity.split(' ')[1]
+          }
+        })
+        .filter((obj, idx, array) => array.map(obj2 => obj.symbol !== obj2.symbol))
+
+      const len = results.length
+
+      this.tokens = []
+
+      for (let i = 0; i < len; i++) {
+        try {
+          let token = await EosAgent.getCurrencyBalance(results[i])
+          this.tokens = this.tokens.concat(token)
+        } catch (e) {}
+      }
+    }
+
+    this.isTokenLoading = false
+  }
 }
 
 decorate(ExplorerStore, {
@@ -121,7 +166,9 @@ decorate(ExplorerStore, {
   account: observable,
   accounts: observable,
   transaction: observable,
+  tokens: observable,
   isActionLoading: observable,
+  isTokenLoading: observable,
   block: observable,
   actions: observable,
   search: action,
