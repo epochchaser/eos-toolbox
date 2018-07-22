@@ -16,7 +16,9 @@ export class AccountStore {
   isActivePublicKeyValid = false
   isCPUstakeValid = true
   isNETstakeValid = true
+  isRAMpurchaseOnCreationValid = true
   isRAMpurchaseValid = true
+  isRAMsellValid = true
   isReceiverAccountValid = false
   accountNameInput = ''
   receiverAccountNameInput = ''
@@ -24,8 +26,9 @@ export class AccountStore {
   activePubKeyInput = ''
   cpuStakeInput = SEED_CPU
   netStakeInput = SEED_NET
-  ramPurchaseUnit = Values.RAM_PURCHASE_UNIT_BYTES
+  isEosUnit = false
   ramPurchaseInput = SEED_RAM_BYTES
+  ramSellInput = SEED_RAM_BYTES
   transferInput = false
   eosBalance = 0.0
   totalBalance = 0.0
@@ -295,14 +298,29 @@ export class AccountStore {
     this.isNETstakeValid = newVal >= SEED_NET ? true : false
   }
 
+  validateRamPurchaseOnCreation = newVal => {
+    this.ramPurchaseInput = newVal
+
+    if (this.isEosUnit === false) {
+      this.isRAMpurchaseValid = newVal >= SEED_RAM_BYTES ? true : false
+    } else {
+      this.isRAMpurchaseValid = newVal >= SEED_RAM_EOS ? true : false
+    }
+  }
+
   validateRamPurchase = newVal => {
     this.ramPurchaseInput = newVal
 
-    if (this.ramPurchaseUnit === Values.RAM_PURCHASE_UNIT_BYTES) {
-      this.isRAMpurchaseValid = newVal >= SEED_RAM_BYTES ? true : false
-    } else if (this.ramPurchaseUnit === Values.RAM_PURCHASE_UNIT_EOS) {
-      this.isRAMpurchaseValid = newVal >= SEED_RAM_EOS ? true : false
+    if (this.isEosUnit === false) {
+      this.isRAMpurchaseValid = newVal > 0 ? true : false
+    } else {
+      this.isRAMpurchaseValid = newVal > 0 ? true : false
     }
+  }
+
+  validateRamSell = newVal => {
+    this.ramSellInput = newVal
+    this.isRAMsellValid = newVal > 0 ? true : false
   }
 
   seedCreateAccountInput = () => {
@@ -311,18 +329,88 @@ export class AccountStore {
     this.activePubKeyInput = ''
     this.cpuStakeInput = SEED_CPU
     this.netStakeInput = SEED_NET
-    this.ramPurchaseInput = SEED_RAM_BYTES
-    this.transferInput = false
-  }
 
-  changeRamPurchaseUnit = unit => {
-    if (Values.RAM_PURCHASE_UNIT_EOS === unit) {
+    if (this.isEosUnit === true) {
       this.ramPurchaseInput = SEED_RAM_EOS
-    } else if (Values.RAM_PURCHASE_UNIT_BYTES === unit) {
+    } else {
       this.ramPurchaseInput = SEED_RAM_BYTES
     }
 
-    this.ramPurchaseUnit = unit
+    this.transferInput = false
+  }
+
+  changeRamPurchaseUnit = isEosUnit => {
+    if (isEosUnit === true) {
+      this.ramPurchaseInput = SEED_RAM_EOS
+    } else {
+      this.ramPurchaseInput = SEED_RAM_BYTES
+    }
+
+    this.isEosUnit = isEosUnit
+  }
+
+  buyRAM = async () => {
+    return this.isEosUnit ? await this.buyRAMEos() : await this.buyRAMBytes()
+  }
+
+  sellRAM = async () => {
+    if (!this.account) {
+      return
+    }
+
+    const cb = tr => {
+      const options = { authorization: [`${this.account.name}@${this.account.authority}`] }
+
+      tr.sellram(
+        {
+          account: this.account.name,
+          bytes: Number(this.ramSellInput)
+        },
+        options
+      )
+    }
+
+    return await EosAgent.createTransaction(cb)
+  }
+
+  buyRAMEos = async () => {
+    if (!this.account) {
+      return
+    }
+
+    const cb = tr => {
+      const options = { authorization: [`${this.account.name}@${this.account.authority}`] }
+
+      tr.buyram(
+        {
+          payer: this.account.name,
+          receiver: this.receiverAccountNameInput,
+          quant: `${Number(this.ramPurchaseInput)
+            .toFixed(4)
+            .toString()} EOS`
+        },
+        options
+      )
+    }
+
+    return await EosAgent.createTransaction(cb)
+  }
+
+  buyRAMBytes = async () => {
+    const cb = tr => {
+      const options = { authorization: [`${this.account.name}@${this.account.authority}`] }
+
+      tr.buyrambytes(
+        {
+          payer: this.account.name,
+          receiver: this.receiverAccountNameInput,
+          bytes: Number(this.ramPurchaseInput)
+        },
+        options
+      )
+    }
+
+    return await EosAgent.createTransaction(cb)
   }
 }
 
@@ -334,15 +422,18 @@ decorate(AccountStore, {
   isActivePublicKeyValid: observable,
   isCPUstakeValid: observable,
   isNETstakeValid: observable,
+  isRAMpurchaseOnCreationValid: observable,
   isRAMpurchaseValid: observable,
+  isRAMsellValid: observable,
+  isEosUnit: observable,
   accountNameInput: observable,
   receiverAccountNameInput: observable,
   ownerPubKeyInput: observable,
   activePubKeyInput: observable,
   cpuStakeInput: observable,
   netStakeInput: observable,
-  ramPurchaseUnit: observable,
   ramPurchaseInput: observable,
+  ramSellInput: observable,
   transferInput: observable,
   eosBalance: observable,
   totalBalance: observable,
@@ -376,7 +467,9 @@ decorate(AccountStore, {
   validateNetStake: action,
   validateRamPurchase: action,
   seedCreateAccountInput: action,
-  changeRamPurchaseUnit: action
+  changeRamPurchaseUnit: action,
+  buyRAM: action,
+  sellRAM: action
 })
 
 export default new AccountStore()
