@@ -34,6 +34,3 @@ export const CONFIG = {
 }
 
 export const supportLanguage = ['ko-KR', 'en-US']
-
-export const RAM_PURCHASE_UNIT_BYTES = 0
-export const RAM_PURCHASE_UNIT_EOS = 1

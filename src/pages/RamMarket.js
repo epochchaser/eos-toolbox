@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import RamMarketChartView from '../components/account/RamMarketChartView'
 import RamTradingView from '../components/account/RamTradingView'
+import RamStatusView from '../components/account/RamStatusView'
 import { inject, observer } from '../../node_modules/mobx-react'
 
 @inject('accountStore')
@@ -19,6 +20,9 @@ class RamMarket extends Component {
                 <RamMarketChartView />
               </div>
 
+              <div className="row">
+                <RamStatusView />
+              </div>
               <div className="row">
                 <RamTradingView />
               </div>

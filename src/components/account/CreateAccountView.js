@@ -21,7 +21,7 @@ class CreateAccountView extends Component {
     } else if ('netstake' === name) {
       accountStore.validateNetStake(validationValue)
     } else if ('rampurchase' === name) {
-      accountStore.validateRamPurchase(validationValue)
+      accountStore.validateRamPurchaseOnCreation(validationValue)
     }
   }
 
