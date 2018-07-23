@@ -4,6 +4,7 @@ import Background from './RamBackground'
 import RamPrice from './RamPrice'
 import sizeMe from 'react-sizeme'
 import '../../../styles/components/account/ram/RamMarketChartView.scss'
+import EosAgent from '../../../EosAgent'
 
 class RamMarketChartView extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class RamMarketChartView extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount = async () => {
     fetch('https://api.coindesk.com/v1/bpi/historical/close.json')
       .then(res => {
         return res.json()
@@ -23,6 +24,15 @@ class RamMarketChartView extends Component {
           data: json
         })
       })
+
+    const result = await EosAgent.getTableRows({
+      json: true,
+      code: 'eosio',
+      scope: 'eosio',
+      table: 'rammarket'
+    })
+
+    console.log(result)
   }
   render() {
     const { size } = this.props
