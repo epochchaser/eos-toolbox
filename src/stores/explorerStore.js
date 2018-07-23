@@ -1,4 +1,5 @@
 import { decorate, observable, action } from 'mobx'
+import * as Values from '../constants/Values'
 import sortBy from 'lodash/sortBy'
 import EosAgent from '../EosAgent'
 import $ from 'jquery'
@@ -144,8 +145,8 @@ export class ExplorerStore {
             symbol: action.action_trace.act.data.quantity.split(' ')[1]
           }
         })
-        .filter((obj, idx, array) => array.map(obj2 => obj.symbol !== obj2.symbol))
 
+      results = Values.removeDuplicates(results, 'symbol')
       const len = results.length
 
       this.tokens = []

@@ -25,6 +25,10 @@ class TransferTokenView extends Component {
   }
 
   componentDidMount = async () => {
+    this.loadTokens()
+  }
+
+  loadTokens = async () => {
     await this.accountStore.getAccountTokens(this.accountStore.accountInfo.account_name)
 
     const token = this.accountStore.tokens[0].split(' ')
@@ -41,7 +45,7 @@ class TransferTokenView extends Component {
     this.setState({
       selectedIndex: event.target.selectedIndex,
       tokenSymbol: token[1],
-      tokenQuantity: token[0]
+      tokenQuantity: parseFloat(token[0])
     })
   }
 
@@ -54,9 +58,12 @@ class TransferTokenView extends Component {
         isReceiverAccountValid: validationValue ? true : false
       })
     } else if (name === 'transferquantity') {
+      const qty = Number(validationValue ? validationValue : 0)
+      const valid = qty <= this.state.tokenQuantity ? true : false
+
       this.setState({
-        transferQuantityInput: validationValue,
-        isTransferQuantityValid: validationValue <= this.state.tokenQuantity ? true : false
+        transferQuantityInput: qty,
+        isTransferQuantityValid: valid
       })
     } else if (name === 'memo') {
       this.setState({
@@ -78,10 +85,27 @@ class TransferTokenView extends Component {
       showLoaderOnConfirm: true,
       preConfirm: () => {
         return this.accountStore
-          .transferToken()
+          .transferToken(
+            this.state.receiverAccountNameInput,
+            this.state.tokenSymbol,
+            this.state.transferQuantityInput,
+            this.state.memoInput
+          )
           .then(async response => {
+            this.setState({
+              selectedIndex: 0,
+              tokenSymbol: '',
+              tokenQuantity: 0,
+              transferQuantityInput: 0,
+              isTransferQuantityValid: false,
+              receiverAccountNameInput: '',
+              isReceiverAccountValid: false,
+              memoInput: '',
+              isMemoValid: false
+            })
             await this.accountStore.loadAccountInfo()
-            await this.accountStore.seedTransferTokenInput()
+            await this.loadTokens()
+
             return response
           })
           .catch(err => {

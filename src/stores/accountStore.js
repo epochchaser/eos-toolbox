@@ -7,15 +7,6 @@ const SEED_RAM_BYTES = 8192
 const SEED_RAM_EOS = 1
 const SEED_CPU = 0.1
 const SEED_NET = 0.1
-const SEED_TRANSFER_SYMBOL = 'EOS'
-
-const TOKENS = [
-  {
-    contract: 'eosio.token',
-    symbol: 'EOS',
-    precision: 4
-  }
-]
 
 export class AccountStore {
   isLogin = false
@@ -37,8 +28,6 @@ export class AccountStore {
   isEosUnit = false
   ramPurchaseInput = SEED_RAM_BYTES
   ramSellInput = SEED_RAM_BYTES
-  transferQuantityInput = 0.0
-  transferSymbolInput = SEED_TRANSFER_SYMBOL
   transferInput = false
   memoInput = ''
   eosBalance = 0.0
@@ -57,6 +46,7 @@ export class AccountStore {
   account = null
   actions = null
   tokens = null
+  tokenSymbols = null
   permissions = null
   childAccounts = null
   votes = null
@@ -336,7 +326,6 @@ export class AccountStore {
               symbol: action.action_trace.act.data.quantity.split(' ')[1]
             }
           })
-          .filter((obj, idx, array) => array.map(obj2 => obj.symbol !== obj2.symbol))
 
         tokenSymbols = tokenSymbols.concat(results)
       }
@@ -350,6 +339,7 @@ export class AccountStore {
       ].concat(tokenSymbols)
 
       this.tokens = []
+      tokenSymbols = Values.removeDuplicates(tokenSymbols, 'symbol')
       let len = tokenSymbols.length
 
       for (let i = 0; i < len; i++) {
@@ -359,7 +349,7 @@ export class AccountStore {
         } catch (e) {}
       }
 
-      console.log(this.tokens)
+      this.tokenSymbols = tokenSymbols
     }
   }
 
@@ -431,12 +421,6 @@ export class AccountStore {
     this.transferInput = false
   }
 
-  seedTransferTokenInput = () => {
-    this.receiverAccountNameInput = ''
-    this.transferQuantityInput = 0
-    this.transferSymbolInput = SEED_TRANSFER_SYMBOL
-    this.memoInput = ''
-  }
   changeRamPurchaseUnit = isEosUnit => {
     if (isEosUnit === true) {
       this.ramPurchaseInput = SEED_RAM_EOS
@@ -511,17 +495,12 @@ export class AccountStore {
     return await EosAgent.createTransaction(cb)
   }
 
-  transferToken = async (symbol, toAccountName, quantity, memo) => {
-    const filteredTokens = TOKENS.filter(t => t.symbol === this.transferSymbolInput)
-    if (!filteredTokens || filteredTokens.length === 0) return
-
-    const token = filteredTokens[0]
-
+  transferToken = async (toAccountName, symbol, quantity, memo) => {
     let contract
 
-    for (let i = 0; i < this.tokens.length; i++) {
-      if (symbol === this.tokens[i].symbol) {
-        contract = this.tokens[i].code
+    for (let i = 0; i < this.tokenSymbols.length; i++) {
+      if (symbol === this.tokenSymbols[i].symbol) {
+        contract = this.tokenSymbols[i].code
         break
       }
     }
@@ -532,11 +511,11 @@ export class AccountStore {
       tr.transfer(
         {
           from: this.account.name,
-          to: this.receiverAccountNameInput,
-          quantity: `${Number(this.transferQuantityInput)
-            .toFixed(token.precision)
-            .toString()} ${token.symbol}`,
-          memo: this.memoInput
+          to: toAccountName,
+          quantity: `${Number(quantity)
+            .toFixed(4)
+            .toString()} ${symbol}`,
+          memo: memo
         },
         options
       )
@@ -617,7 +596,6 @@ decorate(AccountStore, {
   buyRAM: action,
   sellRAM: action,
   transferToken: action,
-  seedTransferTokenInput: action,
   voteProducer: action,
   changeVoterProxy: action,
   getAccountTokens: action

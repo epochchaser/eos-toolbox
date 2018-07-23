@@ -36,3 +36,13 @@ export const CONFIG = {
 }
 
 export const supportLanguage = ['ko-KR', 'en-US']
+
+export function removeDuplicates(arr, prop) {
+  var obj = {}
+  for (var i = 0, len = arr.length; i < len; i++) {
+    if (!obj[arr[i][prop]]) obj[arr[i][prop]] = arr[i]
+  }
+  var newArr = []
+  for (var key in obj) newArr.push(obj[key])
+  return newArr
+}
