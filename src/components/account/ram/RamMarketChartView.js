@@ -47,7 +47,7 @@ class RamMarketChartView extends Component {
 
     if (!ramMarketHistory)
       return (
-        <div className="preloader3 loader-block m-t-20" style={{ height: '9px' }}>
+        <div className="preloader3 loader-block m-t-20 m-b-20" style={{ height: '9px' }}>
           <div className="circ1" />
           <div className="circ2" />
           <div className="circ3" />
@@ -68,7 +68,7 @@ class RamMarketChartView extends Component {
     })
 
     const yScale = scaleLinear({
-      range: [yMax, min(ramMarketHistory, this.y)],
+      range: [yMax, 0],
       domain: [min(ramMarketHistory, this.y), max(ramMarketHistory, this.y)]
     })
 
