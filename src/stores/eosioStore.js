@@ -1,7 +1,6 @@
 import { decorate, observable, action } from 'mobx'
 import EosAgent from '../EosAgent'
 import sortBy from 'lodash/sortBy'
-import moment from 'moment'
 
 export class EosioStore {
   global = null
@@ -176,13 +175,11 @@ export class EosioStore {
     const result = await this.getRamMarkets()
 
     if (!result) return
-
-    const ramTick = { date: new Date().toUTCString(), close: result.kbPrice }
-
     if (!this.ramMarketHistory) {
       this.ramMarketHistory = []
     }
 
+    const ramTick = { date: new Date().toUTCString(), close: result.kbPrice }
     this.ramMarketHistory.push(ramTick)
   }
 
