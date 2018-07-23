@@ -30,6 +30,28 @@ This project is to utilize Eos easily.
 
 ![proxy](https://user-images.githubusercontent.com/40057797/42955571-bfe03de4-8bb8-11e8-9888-c74810b9002b.png)
 
+## Required
+
+- npm or yarn
+
+## Install dependencies
+
+```
+$ npm install or yarn install
+```
+
+## Starts the development server.
+
+```
+$ npm start or yarn start
+```
+
+## Bundles the app into static files for production.
+
+```
+$ npm run build or yarn build
+```
+
 # Todo
 
 ## Dashboard
