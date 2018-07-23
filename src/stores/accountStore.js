@@ -511,11 +511,21 @@ export class AccountStore {
     return await EosAgent.createTransaction(cb)
   }
 
-  transferToken = async () => {
+  transferToken = async (symbol, toAccountName, quantity, memo) => {
     const filteredTokens = TOKENS.filter(t => t.symbol === this.transferSymbolInput)
     if (!filteredTokens || filteredTokens.length === 0) return
 
     const token = filteredTokens[0]
+
+    let contract
+
+    for (let i = 0; i < this.tokens.length; i++) {
+      if (symbol === this.tokens[i].symbol) {
+        contract = this.tokens[i].code
+        break
+      }
+    }
+
     const cb = tr => {
       const options = { authorization: [`${this.account.name}@${this.account.authority}`] }
 
@@ -532,7 +542,7 @@ export class AccountStore {
       )
     }
 
-    return await EosAgent.createTransaction(token.contract, cb)
+    return await EosAgent.createTransaction(contract, cb)
   }
 
   voteProducer = async (proxy = '') => {
