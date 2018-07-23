@@ -10,19 +10,59 @@ class TransferTokenView extends Component {
     super(props)
     const { accountStore } = this.props
     this.accountStore = accountStore
+
+    this.state = {
+      selectedIndex: 0,
+      tokenSymbol: '',
+      tokenQuantity: 0,
+      transferQuantityInput: 0,
+      isTransferQuantityValid: false,
+      receiverAccountNameInput: '',
+      isReceiverAccountValid: false,
+      memoInput: '',
+      isMemoValid: false
+    }
+  }
+
+  componentDidMount = async () => {
+    await this.accountStore.getAccountTokens(this.accountStore.accountInfo.account_name)
+
+    const token = this.accountStore.tokens[0].split(' ')
+
+    this.setState({
+      tokenSymbol: token[1],
+      tokenQuantity: token[0]
+    })
+  }
+
+  onTokenSelected = event => {
+    const token = this.accountStore.tokens[event.target.selectedIndex].split(' ')
+
+    this.setState({
+      selectedIndex: event.target.selectedIndex,
+      tokenSymbol: token[1],
+      tokenQuantity: token[0]
+    })
   }
 
   onInputChange = name => event => {
     const validationValue = event.target.value
 
     if (name === 'receiveraccount') {
-      this.accountStore.validateReceiverAccountName(validationValue)
+      this.setState({
+        receiverAccountNameInput: validationValue,
+        isReceiverAccountValid: validationValue ? true : false
+      })
     } else if (name === 'transferquantity') {
-      this.accountStore.validateTransferQuantity(validationValue)
-    } else if (name === 'transfersymbol') {
-      this.accountStore.validateTransferSymbol(validationValue)
+      this.setState({
+        transferQuantityInput: validationValue,
+        isTransferQuantityValid: validationValue <= this.state.tokenQuantity ? true : false
+      })
     } else if (name === 'memo') {
-      this.accountStore.validateMemo(validationValue)
+      this.setState({
+        memoInput: validationValue,
+        isMemoValid: validationValue ? true : false
+      })
     }
   }
 
@@ -72,38 +112,25 @@ class TransferTokenView extends Component {
   }
 
   render() {
-    const {
-      isReceiverAccountValid,
-      isTransferQuantityValid,
-      isTransferSymbolValid,
-      receiverAccountNameInput,
-      transferQuantityInput,
-      transferSymbolInput,
-      memoInput,
-      totalBalance,
-      liquid
-    } = this.accountStore
-
-    const receiverAccountNameForm = isReceiverAccountValid
+    const receiverAccountNameForm = this.state.isReceiverAccountValid
       ? 'form-group row'
       : 'form-group has-danger row'
 
-    const quantityForm = isTransferQuantityValid ? 'form-group row' : 'form-group has-danger row'
-    const symbolForm = isTransferSymbolValid ? 'form-group row' : 'form-group has-danger row'
-    const canSubmit = isReceiverAccountValid && isTransferQuantityValid && isTransferSymbolValid
+    const quantityForm = this.state.isTransferQuantityValid
+      ? 'form-group row'
+      : 'form-group has-danger row'
 
-    const availableLiquid = Math.max(0, liquid - transferQuantityInput).toFixed(4)
-    const availablePercent = (liquid ? ((availableLiquid / liquid) * 100).toFixed(2) : 0) + '%'
-    const afterTransfer = Math.min(
-      Math.max(0, totalBalance - transferQuantityInput),
-      totalBalance
+    const canSubmit = this.state.isReceiverAccountValid && this.state.isTransferQuantityValid
+
+    const availableLiquid = Math.max(
+      0,
+      this.state.tokenQuantity - this.state.transferQuantityInput
     ).toFixed(4)
 
-    const afterTransferPercent =
-      (totalBalance ? ((afterTransfer / totalBalance) * 100).toFixed(2) : 0) + '%'
-    const afterTransferChartStyle = {
-      width: afterTransferPercent
-    }
+    const availablePercent =
+      (this.state.tokenQuantity
+        ? ((availableLiquid / this.state.tokenQuantity) * 100).toFixed(2)
+        : 0) + '%'
 
     const availableChartStyle = {
       width: availablePercent
@@ -122,9 +149,9 @@ class TransferTokenView extends Component {
                 </h5>
                 <div className="card-block">
                   <div className="row">
-                    <div class="col-sm-6 b-r-default">
+                    <div className="col-sm-12">
                       <h2 className="f-w-600">
-                        {availableLiquid} / {liquid} EOS
+                        {availableLiquid} / {this.state.tokenQuantity} {this.state.tokenSymbol}
                       </h2>
                       <p className="text-muted f-w-600">
                         <FormattedMessage id="Available EOS (liquid)" />
@@ -141,9 +168,9 @@ class TransferTokenView extends Component {
                       </div>
                     </div>
 
-                    <div className="col-sm-6 p-b-30">
+                    {/* <div className="col-sm-6 p-b-30">
                       <h2 className="f-w-600">
-                        {afterTransfer} / {totalBalance} EOS
+                        {afterTransfer} / {totalBalance} {this.state.tokenSymbol}
                       </h2>
                       <p className="text-muted f-w-600">
                         <FormattedMessage id="Total balance after trasfer token" />
@@ -157,7 +184,7 @@ class TransferTokenView extends Component {
                           style={afterTransferChartStyle}
                         />
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <hr />
                 </div>
@@ -176,6 +203,47 @@ class TransferTokenView extends Component {
                 </span>
               </div>
               <div className="card-block">
+                <div className="form-group row">
+                  <div className="col-sm-2">
+                    <label className="col-form-label" htmlFor="symbolInputDanger">
+                      <FormattedMessage id="Symbol" />
+                    </label>
+                  </div>
+                  <div className="col-sm-10">
+                    {/* <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Symbol of the token"
+                      id="symbolInputDanger"
+                      value={transferSymbolInput}
+                      onChange={this.onInputChange('transfersymbol')}
+                    /> */}
+
+                    {!this.accountStore.tokens && (
+                      <div className="preloader4 m-0 p-0">
+                        <div className="double-bounce1" />
+                        <div className="double-bounce2" />
+                      </div>
+                    )}
+                    {this.accountStore.tokens && (
+                      <select
+                        name="select"
+                        className="form-control form-control-inverse"
+                        value={this.state.selectedIndex}
+                        onChange={this.onTokenSelected}
+                      >
+                        {this.accountStore.tokens.map((token, index) => {
+                          return (
+                            <option key={index} value={index}>
+                              {token}
+                            </option>
+                          )
+                        })}
+                      </select>
+                    )}
+                  </div>
+                </div>
+
                 <div className={receiverAccountNameForm}>
                   <div className="col-sm-2">
                     <label className="col-form-label" htmlFor="receiverAccountNameInputDanger">
@@ -188,11 +256,12 @@ class TransferTokenView extends Component {
                       className="form-control"
                       placeholder="Account that receives the token"
                       id="receiverAccountNameInputDanger"
-                      value={receiverAccountNameInput}
+                      maxLength="12"
+                      value={this.state.receiverAccountNameInput}
                       onChange={this.onInputChange('receiveraccount')}
                     />
 
-                    {!isReceiverAccountValid && (
+                    {!this.state.isReceiverAccountValid && (
                       <div className="col-form-label">
                         <FormattedMessage id="Account name is requied" />
                       </div>
@@ -212,37 +281,13 @@ class TransferTokenView extends Component {
                       className="form-control"
                       placeholder="How many tokens to send"
                       id="quantityInputDanger"
-                      value={transferQuantityInput}
+                      value={this.state.transferQuantityInput}
                       onChange={this.onInputChange('transferquantity')}
                     />
 
-                    {!isTransferQuantityValid && (
+                    {!this.state.isTransferQuantityValid && (
                       <div className="col-form-label">
                         <FormattedMessage id="Quantity is requied" />
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className={symbolForm}>
-                  <div className="col-sm-2">
-                    <label className="col-form-label" htmlFor="symbolInputDanger">
-                      <FormattedMessage id="Symbol" />
-                    </label>
-                  </div>
-                  <div className="col-sm-10">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Symbol of the token"
-                      id="symbolInputDanger"
-                      value={transferSymbolInput}
-                      onChange={this.onInputChange('transfersymbol')}
-                    />
-
-                    {!isTransferSymbolValid && (
-                      <div className="col-form-label">
-                        <FormattedMessage id="Symbol is required" />
                       </div>
                     )}
                   </div>
@@ -260,7 +305,7 @@ class TransferTokenView extends Component {
                       className="form-control"
                       placeholder="A memo to attach to transfer"
                       id="memoInputDanger"
-                      value={memoInput}
+                      value={this.state.memoInput}
                       onChange={this.onInputChange('memo')}
                     />
                   </div>
