@@ -13,6 +13,15 @@ class BlockView extends Component {
   }
 
   componentDidMount() {
+    this.update()
+    this.intervalId = setInterval(this.update, 1500)
+  }
+
+  componentDidUnmount = () => {
+    clearInterval(this.intervalId)
+  }
+
+  update = async () => {
     this.eosioStore.getInfo()
     this.eosioStore.getGlobalInfo()
   }

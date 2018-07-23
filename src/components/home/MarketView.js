@@ -16,6 +16,17 @@ class MarketView extends Component {
   componentDidMount = async () => {
     await this.commonStore.getCoinMarketCap()
     await this.eosioStore.getGlobalInfo()
+    await this.eosioStore.getCurrencyStats()
+    this.update()
+
+    this.intervalId = setInterval(this.update, 1500)
+  }
+
+  componentDidUnmount = () => {
+    clearInterval(this.intervalId)
+  }
+
+  update = async () => {
     await this.eosioStore.getRamMarkets()
   }
 
@@ -29,6 +40,7 @@ class MarketView extends Component {
     return (
       <div>
         {this.eosioStore.ramInfo &&
+          this.eosioStore.currencyStats &&
           this.commonStore.coinMarketCap && (
             <div className="row">
               <div className="col-md-12 col-xl-6">
@@ -91,41 +103,30 @@ class MarketView extends Component {
                     </div>
                     <div className="b-t-default p-t-20 m-t-5">
                       <div className="row text-center p-t-15 p-b-15">
-                        <div className="col-sm-4 f-prog">
+                        <div className="col-sm-6 f-prog">
                           <p className="f-16 m-0 f-w-400">
                             <FormattedMessage id="Circulating Supply" />
                           </p>
                           <span className="text-muted">
                             <NumberFormat
-                              value={this.commonStore.coinMarketCap.data.circulating_supply.toFixed(
-                                0
-                              )}
+                              value={Number(
+                                this.eosioStore.currencyStats.EOS.supply.replace('EOS', '')
+                              ).toFixed(0)}
                               displayType={'text'}
                               thousandSeparator={true}
                               suffix={' EOS'}
                             />
                           </span>
                         </div>
-                        <div className="col-sm-4 f-prog">
-                          <p className="f-16 m-0 f-w-400">
-                            <FormattedMessage id="Total Supply" />
-                          </p>
-                          <span className="text-muted">
-                            <NumberFormat
-                              value={this.commonStore.coinMarketCap.data.total_supply.toFixed(0)}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' EOS'}
-                            />
-                          </span>
-                        </div>
-                        <div className="col-sm-4">
+                        <div className="col-sm-6">
                           <p className="f-16 m-0 f-w-400">
                             <FormattedMessage id="Max Supply" />
                           </p>
                           <span className="text-muted">
                             <NumberFormat
-                              value={this.commonStore.coinMarketCap.data.max_supply.toFixed(0)}
+                              value={Number(
+                                this.eosioStore.currencyStats.EOS.max_supply.replace('EOS', '')
+                              ).toFixed(0)}
                               displayType={'text'}
                               thousandSeparator={true}
                               suffix={' EOS'}
