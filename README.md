@@ -103,6 +103,7 @@ $ npm run build or yarn build
 
 ## Coding convention
 
+- VS Code [Prettierr Plugin](https://github.com/prettier/prettier-vscode)
 - VS Code Prettier config (Ctrl + ,)
 
 ```
