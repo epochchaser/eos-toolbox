@@ -26,7 +26,9 @@ class ActionView extends Component {
           <div className="page-wrapper">
             <div className="page-body">
               <div className="row m-l-5 m-r-5">
-                <TokenView tokens={tokens} />
+                <div className="col-sm-12 p-0">
+                  <TokenView tokens={tokens} />
+                </div>
               </div>
               <div className="row" />
             </div>
