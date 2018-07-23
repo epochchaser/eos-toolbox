@@ -122,25 +122,7 @@ class TransferTokenView extends Component {
                 </h5>
                 <div className="card-block">
                   <div className="row">
-                    <div className="col-sm-8 b-r-default p-b-30">
-                      <h2 className="f-w-600">
-                        {afterTransfer} / {totalBalance} EOS
-                      </h2>
-                      <p className="text-muted f-w-600">
-                        <FormattedMessage id="Total balance after trasfer token" />
-                      </p>
-                      <div className="progress">
-                        <div
-                          className="progress-bar bg-c-yellow"
-                          role="progressbar"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                          style={afterTransferChartStyle}
-                        />
-                      </div>
-                    </div>
-
-                    <div class="col-sm-4 ">
+                    <div class="col-sm-6 b-r-default">
                       <h2 className="f-w-600">
                         {availableLiquid} / {liquid} EOS
                       </h2>
@@ -155,6 +137,24 @@ class TransferTokenView extends Component {
                           aria-valuemin="0"
                           aria-valuemax="100"
                           style={availableChartStyle}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="col-sm-6 p-b-30">
+                      <h2 className="f-w-600">
+                        {afterTransfer} / {totalBalance} EOS
+                      </h2>
+                      <p className="text-muted f-w-600">
+                        <FormattedMessage id="Total balance after trasfer token" />
+                      </p>
+                      <div className="progress">
+                        <div
+                          className="progress-bar bg-c-yellow"
+                          role="progressbar"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          style={afterTransferChartStyle}
                         />
                       </div>
                     </div>
