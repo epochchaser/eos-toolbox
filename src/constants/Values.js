@@ -1,3 +1,5 @@
+export const actionPerPage = 1000
+
 const protocol = 'https'
 const host = 'api.eosnewyork.io'
 const port = 443

@@ -1,4 +1,5 @@
 import { decorate, observable, action } from 'mobx'
+import * as Values from '../constants/Values'
 import EosAgent from '../EosAgent'
 
 const ACCOUNT_NAME_PATTERN = /([a-z1-5]){12,}/
@@ -27,10 +28,6 @@ export class AccountStore {
   isRAMpurchaseOnCreationValid = true
   isRAMpurchaseValid = true
   isRAMsellValid = true
-  isReceiverAccountValid = false
-  isTransferQuantityValid = true
-  isTransferSymbolValid = true
-  isMemoValid = true
   accountNameInput = ''
   receiverAccountNameInput = ''
   ownerPubKeyInput = ''
@@ -297,6 +294,75 @@ export class AccountStore {
     return await EosAgent.createTransaction(cb)
   }
 
+  getAccountTokens = async accountName => {
+    const lastAction = await EosAgent.getActions(accountName, -1, -1)
+
+    let totalActions
+
+    this.tokens = null
+
+    if (lastAction && lastAction.actions.length > 0) {
+      totalActions = lastAction.actions[0].account_action_seq
+
+      let totalPage = parseInt(totalActions / Values.actionPerPage, 10)
+      if (totalActions % Values.actionPerPage !== 0) {
+        totalPage++
+      }
+
+      let tokenSymbols = []
+
+      for (let i = 0; i < totalPage; i++) {
+        let pos = i * Values.actionPerPage
+        let offset = Values.actionPerPage - 1
+
+        const actions = await EosAgent.getActions(accountName, pos, offset)
+
+        let results = actions.actions
+          .filter((action, idx, array) => {
+            if (
+              action.action_trace.act.name === 'transfer' &&
+              action.action_trace.act.data.to === accountName &&
+              action.action_trace.act.data.quantity.split(' ')[1] !== 'EOS'
+            ) {
+              return true
+            }
+
+            return false
+          })
+          .map(action => {
+            return {
+              code: action.action_trace.act.account,
+              account: action.action_trace.act.data.to,
+              symbol: action.action_trace.act.data.quantity.split(' ')[1]
+            }
+          })
+          .filter((obj, idx, array) => array.map(obj2 => obj.symbol !== obj2.symbol))
+
+        tokenSymbols = tokenSymbols.concat(results)
+      }
+
+      tokenSymbols = [
+        {
+          code: 'eosio.token',
+          account: accountName,
+          symbol: 'EOS'
+        }
+      ].concat(tokenSymbols)
+
+      this.tokens = []
+      let len = tokenSymbols.length
+
+      for (let i = 0; i < len; i++) {
+        try {
+          let token = await EosAgent.getCurrencyBalance(tokenSymbols[i])
+          this.tokens = this.tokens.concat(token)
+        } catch (e) {}
+      }
+
+      console.log(this.tokens)
+    }
+  }
+
   validateAccountName = newVal => {
     this.accountNameInput = newVal
     this.isAccountNameValid = ACCOUNT_NAME_PATTERN.exec(newVal) ? true : false
@@ -347,21 +413,6 @@ export class AccountStore {
   validateRamSell = newVal => {
     this.ramSellInput = newVal
     this.isRAMsellValid = newVal > 0 ? true : false
-  }
-
-  validateTransferQuantity = newVal => {
-    this.transferQuantityInput = newVal
-    this.isTransferQuantityValid = newVal <= this.liquid ? true : false
-  }
-
-  validateTransferSymbol = newVal => {
-    this.transferSymbolInput = newVal
-    this.isTransferSymbolValid = newVal ? true : false
-  }
-
-  validateMemo = newVal => {
-    this.memoInput = newVal
-    this.isMemoValid = true
   }
 
   seedCreateAccountInput = () => {
@@ -519,9 +570,6 @@ decorate(AccountStore, {
   ramPurchaseInput: observable,
   ramSellInput: observable,
   transferInput: observable,
-  transferQuantityInput: observable,
-  transferSymbolInput: observable,
-  memoInput: observable,
   eosBalance: observable,
   totalBalance: observable,
   staked: observable,
@@ -537,6 +585,7 @@ decorate(AccountStore, {
   accountInfo: observable,
   account: observable,
   myBlockProducers: observable,
+  tokens: observable,
   loadAccountInfo: action,
   login: action,
   logout: action,
@@ -547,16 +596,12 @@ decorate(AccountStore, {
   seedStakingUserInput: action,
   setStake: action,
   validateAccountName: action,
-  validateReceiverAccountName: action,
   validateOwner: action,
   validateOwnerPubKey: action,
   validateActivePubKey: action,
   validateCpuStake: action,
   validateNetStake: action,
   validateRamPurchase: action,
-  validateTransferQuantity: action,
-  validateTransferSymbol: action,
-  validateMemo: action,
   seedCreateAccountInput: action,
   changeRamPurchaseUnit: action,
   buyRAM: action,
@@ -564,7 +609,8 @@ decorate(AccountStore, {
   transferToken: action,
   seedTransferTokenInput: action,
   voteProducer: action,
-  changeVoterProxy: action
+  changeVoterProxy: action,
+  getAccountTokens: action
 })
 
 export default new AccountStore()
