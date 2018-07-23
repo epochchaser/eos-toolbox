@@ -1,6 +1,7 @@
 import { decorate, observable, action } from 'mobx'
 import EosAgent from '../EosAgent'
 import sortBy from 'lodash/sortBy'
+import moment from 'moment'
 
 export class EosioStore {
   global = null
@@ -8,6 +9,7 @@ export class EosioStore {
   blockProducers = null
   ramMarkets = null
   ramInfo = null
+  ramMarketHistory = {}
   voters = null
   nameBids = null
   staking = null
@@ -120,7 +122,13 @@ export class EosioStore {
       limit: 1
     }
 
+    if (!this.global) {
+      await this.getGlobalInfo()
+    }
+
     let ramMarkets = await EosAgent.getTableRows(query)
+    let ramInfo = null
+
     if (ramMarkets) {
       this.ramMarkets = ramMarkets.rows[0]
       const ram = Number(this.ramMarkets.base.balance.replace('RAM', ''))
@@ -134,7 +142,7 @@ export class EosioStore {
       const freeRamGb =
         (this.global.max_ram_size - this.global.total_ram_bytes_reserved) / 1024 / 1024 / 1024
 
-      this.ramInfo = {
+      ramInfo = {
         ram,
         eos,
         kbPrice,
@@ -145,6 +153,20 @@ export class EosioStore {
       }
       //{"supply":"10000000000.0000 RAMCORE","base":{"balance":"16389760351 RAM","weight":"0.50000000000000000"},"quote":{"balance":"4192901.1209 EOS","weight":"0.50000000000000000"}}
     }
+
+    this.ramInfo = ramInfo
+    return ramInfo
+  }
+
+  stackRamMarkets = async () => {
+    const result = await this.getRamMarkets()
+
+    if (!result) return
+
+    const obj = {}
+    const key = Date.now()
+    obj[key] = result.kbPrice
+    this.ramMarketHistory = { ...this.ramMarketHistory, ...obj }
   }
 
   getVoters = async () => {
@@ -193,6 +215,7 @@ decorate(EosioStore, {
   blockProducers: observable,
   ramMarkets: observable,
   ramInfo: observable,
+  ramMarketHistory: observable,
   voters: observable,
   nameBids: observable,
   staking: observable,
@@ -202,7 +225,8 @@ decorate(EosioStore, {
   getStakingInfo: action,
   getRamMarkets: action,
   getVoters: action,
-  getNameBids: action
+  getNameBids: action,
+  stackRamMarkets: action
 })
 
 export default new EosioStore()

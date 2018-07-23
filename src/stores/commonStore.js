@@ -36,9 +36,12 @@ decorate(CommonStore, {
   isLoading: observable,
   _initilizedScatter: observable,
   _initilizedEos: observable,
+  coinMarketCap: observable,
+  ramMarketCap: observable,
   setLoading: action,
   initScatter: action,
-  initEos: action
+  initEos: action,
+  getCoinMarketCap: action
 })
 
 export default new CommonStore()
