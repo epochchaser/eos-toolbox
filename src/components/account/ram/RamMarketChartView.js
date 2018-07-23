@@ -1,56 +1,49 @@
 import React, { Component } from 'react'
-import { FormattedMessage } from 'react-intl'
-import Background from './RamBackground'
 import RamPrice from './RamPrice'
 import sizeMe from 'react-sizeme'
 import '../../../styles/components/account/ram/RamMarketChartView.scss'
-import EosAgent from '../../../EosAgent'
+import { inject } from '../../../../node_modules/mobx-react'
 
+@inject('eosioStore')
 class RamMarketChartView extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      data: {}
-    }
+    const { eosioStore } = this.props
+    this.eosioStore = eosioStore
   }
 
-  componentDidMount = async () => {
-    fetch('https://api.coindesk.com/v1/bpi/historical/close.json')
-      .then(res => {
-        return res.json()
-      })
-      .then(json => {
-        this.setState({
-          data: json
-        })
-      })
-
-    const result = await EosAgent.getTableRows({
-      json: true,
-      code: 'eosio',
-      scope: 'eosio',
-      table: 'rammarket'
-    })
-
-    console.log(result)
+  componentDidMount = () => {
+    setInterval(this.fetchRamMarketInfo, 3000)
   }
+
+  componentWillUnmount = () => {
+    clearInterval(this.fetchRamMarketInfo)
+  }
+
+  fetchRamMarketInfo = () => {
+    this.eosioStore.stackRamMarkets()
+  }
+
   render() {
     const { size } = this.props
-    const { data } = this.state
+    const { ramMarketHistory } = this.eosioStore
     const width = Math.floor(size.width)
 
+    console.log('그려 안그러ㅕ')
     return (
-      <div className="col-sm-12">
-        <div className="row">
-          <div className="card statustic-card">
-            <div className="app">
-              <div className="center">
-                <RamPrice data={data} width={width} height={600} />
+      ramMarketHistory && (
+        <div className="col-sm-12">
+          <div className="row">
+            <div className="card statustic-card">
+              <div className="app">
+                <div className="center">
+                  <RamPrice data={ramMarketHistory} width={width} height={600} />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )
     )
   }
 }

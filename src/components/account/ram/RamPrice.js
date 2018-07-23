@@ -4,15 +4,19 @@ import FormatPrice from '../../../utils/FormatPrice'
 import '../../../styles/components/account/ram/RamPrice.scss'
 
 const RamPrice = ({ data = {}, width, height }) => {
-  if (!data.bpi) return <div>loading...</div>
+  if (!data) return <div>loading...</div>
 
-  const prices = Object.keys(data.bpi).map(k => ({
+  const prices = Object.keys(data).map(k => ({
     time: k,
-    price: data.bpi[k]
+    price: data[k]
   }))
 
+  console.log(prices)
+
+  if (!prices || prices.length <= 0) return <div />
   const currentPrice = prices[prices.length - 1].price
   const firstPrice = prices[0].price
+
   const diffPrice = currentPrice - firstPrice
   const hasIncreased = diffPrice > 0
 
