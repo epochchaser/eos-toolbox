@@ -2,6 +2,11 @@
   "name": "eos-toolbox",
   "version": "0.1.0",
   "dependencies": {
+    "@vx/axis": "^0.0.170",
+    "@vx/gradient": "^0.0.165",
+    "@vx/group": "^0.0.170",
+    "@vx/scale": "^0.0.165",
+    "@vx/shape": "^0.0.170",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
     "babel-core": "6.26.0",
