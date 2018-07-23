@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import RamPrice from './RamPrice'
 import sizeMe from 'react-sizeme'
 import '../../../styles/components/account/ram/RamMarketChartView.scss'
 import { inject } from '../../../../node_modules/mobx-react'
@@ -36,9 +35,7 @@ class RamMarketChartView extends Component {
           <div className="row">
             <div className="card statustic-card">
               <div className="app">
-                <div className="center">
-                  <RamPrice data={ramMarketHistory} width={width} height={600} />
-                </div>
+                <div className="center" />
               </div>
             </div>
           </div>
