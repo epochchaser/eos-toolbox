@@ -9,7 +9,7 @@ export class EosioStore {
   blockProducers = null
   ramMarkets = null
   ramInfo = null
-  ramMarketHistory = {}
+  ramMarketHistory = null
   voters = null
   nameBids = null
   staking = null
@@ -138,8 +138,13 @@ export class EosioStore {
 
     if (ramMarkets) {
       this.ramMarkets = ramMarkets.rows[0]
+
+      //Bancor Algorithm
+      //EOS/BYTE =  quote_balance / (base_balance x quote_weight)
       const ram = Number(this.ramMarkets.base.balance.replace('RAM', ''))
       const eos = Number(this.ramMarkets.quote.balance.replace('EOS', ''))
+      const weight = Number(this.ramMarkets.quote.weight)
+      const bPrice = eos / (ram * weight)
       const kbPrice = (eos / ram) * 1024
       const reservedRamPercent = Number(
         (this.global.total_ram_bytes_reserved / this.global.max_ram_size) * 100
@@ -152,12 +157,14 @@ export class EosioStore {
       ramInfo = {
         ram,
         eos,
+        bPrice,
         kbPrice,
         reservedRamPercent,
         totalRamGb,
         reservedRamGb,
         freeRamGb
       }
+
       //{"supply":"10000000000.0000 RAMCORE","base":{"balance":"16389760351 RAM","weight":"0.50000000000000000"},"quote":{"balance":"4192901.1209 EOS","weight":"0.50000000000000000"}}
     }
 
@@ -170,10 +177,13 @@ export class EosioStore {
 
     if (!result) return
 
-    const obj = {}
-    const key = Date.now()
-    obj[key] = result.kbPrice
-    this.ramMarketHistory = { ...this.ramMarketHistory, ...obj }
+    const ramTick = { date: new Date().toUTCString(), close: result.kbPrice }
+
+    if (!this.ramMarketHistory) {
+      this.ramMarketHistory = []
+    }
+
+    this.ramMarketHistory.push(ramTick)
   }
 
   getVoters = async () => {
