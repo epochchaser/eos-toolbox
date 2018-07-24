@@ -79,13 +79,7 @@ class RefundView extends Component {
                   <div className="card-block text-center">
                     <i className="fa fa-sign-in text-c-green d-block f-40" />
                     <h4 className="m-t-20">
-                      {`${parseFloat(
-                        accountStore.accountInfo.refund_request.cpu_amount.split(' ')[0]
-                      ) +
-                        parseFloat(
-                          accountStore.accountInfo.refund_request.net_amount.split(' ')[0]
-                        )}`}{' '}
-                      EOS
+                      {`${Number(accountStore.totalRefund).toFixed(4)} EOS`}
                     </h4>
                     <p className="m-b-20">
                       <FormattedMessage id="Unstaked amount" />

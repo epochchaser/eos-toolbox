@@ -13,6 +13,7 @@ export class AccountStore {
   memoInput = ''
   eosBalance = 0.0
   totalBalance = 0.0
+  totalRefund = 0.0
   staked = 0.0
   cpu_staked = 0.0
   cpu_max = 0.0
@@ -41,7 +42,9 @@ export class AccountStore {
     accountInfo = await EosAgent.getAccountInfo()
     console.log(accountInfo)
     if (accountInfo) {
-      this.liquid = parseFloat(accountInfo.core_liquid_balance.split(' ')[0])
+      this.liquid = accountInfo.core_liquid_balance
+        ? parseFloat(accountInfo.core_liquid_balance.split(' ')[0])
+        : 0
       this.cpu_max = parseFloat(accountInfo.cpu_limit.max / 10000)
       this.net_max = parseFloat(accountInfo.net_limit.max / 10000)
       let refunding_cpu_amount = 0.0
@@ -52,20 +55,26 @@ export class AccountStore {
         refunding_net_amount = parseFloat(accountInfo.refund_request.net_amount.split(' ')[0])
       }
 
+      this.totalRefund = refunding_cpu_amount + refunding_net_amount
       this.cpu_staked = parseFloat(accountInfo.total_resources.cpu_weight.split(' ')[0])
       this.net_staked = parseFloat(accountInfo.total_resources.net_weight.split(' ')[0])
       this.cpu_user = 0
       this.net_user = 0
 
       this.staked = this.net_staked + this.cpu_staked
-      this.totalBalance =
-        this.net_staked + this.cpu_staked + refunding_cpu_amount + refunding_net_amount
+      this.totalBalance = this.net_staked + this.cpu_staked + this.totalRefund
       this.unstaked = this.totalBalance - this.staked
-      const myProducers = Object.keys(accountInfo.voter_info.producers).map(k => {
-        return accountInfo.voter_info.producers[k]
-      })
 
-      this.myBlockProducers = myProducers.sort()
+      if (accountInfo.voter_info) {
+        const myProducers = Object.keys(accountInfo.voter_info.producers).map(k => {
+          return accountInfo.voter_info.producers[k]
+        })
+
+        this.myBlockProducers = myProducers.sort()
+        this.is_proxy = accountInfo.voter_info.is_proxy
+        this.proxy = accountInfo.voter_info.proxy
+      }
+
       this.account = EosAgent.loginaccount
 
       console.log(EosAgent.loginaccount)
@@ -85,8 +94,6 @@ export class AccountStore {
         this.eosBalance = 0.0
       }
 
-      this.is_proxy = accountInfo.voter_info.is_proxy
-      this.proxy = accountInfo.voter_info.proxy
       this.accountInfo = accountInfo
     }
   }
@@ -497,6 +504,7 @@ decorate(AccountStore, {
   ramSellInput: observable,
   eosBalance: observable,
   totalBalance: observable,
+  totalRefund: observable,
   staked: observable,
   cpu_staked: observable,
   cpu_max: observable,
