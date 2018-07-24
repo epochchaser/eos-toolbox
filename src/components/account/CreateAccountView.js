@@ -184,9 +184,6 @@ class CreateAccountView extends Component {
               <h5>
                 <FormattedMessage id="Create Account" />
               </h5>
-              <span>
-                Create your <code> new account</code> with <code>information</code> below
-              </span>
             </div>
             <div className="card-block">
               <div className={accountNameForm}>
