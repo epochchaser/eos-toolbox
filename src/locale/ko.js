@@ -217,5 +217,13 @@ export default {
   Search: '검색',
   'Bid Premium Name': '계정 경매',
   'Update staked balances': '스테이크 금액을 갱신하세요.',
-  Transfer: '전송'
+  Transfer: '전송',
+  Balance: '잔액',
+  Total: '합계',
+  'Ram owned': '램 보유',
+  'Cpu Staked': 'Cpu 스테이크',
+  'Net Staked': 'Net 스테이크',
+  'Cpu max': 'Cpu 최대치',
+  'Net max': 'Net 최대치',
+  'Ram usage': '램 사용량'
 }

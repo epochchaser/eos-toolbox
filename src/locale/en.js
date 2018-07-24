@@ -215,5 +215,13 @@ export default {
   'No Tokens': 'No Tokens',
   Search: 'Search',
   'Bid Premium Name': 'Bid Premium Name',
-  Transfer: 'Transfer'
+  Transfer: 'Transfer',
+  Balance: 'Balance',
+  Total: 'Total',
+  'Ram owned': 'Ram owned',
+  'Cpu Staked': 'Cpu Staked',
+  'Net Staked': 'Net Staked',
+  'Cpu max': 'Cpu max',
+  'Net max': 'Net max',
+  'Ram usage': 'Ram usage'
 }

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import NumberFormat from 'react-number-format'
+import BalanceView from './BalanceView'
 
 @inject('accountStore')
 @observer
@@ -34,207 +35,90 @@ class MyAccountView extends Component {
     const refundEos = refundCpu + refundNet
     const totalEos = stakeEos + unstakeEos + refundEos
 
+    const eosBalance = {
+      title: 'Balance',
+      subTitle: 'Total',
+      balance: this.accountStore.eosBalance ? this.accountStore.eosBalance : 0,
+      unit: ' EOS',
+      total: totalEos,
+      totalUnit: ' EOS',
+      color: 'bg-c-pink',
+      icon: 'ti-wallet'
+    }
+
+    const stakedEosBalance = {
+      title: 'Staked',
+      subTitle: 'Total',
+      balance: stakeEos,
+      unit: ' EOS',
+      total: totalEos,
+      totalUnit: ' EOS',
+      color: 'bg-c-blue',
+      icon: 'ti-reload'
+    }
+
+    const refundEosBalance = {
+      title: 'Refund',
+      subTitle: 'Total',
+      balance: refundEos,
+      unit: ' EOS',
+      total: totalEos,
+      totalUnit: ' EOS',
+      color: 'bg-c-green',
+      icon: 'ti-money'
+    }
+
+    const ramOwned = {
+      title: 'Ram owned',
+      subTitle: 'Ram usage',
+      balance: this.accountStore.accountInfo ? this.accountStore.accountInfo.ram_quota : 0,
+      unit: ' bytes',
+      total: this.accountStore.accountInfo ? this.accountStore.accountInfo.ram_usage : 0,
+      totalUnit: ' bytes',
+      color: 'bg-c-yellow',
+      icon: 'ti-save'
+    }
+
+    const cpuStake = {
+      title: 'Cpu Staked',
+      subTitle: 'Cpu max',
+      balance: this.accountStore.accountInfo
+        ? this.accountStore.accountInfo.total_resources.cpu_weight
+        : 0,
+      unit: ' EOS',
+      total: this.accountStore.accountInfo ? this.accountStore.accountInfo.cpu_limit.max : 0,
+      totalUnit: ' µs',
+      color: 'bg-c-green',
+      icon: 'ti-pulse'
+    }
+
+    const netStake = {
+      title: 'Net Staked',
+      subTitle: 'Net max',
+      balance: this.accountStore.accountInfo
+        ? this.accountStore.accountInfo.total_resources.net_weight
+        : 0,
+      unit: ' EOS',
+      total: this.accountStore.accountInfo ? this.accountStore.accountInfo.net_limit.max : 0,
+      totalUnit: ' bytes',
+      color: 'bg-c-blue',
+      icon: 'ti-signal'
+    }
+
     return (
       <Fragment>
         <div className="main-body">
           <div className="page-wrapper">
             <div className="page-body">
               <div className="row">
-                <div className="col-md-6 col-xl-4">
-                  <div className="card bg-c-pink order-card">
-                    <div className="card-block">
-                      <h6 className="m-b-20">Balance</h6>
-                      <h2 className="text-right">
-                        <i className="ti-wallet f-left" />
-                        {this.accountStore.accountInfo && (
-                          <span>
-                            <NumberFormat
-                              value={this.accountStore.eosBalance}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' EOS'}
-                            />
-                          </span>
-                        )}
-                      </h2>
-                      <p className="m-b-0">
-                        Total
-                        {this.accountStore.accountInfo && (
-                          <span className="f-right">
-                            <NumberFormat
-                              value={totalEos.toFixed(4)}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' EOS'}
-                            />
-                          </span>
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-xl-4">
-                  <div className="card bg-c-yellow order-card">
-                    <div className="card-block">
-                      <h6 className="m-b-20">Staked</h6>
-                      <h2 className="text-right">
-                        <i className="ti-reload f-left" />
-                        {this.accountStore.accountInfo && (
-                          <span>
-                            <NumberFormat
-                              value={stakeEos.toFixed(4)}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' EOS'}
-                            />
-                          </span>
-                        )}
-                      </h2>
-                      <p className="m-b-0">
-                        Total
-                        {this.accountStore.accountInfo && (
-                          <span className="f-right">
-                            <NumberFormat
-                              value={totalEos.toFixed(4)}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' EOS'}
-                            />
-                          </span>
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-xl-4">
-                  <div className="card bg-c-green order-card">
-                    <div className="card-block">
-                      <h6 className="m-b-20">Refund</h6>
-                      <h2 className="text-right">
-                        <i className="ti-signal f-left" />
-                        {this.accountStore.accountInfo && (
-                          <span>
-                            <NumberFormat
-                              value={refundEos.toFixed(4)}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' EOS'}
-                            />
-                          </span>
-                        )}
-                      </h2>
-                      <p className="m-b-0">
-                        Total
-                        {this.accountStore.accountInfo && (
-                          <span className="f-right">
-                            <NumberFormat
-                              value={totalEos.toFixed(4)}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' EOS'}
-                            />
-                          </span>
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <BalanceView balance={eosBalance} />
+                <BalanceView balance={stakedEosBalance} />
+                <BalanceView balance={refundEosBalance} />
               </div>
               <div className="row">
-                <div className="col-md-6 col-xl-4">
-                  <div className="card bg-c-blue order-card">
-                    <div className="card-block">
-                      <h6 className="m-b-20">Ram owned</h6>
-                      <h2 className="text-right">
-                        <i className="ti-save f-left" />
-                        {this.accountStore.accountInfo && (
-                          <span>
-                            <NumberFormat
-                              value={this.accountStore.accountInfo.ram_quota}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' bytes'}
-                            />
-                          </span>
-                        )}
-                      </h2>
-                      <p className="m-b-0">
-                        Ram usage
-                        {this.accountStore.accountInfo && (
-                          <span className="f-right">
-                            <NumberFormat
-                              value={this.accountStore.accountInfo.ram_usage}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' bytes'}
-                            />
-                          </span>
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-xl-4">
-                  <div className="card bg-c-yellow order-card">
-                    <div className="card-block">
-                      <h6 className="m-b-20">Cpu weight</h6>
-                      <h2 className="text-right">
-                        <i className="ti-reload f-left" />
-                        {this.accountStore.accountInfo && (
-                          <span>{`${
-                            this.accountStore.accountInfo.total_resources.cpu_weight
-                          } `}</span>
-                        )}
-                      </h2>
-                      <p className="m-b-0">
-                        Cpu max
-                        {this.accountStore.accountInfo && (
-                          <span className="f-right">
-                            <NumberFormat
-                              value={this.accountStore.accountInfo.cpu_limit.max}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' µs'}
-                            />
-                          </span>
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-xl-4">
-                  <div className="card bg-c-green order-card">
-                    <div className="card-block">
-                      <h6 className="m-b-20">Net weight</h6>
-                      <h2 className="text-right">
-                        <i className="ti-signal f-left" />
-                        {this.accountStore.accountInfo && (
-                          <span>
-                            <NumberFormat
-                              value={this.accountStore.accountInfo.total_resources.net_weight}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' EOS'}
-                            />
-                          </span>
-                        )}
-                      </h2>
-                      <p className="m-b-0">
-                        Net max
-                        {this.accountStore.accountInfo && (
-                          <span className="f-right">
-                            <NumberFormat
-                              value={this.accountStore.accountInfo.net_limit.max}
-                              displayType={'text'}
-                              thousandSeparator={true}
-                              suffix={' bytes'}
-                            />
-                          </span>
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <BalanceView balance={ramOwned} />
+                <BalanceView balance={cpuStake} />
+                <BalanceView balance={netStake} />
               </div>
             </div>
           </div>
