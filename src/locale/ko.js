@@ -205,12 +205,13 @@ export default {
   'RAM sell is requied': '램 판매가 필요합니다.',
   Tokens: '토큰',
   'Transfer Token': '토큰 전송',
-  'Quantity (in Tokens)': '갯수 (in Tokens)',
+  'Quantity (in Tokens)': '전송 수량',
   Symbol: '토큰 심볼',
   Memo: '메모',
   'Symbol is required': '심볼이 필요합니다.',
   'Total balance after trasfer token': '토큰 전송 후 총 잔액',
   'Available EOS (liquid)': '이용가능한 잔액',
   'You have no voter proxy': '현재 투표대리인이 없습니다.',
-  'No Tokens': '보유한 토큰이 없습니다.'
+  'No Tokens': '보유한 토큰이 없습니다.',
+  'Quantity is requied': '올바른 수량을 입력하세요'
 }
