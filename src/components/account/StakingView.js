@@ -6,24 +6,61 @@ import Swal from 'sweetalert2'
 @inject('accountStore')
 @observer
 class StakingView extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      cpu_user: 0.0,
+      net_user: 0.0,
+      isValidInput: true
+    }
+  }
+
   componentDidMount = () => {
     const { accountStore } = this.props
-    accountStore.seedStakingUserInput(accountStore.cpu_staked, accountStore.net_staked)
+    this.updateValidationResult(true, accountStore.cpu_staked, accountStore.net_staked)
   }
 
   onValueChange = name => event => {
-    const { accountStore } = this.props
+    const { cpu_user, net_user } = this.state
     const userInput = Number(event.target.value)
 
     if (name === 'cpu') {
-      accountStore.validateStakingInput(userInput, accountStore.net_user)
+      this.validateStakingInput(userInput, net_user)
     } else if (name === 'net') {
-      accountStore.validateStakingInput(accountStore.cpu_user, userInput)
+      this.validateStakingInput(cpu_user, userInput)
     }
+  }
+
+  validateStakingInput = (nextCpu, nextNet) => {
+    const { accountStore } = this.props
+    const { liquid, cpu_staked, net_staked } = accountStore
+
+    if (0 >= nextCpu || 0 >= nextNet) {
+      this.updateValidationResult(false, nextCpu, nextNet)
+      return
+    }
+
+    if (!liquid) return
+
+    const limit = cpu_staked + net_staked + liquid
+    const nextTotal = nextCpu + nextNet
+
+    const isValid = nextTotal <= limit ? true : false
+    this.updateValidationResult(isValid, nextCpu, nextNet)
+  }
+
+  updateValidationResult = (isValidInput, cpu_user, net_user) => {
+    this.setState({
+      isValidInput,
+      cpu_user,
+      net_user
+    })
   }
 
   onConfirm = () => {
     const { accountStore } = this.props
+    const { net_user, cpu_user } = this.state
 
     Swal({
       title: 'Update Staked Balances',
@@ -34,10 +71,13 @@ class StakingView extends Component {
       showLoaderOnConfirm: true,
       preConfirm: () => {
         return accountStore
-          .setStake()
+          .setStake(net_user, cpu_user)
           .then(async response => {
+            console.log('들어왓냐')
             await accountStore.loadAccountInfo()
-            accountStore.seedStakingUserInput(accountStore.cpu_staked, accountStore.net_staked)
+            console.log('여긴')
+            this.updateValidationResult(true, accountStore.cpu_staked, accountStore.net_staked)
+            console.log('저긴')
             return response
           })
           .catch(err => {
@@ -70,7 +110,8 @@ class StakingView extends Component {
   render() {
     const { accountStore } = this.props
 
-    const { cpu_staked, net_staked, cpu_user, net_user, liquid, isValidInput } = accountStore
+    const { cpu_staked, net_staked, liquid } = accountStore
+    const { cpu_user, net_user, isValidInput } = this.state
 
     const cpu_limit = cpu_staked + liquid
     const net_limit = net_staked + liquid

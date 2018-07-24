@@ -8,7 +8,8 @@ import { inject, observer } from 'mobx-react'
 class MyResourceView extends Component {
   render() {
     const { accountStore } = this.props
-    const unstaked = accountStore.totalBalance - accountStore.staked
+    const { staked, totalBalance, liquid, cpu_staked, net_staked } = accountStore
+    const unstaked = totalBalance - staked
 
     return (
       <Fragment>
@@ -28,7 +29,7 @@ class MyResourceView extends Component {
                   <div className="card-block-big b-r-default">
                     <h2 className="text-c-blue d-inline-block m-b-40 f-50 ">
                       <NumberFormat
-                        value={accountStore.liquid.toFixed(4)}
+                        value={liquid.toFixed(4)}
                         displayType={'text'}
                         thousandSeparator={true}
                       />
@@ -44,7 +45,7 @@ class MyResourceView extends Component {
                   <div className="card-block-big ">
                     <h2 className="text-c-blue d-inline-block m-b-40 f-50 ">
                       <NumberFormat
-                        value={unstaked.toFixed(4)}
+                        value={staked.toFixed(4)}
                         displayType={'text'}
                         thousandSeparator={true}
                       />
@@ -62,7 +63,7 @@ class MyResourceView extends Component {
                   <div className="card-block-big b-r-default">
                     <h2 className="text-c-blue d-inline-block m-b-40 f-50 ">
                       <NumberFormat
-                        value={accountStore.cpu_staked.toFixed(4)}
+                        value={cpu_staked.toFixed(4)}
                         displayType={'text'}
                         thousandSeparator={true}
                       />
@@ -78,7 +79,7 @@ class MyResourceView extends Component {
                   <div className="card-block-big ">
                     <h2 className="text-c-blue d-inline-block m-b-40 f-50 ">
                       <NumberFormat
-                        value={accountStore.net_staked.toFixed(4)}
+                        value={net_staked.toFixed(4)}
                         displayType={'text'}
                         thousandSeparator={true}
                       />
