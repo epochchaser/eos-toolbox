@@ -15,6 +15,7 @@ export class ExplorerStore {
   actions = null
   block = null
   newAccountHistory = null
+  transferHistory = null
 
   setIsActionLoading(isActionLoading) {
     this.isActionLoading = isActionLoading
@@ -112,7 +113,7 @@ export class ExplorerStore {
 
     try {
       let actions = await EosAgent.getActions(accountName, 0, 10000)
-
+      console.log(actions)
       if (actions) {
         this.actions = sortBy(actions.actions, 'block_time').reverse()
       }
@@ -204,8 +205,33 @@ export class ExplorerStore {
         }
       })
 
-    console.log(results)
     this.newAccountHistory = results
+  }
+
+  getTransferHistory = async accountName => {
+    if (!this.actions) {
+      await this.getActions(accountName)
+    }
+
+    let results = this.actions
+      .filter((action, idx, array) => {
+        if (action.action_trace.act.name === 'transfer') {
+          return true
+        } else {
+          return false
+        }
+      })
+      .map(a => {
+        return {
+          from: a.action_trace.act.data.from,
+          to: a.action_trace.act.data.to,
+          quantity: a.action_trace.act.data.quantity,
+          memo: a.action_trace.act.data.memo,
+          creation: a.block_time
+        }
+      })
+
+    this.transferHistory = results
   }
 }
 
@@ -216,6 +242,7 @@ decorate(ExplorerStore, {
   transaction: observable,
   tokens: observable,
   newAccountHistory: observable,
+  transferHistory: observable,
   isActionLoading: observable,
   isTokenLoading: observable,
   block: observable,

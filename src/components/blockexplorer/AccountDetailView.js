@@ -12,11 +12,20 @@ class AccountDetailView extends Component {
     }
   }
 
+  componentDidMount = () => {
+    const { accountStore, explorerStore } = this.props
+    const accName = accountStore.account.name
+
+    explorerStore.getTransferHistory(accName)
+  }
+
   tabClick = name => e => {
     const { accountStore, explorerStore } = this.props
     const accName = accountStore.account.name
 
-    if (name === 'vote') {
+    if (name == 'transfer') {
+      explorerStore.getTransferHistory(accName)
+    } else if (name === 'vote') {
       explorerStore.getVotingHistory(accName)
     } else if (name === 'created') {
       explorerStore.getNewAccountHistory(accName)
@@ -98,62 +107,23 @@ class AccountDetailView extends Component {
                 <table className="table">
                   <tbody>
                     <tr>
-                      <th>Image</th>
-                      <th>Product Code</th>
-                      <th>Customer</th>
-                      <th>Purchased On</th>
-                      <th>Status</th>
-                      <th>Transaction ID</th>
+                      <th>Time</th>
+                      <th>From</th>
+                      <th>To</th>
+                      <th>Quantity</th>
+                      <th>Memo</th>
                     </tr>
 
-                    <tr>
-                      <td>
-                        <img
-                          src="../files/assets/images/product/prod2.jpg"
-                          alt="prod img"
-                          className="img-fluid"
-                        />
-                      </td>
-                      <td>PNG002344</td>
-                      <td>John Deo</td>
-                      <td>05-01-2017</td>
-                      <td>
-                        <span className="label label-danger">Faild</span>
-                      </td>
-                      <td>#7234486</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../files/assets/images/product/prod3.jpg"
-                          alt="prod img"
-                          className="img-fluid"
-                        />
-                      </td>
-                      <td>PNG002653</td>
-                      <td>Eugine Turner</td>
-                      <td>04-01-2017</td>
-                      <td>
-                        <span className="label label-success">Delivered</span>
-                      </td>
-                      <td>#7234417</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="../files/assets/images/product/prod4.jpg"
-                          alt="prod img"
-                          className="img-fluid"
-                        />
-                      </td>
-                      <td>PNG002156</td>
-                      <td>Jacqueline Howell</td>
-                      <td>03-01-2017</td>
-                      <td>
-                        <span className="label label-warning">Pending</span>
-                      </td>
-                      <td>#7234454</td>
-                    </tr>
+                    {explorerStore.transferHistory &&
+                      explorerStore.transferHistory.map((t, index) => (
+                        <tr key={index}>
+                          <td> {t.creation}</td>
+                          <td>{t.from}</td>
+                          <td>{t.to}</td>
+                          <td>{t.quantity}</td>
+                          <td>{t.memo}</td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>

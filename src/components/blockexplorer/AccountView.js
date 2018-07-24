@@ -9,7 +9,7 @@ import TokenView from '../account/TokenView'
 import AccountDetailView from './AccountDetailView'
 import ActionHistoryView from './ActionHistoryView'
 
-@inject('explorerStore')
+@inject('explorerStore', 'accountStore')
 @observer
 class AccountView extends Component {
   constructor(props) {
@@ -24,6 +24,7 @@ class AccountView extends Component {
   }
 
   render() {
+    const { accountStore } = this.props
     const stakeEos = this.explorerStore.account.stake
     const unstakeEos = this.explorerStore.account.unstake
     const refundEos = this.explorerStore.account.refund
@@ -190,9 +191,7 @@ class AccountView extends Component {
         </div>
         <div className="col-sm-12">
           <div className="card tabs-card">
-            <div className="card-block p-0">
-              <AccountDetailView />
-            </div>
+            <div className="card-block p-0">{accountStore.account && <AccountDetailView />}</div>
           </div>
         </div>
         <div className="col-sm-12">
