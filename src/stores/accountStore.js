@@ -64,6 +64,7 @@ export class AccountStore {
       this.staked = this.net_staked + this.cpu_staked
       this.totalBalance = this.net_staked + this.cpu_staked + this.totalRefund
       this.unstaked = this.totalBalance - this.staked
+      this.permissions = accountInfo.permissions
 
       if (accountInfo.voter_info) {
         const myProducers = Object.keys(accountInfo.voter_info.producers).map(k => {
