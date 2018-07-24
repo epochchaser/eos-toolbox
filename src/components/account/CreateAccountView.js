@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { FormattedMessage } from 'react-intl'
 import Swal from 'sweetalert2'
+import * as Values from '../../constants/Values'
 
 @inject('accountStore')
 @observer
@@ -10,17 +11,32 @@ class CreateAccountView extends Component {
     super(props)
 
     this.state = {
-      cpu_user: 0.0,
-      net_user: 0.0,
       isAccountNameValid: false,
-      isOwnerPublicKeyValid: false,
-      isActivePublicKeyValid: false,
+      isOwnerPubKeyValid: false,
+      isActivePubKeyValid: false,
       isCPUstakeValid: true,
       isNETstakeValid: true,
       isRAMpurchaseOnCreationValid: true,
-      isRAMpurchaseValid: true,
-      isRAMsellValid: true
+      accountNameInput: '',
+      ownerPubKeyInput: '',
+      activePubKeyInput: '',
+      cpuStakeInput: Values.SEED_CPU,
+      netStakeInput: Values.SEED_NET,
+      ramPurchaseInput: Values.SEED_RAM_BYTES,
+      transferInput: false
     }
+  }
+
+  seedCreateAccountInput = () => {
+    this.setState({
+      accountNameInput: '',
+      ownerPubKeyInput: '',
+      activePubKeyInput: '',
+      cpuStakeInput: Values.SEED_CPU,
+      netStakeInput: Values.SEED_NET,
+      ramPurchaseInput: Values.SEED_RAM_BYTES,
+      transferInput: false
+    })
   }
 
   onInputChange = name => event => {
@@ -28,23 +44,51 @@ class CreateAccountView extends Component {
     const validationValue = event.target.value
 
     if ('accoutname' === name) {
-      accountStore.validateAccountName(validationValue)
+      this.setState({
+        isAccountNameValid: accountStore.validateAccountName(validationValue),
+        accountNameInput: validationValue
+      })
     } else if ('ownerpubkey' === name) {
-      accountStore.validateOwnerPubKey(validationValue)
+      this.setState({
+        isOwnerPubKeyValid: accountStore.validateOwnerPubKey(validationValue),
+        ownerPubKeyInput: validationValue
+      })
     } else if ('activepubkey' === name) {
-      accountStore.validateActivePubKey(validationValue)
+      this.setState({
+        isActivePubKeyValid: accountStore.validateActivePubKey(validationValue),
+        activePubKeyInput: validationValue
+      })
     } else if ('cpustake' === name) {
-      accountStore.validateCpuStake(validationValue)
+      this.setState({
+        isCPUstakeValid: accountStore.validateCpuStake(validationValue),
+        cpuStakeInput: validationValue
+      })
     } else if ('netstake' === name) {
-      accountStore.validateNetStake(validationValue)
+      this.setState({
+        isNETstakeValid: accountStore.validateNetStake(validationValue),
+        netStakeInput: validationValue
+      })
     } else if ('rampurchase' === name) {
-      accountStore.validateRamPurchaseOnCreation(validationValue)
+      this.setState({
+        isRAMpurchaseOnCreationValid: accountStore.validateRamPurchaseOnCreation(validationValue),
+        ramPurchaseInput: validationValue
+      })
     }
   }
 
   createAccount = () => {
     const { accountStore } = this.props
     if (!accountStore || !accountStore.account || !accountStore.accountInfo) return
+
+    const {
+      accountNameInput,
+      ownerPubKeyInput,
+      activePubKeyInput,
+      cpuStakeInput,
+      netStakeInput,
+      ramPurchaseInput,
+      transferInput
+    } = this.state
 
     Swal({
       title: 'Create Account',
@@ -55,9 +99,17 @@ class CreateAccountView extends Component {
       showLoaderOnConfirm: true,
       preConfirm: () => {
         return accountStore
-          .createNewAccount()
+          .createNewAccount(
+            accountNameInput,
+            ownerPubKeyInput,
+            activePubKeyInput,
+            cpuStakeInput,
+            netStakeInput,
+            ramPurchaseInput,
+            transferInput
+          )
           .then(async response => {
-            await accountStore.seedCreateAccountInput()
+            await this.seedCreateAccountInput()
             return response
           })
           .catch(err => {
@@ -103,8 +155,9 @@ class CreateAccountView extends Component {
       netStakeInput,
       ramPurchaseInput,
       transferInput
-    } = accountStore
+    } = this.state
 
+    console.log(cpuStakeInput)
     const canSubmit =
       isAccountNameValid &&
       isOwnerPubKeyValid &&
