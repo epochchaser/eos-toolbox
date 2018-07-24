@@ -6,6 +6,23 @@ import Swal from 'sweetalert2'
 @inject('accountStore')
 @observer
 class CreateAccountView extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      cpu_user: 0.0,
+      net_user: 0.0,
+      isAccountNameValid: false,
+      isOwnerPublicKeyValid: false,
+      isActivePublicKeyValid: false,
+      isCPUstakeValid: true,
+      isNETstakeValid: true,
+      isRAMpurchaseOnCreationValid: true,
+      isRAMpurchaseValid: true,
+      isRAMsellValid: true
+    }
+  }
+
   onInputChange = name => event => {
     const { accountStore } = this.props
     const validationValue = event.target.value

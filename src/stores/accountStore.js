@@ -182,18 +182,15 @@ export class AccountStore {
   }
 
   validateStakingInput = (nextCpu, nextNet) => {
-    if (0 >= nextCpu || 0 >= nextNet) {
-      this.updateValidationResult(false, nextCpu, nextNet)
-      return
+    if (0 >= nextCpu || 0 >= nextNet || !this.liquid) {
+      return false
     }
-
-    if (!this.liquid) return
 
     const limit = this.cpu_staked + this.net_staked + this.liquid
     const nextTotal = nextCpu + nextNet
 
     const isValid = nextTotal <= limit ? true : false
-    this.updateValidationResult(isValid, nextCpu, nextNet)
+    return isValid
   }
 
   seedStakingUserInput = (cpu_user, net_user) => {
