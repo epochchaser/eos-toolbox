@@ -214,5 +214,6 @@ export default {
   'You have no voter proxy': '현재 투표대리인이 없습니다.',
   'No Tokens': '보유한 토큰이 없습니다.',
   'Quantity is requied': '올바른 수량을 입력하세요',
-  Search: '검색'
+  Search: '검색',
+  'Bid Premium Name': '계정 경매'
 }
