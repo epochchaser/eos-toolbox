@@ -2,43 +2,68 @@ import React, { Component, Fragment } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { inject, observer } from '../../../../node_modules/mobx-react'
 import Swal from 'sweetalert2'
+import * as Values from '../../constants/Values'
 
 @inject('accountStore')
 @observer
 class RamTradingView extends Component {
   constructor(props) {
     super(props)
-    let { accountStore } = this.props
-    this.accountStore = accountStore
-  }
-
-  componentDidMount = () => {
-    this.accountStore.changeRamPurchaseUnit(true)
-  }
-
-  changeRamPurchaseUnit = name => event => {
-    if (name === 'eosunit') {
-      this.accountStore.changeRamPurchaseUnit(true)
-    } else if (name === 'bytesunit') {
-      this.accountStore.changeRamPurchaseUnit(false)
+    this.state = {
+      isReceiverAccountValid: false,
+      isRAMpurchaseValid: false,
+      isRAMsellValid: false,
+      isEosUnit: true,
+      receiverAccountNameInput: false,
+      ramPurchaseInput: Values.SEED_RAM_EOS,
+      ramSellInput: 0.0
     }
   }
 
+  changeRamPurchaseUnit = name => event => {
+    let ramPurchaseInput
+    let isEosUnit
+
+    if (name === 'eosunit') {
+      ramPurchaseInput = Values.SEED_RAM_EOS
+      isEosUnit = true
+    } else if (name === 'bytesunit') {
+      ramPurchaseInput = Values.SEED_RAM_BYTES
+      isEosUnit = false
+    }
+
+    this.setState({
+      ramPurchaseInput,
+      isEosUnit
+    })
+  }
+
   onInputChange = name => event => {
+    const { accountStore } = this.props
     const validationValue = event.target.value
 
     if (name === 'receiveraccount') {
-      this.accountStore.validateReceiverAccountName(validationValue)
+      this.setState({
+        isReceiverAccountValid: accountStore.validateReceiverAccountName(validationValue),
+        receiverAccountNameInput: validationValue
+      })
     } else if (name === 'rampurchase') {
-      console.log('들오냐')
-      this.accountStore.validateRamPurchase(validationValue)
+      this.setState({
+        isRAMpurchaseValid: accountStore.validateRamPurchase(validationValue),
+        ramPurchaseInput: validationValue
+      })
     } else if (name === 'ramsell') {
-      this.accountStore.validateRamSell(validationValue)
+      this.setState({
+        isRAMsellValid: accountStore.validateRamSell(validationValue),
+        ramSellInput: validationValue
+      })
     }
   }
 
   buyRam = () => {
-    if (!this.accountStore || !this.accountStore.account || !this.accountStore.accountInfo) return
+    const { accountStore } = this.props
+    if (!accountStore || !accountStore.account || !accountStore.accountInfo) return
+    const { isEosUnit, receiverAccountNameInput, ramPurchaseInput } = this.state
 
     Swal({
       title: 'Buy RAM',
@@ -48,10 +73,10 @@ class RamTradingView extends Component {
       confirmButtonText: 'Comfirm',
       showLoaderOnConfirm: true,
       preConfirm: () => {
-        return this.accountStore
-          .buyRAM()
+        return accountStore
+          .buyRAM(isEosUnit, receiverAccountNameInput, ramPurchaseInput)
           .then(async response => {
-            await this.accountStore.loadAccountInfo()
+            await accountStore.loadAccountInfo()
             return response
           })
           .catch(err => {
@@ -81,7 +106,9 @@ class RamTradingView extends Component {
     })
   }
   sellRam = () => {
-    if (!this.accountStore || !this.accountStore.account || !this.accountStore.accountInfo) return
+    const { accountStore } = this.props
+    if (!accountStore || !accountStore.account || !accountStore.accountInfo) return
+    const { ramSellInput } = this.state
 
     Swal({
       title: 'Sell RAM',
@@ -91,10 +118,10 @@ class RamTradingView extends Component {
       confirmButtonText: 'Comfirm',
       showLoaderOnConfirm: true,
       preConfirm: () => {
-        return this.accountStore
-          .sellRAM()
+        return accountStore
+          .sellRAM(ramSellInput)
           .then(async response => {
-            await this.accountStore.loadAccountInfo()
+            await accountStore.loadAccountInfo()
             return response
           })
           .catch(err => {
@@ -133,7 +160,7 @@ class RamTradingView extends Component {
       receiverAccountNameInput,
       ramPurchaseInput,
       ramSellInput
-    } = this.accountStore
+    } = this.state
 
     const ramPurchaseUnitString = isEosUnit ? 'RAM purchase (in EOS)' : 'RAM purchase (in bytes)'
     const receiverAccountNameForm = isReceiverAccountValid

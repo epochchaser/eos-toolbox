@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import sizeMe from 'react-sizeme'
 import '../../../styles/components/account/ram/RamMarketChartView.scss'
 import { inject, observer } from '../../../../node_modules/mobx-react'
-import { Bar } from '@vx/shape'
-import { scaleTime, scaleLinear, scaleLog } from '@vx/scale'
+import { scaleTime, scaleLinear } from '@vx/scale'
 import { Group } from '@vx/group'
 import { extent, max, min } from 'd3-array'
 import { AreaClosed } from '@vx/shape'
@@ -20,12 +19,6 @@ const margin = {
 @inject('eosioStore')
 @observer
 class RamMarketChartView extends Component {
-  constructor(props) {
-    super(props)
-    const { eosioStore } = this.props
-    this.eosioStore = eosioStore
-  }
-
   componentDidMount = () => {
     setInterval(this.fetchRamMarketInfo, 2000)
   }
@@ -35,15 +28,16 @@ class RamMarketChartView extends Component {
   }
 
   fetchRamMarketInfo = () => {
-    this.eosioStore.stackRamMarkets()
+    const { eosioStore } = this.props
+    eosioStore.stackRamMarkets()
   }
 
   x = d => new Date(d.date)
   y = d => d.close
 
   render() {
-    const { size } = this.props
-    const { ramMarketHistory } = this.eosioStore
+    const { eosioStore, size } = this.props
+    const { ramMarketHistory } = eosioStore
 
     if (!ramMarketHistory)
       return (
