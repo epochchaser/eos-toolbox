@@ -216,5 +216,6 @@ export default {
   'Quantity is requied': '올바른 수량을 입력하세요',
   Search: '검색',
   'Bid Premium Name': '계정 경매',
-  'Update staked balances': '스테이크 금액을 갱신하세요.'
+  'Update staked balances': '스테이크 금액을 갱신하세요.',
+  Transfer: '전송'
 }
