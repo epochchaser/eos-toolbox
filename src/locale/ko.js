@@ -213,5 +213,6 @@ export default {
   'Available EOS (liquid)': '이용가능한 잔액',
   'You have no voter proxy': '현재 투표대리인이 없습니다.',
   'No Tokens': '보유한 토큰이 없습니다.',
-  'Quantity is requied': '올바른 수량을 입력하세요'
+  'Quantity is requied': '올바른 수량을 입력하세요',
+  Search: '검색'
 }
