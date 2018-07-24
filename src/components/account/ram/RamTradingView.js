@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { inject, observer } from '../../../../node_modules/mobx-react'
 import Swal from 'sweetalert2'
-import * as Values from '../../constants/Values'
+import * as Values from '../../../constants/Values'
 
 @inject('accountStore')
 @observer
