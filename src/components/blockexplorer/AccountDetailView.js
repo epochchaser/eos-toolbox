@@ -32,6 +32,7 @@ class AccountDetailView extends Component {
                 ariaExpanded="true"
                 value="transfer"
                 onClick={this.tabClick}
+                style={{ cursor: 'pointer' }}
               >
                 <i className="fa fa-home" />Token Transfer
               </a>
@@ -45,6 +46,7 @@ class AccountDetailView extends Component {
                 ariaExpanded="false"
                 value="test"
                 onClick={this.tabClick}
+                style={{ cursor: 'pointer' }}
               >
                 <i className="fa fa-key" />Permission Group
               </a>
