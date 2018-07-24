@@ -1,3 +1,9 @@
+export const ACCOUNT_NAME_PATTERN = /([a-z1-5]){12,}/
+export const SEED_RAM_BYTES = 8192
+export const SEED_RAM_EOS = 1
+export const SEED_CPU = 0.1
+export const SEED_NET = 0.1
+
 export const actionPerPage = 1000
 
 const protocol = 'https'
