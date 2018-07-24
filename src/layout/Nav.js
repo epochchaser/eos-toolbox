@@ -42,7 +42,7 @@ class Nav extends Component {
             >
               <a>
                 <span className="pcoded-micon">
-                  <i className="ti-home" />
+                  <i className="ti-search" />
                   <b>D</b>
                 </span>
                 <span className="pcoded-mtext">
@@ -70,10 +70,74 @@ class Nav extends Component {
             <li
               className={
                 'pcoded-hasmenu' +
+                (this.routeActive(['account/transfer']) ? ' active pcoded-trigger' : '')
+              }
+            >
+              <a>
+                <span className="pcoded-micon">
+                  <i className="ti-export" />
+                  <b>D</b>
+                </span>
+                <span className="pcoded-mtext">
+                  <FormattedMessage id="Transfer Tokens" />
+                </span>
+                <span className="pcoded-mcaret" />
+              </a>
+              <ul className="pcoded-submenu">
+                <li className={this.routeActive('account/transfer') ? ' active' : ''}>
+                  <Link to="/account/transfer">
+                    <span className="pcoded-micon">
+                      <i className="ti-angle-right" />
+                    </span>
+                    <span className="pcoded-mtext">
+                      <FormattedMessage id="Transfer Tokens" />
+                    </span>
+                    <span className="pcoded-mcaret" />
+                  </Link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul className="pcoded-item pcoded-left-item">
+            <li
+              className={
+                'pcoded-hasmenu' +
+                (this.routeActive(['account/create']) ? ' active pcoded-trigger' : '')
+              }
+            >
+              <a>
+                <span className="pcoded-micon">
+                  <i className="ti-user" />
+                  <b>D</b>
+                </span>
+                <span className="pcoded-mtext">
+                  <FormattedMessage id="Create Account" />
+                </span>
+                <span className="pcoded-mcaret" />
+              </a>
+              <ul className="pcoded-submenu">
+                <li className={this.routeActive('account/create') ? ' active' : ''}>
+                  <Link to="/account/create">
+                    <span className="pcoded-micon">
+                      <i className="ti-angle-right" />
+                    </span>
+                    <span className="pcoded-mtext">
+                      <FormattedMessage id="Create Account" />
+                    </span>
+                    <span className="pcoded-mcaret" />
+                  </Link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul className="pcoded-item pcoded-left-item">
+            <li
+              className={
+                'pcoded-hasmenu' +
                 (this.routeActive([
                   'account/my',
-                  'account/transfer',
-                  'account/create',
                   'account/staking',
                   'account/rammarket',
                   'account/refund',
@@ -85,7 +149,7 @@ class Nav extends Component {
             >
               <a>
                 <span className="pcoded-micon">
-                  <i className="ti-home" />
+                  <i className="ti-wallet" />
                   <b>D</b>
                 </span>
                 <span className="pcoded-mtext">
@@ -101,28 +165,6 @@ class Nav extends Component {
                     </span>
                     <span className="pcoded-mtext">
                       <FormattedMessage id="My Account" />
-                    </span>
-                    <span className="pcoded-mcaret" />
-                  </Link>
-                </li>
-                <li className={this.routeActive('account/transfer') ? ' active' : ''}>
-                  <Link to="/account/transfer">
-                    <span className="pcoded-micon">
-                      <i className="ti-angle-right" />
-                    </span>
-                    <span className="pcoded-mtext">
-                      <FormattedMessage id="Transfer" />
-                    </span>
-                    <span className="pcoded-mcaret" />
-                  </Link>
-                </li>
-                <li className={this.routeActive('account/create') ? ' active' : ''}>
-                  <Link to="/account/create">
-                    <span className="pcoded-micon">
-                      <i className="ti-angle-right" />
-                    </span>
-                    <span className="pcoded-mtext">
-                      <FormattedMessage id="Create Account" />
                     </span>
                     <span className="pcoded-mcaret" />
                   </Link>
@@ -185,7 +227,7 @@ class Nav extends Component {
             >
               <a>
                 <span className="pcoded-micon">
-                  <i className="ti-home" />
+                  <i className="ti-cup" />
                   <b>D</b>
                 </span>
                 <span className="pcoded-mtext">
@@ -230,7 +272,7 @@ class Nav extends Component {
             >
               <a>
                 <span className="pcoded-micon">
-                  <i className="ti-home" />
+                  <i className="ti-book" />
                   <b>D</b>
                 </span>
                 <span className="pcoded-mtext">
