@@ -267,6 +267,39 @@ class Nav extends Component {
             <li
               className={
                 'pcoded-hasmenu' +
+                (this.routeActive(['bidding/names']) ? ' active pcoded-trigger' : '')
+              }
+            >
+              <a>
+                <span className="pcoded-micon">
+                  <i className="ti-hand-drag" />
+                  <b>D</b>
+                </span>
+                <span className="pcoded-mtext">
+                  <FormattedMessage id="Bid Premium Name" />
+                </span>
+                <span className="pcoded-mcaret" />
+              </a>
+              <ul className="pcoded-submenu">
+                <li className={this.routeActive('bidding/names') ? ' active' : ''}>
+                  <Link to="/bidding/names">
+                    <span className="pcoded-micon">
+                      <i className="ti-angle-right" />
+                    </span>
+                    <span className="pcoded-mtext">
+                      <FormattedMessage id="Bid Premium Name" />
+                    </span>
+                    <span className="pcoded-mcaret" />
+                  </Link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul className="pcoded-item pcoded-left-item">
+            <li
+              className={
+                'pcoded-hasmenu' +
                 (this.routeActive(['constitution/provision']) ? ' active pcoded-trigger' : '')
               }
             >

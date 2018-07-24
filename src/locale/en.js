@@ -213,5 +213,6 @@ export default {
   'Available tokens': 'Available tokens',
   'You have no voter proxy': 'You have no voter proxy',
   'No Tokens': 'No Tokens',
-  Search: 'Search'
+  Search: 'Search',
+  'Bid Premium Name': 'Bid Premium Name'
 }
