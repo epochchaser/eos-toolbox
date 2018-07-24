@@ -274,10 +274,18 @@ export class AccountStore {
 
   getAccountTokens = async accountName => {
     const lastAction = await EosAgent.getActions(accountName, -1, -1)
-
     let totalActions
+    let tokens = []
+    let tokenSymbols = [
+      {
+        code: 'eosio.token',
+        account: accountName,
+        symbol: 'EOS'
+      }
+    ]
 
-    this.tokens = null
+    let eosToken = await EosAgent.getCurrencyBalance(tokenSymbols[0])
+    tokens = tokens.concat(eosToken)
 
     if (lastAction && lastAction.actions.length > 0) {
       totalActions = lastAction.actions[0].account_action_seq
@@ -287,7 +295,7 @@ export class AccountStore {
         totalPage++
       }
 
-      let tokenSymbols = []
+      let tempTokenSymbols = []
 
       for (let i = 0; i < totalPage; i++) {
         let pos = i * Values.actionPerPage
@@ -315,30 +323,26 @@ export class AccountStore {
             }
           })
 
-        tokenSymbols = tokenSymbols.concat(results)
+        tempTokenSymbols = tempTokenSymbols.concat(results)
       }
 
-      tokenSymbols = [
-        {
-          code: 'eosio.token',
-          account: accountName,
-          symbol: 'EOS'
-        }
-      ].concat(tokenSymbols)
-
-      this.tokens = []
-      tokenSymbols = Values.removeDuplicates(tokenSymbols, 'symbol')
-      let len = tokenSymbols.length
+      tempTokenSymbols = Values.removeDuplicates(tempTokenSymbols, 'symbol')
+      let len = tempTokenSymbols.length
+      let tempTokens = []
 
       for (let i = 0; i < len; i++) {
         try {
-          let token = await EosAgent.getCurrencyBalance(tokenSymbols[i])
-          this.tokens = this.tokens.concat(token)
+          let token = await EosAgent.getCurrencyBalance(tempTokenSymbols[i])
+          tempTokens = tempTokens.concat(token)
         } catch (e) {}
       }
 
-      this.tokenSymbols = tokenSymbols
+      tokenSymbols = tokenSymbols.concat(tempTokenSymbols)
+      tokens = tokens.concat(tempTokens)
     }
+
+    this.tokens = tokens
+    this.tokenSymbols = tokenSymbols
   }
 
   validateAccountName = newVal => {
@@ -387,8 +391,8 @@ export class AccountStore {
     this.isEosUnit = isEosUnit
   }
 
-  buyRAM = async (receiverAccountName, ramPurchase) => {
-    return this.isEosUnit
+  buyRAM = async (isEosUnit, receiverAccountName, ramPurchase) => {
+    return isEosUnit
       ? await this.buyRAMEos(receiverAccountName, ramPurchase)
       : await this.buyRAMBytes(receiverAccountName, ramPurchase)
   }

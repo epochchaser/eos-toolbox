@@ -31,6 +31,10 @@ class TransferTokenView extends Component {
   loadTokens = async () => {
     await this.accountStore.getAccountTokens(this.accountStore.accountInfo.account_name)
 
+    if (!this.accountStore.tokens || this.accountStore.tokens.length <= 0) {
+      return
+    }
+
     const token = this.accountStore.tokens[0].split(' ')
 
     this.setState({
