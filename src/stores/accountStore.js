@@ -3,7 +3,7 @@ import * as Values from '../constants/Values'
 import EosAgent from '../EosAgent'
 
 const ACCOUNT_NAME_PATTERN = /([a-z1-5]){12,}/
-const SEED_RAM_BYTES = 8192
+const SEED_RAM_BYTES = 4096
 const SEED_RAM_EOS = 1
 const SEED_CPU = 0.1
 const SEED_NET = 0.1
