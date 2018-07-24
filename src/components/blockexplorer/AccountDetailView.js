@@ -12,44 +12,86 @@ class AccountDetailView extends Component {
         <Fragment>
           <ul className="nav nav-tabs md-tabs" role="tablist">
             <li className="nav-item">
-              <a className="nav-link active" data-toggle="tab" href="#token-transfer" role="tab">
+              <a
+                className="nav-link active"
+                dataToggle="tab"
+                href="#token-transfer"
+                role="tab"
+                ariaExpanded="true"
+              >
                 <i className="fa fa-home" />Token Transfer
               </a>
               <div className="slide bg-c-blue" />
             </li>
             <li className="nav-item">
-              <a className="nav-link" data-toggle="tab" href="#permission-group-content" role="tab">
+              <a
+                className="nav-link"
+                dataToggle="tab"
+                href="#permission-group-content"
+                role="tab"
+                ariaExpanded="false"
+              >
                 <i className="fa fa-key" />Permission Group
               </a>
               <div className="slide bg-c-green" />
             </li>
             <li className="nav-item">
-              <a className="nav-link" data-toggle="tab" href="#messages3" role="tab">
+              <a
+                className="nav-link"
+                dataToggle="tab"
+                href="#messages3"
+                role="tab"
+                ariaExpanded="false"
+              >
                 <i className="fa fa-play-circle" />Created
               </a>
               <div className="slide bg-c-pink" />
             </li>
             <li className="nav-item">
-              <a className="nav-link" data-toggle="tab" href="#settings3" role="tab">
+              <a
+                className="nav-link"
+                dataToggle="tab"
+                href="#settings3"
+                role="tab"
+                ariaExpanded="false"
+              >
                 <i className="fa fa-database" />Vote
               </a>
               <div className="slide bg-c-yellow" />
             </li>
             <li className="nav-item">
-              <a className="nav-link" data-toggle="tab" href="#settings3" role="tab">
+              <a
+                className="nav-link"
+                dataToggle="tab"
+                href="#settings3"
+                role="tab"
+                ariaExpanded="false"
+              >
                 <i className="fa fa-database" />Bid Account Rule
               </a>
               <div className="slide bg-c-yellow" />
             </li>
             <li className="nav-item">
-              <a className="nav-link" data-toggle="tab" href="#settings3" role="tab">
+              <a
+                className="nav-link"
+                dataToggle="tab"
+                href="#settings3"
+                role="tab"
+                ariaExpanded="false"
+              >
                 <i className="fa fa-database" />Other Actions
               </a>
               <div className="slide bg-c-yellow" />
             </li>
           </ul>
+
           <div className="tab-content card-block">
-            <div className="tab-pane active" id="token-transfer" role="tabpanel">
+            <div
+              className="tab-pane active"
+              id="token-transfer"
+              role="tabpanel"
+              ariaExpanded="true"
+            >
               <div className="table-responsive">
                 <table className="table">
                   <tr>
@@ -114,7 +156,12 @@ class AccountDetailView extends Component {
                 <button className="btn btn-outline-primary btn-round btn-sm">Load More</button>
               </div>
             </div>
-            <div className="tab-pane" id="permission-group-content" role="tabpanel">
+            <div
+              className="tab-pane"
+              id="permission-group-content"
+              role="tabpanel"
+              ariaExpanded="false"
+            >
               <div className="table-responsive">
                 <table className="table">
                   <tr>
