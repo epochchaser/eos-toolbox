@@ -14,7 +14,7 @@ class RamTradingView extends Component {
       isRAMpurchaseValid: false,
       isRAMsellValid: false,
       isEosUnit: true,
-      receiverAccountNameInput: false,
+      receiverAccountNameInput: '',
       ramPurchaseInput: Values.SEED_RAM_EOS,
       ramSellInput: 0.0
     }
