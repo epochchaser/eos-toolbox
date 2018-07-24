@@ -263,27 +263,6 @@ class CreateAccountView extends Component {
                 </div>
               </div>
 
-              <div className={ramPurchaseForm}>
-                <div className="col-sm-2">
-                  <label className="col-form-label">
-                    <FormattedMessage id="Transfer" />
-                  </label>
-                </div>
-                <div className="col-sm-10">
-                  <span
-                    className="switchery switchery-default"
-                    style={{
-                      backgroundColor: 'blue',
-                      borderColor: 'white',
-                      boxShadow: 'grey 0px 0px 0px 16px inset',
-                      transition: 'border 0.4s, boxShadow 0.4s, backgroundColor 1.2s'
-                    }}
-                  >
-                    <small style={{ marginLeft: '20px', backgroundColor: 'red' }} />
-                  </span>
-                </div>
-              </div>
-
               <div className="row">
                 <div className="col-lg-6 offset-lg-3">
                   <div className="card-block text-center">
