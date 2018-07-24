@@ -212,5 +212,6 @@ export default {
   'Total balance after trasfer token': 'Total balance after trasfer token',
   'Available tokens': 'Available tokens',
   'You have no voter proxy': 'You have no voter proxy',
-  'No Tokens': 'No Tokens'
+  'No Tokens': 'No Tokens',
+  Search: 'Search'
 }

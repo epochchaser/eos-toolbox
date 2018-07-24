@@ -93,7 +93,7 @@ class SearchView extends Component {
                     id="block-search"
                     onClick={this.onSearchClick}
                   >
-                    Search
+                    <FormattedMessage id="Search" />
                   </button>
                 </div>
               </div>
