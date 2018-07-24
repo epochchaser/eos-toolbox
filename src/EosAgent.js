@@ -65,7 +65,7 @@ class EosAgent {
     return await this.eos.transaction(cb)
   }
 
-  createTransaction = async (contract, cb) => {
+  createTransactionWithContract = async (contract, cb) => {
     if (!this.eos) {
       return
     }

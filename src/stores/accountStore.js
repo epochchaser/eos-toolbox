@@ -3,7 +3,7 @@ import * as Values from '../constants/Values'
 import EosAgent from '../EosAgent'
 
 const ACCOUNT_NAME_PATTERN = /([a-z1-5]){12,}/
-const SEED_RAM_BYTES = 4096
+const SEED_RAM_BYTES = 8192
 const SEED_RAM_EOS = 1
 const SEED_CPU = 0.1
 const SEED_NET = 0.1
@@ -76,7 +76,7 @@ export class AccountStore {
       this.cpu_user = 0
       this.net_user = 0
 
-      this.staked = parseFloat(accountInfo.voter_info.staked) / 10000
+      this.staked = this.net_staked + this.cpu_staked
       this.totalBalance =
         this.net_staked + this.cpu_staked + refunding_cpu_amount + refunding_net_amount
       this.unstaked = this.totalBalance - this.staked
@@ -250,12 +250,12 @@ export class AccountStore {
     }
   }
 
-  setStake = async () => {
+  setStake = async (net, cpu) => {
     if (!this.account) {
       return
     }
 
-    const { increaseInStake, decreaseInStake } = this.getStakeChanges(this.net_user, this.cpu_user)
+    const { increaseInStake, decreaseInStake } = this.getStakeChanges(net, cpu)
 
     const cb = tr => {
       if (increaseInStake.netAmount > 0 || increaseInStake.cpuAmount > 0) {
@@ -521,7 +521,7 @@ export class AccountStore {
       )
     }
 
-    return await EosAgent.createTransaction(contract, cb)
+    return await EosAgent.createTransactionWithContract(contract, cb)
   }
 
   voteProducer = async (proxy = '') => {
