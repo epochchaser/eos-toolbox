@@ -210,7 +210,7 @@ export default {
   Memo: 'Memo',
   'Symbol is required': 'Symbol is required',
   'Total balance after trasfer token': 'Total balance after trasfer token',
-  'Available EOS (liquid)': 'Available EOS (liquid)',
+  'Available tokens': 'Available tokens',
   'You have no voter proxy': 'You have no voter proxy',
   'No Tokens': 'No Tokens'
 }

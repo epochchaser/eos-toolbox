@@ -59,7 +59,7 @@ class TransferTokenView extends Component {
       })
     } else if (name === 'transferquantity') {
       const qty = Number(validationValue ? validationValue : 0)
-      const valid = qty <= this.state.tokenQuantity ? true : false
+      const valid = qty <= this.state.tokenQuantity && qty !== 0 ? true : false
 
       this.setState({
         transferQuantityInput: qty,
@@ -174,10 +174,10 @@ class TransferTokenView extends Component {
                 <div className="card-block">
                   <div className="row">
                     <div className="col-sm-12">
-                      <h2 className="f-w-600">
+                      <h2 className="f-w-600 text-right">
                         {availableLiquid} / {this.state.tokenQuantity} {this.state.tokenSymbol}
                       </h2>
-                      <p className="text-muted f-w-600">
+                      <p className="text-muted f-w-600 text-right">
                         <FormattedMessage id="Available EOS (liquid)" />
                       </p>
 
@@ -222,9 +222,6 @@ class TransferTokenView extends Component {
                 <h5>
                   <FormattedMessage id="Transfer Token" />
                 </h5>
-                <span>
-                  Transfer <code> your token</code> with <code>information</code> below
-                </span>
               </div>
               <div className="card-block">
                 <div className="form-group row">
