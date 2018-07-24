@@ -13,9 +13,9 @@ class TokenView extends Component {
           </div>
         </div>
         {(!this.props.tokens || this.props.tokens.length === 0) && (
-          <div class="col-sm-12 p-0">
-            <div class="card">
-              <div class="card-block">
+          <div className="col-sm-12 p-0">
+            <div className="card">
+              <div className="card-block">
                 {!this.props.tokens && (
                   <div className="preloader3 loader-block m-t-20" style={{ height: '9px' }}>
                     <div className="circ1" />
