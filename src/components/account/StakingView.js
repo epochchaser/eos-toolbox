@@ -22,32 +22,21 @@ class StakingView extends Component {
   }
 
   onValueChange = name => event => {
+    const { accountStore } = this.props
     const { cpu_user, net_user } = this.state
-    const userInput = Number(event.target.value)
+    let targetCpu
+    let targetNet
 
     if (name === 'cpu') {
-      this.validateStakingInput(userInput, net_user)
+      targetCpu = Number(event.target.value)
+      targetNet = net_user
     } else if (name === 'net') {
-      this.validateStakingInput(cpu_user, userInput)
-    }
-  }
-
-  validateStakingInput = (nextCpu, nextNet) => {
-    const { accountStore } = this.props
-    const { liquid, cpu_staked, net_staked } = accountStore
-
-    if (0 >= nextCpu || 0 >= nextNet) {
-      this.updateValidationResult(false, nextCpu, nextNet)
-      return
+      targetCpu = cpu_user
+      targetNet = Number(event.target.value)
     }
 
-    if (!liquid) return
-
-    const limit = cpu_staked + net_staked + liquid
-    const nextTotal = nextCpu + nextNet
-
-    const isValid = nextTotal <= limit ? true : false
-    this.updateValidationResult(isValid, nextCpu, nextNet)
+    const isValid = accountStore.validateStakingInput(targetCpu, targetNet)
+    this.updateValidationResult(isValid, targetCpu, targetNet)
   }
 
   updateValidationResult = (isValidInput, cpu_user, net_user) => {
