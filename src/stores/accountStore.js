@@ -387,11 +387,13 @@ export class AccountStore {
     this.isEosUnit = isEosUnit
   }
 
-  buyRAM = async () => {
-    return this.isEosUnit ? await this.buyRAMEos() : await this.buyRAMBytes()
+  buyRAM = async (receiverAccountName, ramPurchase) => {
+    return this.isEosUnit
+      ? await this.buyRAMEos(receiverAccountName, ramPurchase)
+      : await this.buyRAMBytes(receiverAccountName, ramPurchase)
   }
 
-  sellRAM = async () => {
+  sellRAM = async ramSell => {
     if (!this.account) {
       return
     }
@@ -402,7 +404,7 @@ export class AccountStore {
       tr.sellram(
         {
           account: this.account.name,
-          bytes: Number(this.ramSellInput)
+          bytes: Number(ramSell)
         },
         options
       )
@@ -411,7 +413,7 @@ export class AccountStore {
     return await EosAgent.createTransaction(cb)
   }
 
-  buyRAMEos = async () => {
+  buyRAMEos = async (receiverAccountName, ramPurchase) => {
     if (!this.account) {
       return
     }
@@ -422,8 +424,8 @@ export class AccountStore {
       tr.buyram(
         {
           payer: this.account.name,
-          receiver: this.receiverAccountNameInput,
-          quant: `${Number(this.ramPurchaseInput)
+          receiver: receiverAccountName,
+          quant: `${Number(ramPurchase)
             .toFixed(4)
             .toString()} EOS`
         },
@@ -434,15 +436,15 @@ export class AccountStore {
     return await EosAgent.createTransaction(cb)
   }
 
-  buyRAMBytes = async () => {
+  buyRAMBytes = async (receiverAccountName, ramPurchase) => {
     const cb = tr => {
       const options = { authorization: [`${this.account.name}@${this.account.authority}`] }
 
       tr.buyrambytes(
         {
           payer: this.account.name,
-          receiver: this.receiverAccountNameInput,
-          bytes: Number(this.ramPurchaseInput)
+          receiver: receiverAccountName,
+          bytes: Number(ramPurchase)
         },
         options
       )
