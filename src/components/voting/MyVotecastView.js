@@ -230,14 +230,20 @@ class MyVotecastView extends Component {
                     ))}
                 </tbody>
               </table>
-              {!myBlockProducers && (
-                <div className="preloader3 loader-block">
-                  <div className="circ1" />
-                  <div className="circ2" />
-                  <div className="circ3" />
-                  <div className="circ4" />
-                </div>
-              )}
+              <div className="card-block m-t-40 col-sm-12">
+                {!myBlockProducers ? (
+                  <div className="preloader3 loader-block">
+                    <div className="circ1" />
+                    <div className="circ2" />
+                    <div className="circ3" />
+                    <div className="circ4" />
+                  </div>
+                ) : (
+                  <p className="card-text text-muted text-center">
+                    <FormattedMessage id="No Seasrch Results" />
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         </div>

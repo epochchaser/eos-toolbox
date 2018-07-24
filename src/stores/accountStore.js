@@ -34,7 +34,7 @@ export class AccountStore {
   votes = null
   bidNames = null
   otherActions = null
-  myBlockProducers = null
+  myBlockProducers = []
 
   loadAccountInfo = async () => {
     let accountInfo, balance
