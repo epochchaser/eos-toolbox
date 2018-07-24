@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import { FormattedMessage } from 'react-intl'
 
-@inject('accountStore')
+@inject('accountStore', 'explorerStore')
 @observer
 class AccountDetailView extends Component {
   constructor(props) {
@@ -13,13 +13,22 @@ class AccountDetailView extends Component {
   }
 
   tabClick = name => e => {
+    const { accountStore, explorerStore } = this.props
+    const accName = accountStore.account.name
+
+    if (name === 'vote') {
+      explorerStore.getVotingHistory(accName)
+    } else if (name === 'created') {
+      explorerStore.getNewAccountHistory(accName)
+    }
+
     this.setState({
       selectedTab: name
     })
   }
 
   render() {
-    const { accountStore } = this.props
+    const { accountStore, explorerStore } = this.props
 
     return (
       accountStore && (
@@ -57,6 +66,7 @@ class AccountDetailView extends Component {
                 data-toggle="tab"
                 href="#messages3"
                 role="tab"
+                style={{ cursor: 'pointer' }}
                 onClick={this.tabClick('created')}
               >
                 <i className="fa fa-play-circle" />Created
@@ -69,6 +79,7 @@ class AccountDetailView extends Component {
                 data-toggle="tab"
                 href="#settings3"
                 role="tab"
+                style={{ cursor: 'pointer' }}
                 onClick={this.tabClick('vote')}
               >
                 <i className="fa fa-database" />Vote
@@ -167,12 +178,37 @@ class AccountDetailView extends Component {
                     </tr>
 
                     {accountStore.permissions &&
-                      accountStore.permissions.map(p => (
-                        <tr>
+                      accountStore.permissions.map((p, index) => (
+                        <tr key={index}>
                           <td> {p.perm_name}</td>
                           <td>{p.required_auth.keys[0].key}</td>
                           <td>{p.required_auth.threshold}</td>
                           <td>{p.required_auth.keys[0].weight}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div
+              className={'tab-pane' + (this.state.selectedTab === 'created' ? ' active' : '')}
+              id="profile3"
+              role="tabpanel"
+            >
+              <div className="table-responsive">
+                <table className="table">
+                  <tbody>
+                    <tr>
+                      <th>Account</th>
+                      <th>Create Time</th>
+                    </tr>
+
+                    {explorerStore.newAccountHistory &&
+                      explorerStore.newAccountHistory.map((h, index) => (
+                        <tr key={index}>
+                          <td> {h.account}</td>
+                          <td>{h.creation}</td>
                         </tr>
                       ))}
                   </tbody>

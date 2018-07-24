@@ -14,6 +14,7 @@ export class ExplorerStore {
   transaction = null
   actions = null
   block = null
+  newAccountHistory = null
 
   setIsActionLoading(isActionLoading) {
     this.isActionLoading = isActionLoading
@@ -111,6 +112,7 @@ export class ExplorerStore {
 
     try {
       let actions = await EosAgent.getActions(accountName, 0, 10000)
+
       if (actions) {
         this.actions = sortBy(actions.actions, 'block_time').reverse()
       }
@@ -161,6 +163,50 @@ export class ExplorerStore {
 
     this.isTokenLoading = false
   }
+
+  getVotingHistory = async accountName => {
+    if (!this.actions) {
+      await this.getActions(accountName)
+    }
+
+    let results = this.actions
+      .filter((action, idx, array) => {
+        if (action.action_trace.act.name === 'voteproducer') {
+          return true
+        } else {
+          return false
+        }
+      })
+      .map(a => {
+        return {
+          producers: a.action_trace.act.data.producers
+        }
+      })
+  }
+
+  getNewAccountHistory = async accountName => {
+    if (!this.actions) {
+      await this.getActions(accountName)
+    }
+
+    let results = this.actions
+      .filter((action, idx, array) => {
+        if (action.action_trace.act.name === 'newaccount') {
+          return true
+        } else {
+          return false
+        }
+      })
+      .map(a => {
+        return {
+          account: a.action_trace.act.data.name,
+          creation: a.block_time
+        }
+      })
+
+    console.log(results)
+    this.newAccountHistory = results
+  }
 }
 
 decorate(ExplorerStore, {
@@ -169,6 +215,7 @@ decorate(ExplorerStore, {
   accounts: observable,
   transaction: observable,
   tokens: observable,
+  newAccountHistory: observable,
   isActionLoading: observable,
   isTokenLoading: observable,
   block: observable,
@@ -176,6 +223,8 @@ decorate(ExplorerStore, {
   search: action,
   setIsLoading: action,
   getActions: action,
+  getVotingHistory: action,
+  getNewAccountHistory: action,
   setIsActionLoading: action
 })
 
