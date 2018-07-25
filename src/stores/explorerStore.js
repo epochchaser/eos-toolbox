@@ -215,11 +215,14 @@ export class ExplorerStore {
 
     let results = this.actions
       .filter((action, idx, array) => {
-        if (action.action_trace.act.name === 'transfer') {
-          return true
-        } else {
-          return false
-        }
+        return (
+          array.findIndex((target, j) => {
+            return (
+              action.action_trace.act.name === 'transfer' &&
+              action.action_trace.act.hex_data === target.action_trace.act.hex_data
+            )
+          }) === idx
+        )
       })
       .map(a => {
         return {
