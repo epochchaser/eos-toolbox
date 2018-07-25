@@ -113,9 +113,17 @@ export class ExplorerStore {
 
     try {
       let actions = await EosAgent.getActions(accountName, 0, 10000)
-      console.log(actions)
+
       if (actions) {
-        this.actions = sortBy(actions.actions, 'block_time').reverse()
+        const result = actions.actions.filter((action, idx, array) => {
+          return (
+            array.findIndex((target, j) => {
+              return action.action_trace.act.hex_data === target.action_trace.act.hex_data
+            }) === idx
+          )
+        })
+
+        this.actions = sortBy(result, 'block_time').reverse()
       }
     } catch (e) {}
 
