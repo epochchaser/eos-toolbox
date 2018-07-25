@@ -52,7 +52,7 @@ class AccountDetailView extends Component {
                 style={{ cursor: 'pointer' }}
                 onClick={this.tabClick('transfer')}
               >
-                <i className="fa fa-home" />Token Transfer
+                <i className="fa fa-paper-plane-o" />Token Transfer
               </a>
               <div className="slide bg-c-blue" />
             </li>
@@ -77,7 +77,7 @@ class AccountDetailView extends Component {
                 style={{ cursor: 'pointer' }}
                 onClick={this.tabClick('created')}
               >
-                <i className="fa fa-play-circle" />Created
+                <i className="fa fa-plus" />Created
               </a>
               <div className="slide bg-c-pink" />
             </li>
@@ -89,7 +89,7 @@ class AccountDetailView extends Component {
                 style={{ cursor: 'pointer' }}
                 onClick={this.tabClick('vote')}
               >
-                <i className="fa fa-database" />Vote
+                <i className="fa fa-thumbs-o-up" />Vote
               </a>
               <div className="slide bg-c-yellow" />
             </li>
