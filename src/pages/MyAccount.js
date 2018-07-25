@@ -22,7 +22,7 @@ class MyAccount extends Component {
           this.accountStore.accountInfo && (
             <Fragment>
               <MyAccountView />
-              <ResourceView />
+              {/* <ResourceView /> */}
               <ActionView />
             </Fragment>
           )}

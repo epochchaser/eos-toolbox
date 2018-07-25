@@ -52,7 +52,7 @@ class BlockView extends Component {
 
                           <p className="text-muted">
                             <FormattedMessage id="Irreversible Blocks" />
-                            <i class="fa fa-caret-up m-l-10 text-c-green" />
+                            <i className="fa fa-caret-up m-l-10 text-c-green" />
                           </p>
                         </div>
                       </div>
@@ -69,7 +69,7 @@ class BlockView extends Component {
                           </h2>
                           <p className="text-muted ">
                             <FormattedMessage id="Head Blocks" />
-                            <i class="fa fa-caret-up m-l-10 text-c-green" />
+                            <i className="fa fa-caret-up m-l-10 text-c-green" />
                           </p>
                         </div>
                       </div>

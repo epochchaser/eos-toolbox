@@ -9,21 +9,18 @@ import BlockView from './BlockView'
 @inject('explorerStore')
 @observer
 class SearchResult extends Component {
-  constructor(props) {
-    super(props)
-    let { explorerStore } = this.props
-    this.explorerStore = explorerStore
-  }
-
   render() {
+    const { explorerStore } = this.props
+
     return (
       <Fragment>
-        {(this.explorerStore.isLoading ||
-          (!this.explorerStore.isLoading &&
-            !this.explorerStore.account &&
-            !this.explorerStore.accounts &&
-            !this.explorerStore.transaction &&
-            !this.explorerStore.block)) && (
+        {explorerStore &&
+          (explorerStore.isLoading ||
+            (!explorerStore.isLoading &&
+              !explorerStore.account &&
+              !explorerStore.accounts &&
+              !explorerStore.transaction &&
+              !explorerStore.block)) && (
             <div className="col-sm-12 search2 search-result">
               <div className="card card-main">
                 <div className="card-block">
@@ -31,17 +28,20 @@ class SearchResult extends Component {
                     <div className="col-sm-12">
                       <div className="search-content">
                         <div className="card-block m-t-40 col-sm-12">
-                          {!this.explorerStore.isLoading &&
-                          (!this.explorerStore.account &&
-                            !this.explorerStore.accounts &&
-                            !this.explorerStore.transaction &&
-                            !this.explorerStore.block) && (
+                          {!explorerStore.isLoading &&
+                            (!explorerStore.account &&
+                              !explorerStore.accounts &&
+                              !explorerStore.transaction &&
+                              !explorerStore.block) && (
                               <p className="card-text text-muted text-center">
                                 <FormattedMessage id="No Seasrch Results" />
                               </p>
                             )}
-                          {this.explorerStore.isLoading && (
-                            <div className="preloader3 loader-block m-t-20" style={{ height: '9px' }}>
+                          {explorerStore.isLoading && (
+                            <div
+                              className="preloader3 loader-block m-t-20"
+                              style={{ height: '9px' }}
+                            >
                               <div className="circ1" />
                               <div className="circ2" />
                               <div className="circ3" />
@@ -56,10 +56,10 @@ class SearchResult extends Component {
               </div>
             </div>
           )}
-        {!this.explorerStore.isLoading && this.explorerStore.account && <AccountView />}
-        {!this.explorerStore.isLoading && this.explorerStore.transaction && <TransactionView />}
-        {!this.explorerStore.isLoading && this.explorerStore.accounts && <AccountListView />}
-        {!this.explorerStore.isLoading && this.explorerStore.block && <BlockView />}
+        {!explorerStore.isLoading && explorerStore.account && <AccountView />}
+        {!explorerStore.isLoading && explorerStore.transaction && <TransactionView />}
+        {!explorerStore.isLoading && explorerStore.accounts && <AccountListView />}
+        {!explorerStore.isLoading && explorerStore.block && <BlockView />}
       </Fragment>
     )
   }
