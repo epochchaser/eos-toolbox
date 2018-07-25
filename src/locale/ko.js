@@ -225,5 +225,8 @@ export default {
   'Net Staked': 'Net 스테이크',
   'Cpu max': 'Cpu 최대치',
   'Net max': 'Net 최대치',
-  'Ram usage': '램 사용량'
+  'Ram usage': '램 사용량',
+  Summery: '요약',
+  'Voting Action': '투표 하기',
+  'Your votes': '투표수'
 }

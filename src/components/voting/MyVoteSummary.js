@@ -22,14 +22,18 @@ class MyVoteSummary extends Component {
       <div className="card summery-card">
         <div className="card-header">
           <div className="card-header-left ">
-            <h5>Summery</h5>
+            <h5>
+              <FormattedMessage id="Summery" />
+            </h5>
           </div>
         </div>
         <div className="card-block">
           <div className="row">
             <div className="col-sm-6 b-r-default p-b-40">
               <h2 className="f-w-400">{`${myProducersLength} / 21`}</h2>
-              <p className="text-muted f-w-400">Your votes</p>
+              <p className="text-muted f-w-400">
+                <FormattedMessage id="Your votes" />
+              </p>
               <div className="progress">
                 <div
                   className="progress-bar bg-c-blue"
@@ -41,8 +45,10 @@ class MyVoteSummary extends Component {
               </div>
             </div>
             <div className="col-sm-6 p-b-40">
-              <h2 className="f-w-400">{`${staked} / ${totalBalance}`} EOS</h2>
-              <p className="text-muted f-w-400">Staked</p>
+              <h2 className="f-w-400">{`${staked.toFixed(4)} / ${totalBalance.toFixed(4)}`} EOS</h2>
+              <p className="text-muted f-w-400">
+                <FormattedMessage id="Staked" />
+              </p>
               <div className="progress">
                 <div
                   className="progress-bar bg-c-pink"

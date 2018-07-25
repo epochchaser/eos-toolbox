@@ -10,12 +10,12 @@ class Voting extends Component {
       <div className="page-wrapper">
         <div className="page-body">
           <div className="row">
-            <div className="col-md-12 col-xl-4">
+            <div className="col-md-12 col-xl-5">
               <MyVoteSummary />
               <MyVotecastView />
             </div>
 
-            <div className="col-md-12 col-xl-8">
+            <div className="col-md-12 col-xl-7">
               <BlockProducersView />
             </div>
           </div>

@@ -223,5 +223,8 @@ export default {
   'Net Staked': 'Net Staked',
   'Cpu max': 'Cpu max',
   'Net max': 'Net max',
-  'Ram usage': 'Ram usage'
+  'Ram usage': 'Ram usage',
+  Summery: 'Summery',
+  'Voting Action': 'Voting Action',
+  'Your votes': 'Your votes'
 }
