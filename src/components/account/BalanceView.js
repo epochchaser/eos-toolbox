@@ -15,7 +15,7 @@ class BalanceView extends Component {
               <i className={this.props.balance.icon + ' f-left'} />
               <span>
                 <NumberFormat
-                  value={this.props.balance.balance}
+                  value={this.props.balance.balance.toFixed(4)}
                   displayType={'text'}
                   thousandSeparator={true}
                   suffix={this.props.balance.unit}
