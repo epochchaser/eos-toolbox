@@ -6,6 +6,14 @@ import { FormattedMessage } from 'react-intl'
 @inject('eosioStore')
 @observer
 class BlockView extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      irreversible_block_offset: 0,
+      head_block_offset: 0
+    }
+  }
+
   componentDidMount() {
     this.update()
     this.intervalId = setInterval(this.update, 1500)
@@ -17,12 +25,29 @@ class BlockView extends Component {
 
   update = async () => {
     const { eosioStore } = this.props
+    const { irreversible_block_offset, head_block_offset } = this.state
     eosioStore.getInfo()
     eosioStore.getGlobalInfo()
+
+    if (eosioStore.eosInfo) {
+      this.setState({
+        irreversible_block_offset: Number(eosioStore.eosInfo.last_irreversible_block_num),
+        head_block_offset: Number(eosioStore.eosInfo.head_block_num)
+      })
+    }
   }
 
   render() {
     const { eosioStore } = this.props
+    const { irreversible_block_offset, head_block_offset } = this.state
+
+    let irresOffset = 0
+    let headOffset = 0
+
+    if (eosioStore.eosInfo) {
+      irresOffset = eosioStore.eosInfo.last_irreversible_block_num - irreversible_block_offset
+      headOffset = eosioStore.eosInfo.head_block_num - head_block_offset
+    }
 
     return (
       <div className="row">
@@ -52,7 +77,8 @@ class BlockView extends Component {
 
                           <p className="text-muted">
                             <FormattedMessage id="Irreversible Blocks" />
-                            <i className="fa fa-caret-up m-l-10 text-c-green" />
+                            <i class="fa fa-caret-up m-l-10 m-r-10 text-c-green" />
+                            {irresOffset}
                           </p>
                         </div>
                       </div>
@@ -69,7 +95,8 @@ class BlockView extends Component {
                           </h2>
                           <p className="text-muted ">
                             <FormattedMessage id="Head Blocks" />
-                            <i className="fa fa-caret-up m-l-10 text-c-green" />
+                            <i class="fa fa-caret-up m-l-10 m-r-10 text-c-green" />
+                            {headOffset}
                           </p>
                         </div>
                       </div>
@@ -80,7 +107,7 @@ class BlockView extends Component {
                           <h2 className="m-b-40 f-50 ">{eosioStore.eosInfo.head_block_producer}</h2>
                           <p className="text-muted ">
                             <FormattedMessage id="Head Block Producer" />
-                            <i class="fa fa-caret-up m-l-10 text-c-green" />
+                            <i className="fa fa-caret-up m-l-10 text-c-green" />
                           </p>
                         </div>
                       </div>
