@@ -233,5 +233,6 @@ export default {
   'Private Key': '개인키',
   'Public Key': '공개키',
   Copy: '복사',
-  Copied: '복사 완료'
+  Copied: '복사 완료',
+  'Block Info': '블록 정보'
 }

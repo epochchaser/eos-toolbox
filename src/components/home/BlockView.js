@@ -33,7 +33,7 @@ class BlockView extends Component {
                 <div className="card-header ">
                   <div className="card-header-left ">
                     <h6>
-                      <FormattedMessage id="Irreversible Blocks" />
+                      <FormattedMessage id="Block Info" />
                     </h6>
                   </div>
                 </div>
@@ -80,6 +80,7 @@ class BlockView extends Component {
                           <h2 className="m-b-40 f-50 ">{eosioStore.eosInfo.head_block_producer}</h2>
                           <p className="text-muted ">
                             <FormattedMessage id="Head Block Producer" />
+                            <i class="fa fa-caret-up m-l-10 text-c-green" />
                           </p>
                         </div>
                       </div>

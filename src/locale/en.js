@@ -231,5 +231,6 @@ export default {
   'Private Key': 'Private Key',
   'Public Key': 'Public Key',
   Copy: 'Copy',
-  Copied: 'Copied'
+  Copied: 'Copied',
+  'Block Info': 'Block Info'
 }

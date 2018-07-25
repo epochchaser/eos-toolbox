@@ -33,7 +33,7 @@ class MyAccountView extends Component {
       : 0.0
 
     const refundEos = refundCpu + refundNet
-    const totalEos = stakeEos + unstakeEos + refundEos
+    const totalEos = (stakeEos + unstakeEos + refundEos).toFixed(4)
 
     const eosBalance = {
       title: 'Balance',
@@ -49,7 +49,7 @@ class MyAccountView extends Component {
     const stakedEosBalance = {
       title: 'Staked',
       subTitle: 'Total',
-      balance: stakeEos,
+      balance: stakeEos.toFixed(4),
       unit: ' EOS',
       total: totalEos,
       totalUnit: ' EOS',
