@@ -52,7 +52,9 @@ class AccountDetailView extends Component {
                 style={{ cursor: 'pointer' }}
                 onClick={this.tabClick('transfer')}
               >
-                <i className="fa fa-paper-plane-o" />Token Transfer
+                <i className="fa fa-paper-plane-o" />Token Transfer ({explorerStore.transferHistory
+                  ? explorerStore.transferHistory.length
+                  : 0})
               </a>
               <div className="slide bg-c-blue" />
             </li>
@@ -65,7 +67,9 @@ class AccountDetailView extends Component {
                 style={{ cursor: 'pointer' }}
                 onClick={this.tabClick('permission')}
               >
-                <i className="fa fa-key" />Permission Group
+                <i className="fa fa-key" />Permission Group ({accountStore.permissions
+                  ? accountStore.permissions.length
+                  : 0})
               </a>
               <div className="slide bg-c-green" />
             </li>
@@ -77,7 +81,9 @@ class AccountDetailView extends Component {
                 style={{ cursor: 'pointer' }}
                 onClick={this.tabClick('created')}
               >
-                <i className="fa fa-plus" />Created
+                <i className="fa fa-plus" />Created ({explorerStore.newAccountHistory
+                  ? explorerStore.newAccountHistory.length
+                  : 0})
               </a>
               <div className="slide bg-c-pink" />
             </li>
@@ -89,7 +95,9 @@ class AccountDetailView extends Component {
                 style={{ cursor: 'pointer' }}
                 onClick={this.tabClick('vote')}
               >
-                <i className="fa fa-thumbs-o-up" />Vote
+                <i className="fa fa-thumbs-o-up" />Vote ({explorerStore.transferHistory
+                  ? explorerStore.transferHistory.length
+                  : 0})
               </a>
               <div className="slide bg-c-yellow" />
             </li>
@@ -164,8 +172,8 @@ class AccountDetailView extends Component {
                         </tr>
                       ))}
 
-                    {!explorerStore.permissions ||
-                      (explorerStore.permissions.length === 0 && (
+                    {!accountStore.permissions ||
+                      (accountStore.permissions.length === 0 && (
                         <tr>
                           <td colSpan="4" className="text-center">
                             <FormattedMessage id="No Data" />

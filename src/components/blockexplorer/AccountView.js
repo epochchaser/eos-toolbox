@@ -192,7 +192,9 @@ class AccountView extends Component {
         <div className="row m-l-10 m-b-20">
           <div className="col-sm-12">
             <h5>
-              <FormattedMessage id="Actions" />
+              <FormattedMessage id="Actions" /> ({this.explorerStore.actions
+                ? this.explorerStore.actions.length
+                : 0})
             </h5>
           </div>
         </div>
