@@ -6,12 +6,6 @@ import { FormattedMessage } from 'react-intl'
 @inject('eosioStore')
 @observer
 class BlockView extends Component {
-  constructor(props) {
-    super(props)
-    let { eosioStore } = this.props
-    this.eosioStore = eosioStore
-  }
-
   componentDidMount() {
     this.update()
     this.intervalId = setInterval(this.update, 1500)
@@ -22,59 +16,79 @@ class BlockView extends Component {
   }
 
   update = async () => {
-    this.eosioStore.getInfo()
-    this.eosioStore.getGlobalInfo()
+    const { eosioStore } = this.props
+    eosioStore.getInfo()
+    eosioStore.getGlobalInfo()
   }
 
   render() {
+    const { eosioStore } = this.props
+
     return (
-      <div>
-        {this.eosioStore.eosInfo && (
-          <div className="row">
-            <div className="col-sm-4">
-              <div className="card bg-c-pink text-white widget-visitor-card">
-                <div className="card-block-small text-center">
-                  <h2>
-                    <NumberFormat
-                      value={this.eosioStore.eosInfo.last_irreversible_block_num}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                    />
-                  </h2>
-                  <h6>
-                    <FormattedMessage id="Irreversible Blocks" />
-                  </h6>
+      <div className="row">
+        {eosioStore &&
+          eosioStore.eosInfo && (
+            <div className="col-md-12">
+              <div className="card card-statistics ">
+                <div className="card-header ">
+                  <div className="card-header-left ">
+                    <h6>
+                      <FormattedMessage id="Irreversible Blocks" />
+                    </h6>
+                  </div>
+                </div>
+                <div className="card-block text-center">
+                  <div className="row ">
+                    <div className="col-sm-4 b-r-default">
+                      <div className="row stats-block">
+                        <div className="col-lg-12 ">
+                          <h2 className="m-b-40 f-50 ">
+                            <NumberFormat
+                              value={eosioStore.eosInfo.last_irreversible_block_num}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                            />
+                          </h2>
+
+                          <p className="text-muted">
+                            <FormattedMessage id="Irreversible Blocks" />
+                            <i class="fa fa-caret-up m-l-10 text-c-green" />
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-sm-4 b-r-default">
+                      <div className="row stats-block">
+                        <div className="col-lg-12 ">
+                          <h2 className="m-b-40 f-50 ">
+                            <NumberFormat
+                              value={eosioStore.eosInfo.head_block_num}
+                              displayType={'text'}
+                              thousandSeparator={true}
+                            />
+                          </h2>
+                          <p className="text-muted ">
+                            <FormattedMessage id="Head Blocks" />
+                            <i class="fa fa-caret-up m-l-10 text-c-green" />
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-sm-4 ">
+                      <div className="row stats-block">
+                        <div className="col-lg-12 ">
+                          <h2 className="m-b-40 f-50 ">{eosioStore.eosInfo.head_block_producer}</h2>
+                          <p className="text-muted ">
+                            <FormattedMessage id="Head Block Producer" />
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="col-sm-4">
-              <div className="card bg-c-blue text-white widget-visitor-card">
-                <div className="card-block-small text-center">
-                  <h2>
-                    <NumberFormat
-                      value={this.eosioStore.eosInfo.head_block_num}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                    />
-                  </h2>
-                  <h6>
-                    <FormattedMessage id="Head Blocks" />
-                  </h6>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-4">
-              <div className="card bg-c-yellow text-white widget-visitor-card">
-                <div className="card-block-small text-center">
-                  <h2>{this.eosioStore.eosInfo.head_block_producer}</h2>
-                  <h6>
-                    <FormattedMessage id="Head Block Producer" />
-                  </h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+          )}
       </div>
     )
   }

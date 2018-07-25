@@ -53,7 +53,7 @@ class MarketView extends Component {
                     </div>
                   </div>
                   <div className="card-block-big ">
-                    <h2 className="text-c-green d-inline-block m-b-40 f-50 ">
+                    <h2 className="text-c-green d-inline-block m-b-40 f-40 ">
                       <NumberFormat
                         value={this.commonStore.coinMarketCap.data.quotes.USD.price.toFixed(4)}
                         displayType={'text'}
@@ -148,7 +148,7 @@ class MarketView extends Component {
                     </div>
                   </div>
                   <div className="card-block-big ">
-                    <h2 className="text-c-green d-inline-block m-b-40 f-50 ">
+                    <h2 className="text-c-green d-inline-block m-b-40 f-40 ">
                       <NumberFormat
                         value={this.eosioStore.ramInfo.kbPrice.toFixed(8)}
                         displayType={'text'}
@@ -222,7 +222,7 @@ class MarketView extends Component {
                           </div>
                           <div className="progress m-t-5">
                             <div
-                              className="progress-bar bg-c-blue"
+                              className="progress-bar bg-c-green"
                               role="progressbar"
                               aria-valuemin="0"
                               aria-valuemax="100"
