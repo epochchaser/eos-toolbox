@@ -103,7 +103,9 @@ class Nav extends Component {
             <li
               className={
                 'pcoded-hasmenu' +
-                (this.routeActive(['account/create']) ? ' active pcoded-trigger' : '')
+                (this.routeActive(['account/create', 'keys/create'])
+                  ? ' active pcoded-trigger'
+                  : '')
               }
             >
               <a>
@@ -117,6 +119,17 @@ class Nav extends Component {
                 <span className="pcoded-mcaret" />
               </a>
               <ul className="pcoded-submenu">
+                <li className={this.routeActive('keys/create') ? ' active' : ''}>
+                  <Link to="/keys/create">
+                    <span className="pcoded-micon">
+                      <i className="ti-angle-right" />
+                    </span>
+                    <span className="pcoded-mtext">
+                      <FormattedMessage id="Create Key" />
+                    </span>
+                    <span className="pcoded-mcaret" />
+                  </Link>
+                </li>
                 <li className={this.routeActive('account/create') ? ' active' : ''}>
                   <Link to="/account/create">
                     <span className="pcoded-micon">

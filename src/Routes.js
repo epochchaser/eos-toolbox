@@ -11,7 +11,8 @@ import {
   Refund,
   Constitution,
   RamMarket,
-  Transfer
+  Transfer,
+  CreateKey
 } from './pages'
 
 class Routes extends Component {
@@ -25,6 +26,7 @@ class Routes extends Component {
         <Route exact path="/account/refund" component={Refund} />
         <Route exact path="/account/rammarket" component={RamMarket} />
         <Route exact path="/account/transfer" component={Transfer} />
+        <Route exact path="/keys/create" component={CreateKey} />
         <Route exact path="/blockexplorers" component={BlockExplorer} />
         <Route exact path="/blockexplorers/:query" component={BlockExplorer} />
         <Route exact path="/voting/vote" component={Voting} />

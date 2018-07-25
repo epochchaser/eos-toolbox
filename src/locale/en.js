@@ -226,5 +226,10 @@ export default {
   'Ram usage': 'Ram usage',
   Summery: 'Summery',
   'Voting Action': 'Voting Action',
-  'Your votes': 'Your votes'
+  'Your votes': 'Your votes',
+  'Create Key': 'Create Key',
+  'Private Key': 'Private Key',
+  'Public Key': 'Public Key',
+  Copy: 'Copy',
+  Copied: 'Copied'
 }

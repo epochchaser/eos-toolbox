@@ -228,5 +228,10 @@ export default {
   'Ram usage': '램 사용량',
   Summery: '요약',
   'Voting Action': '투표 하기',
-  'Your votes': '투표수'
+  'Your votes': '투표수',
+  'Create Key': '키 생성',
+  'Private Key': '개인키',
+  'Public Key': '공개키',
+  Copy: '복사',
+  Copied: '복사 완료'
 }
