@@ -189,6 +189,13 @@ class AccountView extends Component {
         <div className="col-sm-12">
           <TokenView tokens={this.explorerStore.tokens} />
         </div>
+        <div className="row m-l-10 m-b-20">
+          <div className="col-sm-12">
+            <h5>
+              <FormattedMessage id="Actions" />
+            </h5>
+          </div>
+        </div>
         <div className="col-sm-12">
           <div className="card tabs-card">
             <div className="card-block p-0">{accountStore.account && <AccountDetailView />}</div>
