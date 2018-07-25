@@ -198,7 +198,11 @@ class AccountView extends Component {
         </div>
         <div className="col-sm-12">
           <div className="card tabs-card">
-            <div className="card-block p-0">{accountStore.account && <AccountDetailView />}</div>
+            <div className="card-block p-0">
+              {accountStore.account && (
+                <AccountDetailView account={this.explorerStore.account.account_name} />
+              )}
+            </div>
           </div>
         </div>
         <div className="col-sm-12">

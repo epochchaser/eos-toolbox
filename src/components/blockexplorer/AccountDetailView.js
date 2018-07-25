@@ -13,8 +13,8 @@ class AccountDetailView extends Component {
   }
 
   componentDidMount = () => {
-    const { accountStore, explorerStore } = this.props
-    const accName = accountStore.account.name
+    const { explorerStore } = this.props
+    const accName = this.props.account
 
     explorerStore.getTransferHistory(accName)
   }
@@ -73,7 +73,6 @@ class AccountDetailView extends Component {
               <a
                 className={'nav-link' + (this.state.selectedTab === 'created' ? ' active' : '')}
                 data-toggle="tab"
-                href="#messages3"
                 role="tab"
                 style={{ cursor: 'pointer' }}
                 onClick={this.tabClick('created')}
@@ -86,7 +85,6 @@ class AccountDetailView extends Component {
               <a
                 className={'nav-link' + (this.state.selectedTab === 'vote' ? ' active' : '')}
                 data-toggle="tab"
-                href="#settings3"
                 role="tab"
                 style={{ cursor: 'pointer' }}
                 onClick={this.tabClick('vote')}
@@ -124,6 +122,15 @@ class AccountDetailView extends Component {
                           <td>{t.memo}</td>
                         </tr>
                       ))}
+
+                    {!explorerStore.transferHistory ||
+                      (explorerStore.transferHistory.length === 0 && (
+                        <tr>
+                          <td colSpan="5" className="text-center">
+                            <FormattedMessage id="No Data" />
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
@@ -156,6 +163,15 @@ class AccountDetailView extends Component {
                           <td>{p.required_auth.keys[0].weight}</td>
                         </tr>
                       ))}
+
+                    {!explorerStore.permissions ||
+                      (explorerStore.permissions.length === 0 && (
+                        <tr>
+                          <td colSpan="4" className="text-center">
+                            <FormattedMessage id="No Data" />
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
@@ -179,6 +195,15 @@ class AccountDetailView extends Component {
                         <tr key={index}>
                           <td> {h.account}</td>
                           <td>{h.creation}</td>
+                        </tr>
+                      ))}
+
+                    {!explorerStore.newAccountHistory ||
+                      (explorerStore.newAccountHistory.length === 0 && (
+                        <tr>
+                          <td colSpan="2" className="text-center">
+                            <FormattedMessage id="No Data" />
+                          </td>
                         </tr>
                       ))}
                   </tbody>
