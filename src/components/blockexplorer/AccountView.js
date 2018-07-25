@@ -114,7 +114,7 @@ class AccountView extends Component {
             <div className="card-block">
               <div className="usre-image">
                 <img
-                  src="https://steemitimages.com/DQmeY3HLRU3Q2dhKgdqcuj52sbw7wdQdBvzzCjP2s2izNdU/2017-05-11%20(2).png"
+                  src="/images/eos-symbol.png"
                   className="img-radius"
                   alt="EOS Logo"
                   style={{ width: '100px', height: '100px' }}
