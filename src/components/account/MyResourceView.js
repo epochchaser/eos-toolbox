@@ -8,8 +8,7 @@ import { inject, observer } from 'mobx-react'
 class MyResourceView extends Component {
   render() {
     const { accountStore } = this.props
-    const { staked, totalBalance, liquid, cpu_staked, net_staked } = accountStore
-    const unstaked = totalBalance - staked
+    const { staked, liquid, cpu_staked, net_staked } = accountStore
 
     return (
       <Fragment>

@@ -62,8 +62,7 @@ export class AccountStore {
       this.net_user = 0
 
       this.staked = this.net_staked + this.cpu_staked
-      this.totalBalance = this.net_staked + this.cpu_staked + this.totalRefund
-      this.unstaked = this.totalBalance - this.staked
+      this.totalBalance = this.net_staked + this.cpu_staked + this.totalRefund + this.liquid
       this.permissions = accountInfo.permissions
 
       if (accountInfo.voter_info) {
