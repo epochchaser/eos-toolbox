@@ -33,77 +33,21 @@ class Header extends Component {
               </li>
             </ul>
             <ul className="nav-right">
-              <li className="header-notification">
-                <a href="#!">
-                  <i className="ti-bell" />
-                  <span className="badge bg-c-pink" />
-                </a>
-                <ul className="show-notification">
-                  <li>
-                    <h6>Notifications</h6>
-                    <label className="label label-danger">New</label>
-                  </li>
-                  <li>
-                    <div className="media">
-                      <img
-                        className="d-flex align-self-center img-radius"
-                        src="../files/assets/images/avatar-2.jpg"
-                        alt="Generic placeholder"
-                      />
-                      <div className="media-body">
-                        <h5 className="notification-user">John Doe</h5>
-                        <p className="notification-msg">
-                          Lorem ipsum dolor sit amet, consectetuer elit.
-                        </p>
-                        <span className="notification-time">30 minutes ago</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="media">
-                      <img
-                        className="d-flex align-self-center img-radius"
-                        src="../files/assets/images/avatar-4.jpg"
-                        alt="Generic placeholder"
-                      />
-                      <div className="media-body">
-                        <h5 className="notification-user">Joseph William</h5>
-                        <p className="notification-msg">
-                          Lorem ipsum dolor sit amet, consectetuer elit.
-                        </p>
-                        <span className="notification-time">30 minutes ago</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="media">
-                      <img
-                        className="d-flex align-self-center img-radius"
-                        src="../files/assets/images/avatar-3.jpg"
-                        alt="Generic placeholder"
-                      />
-                      <div className="media-body">
-                        <h5 className="notification-user">Sara Soudein</h5>
-                        <p className="notification-msg">
-                          Lorem ipsum dolor sit amet, consectetuer elit.
-                        </p>
-                        <span className="notification-time">30 minutes ago</span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li className="">
-                <a href="#!" className="displayChatbox">
-                  <i className="ti-comments" />
-                  <span className="badge bg-c-green" />
-                </a>
-              </li>
               <li className="user-profile header-notification">
                 <LocaleSelectView />
               </li>
               <li className="user-profile header-notification">
                 <LoginView />
+              </li>
+
+              <li>
+                <a
+                  href="https://github.com/epochchaser/eos-toolbox"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fab fa-github fa-lg" />
+                </a>
               </li>
             </ul>
           </div>
