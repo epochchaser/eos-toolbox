@@ -4,31 +4,106 @@ This project is to utilize Eos easily.
 
 ## Dashboard
 
-![dashboard](https://user-images.githubusercontent.com/40057797/42955511-a85fb30c-8bb8-11e8-92a5-6c0152890fa3.png)
+![dashboard](./readme/dashboard.png)
+
+- Irreversible Blocks
+- Head Blocks
+- Head Block Producer
+- Market Cap (USD)
+- RAM Market
+- Total Staking
+- Ram Buying
+- BP Top 30
+- Account Name Bids Top 30
 
 ## Block Explorer
 
-![blockexplorer](https://user-images.githubusercontent.com/40057797/42955550-b2079f1e-8bb8-11e8-9e9a-504a90ff03cf.png)
+![blockexplorer_1](./readme/blockexplorer_1.png)
+![blockexplorer_2](./readme/blockexplorer_2.png)
 
-## Delegate(Staking)
+- Profile
+- EOS Available
+- RAM Available
+- CPU Available
+- NET Available
+- Tokens
+- Token Transfer
+- Permission Group
+- Created
+- Vote
 
-![delegate](https://user-images.githubusercontent.com/40057797/42955556-b5c6a08c-8bb8-11e8-8d68-e878e5dd9dde.png)
+## Transfer Token
 
-## Undelegate(Unstaking)
+![transfer](./readme/transfer.png)
 
-![undelegate](https://user-images.githubusercontent.com/40057797/42955558-b810c2f0-8bb8-11e8-9d6b-54ebc50cafa2.png)
+- Transfer Token Simulation
+
+## Generate Key
+
+![generatekey](./readme/generatekey.png)
+
+- Generate Unique Key pair
+
+## Create Account
+
+![createaccount](./readme/createaccount.png)
+
+- Create account with key pair, staking some resources(cpu, net, ram)
+
+## My Account
+
+![myaccount](./readme/myaccount.png)
+
+- My Profile
+- EOS Available
+- RAM Available
+- CPU Available
+- NET Available
+- Tokens
+
+## Staking
+
+![staking](./readme/staking.png)
+
+- Staking, Unstaking Simulation
+
+## Ram Market
+
+![rammarket_1](./readme/rammarket_1.png)
+![rammarket_2](./readme/rammarket_2.png)
+
+- Realtime Ram market price chart
+- RAM available
+- Buy or Sell RAM
 
 ## Refund
 
-![refund](https://user-images.githubusercontent.com/40057797/42955564-bc456d3a-8bb8-11e8-934e-9ab63e9e60b8.png)
+![refund](./readme/refund.png)
+
+- Claim refund
 
 ## Vote
 
-![vote](https://user-images.githubusercontent.com/40057797/42955568-be8e1f9c-8bb8-11e8-81e4-a624bcad1af1.png)
+![vote](./readmne/vote.png)
 
-## Proxy
+- My Votes
+- My Staked
+- Set Voter Proxy
+- Submit Votes for selected producers
+- My Votes cast
+- Producers
 
-![proxy](https://user-images.githubusercontent.com/40057797/42955571-bfe03de4-8bb8-11e8-9888-c74810b9002b.png)
+## Voter Proxy
+
+![voterproxy](./readmne/voterproxy.png)
+
+- Register Voter Proxy
+
+## Constitution
+
+![constitution](./readmne/constitution.png)
+
+- EOS Constitution
 
 ## Required
 
@@ -77,19 +152,18 @@ $ npm run build or yarn build
 - [o] Search by pubkey
 - [o] Search by transaction id
 - [o] Search by block id
-- [x] Account token balance
+- [o] Account token balance
 ```
 
 ## Account
 
 ```
-- [x] Create Account
-- [o] Delegate
-- [o] Undelegate
-- [x] Buy Ram
-- [x] Sell Ram
+- [o] Create Account
+- [o] Staking, Unstaking
+- [o] Realtime RAM chart
+- [o] Buy Ram
+- [o] Sell Ram
 - [o] Refund
-- [x] Permissions
 ```
 
 ## Vote
@@ -98,7 +172,7 @@ $ npm run build or yarn build
 - [o] Producer List
 - [o] Submit votes
 - [o] Become Proxy
-- [x] Set Proxy
+- [o] Set Proxy
 ```
 
 ## Coding convention
