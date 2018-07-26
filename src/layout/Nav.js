@@ -153,8 +153,7 @@ class Nav extends Component {
                   'account/my',
                   'account/staking',
                   'account/rammarket',
-                  'account/refund',
-                  'account/permission'
+                  'account/refund'
                 ])
                   ? ' active pcoded-trigger'
                   : '')
@@ -212,17 +211,6 @@ class Nav extends Component {
                     </span>
                     <span className="pcoded-mtext">
                       <FormattedMessage id="Refund" />
-                    </span>
-                    <span className="pcoded-mcaret" />
-                  </Link>
-                </li>
-                <li className={this.routeActive('account/permission') ? ' active' : ''}>
-                  <Link to="/account/permission">
-                    <span className="pcoded-micon">
-                      <i className="ti-angle-right" />
-                    </span>
-                    <span className="pcoded-mtext">
-                      <FormattedMessage id="Permissions" />
                     </span>
                     <span className="pcoded-mcaret" />
                   </Link>

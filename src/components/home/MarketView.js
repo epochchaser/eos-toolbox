@@ -22,7 +22,7 @@ class MarketView extends Component {
     this.intervalId = setInterval(this.update, 1500)
   }
 
-  componentDidUnmount = () => {
+  componentWillUnmount = () => {
     clearInterval(this.intervalId)
   }
 

@@ -19,13 +19,12 @@ class BlockView extends Component {
     this.intervalId = setInterval(this.update, 1500)
   }
 
-  componentDidUnmount = () => {
+  componentWillUnmount = () => {
     clearInterval(this.intervalId)
   }
 
   update = async () => {
     const { eosioStore } = this.props
-    const { irreversible_block_offset, head_block_offset } = this.state
     eosioStore.getInfo()
     eosioStore.getGlobalInfo()
 
@@ -77,7 +76,7 @@ class BlockView extends Component {
 
                           <p className="text-muted">
                             <FormattedMessage id="Irreversible Blocks" />
-                            <i class="fa fa-caret-up m-l-10 m-r-10 text-c-green" />
+                            <i className="fa fa-caret-up m-l-10 m-r-10 text-c-green" />
                             {irresOffset}
                           </p>
                         </div>
@@ -95,7 +94,7 @@ class BlockView extends Component {
                           </h2>
                           <p className="text-muted ">
                             <FormattedMessage id="Head Blocks" />
-                            <i class="fa fa-caret-up m-l-10 m-r-10 text-c-green" />
+                            <i className="fa fa-caret-up m-l-10 m-r-10 text-c-green" />
                             {headOffset}
                           </p>
                         </div>

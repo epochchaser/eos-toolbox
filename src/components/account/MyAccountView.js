@@ -149,7 +149,7 @@ class MyAccountView extends Component {
       available: unstakeEos,
       unit: ' EOS',
       used: stakeEos,
-      max: totalEos,
+      max: Number(totalEos),
       usageRate: usageEosRate,
       color: 'pink'
     }
