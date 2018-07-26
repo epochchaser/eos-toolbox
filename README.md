@@ -84,7 +84,7 @@ This project is to utilize Eos easily.
 
 ## Vote
 
-![vote](./readmne/vote.png)
+![vote](./readme/vote.png)
 
 - My Votes
 - My Staked
@@ -95,13 +95,13 @@ This project is to utilize Eos easily.
 
 ## Voter Proxy
 
-![voterproxy](./readmne/voterproxy.png)
+![voterproxy](./readme/voterproxy.png)
 
 - Register Voter Proxy
 
 ## Constitution
 
-![constitution](./readmne/constitution.png)
+![constitution](./readme/constitution.png)
 
 - EOS Constitution
 
