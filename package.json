@@ -1,7 +1,7 @@
 {
   "name": "eos-toolbox",
   "version": "0.1.0",
-  "homepage": "https://epochchaser.github.io",
+  "homepage": "https://epochchaser.github.io/eos-toolbox",
   "dependencies": {
     "@vx/axis": "^0.0.170",
     "@vx/gradient": "^0.0.165",
