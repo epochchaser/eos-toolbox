@@ -17,7 +17,7 @@ class App extends Component {
             <div className="pcoded-overlay-box" />
             <div className="pcoded-container navbar-wrapper">
               <Header />
-              <div className="pcoded-main-container">
+              <div className="">
                 <div className="pcoded-wrapper">
                   <Nav className="content-nav" />
                   <div className="pcoded-content">
