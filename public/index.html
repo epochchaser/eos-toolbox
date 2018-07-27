@@ -31,9 +31,17 @@
   <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
   <!-- menu js -->
-  <script src="/assets/js/pcoded.min.js"></script>
   <script src="/assets/js/vartical/vartical-layout.min.js "></script>
   <script type="text/javascript" src="/assets/js/script.js "></script>
+  <script src="/assets/js/pcoded.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      setTimeout(function () {
+        $('#pcoded .pcoded-main-container').css('margin-top', $(".pcoded-header").outerHeight());
+      }, 1000);
+    });
+  </script>
 </body>
 
 </html>
