@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../styles/layout/Header.scss'
 import LoginView from '../components/LoginView'
+import { Link } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
 import LocaleSelectView from '../components/LocaleSelectView'
 

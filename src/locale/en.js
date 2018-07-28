@@ -1,5 +1,5 @@
 export default {
-  'EOS Toolbox': 'EOS Toolbox',
+  Eosuite: 'Eosuite',
   Login: 'Login',
   Logout: 'Logout',
   'Irreversible Blocks': 'Irreversible Blocks',

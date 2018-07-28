@@ -1,5 +1,5 @@
 export default {
-  'EOS Toolbox': '이오스 툴박스',
+  Eosuite: '이오슈트',
   Login: '로그인',
   Logout: '로그아웃',
   'Irreversible Blocks': '변경불가 블록',
