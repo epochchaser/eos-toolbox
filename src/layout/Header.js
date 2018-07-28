@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../styles/layout/Header.scss'
 import LoginView from '../components/LoginView'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
 import LocaleSelectView from '../components/LocaleSelectView'
 
@@ -15,11 +15,11 @@ class Header extends Component {
               <i className="ti-menu" />
             </a>
             <header>
-              <a href="/">
+              <Link to="/">
                 <h5>
                   <FormattedMessage id="EOS Toolbox" />
                 </h5>
-              </a>
+              </Link>
             </header>
           </div>
 
@@ -58,4 +58,4 @@ class Header extends Component {
   }
 }
 
-export default Header
+export default withRouter(Header)
