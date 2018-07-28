@@ -88,7 +88,7 @@ class RamMarketChartView extends Component {
                       <AxisBottom
                         scale={xScale}
                         top={yMax}
-                        label={'Years'}
+                        label={'Realtime'}
                         stroke={'#1b1a1e'}
                         tickTextFill={'#1b1a1e'}
                       />
