@@ -192,13 +192,14 @@ class MyAccountView extends Component {
                       </div>
                       <div className="card-block">
                         <div className="usre-image">
-                          <img
+                          {/* <img
                             src="/images/eos-symbol.png"
                             className="img-radius"
                             alt="EOS Logo"
                             style={{ width: '100px', height: '100px' }}
                           />
-                        </div>
+                        </div> */}
+                        </div> 
                         <h6 className="f-w-600 m-t-25 m-b-10">
                           {explorerStore.account.account_name}
                         </h6>
