@@ -17,7 +17,7 @@ class Header extends Component {
             <header>
               <Link to="/">
                 <h5>
-                  <FormattedMessage id="EOS Toolbox" />
+                  <FormattedMessage id="Eosuite" />
                 </h5>
               </Link>
             </header>
