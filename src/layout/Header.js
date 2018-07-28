@@ -47,7 +47,7 @@ class Header extends Component {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="github icon-large" />
+                  <i className="fa fa-github fa-lg" />
                 </a>
               </li>
             </ul>
