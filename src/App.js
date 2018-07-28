@@ -17,14 +17,12 @@ class App extends Component {
             <div className="pcoded-overlay-box" />
             <div className="pcoded-container navbar-wrapper">
               <Header />
-              <div className="">
-                <div className="pcoded-wrapper">
-                  <Nav className="content-nav" />
-                  <div className="pcoded-content">
-                    <div className="pcoded-inner-content">
-                      <div className="main-body">
-                        <Main className="content-main" />
-                      </div>
+              <div className="pcoded-wrapper">
+                <Nav className="content-nav" />
+                <div className="pcoded-content">
+                  <div className="pcoded-inner-content">
+                    <div className="main-body">
+                      <Main className="content-main" />
                     </div>
                   </div>
                 </div>
