@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import NumberFormat from 'react-number-format'
-import BalanceView from './BalanceView'
 import { FormattedMessage } from 'react-intl'
 import { format } from 'date-fns'
 import UsageResourceView from '../UsageResourceView'
@@ -175,7 +174,7 @@ class MyAccountView extends Component {
     }
 
     const base_url = window.location.origin
-    const img_path = `${base_url}/images/eos-symbol.png`
+    const img_path = `${base_url}/eos-toolbox/images/eos-symbol.png`
 
     return (
       <div className="page-wrapper">
