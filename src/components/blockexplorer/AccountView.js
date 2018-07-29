@@ -102,6 +102,9 @@ class AccountView extends Component {
       color: 'yellow'
     }
 
+    const base_url = window.location.origin
+    const img_path = `${base_url}/images/eos-symbol.png`
+
     return (
       <Fragment>
         <div className="col-lg-6 col-xl-4 col-md-12 m-b-30">
@@ -111,10 +114,10 @@ class AccountView extends Component {
                 <FormattedMessage id="Profile" />
               </h5>
             </div>
-            <div className="card-block">
+            <div className="card-block p-0">
               <div className="usre-image">
                 <img
-                  src="/images/eos-symbol.png"
+                  src={img_path}
                   className="img-radius"
                   alt="EOS Logo"
                   style={{ width: '100px', height: '100px' }}
@@ -126,7 +129,7 @@ class AccountView extends Component {
                 {format(new Date(this.explorerStore.account.created), 'YYYY-MM-DD HH:mm:ss.SSS')}
               </p>
               <hr />
-              <p className="text-muted m-t-15">
+              <p className="text-muted p-t-15 p-b-15">
                 Total :{' '}
                 <NumberFormat
                   value={this.explorerStore.account.total.toFixed(4)}
@@ -135,10 +138,7 @@ class AccountView extends Component {
                   suffix={' EOS'}
                 />
               </p>
-              <div
-                className="bg-c-blue counter-block m-t-10 p-15"
-                style={{ height: '68px', paddingBottom: '10px' }}
-              >
+              <div className="bg-c-blue counter-block p-15" style={{ height: '58px' }}>
                 <div className="row">
                   <div className="col-4">
                     <p>Unstake</p>

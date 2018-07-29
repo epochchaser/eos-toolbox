@@ -139,15 +139,16 @@ export class ExplorerStore {
     if (this.actions) {
       let results = this.actions
         .filter((action, idx, array) => {
-          if (
-            action.action_trace.act.name === 'transfer' &&
-            action.action_trace.act.data.to === accountName &&
-            action.action_trace.act.data.quantity.split(' ')[1] !== 'EOS'
-          ) {
-            return true
-          }
-
-          return false
+          return (
+            array.findIndex((target, j) => {
+              return (
+                action.action_trace.act.hex_data === target.action_trace.act.hex_data &&
+                action.action_trace.act.name === 'transfer' &&
+                action.action_trace.act.data.to === accountName &&
+                action.action_trace.act.data.quantity.split(' ')[1] !== 'EOS'
+              )
+            }) === idx
+          )
         })
         .map(action => {
           return {

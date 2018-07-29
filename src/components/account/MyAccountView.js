@@ -12,8 +12,6 @@ class MyAccountView extends Component {
   componentDidMount = async () => {
     const { explorerStore, accountStore } = this.props
     await explorerStore.search(accountStore.account.name)
-    await explorerStore.getActions(accountStore.account.name)
-    await explorerStore.getAccountTokens(accountStore.account.name)
   }
 
   render() {
@@ -176,6 +174,9 @@ class MyAccountView extends Component {
       color: 'yellow'
     }
 
+    const base_url = window.location.origin
+    const img_path = `${base_url}/images/eos-symbol.png`
+
     return (
       <div className="page-wrapper">
         <div className="page-body">
@@ -190,16 +191,15 @@ class MyAccountView extends Component {
                           <FormattedMessage id="Profile" />
                         </h5>
                       </div>
-                      <div className="card-block">
+                      <div className="card-block m-0 p-0">
                         <div className="usre-image">
-                          {/* <img
-                            src="/images/eos-symbol.png"
+                          <img
+                            src={img_path}
                             className="img-radius"
                             alt="EOS Logo"
                             style={{ width: '100px', height: '100px' }}
                           />
-                        </div> */}
-                        </div> 
+                        </div>
                         <h6 className="f-w-600 m-t-25 m-b-10">
                           {explorerStore.account.account_name}
                         </h6>
@@ -211,7 +211,7 @@ class MyAccountView extends Component {
                           )}
                         </p>
                         <hr />
-                        <p className="text-muted m-t-15">
+                        <p className="text-muted p-t-15 p-b-15">
                           Total :{' '}
                           <NumberFormat
                             value={explorerStore.account.total.toFixed(4)}
@@ -220,10 +220,7 @@ class MyAccountView extends Component {
                             suffix={' EOS'}
                           />
                         </p>
-                        <div
-                          className="bg-c-blue counter-block m-t-10 p-15"
-                          style={{ height: '68px', paddingBottom: '10px' }}
-                        >
+                        <div className="bg-c-blue counter-block p-15" style={{ height: '58px' }}>
                           <div className="row">
                             <div className="col-4">
                               <p>Unstake</p>
