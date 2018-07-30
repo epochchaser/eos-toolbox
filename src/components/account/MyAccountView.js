@@ -173,8 +173,7 @@ class MyAccountView extends Component {
       color: 'yellow'
     }
 
-    const base_url = window.location.origin
-    const img_path = `${base_url}/eos-toolbox/images/eos-symbol.png`
+    const img_path = '/images/eos-symbol.png'
 
     return (
       <div className="page-wrapper">

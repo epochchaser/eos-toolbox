@@ -40,7 +40,7 @@ export class AccountStore {
     let accountInfo, balance
 
     accountInfo = await EosAgent.getAccountInfo()
-    console.log(accountInfo)
+    
     if (accountInfo) {
       this.liquid = accountInfo.core_liquid_balance
         ? parseFloat(accountInfo.core_liquid_balance.split(' ')[0])
@@ -77,7 +77,6 @@ export class AccountStore {
 
       this.account = EosAgent.loginaccount
 
-      console.log(EosAgent.loginaccount)
       if (this.account) {
         this.isLogin = true
       }
@@ -101,8 +100,6 @@ export class AccountStore {
   login = async () => {
     let account = await EosAgent.loginWithScatter()
 
-    console.log('debug')
-    console.log(account)
     if (account) {
       this.account = account
       this.isLogin = true

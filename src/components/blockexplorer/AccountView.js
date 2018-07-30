@@ -102,9 +102,7 @@ class AccountView extends Component {
       color: 'yellow'
     }
 
-    const base_url = window.location.origin
-    const img_path = `${base_url}/eos-toolbox/images/eos-symbol.png`
-    console.log(img_path)
+    const img_path = '/images/eos-symbol.png'
 
     return (
       <Fragment>
