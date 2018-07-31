@@ -21,10 +21,13 @@ class AccountView extends Component {
   componentDidMount = async () => {
     await this.explorerStore.getActions(this.explorerStore.account.account_name)
     await this.explorerStore.getAccountTokens(this.explorerStore.account.account_name)
+    await this.explorerStore.getTransferHistory(this.explorerStore.account.account_name)
+    await this.explorerStore.getVotingHistory(this.explorerStore.account.account_name)
+    await this.explorerStore.getNewAccountHistory(this.explorerStore.account.account_name)
   }
 
   render() {
-    const { accountStore } = this.props
+    const permissions = []
     const stakeEos = this.explorerStore.account.stake
     const unstakeEos = this.explorerStore.account.unstake
     const refundEos = this.explorerStore.account.refund
@@ -191,24 +194,23 @@ class AccountView extends Component {
         <div className="row m-l-10 m-b-20">
           <div className="col-sm-12">
             <h5>
-              <FormattedMessage id="Actions" /> ({this.explorerStore.actions
-                ? this.explorerStore.actions.length
-                : 0})
+              <FormattedMessage id="Actions" />
             </h5>
           </div>
         </div>
         <div className="col-sm-12">
           <div className="card tabs-card">
             <div className="card-block p-0">
-              {accountStore.account && (
-                <AccountDetailView account={this.explorerStore.account.account_name} />
-              )}
+              <AccountDetailView
+                transfers={this.explorerStore.transferHistory}
+                permissions={permissions}
+                newaccounts={this.explorerStore.newAccountHistory}
+                votings={''}
+              />
             </div>
           </div>
         </div>
-        <div className="col-sm-12">
-          <ActionHistoryView />
-        </div>
+        <div className="col-sm-12">{/* <ActionHistoryView /> */}</div>
       </Fragment>
     )
   }

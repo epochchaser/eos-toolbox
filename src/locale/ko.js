@@ -234,5 +234,19 @@ export default {
   'Public Key': '공개키',
   Copy: '복사',
   Copied: '복사 완료',
-  'Block Info': '블록 정보'
+  'Block Info': '블록 정보',
+  'Token Transfer': '토큰 전송',
+  'Permission Group': '권한 그룹',
+  'Create Account': '계정 생성',
+  Time: '시간',
+  From: '전송자',
+  To: '수신자',
+  Quantity: '수량',
+  Memo: '메모',
+  Permission: '권한',
+  'Public Key': '공개키',
+  Threshold: '요구조건',
+  Weight: '가중치',
+  'Create Time': '생성 시간',
+  'No Data': '데이터가 없습니다'
 }
