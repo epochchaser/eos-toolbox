@@ -63,15 +63,15 @@
   <script type="text/javascript" src="/assets/js/script.js "></script>
   <script src="/assets/js/pcoded.min.js"></script>
 
-  <script>
+  <script>$(document).ready(function () { $("#pcoded .pcoded-wrapper").css("margin-top", 56) })</script>
 
-    $(document).ready(function () {
-      $('#pcoded .pcoded-wrapper').css('margin-top', 56);
-      // setTimeout(function () {
-      //   console.log($(".pcoded-header").outerHeight());
-      //   $('#pcoded .pcoded-wrapper').css('margin-top', $(".pcoded-header").outerHeight());
-      // }, 1000);
-    });
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121773654-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-121773654-2');
   </script>
 </body>
 
