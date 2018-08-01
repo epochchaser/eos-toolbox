@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 import { FormattedMessage } from 'react-intl'
+import Swal from 'sweetalert2'
 
 @inject('accountStore', 'commonStore')
 @observer
@@ -14,16 +15,20 @@ class LoginView extends Component {
   }
 
   loginClick = async () => {
-    this.commonStore.setLoading(true)
+    if (!this.commonStore._initilizedScatter) {
+      this.commonStore.scatterNeededAlert()
+    } else {
+      this.commonStore.setLoading(true)
 
-    try {
-      await this.accountStore.login()
-    } catch (e) {
-      // todo - error handle
-      // 423 Locked
-      console.log(e)
-    } finally {
-      this.commonStore.setLoading(false)
+      try {
+        await this.accountStore.login()
+      } catch (e) {
+        // todo - error handle
+        // 423 Locked
+        console.log(e)
+      } finally {
+        this.commonStore.setLoading(false)
+      }
     }
   }
 

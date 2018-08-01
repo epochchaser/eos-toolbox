@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { inject } from 'mobx-react'
 import '../styles/components/NeedLoginView.scss'
+import Swal from 'sweetalert2'
 
-@inject('accountStore')
+@inject('accountStore', 'commonStore')
 class NeedLoginView extends Component {
   constructor(props) {
     super(props)
@@ -12,9 +13,13 @@ class NeedLoginView extends Component {
   }
 
   loginClick = async () => {
-    //this.commonStore.setLoading(true)
-    await this.accountStore.login()
-    //this.commonStore.setLoading(false)
+    if (!this.commonStore._initilizedScatter) {
+      this.commonStore.scatterNeededAlert()
+    } else {
+      //this.commonStore.setLoading(true)
+      await this.accountStore.login()
+      //this.commonStore.setLoading(false)
+    }
   }
 
   render() {

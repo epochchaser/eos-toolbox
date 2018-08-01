@@ -1,5 +1,6 @@
 import { decorate, observable, action } from 'mobx'
 import ApiAgent from '../ApiAgent'
+import Swal from 'sweetalert2'
 
 export class CommonStore {
   isLoading = true
@@ -30,6 +31,15 @@ export class CommonStore {
       console.log(e)
     }
   }
+
+  scatterNeededAlert = () => {
+    Swal({
+      type: 'error',
+      title: 'Oops...',
+      text: 'You need to login with Scatter wallet!',
+      footer: '<a href="https://get-scatter.com/">Do you need scatter?</a>'
+    })
+  }
 }
 
 decorate(CommonStore, {
@@ -41,7 +51,8 @@ decorate(CommonStore, {
   setLoading: action,
   initScatter: action,
   initEos: action,
-  getCoinMarketCap: action
+  getCoinMarketCap: action,
+  scatterNeededAlert: action
 })
 
 export default new CommonStore()
