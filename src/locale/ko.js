@@ -248,5 +248,8 @@ export default {
   Threshold: '요구조건',
   Weight: '가중치',
   'Create Time': '생성 시간',
-  'No Data': '데이터가 없습니다'
+  'No Data': '데이터가 없습니다',
+  Donation: '기부하기',
+  'EOSUITE TEAM': '이오슈트 팀',
+  'Thank you and enjoy our website': '감사합니다. 즐거운 서핑되세요'
 }

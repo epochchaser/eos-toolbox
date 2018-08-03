@@ -12,7 +12,8 @@ import {
   Constitution,
   RamMarket,
   Transfer,
-  CreateKey
+  CreateKey,
+  Donation
 } from './pages'
 
 class Routes extends Component {
@@ -32,6 +33,7 @@ class Routes extends Component {
         <Route exact path="/voting/vote" component={Voting} />
         <Route exact path="/voting/proxy" component={RegVoteProxy} />
         <Route exact path="/constitution/provision" component={Constitution} />
+        <Route exact path="/donation" component={Donation} />
       </Switch>
     )
   }

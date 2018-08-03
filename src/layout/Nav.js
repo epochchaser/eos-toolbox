@@ -329,6 +329,38 @@ class Nav extends Component {
               </ul>
             </li>
           </ul>
+
+          <ul className="pcoded-item pcoded-left-item">
+            <li
+              className={
+                'pcoded-hasmenu' + (this.routeActive(['donation']) ? ' active pcoded-trigger' : '')
+              }
+            >
+              <a>
+                <span className="pcoded-micon">
+                  <i className="icofont icofont-money" />
+                  <b>D</b>
+                </span>
+                <span className="pcoded-mtext">
+                  <FormattedMessage id="Donation" />
+                </span>
+                <span className="pcoded-mcaret" />
+              </a>
+              <ul className="pcoded-submenu">
+                <li className={this.routeActive('donation') ? ' active' : ''}>
+                  <Link to="/donation">
+                    <span className="pcoded-micon">
+                      <i className="ti-angle-right" />
+                    </span>
+                    <span className="pcoded-mtext">
+                      <FormattedMessage id="Donation" />
+                    </span>
+                    <span className="pcoded-mcaret" />
+                  </Link>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </nav>
     )

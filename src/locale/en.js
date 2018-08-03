@@ -248,5 +248,8 @@ export default {
   Threshold: 'Threshold',
   Weight: 'Weight',
   'Create Time': 'Create Time',
-  'No Data': 'No Data'
+  'No Data': 'No Data',
+  Donation: 'Donation',
+  'EOSUITE TEAM': 'EOSUITE TEAM',
+  'Thank you and enjoy our website': 'Thank you and enjoy our website'
 }
