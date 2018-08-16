@@ -333,12 +333,13 @@ class Nav extends Component {
           <ul className="pcoded-item pcoded-left-item">
             <li
               className={
-                'pcoded-hasmenu' + (this.routeActive(['donation']) ? ' active pcoded-trigger' : '')
+                'pcoded-hasmenu' +
+                (this.routeActive(['donation/donation']) ? ' active pcoded-trigger' : '')
               }
             >
               <a>
                 <span className="pcoded-micon">
-                  <i className="icofont icofont-money" />
+                  <i class="ti-gift" />
                   <b>D</b>
                 </span>
                 <span className="pcoded-mtext">
@@ -347,8 +348,8 @@ class Nav extends Component {
                 <span className="pcoded-mcaret" />
               </a>
               <ul className="pcoded-submenu">
-                <li className={this.routeActive('donation') ? ' active' : ''}>
-                  <Link to="/donation">
+                <li className={this.routeActive('donation/donation') ? ' active' : ''}>
+                  <Link to="/donation/donation">
                     <span className="pcoded-micon">
                       <i className="ti-angle-right" />
                     </span>
