@@ -40,7 +40,7 @@ export class AccountStore {
     let accountInfo, balance
 
     accountInfo = await EosAgent.getAccountInfo()
-    
+
     if (accountInfo) {
       this.liquid = accountInfo.core_liquid_balance
         ? parseFloat(accountInfo.core_liquid_balance.split(' ')[0])

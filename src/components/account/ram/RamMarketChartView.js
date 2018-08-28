@@ -20,11 +20,11 @@ const margin = {
 @observer
 class RamMarketChartView extends Component {
   componentDidMount = () => {
-    setInterval(this.fetchRamMarketInfo, 2000)
+    this.fetchRamMarketInfoId = setInterval(this.fetchRamMarketInfo, 2000)
   }
 
   componentWillUnmount = () => {
-    clearInterval(this.fetchRamMarketInfo)
+    clearInterval(this.fetchRamMarketInfoId)
   }
 
   fetchRamMarketInfo = () => {
