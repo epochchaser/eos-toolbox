@@ -235,7 +235,7 @@ export class AccountStore {
     }
   }
 
-  setStake = async (net, cpu) => {
+  setStake = async (owner, receiver, net, cpu) => {
     if (!this.account) {
       return
     }
@@ -246,8 +246,8 @@ export class AccountStore {
       if (increaseInStake.netAmount > 0 || increaseInStake.cpuAmount > 0) {
         tr.delegatebw(
           this.delegatebwParams(
-            this.account.name,
-            this.account.name,
+            owner,
+            receiver,
             increaseInStake.netAmount,
             increaseInStake.cpuAmount
           )
@@ -257,8 +257,8 @@ export class AccountStore {
       if (decreaseInStake.netAmount > 0 || decreaseInStake.cpuAmount > 0) {
         tr.undelegatebw(
           this.undelegatebwParams(
-            this.account.name,
-            this.account.name,
+            owner,
+            receiver,
             decreaseInStake.netAmount,
             decreaseInStake.cpuAmount
           )

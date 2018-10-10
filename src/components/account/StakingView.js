@@ -10,6 +10,8 @@ class StakingView extends Component {
     super(props)
 
     this.state = {
+      owner: '',
+      receiver: '',
       cpu_user: 0.0,
       net_user: 0.0,
       isValidInput: true
@@ -18,38 +20,64 @@ class StakingView extends Component {
 
   componentDidMount = () => {
     const { accountStore } = this.props
-    this.updateValidationResult(true, accountStore.cpu_staked, accountStore.net_staked)
+    this.updateValidationResult(
+      true,
+      accountStore.cpu_staked,
+      accountStore.net_staked,
+      accountStore.account.name,
+      accountStore.account.name
+    )
   }
 
   onValueChange = name => event => {
     const { accountStore } = this.props
-    const { cpu_user, net_user } = this.state
+    const { cpu_user, net_user, owner, receiver } = this.state
     let targetCpu
     let targetNet
+    let targetOwner
+    let targetReceiver
 
     if (name === 'cpu') {
       targetCpu = Number(event.target.value)
       targetNet = net_user
+      targetOwner = owner
+      targetReceiver = receiver
     } else if (name === 'net') {
       targetCpu = cpu_user
       targetNet = Number(event.target.value)
+      targetOwner = owner
+      targetReceiver = receiver
+    } else if (name === 'owner') {
+      targetCpu = cpu_user
+      targetNet = net_user
+      targetOwner = event.target.value
+      targetReceiver = receiver
+    } else if (name === 'receiver') {
+      targetCpu = cpu_user
+      targetNet = net_user
+      targetOwner = owner
+      targetReceiver = event.target.value
     }
 
     const isValid = accountStore.validateStakingInput(targetCpu, targetNet)
-    this.updateValidationResult(isValid, targetCpu, targetNet)
+    this.updateValidationResult(isValid, targetCpu, targetNet, targetOwner, targetReceiver)
   }
 
-  updateValidationResult = (isValidInput, cpu_user, net_user) => {
+  updateValidationResult = (isValidInput, cpu_user, net_user, owner, receiver) => {
     this.setState({
       isValidInput,
       cpu_user,
-      net_user
+      net_user,
+      owner,
+      receiver
     })
+
+    console.log(owner, receiver)
   }
 
   onConfirm = () => {
     const { accountStore } = this.props
-    const { net_user, cpu_user } = this.state
+    const { net_user, cpu_user, owner, receiver } = this.state
 
     Swal({
       title: 'Update Staked Balances',
@@ -60,13 +88,16 @@ class StakingView extends Component {
       showLoaderOnConfirm: true,
       preConfirm: () => {
         return accountStore
-          .setStake(net_user, cpu_user)
+          .setStake(owner, receiver, net_user, cpu_user)
           .then(async response => {
-            console.log('들어왓냐')
             await accountStore.loadAccountInfo()
-            console.log('여긴')
-            this.updateValidationResult(true, accountStore.cpu_staked, accountStore.net_staked)
-            console.log('저긴')
+            this.updateValidationResult(
+              true,
+              accountStore.cpu_staked,
+              accountStore.net_staked,
+              owner,
+              receiver
+            )
             return response
           })
           .catch(err => {
@@ -100,7 +131,7 @@ class StakingView extends Component {
     const { accountStore } = this.props
 
     const { cpu_staked, net_staked, liquid } = accountStore
-    const { cpu_user, net_user, isValidInput } = this.state
+    const { cpu_user, net_user, isValidInput, owner, receiver } = this.state
 
     const cpu_limit = cpu_staked + liquid
     const net_limit = net_staked + liquid
@@ -129,6 +160,34 @@ class StakingView extends Component {
             </div>
 
             <div className="row">
+              <div className="col-sm-6 p-b-30">
+                <h6>
+                  <FormattedMessage id="Recipient" />
+                </h6>
+                <div className="input-group input-group-primary">
+                  <input
+                    className="form-control"
+                    placeholder="Receiver goes here..."
+                    value={receiver}
+                    onChange={this.onValueChange('receiver')}
+                  />
+                </div>
+              </div>
+              <div className="col-sm-6 p-b-30">
+                <h6>
+                  <FormattedMessage id="Stake Owner" />
+                </h6>
+                <div className="input-group input-group-primary">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Owner goes here..."
+                    value={owner}
+                    onChange={this.onValueChange('owner')}
+                  />
+                </div>
+              </div>
+
               <div className="col-sm-6 p-b-30">
                 <h6>
                   <FormattedMessage id="Set EOS staked in CPU" />
@@ -219,8 +278,7 @@ class StakingView extends Component {
                 className={
                   isValidInput ? 'btn btn-primary btn-block' : 'btn btn-primary btn-block disabled'
                 }
-                onClick={this.onConfirm}
-              >
+                onClick={this.onConfirm}>
                 <FormattedMessage id="Confirm" />
               </button>
             </div>
