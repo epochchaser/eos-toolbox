@@ -28,7 +28,7 @@ class Nav extends Component {
   render() {
     return (
       <nav className="pcoded-navbar">
-        <div className="pcoded-inner-navbar main-menu">
+        <div className="pcoded-inner-navbar main-menu" style={{ cursor: 'pointer' }}>
           <div className="pcoded-navigation-label">
             <FormattedMessage id="function" />
           </div>
@@ -38,8 +38,7 @@ class Nav extends Component {
               className={
                 'pcoded-hasmenu' +
                 (this.routeActive(['blockexplorers']) ? ' active pcoded-trigger' : '')
-              }
-            >
+              }>
               <a>
                 <span className="pcoded-micon">
                   <i className="ti-search" />
@@ -71,8 +70,7 @@ class Nav extends Component {
               className={
                 'pcoded-hasmenu' +
                 (this.routeActive(['account/transfer']) ? ' active pcoded-trigger' : '')
-              }
-            >
+              }>
               <a>
                 <span className="pcoded-micon">
                   <i className="ti-export" />
@@ -106,8 +104,7 @@ class Nav extends Component {
                 (this.routeActive(['account/create', 'keys/create'])
                   ? ' active pcoded-trigger'
                   : '')
-              }
-            >
+              }>
               <a>
                 <span className="pcoded-micon">
                   <i className="ti-user" />
@@ -157,8 +154,7 @@ class Nav extends Component {
                 ])
                   ? ' active pcoded-trigger'
                   : '')
-              }
-            >
+              }>
               <a>
                 <span className="pcoded-micon">
                   <i className="ti-wallet" />
@@ -224,8 +220,7 @@ class Nav extends Component {
               className={
                 'pcoded-hasmenu' +
                 (this.routeActive(['voting/vote', 'voting/proxy']) ? ' active pcoded-trigger' : '')
-              }
-            >
+              }>
               <a>
                 <span className="pcoded-micon">
                   <i className="ti-cup" />
@@ -269,8 +264,7 @@ class Nav extends Component {
               className={
                 'pcoded-hasmenu' +
                 (this.routeActive(['bidding/names']) ? ' active pcoded-trigger' : '')
-              }
-            >
+              }>
               <a>
                 <span className="pcoded-micon">
                   <i className="ti-hand-drag" />
@@ -302,8 +296,7 @@ class Nav extends Component {
               className={
                 'pcoded-hasmenu' +
                 (this.routeActive(['constitution/provision']) ? ' active pcoded-trigger' : '')
-              }
-            >
+              }>
               <a>
                 <span className="pcoded-micon">
                   <i className="ti-book" />
@@ -335,8 +328,7 @@ class Nav extends Component {
               className={
                 'pcoded-hasmenu' +
                 (this.routeActive(['donation/donation']) ? ' active pcoded-trigger' : '')
-              }
-            >
+              }>
               <a>
                 <span className="pcoded-micon">
                   <i class="ti-gift" />

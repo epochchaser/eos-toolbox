@@ -7449,6 +7449,7 @@ table tbody .border-bottom-info td {
   font-weight: 600;
 }
 .pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu {
+  cursor: 'pointer';
   list-style: outside none none;
   margin: 0;
   padding: 0;

@@ -179,7 +179,6 @@ class CreateAccountView extends Component {
 
     const usageEosRate = (staked / totalBalance) * 100
 
-    console.log(totalBalance)
     const eosResource = {
       title: 'EOS Available',
       fixed: 4,

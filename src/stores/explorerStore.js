@@ -38,8 +38,9 @@ export class ExplorerStore {
 
     if ($.isNumeric(query)) {
       try {
+        console.log('여기 들어왓냐')
         let block = await EosAgent.getBlock(query)
-
+        console.log(block)
         if (block) {
           this.block = block
         }

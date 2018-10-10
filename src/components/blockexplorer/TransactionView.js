@@ -48,8 +48,7 @@ class TransactionView extends Component {
             <div className="card-block p-0">
               <div
                 className="card-block-big revenue-report"
-                style={{ paddingTop: '0px', paddingLeft: '15px' }}
-              >
+                style={{ paddingTop: '0px', paddingLeft: '15px' }}>
                 <div className="row m-t-10 b-b-default m-l-10">
                   <div className="col-sm-12">
                     <h6 className="text-muted d-inline-block">ID</h6>
@@ -196,8 +195,7 @@ class TransactionView extends Component {
                     <table
                       id="base-style"
                       className="table table-striped table-bordered"
-                      style={{ tableLayout: 'fixed' }}
-                    >
+                      style={{ tableLayout: 'fixed' }}>
                       <thead>
                         <tr>
                           <th style={{ width: '10%' }}>
