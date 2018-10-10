@@ -38,7 +38,6 @@ export class ExplorerStore {
 
     if ($.isNumeric(query)) {
       try {
-        console.log('여기 들어왓냐')
         let block = await EosAgent.getBlock(query)
         console.log(block)
         if (block) {
@@ -113,7 +112,7 @@ export class ExplorerStore {
     this.tokens = null
 
     try {
-      let actions = await EosAgent.getActions(accountName, 0, 10000)
+      let actions = await EosAgent.getActions(accountName, 0, 1000000)
 
       if (actions) {
         const result = actions.actions.filter((action, idx, array) => {

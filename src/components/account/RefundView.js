@@ -16,6 +16,7 @@ class RefundView extends Component {
       text:
         'Claim refund...\nScatter should appear shortly to confirm this action.\nYOUR TRANSACTION WILL BE SENT TO THE NETWORK AFTERWARDS',
       input: 'text',
+      inputValue: accountStore.account.name,
       inputAttributes: {
         autocapitalize: 'off'
       },
