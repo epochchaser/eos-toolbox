@@ -27,6 +27,7 @@ This project is to utilize Eos easily.
 - CPU Available
 - NET Available
 - Tokens
+- Contract Info
 - Token Transfer
 - Permission Group
 - Created
@@ -66,6 +67,7 @@ This project is to utilize Eos easily.
 ![staking](./readme/staking.png)
 
 - Staking, Unstaking Simulation
+- Recipient, Stake Owner
 
 ## Ram Market
 
@@ -153,6 +155,7 @@ $ npm run build or yarn build
 - [o] Search by transaction id
 - [o] Search by block id
 - [o] Account token balance
+- [o] Contract Info
 ```
 
 ## Account
