@@ -237,19 +237,18 @@ export default {
   'Block Info': '블록 정보',
   'Token Transfer': '토큰 전송',
   'Permission Group': '권한 그룹',
-  'Create Account': '계정 생성',
   Time: '시간',
   From: '전송자',
   To: '수신자',
   Quantity: '수량',
-  Memo: '메모',
   Permission: '권한',
-  'Public Key': '공개키',
   Threshold: '요구조건',
   Weight: '가중치',
   'Create Time': '생성 시간',
   'No Data': '데이터가 없습니다',
   Donation: '기부하기',
   'EOSUITE TEAM': '이오슈트 팀',
-  'Thank you and enjoy our website': '감사합니다. 즐거운 서핑되세요'
+  'Thank you and enjoy our website': '감사합니다. 즐거운 서핑되세요',
+  Recipient: '수신자',
+  'Stake Owner': '송신자'
 }

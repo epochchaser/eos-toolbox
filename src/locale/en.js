@@ -237,19 +237,18 @@ export default {
   'Block Info': 'Block Info',
   'Token Transfer': 'Token Transfer',
   'Permission Group': 'Permission Group',
-  'Create Account': 'Create Account',
   Time: 'Time',
   From: 'From',
   To: 'To',
   Quantity: 'Quantity',
-  Memo: 'Memo',
   Permission: 'Permission',
-  'Public Key': 'Public Key',
   Threshold: 'Threshold',
   Weight: 'Weight',
   'Create Time': 'Create Time',
   'No Data': 'No Data',
   Donation: 'Donation',
   'EOSUITE TEAM': 'EOSUITE TEAM',
-  'Thank you and enjoy our website': 'Thank you and enjoy our website'
+  'Thank you and enjoy our website': 'Thank you and enjoy our website',
+  Recipient: 'Recipient',
+  'Stake Owner': 'Stake Owner'
 }
