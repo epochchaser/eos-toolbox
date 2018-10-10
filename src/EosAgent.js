@@ -73,6 +73,14 @@ class EosAgent {
     return await this.eos.transaction(contract, cb)
   }
 
+  getAbi = async account_name => {
+    if (!this.eos) {
+      return
+    }
+
+    return await this.eos.getAbi(account_name)
+  }
+
   getInfo = () => {
     if (!this.eos) {
       return

@@ -250,5 +250,8 @@ export default {
   'EOSUITE TEAM': 'EOSUITE TEAM',
   'Thank you and enjoy our website': 'Thank you and enjoy our website',
   Recipient: 'Recipient',
-  'Stake Owner': 'Stake Owner'
+  'Stake Owner': 'Stake Owner',
+  Contract: 'Contract',
+  FIELDS: 'FIELDS',
+  NAME: 'NAME'
 }

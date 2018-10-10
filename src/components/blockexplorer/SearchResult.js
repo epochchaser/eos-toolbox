@@ -5,6 +5,7 @@ import AccountView from './AccountView'
 import AccountListView from './AccountListView'
 import TransactionView from './TransactionView'
 import BlockView from './BlockView'
+import SmartContractView from './SmartContractView'
 
 @inject('explorerStore')
 @observer
@@ -40,8 +41,7 @@ class SearchResult extends Component {
                           {explorerStore.isLoading && (
                             <div
                               className="preloader3 loader-block m-t-20"
-                              style={{ height: '9px' }}
-                            >
+                              style={{ height: '9px' }}>
                               <div className="circ1" />
                               <div className="circ2" />
                               <div className="circ3" />
@@ -60,6 +60,7 @@ class SearchResult extends Component {
         {!explorerStore.isLoading && explorerStore.transaction && <TransactionView />}
         {!explorerStore.isLoading && explorerStore.accounts && <AccountListView />}
         {!explorerStore.isLoading && explorerStore.block && <BlockView />}
+        {!explorerStore.isLoading && explorerStore.account && <SmartContractView />}
       </Fragment>
     )
   }

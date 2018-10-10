@@ -331,7 +331,7 @@ class Nav extends Component {
               }>
               <a>
                 <span className="pcoded-micon">
-                  <i class="ti-gift" />
+                  <i className="ti-gift" />
                   <b>D</b>
                 </span>
                 <span className="pcoded-mtext">

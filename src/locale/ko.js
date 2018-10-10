@@ -250,5 +250,8 @@ export default {
   'EOSUITE TEAM': '이오슈트 팀',
   'Thank you and enjoy our website': '감사합니다. 즐거운 서핑되세요',
   Recipient: '수신자',
-  'Stake Owner': '송신자'
+  'Stake Owner': '송신자',
+  Contract: '스마트 컨트랙트',
+  FIELDS: '필드',
+  NAME: '이름'
 }
