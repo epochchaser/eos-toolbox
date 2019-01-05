@@ -116,7 +116,7 @@ export class ExplorerStore {
     this.tokens = null
 
     try {
-      let actions = await EosAgent.getActions(accountName, 0, 1000000)
+      let actions = await EosAgent.getActions(accountName, -1, -100)
 
       if (actions) {
         const result = actions.actions.filter((action, idx, array) => {
