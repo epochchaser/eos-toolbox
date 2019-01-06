@@ -270,76 +270,79 @@ export class AccountStore {
   }
 
   getAccountTokens = async accountName => {
-    const lastAction = await EosAgent.getActions(accountName, -1, -1)
-    let totalActions
-    let tokens = []
-    let tokenSymbols = [
-      {
-        code: 'eosio.token',
-        account: accountName,
-        symbol: 'EOS'
-      }
-    ]
+    // const lastAction = await EosAgent.getActions(accountName, -1, -1)
+    // let totalActions
+    let symbols = Values.supportTransferTokens.map(t =>
+      Object.assign({}, t, { account: accountName })
+    )
 
-    let eosToken = await EosAgent.getCurrencyBalance(tokenSymbols[0])
-    tokens = tokens.concat(eosToken)
+    let tempTokens = []
 
-    if (lastAction && lastAction.actions.length > 0) {
-      totalActions = lastAction.actions[0].account_action_seq
+    const len = symbols.length
 
-      let totalPage = parseInt(totalActions / Values.actionPerPage, 10)
-      if (totalActions % Values.actionPerPage !== 0) {
-        totalPage++
-      }
-
-      let tempTokenSymbols = []
-
-      for (let i = 0; i < totalPage; i++) {
-        let pos = i * Values.actionPerPage
-        let offset = Values.actionPerPage - 1
-
-        const actions = await EosAgent.getActions(accountName, pos, offset)
-
-        let results = actions.actions
-          .filter((action, idx, array) => {
-            if (
-              action.action_trace.act.name === 'transfer' &&
-              action.action_trace.act.data.to === accountName &&
-              action.action_trace.act.data.quantity.split(' ')[1] !== 'EOS'
-            ) {
-              return true
-            }
-
-            return false
-          })
-          .map(action => {
-            return {
-              code: action.action_trace.act.account,
-              account: action.action_trace.act.data.to,
-              symbol: action.action_trace.act.data.quantity.split(' ')[1]
-            }
-          })
-
-        tempTokenSymbols = tempTokenSymbols.concat(results)
-      }
-
-      tempTokenSymbols = Values.removeDuplicates(tempTokenSymbols, 'symbol')
-      let len = tempTokenSymbols.length
-      let tempTokens = []
-
-      for (let i = 0; i < len; i++) {
-        try {
-          let token = await EosAgent.getCurrencyBalance(tempTokenSymbols[i])
-          tempTokens = tempTokens.concat(token)
-        } catch (e) {}
-      }
-
-      tokenSymbols = tokenSymbols.concat(tempTokenSymbols)
-      tokens = tokens.concat(tempTokens)
+    for (let i = 0; i < len; i++) {
+      try {
+        const tk = await EosAgent.getCurrencyBalance(symbols[i])
+        tempTokens = tempTokens.concat(tk)
+      } catch (e) {}
     }
 
-    this.tokens = tokens
-    this.tokenSymbols = tokenSymbols
+    this.tokens = tempTokens
+    this.tokenSymbols = symbols
+
+    // if (lastAction && lastAction.actions.length > 0) {
+    //   totalActions = lastAction.actions[0].account_action_seq
+
+    //   let totalPage = parseInt(totalActions / Values.actionPerPage, 10)
+    //   if (totalActions % Values.actionPerPage !== 0) {
+    //     totalPage++
+    //   }
+
+    //   let tempTokenSymbols = []
+
+    //   for (let i = 0; i < totalPage; i++) {
+    //     let pos = i * Values.actionPerPage
+    //     let offset = Values.actionPerPage - 1
+
+    //     const actions = await EosAgent.getActions(accountName, pos, offset)
+
+    //     let results = actions.actions
+    //       .filter((action, idx, array) => {
+    //         if (
+    //           action.action_trace.act.name === 'transfer' &&
+    //           action.action_trace.act.data.to === accountName &&
+    //           action.action_trace.act.data.quantity.split(' ')[1] !== 'EOS'
+    //         ) {
+    //           return true
+    //         }
+
+    //         return false
+    //       })
+    //       .map(action => {
+    //         return {
+    //           code: action.action_trace.act.account,
+    //           account: action.action_trace.act.data.to,
+    //           symbol: action.action_trace.act.data.quantity.split(' ')[1]
+    //         }
+    //       })
+
+    //     tempTokenSymbols = tempTokenSymbols.concat(results)
+    //   }
+
+    //   tempTokenSymbols = Values.removeDuplicates(tempTokenSymbols, 'symbol')
+    //   let len = tempTokenSymbols.length
+    //   let tempTokens = []
+
+    //   for (let i = 0; i < len; i++) {
+    //     try {
+    //       let token = await EosAgent.getCurrencyBalance(tempTokenSymbols[i])
+    //       tempTokens = tempTokens.concat(token)
+    //     } catch (e) {}
+    //   }
+
+    //   tokenSymbols = tokenSymbols.concat(tempTokenSymbols)
+    //   tokens = tokens.concat(tempTokens)
+    // }
   }
 
   validateAccountName = newVal => {

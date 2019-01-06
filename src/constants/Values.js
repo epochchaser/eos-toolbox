@@ -7,10 +7,10 @@ export const SEED_NET = 0.1
 export const actionPerPage = 1000
 
 const protocol = 'https'
+// const host = 'user-api.eoseoul.io'
 const host = 'eos.greymass.com'
 const port = 443
 const chainId = 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
-
 // export const protocol = 'http';
 // export const host = '127.0.0.1';
 // export const port = 8888;
@@ -52,3 +52,18 @@ export function removeDuplicates(arr, prop) {
   for (var key in obj) newArr.push(obj[key])
   return newArr
 }
+
+export const supportTransferTokens = [
+  { code: 'eosio.token', symbol: 'EOS' },
+  { code: 'everipediaiq', symbol: 'IQ' },
+  { code: 'therealkarma', symbol: 'KARMA' },
+  { code: 'eosblackteam', symbol: 'BLACK' },
+  { code: 'eosdactokens', symbol: 'EOSDAC' },
+  { code: 'wizznetwork1', symbol: 'WIZZ' },
+  { code: 'esbcointoken', symbol: 'ESB' },
+  { code: 'eoscancancan', symbol: 'CAN' },
+  { code: 'wizboxairdro', symbol: 'WIZBOX' },
+  { code: 'epraofficial', symbol: 'EPRA' },
+  { code: 'eosluckchain', symbol: 'LUCK' },
+  { code: 'betdicetoken', symbol: 'DICE' }
+]
