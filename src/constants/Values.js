@@ -65,5 +65,10 @@ export const supportTransferTokens = [
   { code: 'wizboxairdro', symbol: 'WIZBOX' },
   { code: 'epraofficial', symbol: 'EPRA' },
   { code: 'eosluckchain', symbol: 'LUCK' },
-  { code: 'betdicetoken', symbol: 'DICE' }
+  { code: 'betdicetoken', symbol: 'DICE' },
+  { code: 'newdexissuer', symbol: 'NDX' },
+  { code: 'eosmax1token', symbol: 'MAX' },
+  { code: 'eosvegascoin', symbol: 'MEV' },
+  { code: 'pokereotoken', symbol: 'PKE' },
+  { code: 'ptitokenhome', symbol: 'PTI' }
 ]
