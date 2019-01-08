@@ -70,5 +70,12 @@ export const supportTransferTokens = [
   { code: 'eosmax1token', symbol: 'MAX' },
   { code: 'eosvegascoin', symbol: 'MEV' },
   { code: 'pokereotoken', symbol: 'PKE' },
-  { code: 'ptitokenhome', symbol: 'PTI' }
+  { code: 'ptitokenhome', symbol: 'PTI' },
+  { code: 'eospokercoin', symbol: 'POKER' },
+  { code: 'gameskytoken', symbol: 'SKY' },
+  { code: 'eosiomeetone', symbol: 'MEETONE' },
+  { code: 'tobetiotoken', symbol: 'TOB' },
+  
+
+  
 ]
