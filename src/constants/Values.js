@@ -75,7 +75,6 @@ export const supportTransferTokens = [
   { code: 'gameskytoken', symbol: 'SKY' },
   { code: 'eosiomeetone', symbol: 'MEETONE' },
   { code: 'tobetiotoken', symbol: 'TOB' },
-  
-
-  
+  { code: 'endlesstoken', symbol: 'ET' },
+  { code: 'bgbgbgbgbgbg', symbol: 'BG' }
 ]
